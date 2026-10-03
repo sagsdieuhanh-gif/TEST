@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.95",
-  "build": "V6.4.95-20261003-MOBILE-UI-REFRESH-01",
-  "strategy": "atomic test release + approved mobile work-menu refresh + auth helper scope fix",
+  "version": "V6.4.96",
+  "build": "V6.4.96-20261003-APPROVED-MOBILE-UI-01",
+  "strategy": "atomic test release + approved mobile-only UI + PC isolation + V6.4.94 auth fixes",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "9b0bf275c639e14f6ed8ccdd86e0f1c212c1cbb5237445a1e3d6b9f1a158bf06",
-      "bytes": 81180
+      "sha256": "7c83165db5cf486613ca403e7c1dd8e9ec30a803a821f689c1cc5ea7038102d8",
+      "bytes": 81579
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "cca05ea6087dd53966112e6d829ae1137921d6fd1dff74773cfedc505b74a37c",
-      "bytes": 21829
+      "sha256": "4748f8c24dcccf7d310000558214cc5ef8382e75e125f26882a9b5638ded0b08",
+      "bytes": 21928
     },
     "./version.json": {
-      "sha256": "436748bee5fabafce0474020bb7f8baa120bfa61013e4912cb762b7ebbc60128",
-      "bytes": 876
+      "sha256": "a7cb11b757c794f68d55e199de081598ac44a20d243e049b76d23d38049027ce",
+      "bytes": 733
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -624,6 +624,14 @@
     "./app/styles/boot-37-v6495-mobile-ui-refresh.css": {
       "sha256": "cf301f41df1f90f41ea571b6f030972a93118404c432f535466336922594f5a5",
       "bytes": 12790
+    },
+    "./app/styles/boot-38-v6496-approved-mobile-ui.css": {
+      "sha256": "2f7256c3db16ff5245c1f8d1e9c992324770b70741fe10680ce8c619ba3effa3",
+      "bytes": 14595
+    },
+    "./app/boot/36-v6496-approved-mobile-ui.js": {
+      "sha256": "3f5e216061ab4f2ca9e10205349a4503f02b70bf1d679a562e35df4d4edebf7d",
+      "bytes": 1834
     }
   }
 }
