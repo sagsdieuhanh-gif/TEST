@@ -1,1 +1,15 @@
-const fs=require('fs'),path=require('path'),assert=require('assert/strict');const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');const h=read('index.html'),paths=[...h.matchAll(/<script\b[^>]*src=["'](\.\/[^"'?]+)[^"']*["'][^>]*>/g)].map(m=>m[1]);assert.equal(new Set(paths).size,paths.length,'startup must not execute the same file repeatedly');assert(!paths.includes('./app/core/app.v503.js'));assert(!paths.includes('./app/modules/ai.js'));assert(!read('app/boot/29-sags-v6118-carrier-lazy.js').includes('requestIdleCallback'));const bytes=paths.reduce((n,p)=>n+fs.statSync(path.join(root,p)).size,0);assert(bytes<3000000,'startup parsed JS budget');assert(paths.indexOf('./app/generated/core-shared.js')<paths.indexOf('./app/generated/core-archive.js'));const phases=[...h.matchAll(/data-phase="([^"]+)"/g)].map(m=>m[1]);assert.deepEqual(phases,['archive','tools','flight','control','postcontrol','performance']);const sw=read('service-worker.js'),bootstrap=JSON.parse(sw.match(/const SAGS_BOOTSTRAP=(\[[^\n]+\]);/)[1]);for(const p of paths)assert(bootstrap.includes(p),'offline bootstrap misses '+p);assert(!bootstrap.includes('./app/modules/ai.js'));assert(!bootstrap.includes('./app/modules/carrier-notebook.v1.js'));console.log('Startup/PWA contract passed: unique phase scripts, ordered dependencies, lazy features, JS budget, offline assets');
+const fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),h=read('index.html');
+const scripts=[...h.matchAll(/<script\b[^>]*src=["'](\.\/[^"'?]+)[^"']*["'][^>]*>/g)].map(m=>m[1]);
+const css=[...h.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["'](\.\/[^"'?]+)[^"']*["'][^>]*>/g)].map(m=>m[1]);
+assert.equal(new Set(scripts).size,scripts.length,'startup must not execute same local script twice');
+const bytes=scripts.reduce((n,p)=>n+fs.statSync(path.join(root,p)).size,0);
+assert(scripts.length<=48,'startup local scripts <= 48, got '+scripts.length);
+assert(css.length<=15,'startup stylesheets <= 15, got '+css.length);
+assert(bytes<2700000,'startup JS budget < 2.7MB, got '+bytes);
+assert(scripts.includes('./app/modules/flight-governance.v1.js'),'governance engine must load');
+assert(scripts.some(p=>p.includes('startup-bundle-')),'safe IIFE bundles must be active');
+assert(css.some(p=>p.includes('legacy-ui-bundle-')),'legacy CSS clusters must be bundled');
+const sw=read('service-worker.js'),bootstrap=JSON.parse(sw.match(/const SAGS_BOOTSTRAP=(\[[^\n]+\]);/)[1]);
+for(const p of [...scripts,...css])assert(bootstrap.includes(p),'offline bootstrap misses '+p);
+console.log('Startup/PWA optimized: '+scripts.length+' scripts, '+css.length+' styles, '+bytes+' bytes');
