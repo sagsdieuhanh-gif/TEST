@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.92",
-  "build": "V6.4.92-20261003-FIREBASE-RECREATE-SLOTS-01",
-  "strategy": "atomic test release + Firebase auth slots for recreated accounts + global contrast audit",
+  "version": "V6.4.93",
+  "build": "V6.4.93-20261003-ORPHAN-PROFILE-REPAIR-01",
+  "strategy": "atomic test release + orphan Firestore profile repair + Firebase auth slots + global contrast audit",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "0275dd55d16668d4b8f0648b9927b04129db2cf9699b61a9aa49de1cc4c16426",
-      "bytes": 81601
+      "sha256": "05a9f6c99f121459967e5693a9dbce82628803bacb678103edd558db22f8c1ae",
+      "bytes": 81409
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "75ff53c3a84fd848434ffbdb10f236e6d439f0d669eeda187629dce8aee76f52",
-      "bytes": 21796
+      "sha256": "20e43c4142d640231581381af5627c02cc10a684ff3041c08bac725515e11e2f",
+      "bytes": 21790
     },
     "./version.json": {
-      "sha256": "da8e21f8ecb0f2a6729e130655a182738728d4f9e3a4758a5244d21ff63088c2",
-      "bytes": 1046
+      "sha256": "86cce1dd741407724c4a09d243a051c6cfb07883cd5da8ab148d14006dba653d",
+      "bytes": 948
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -338,8 +338,8 @@
       "bytes": 13785
     },
     "./app/boot/14-v18CanonicalAccountHierarchy.js": {
-      "sha256": "ecd6c1bc5c76d9de32175026bcc27df9c3fa3399986d71c885db1fc274174b69",
-      "bytes": 52841
+      "sha256": "cab27166be127f9ccf7756795905f0174c1ea59ddb618c952df0cfa259b85aa9",
+      "bytes": 58689
     },
     "./app/boot/15-v116-account-name-search.js": {
       "sha256": "b2ffc046f021ab5218cc5a5090fd7cee940451e85c6db0d332c39f9036e55eb1",

@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.92",
-  "displayVersion": "V6.4.92",
-  "label": "V6.4.92 TEST - FIREBASE ACCOUNT RECREATE FIX",
-  "build": "V6.4.92-20261003-FIREBASE-RECREATE-SLOTS-01",
-  "releasedAt": "2026-10-03T15:28:02Z",
+  "version": "V6.4.93",
+  "displayVersion": "V6.4.93",
+  "label": "V6.4.93 TEST - ORPHAN FIREBASE PROFILE REPAIR",
+  "build": "V6.4.93-20261003-ORPHAN-PROFILE-REPAIR-01",
+  "releasedAt": "2026-10-03T15:37:32Z",
   "type": "fix",
-  "base": "V6.4.91-20261003-GLOBAL-CONTRAST-AUDIT-01",
+  "base": "V6.4.92-20261003-FIREBASE-RECREATE-SLOTS-01",
   "updatePolicy": "required",
-  "notes": "Sửa triệt để tài khoản xóa rồi tạo lại khi Firebase Authentication cũ không thể xóa từ client. Không còn cố đăng nhập Auth cũ bằng 123456. Khi email Auth chuẩn đã tồn tại, AD tạo một Auth slot mới username.r1..r8, còn người dùng vẫn đăng nhập bằng username bình thường; màn hình đăng nhập tự dò Auth slot và chỉ nhận UID có users/{UID} đang hoạt động. Nút XÓA/TẠO LẠI xóa cả các hồ sơ E-REPORT cũ cùng username nhưng không xóa Firebase Auth. TẠO LẠI AUTH/RESET cũng chuyển sang slot mới.",
-  "message": "V6.4.92 TEST: fix recreated Firebase accounts so username login works without deleting old Auth."
+  "notes": "Sửa trường hợp E-REPORT báo username đang hoạt động chỉ vì Firestore users/{UID} còn active nhưng Firebase Authentication thực tế không có/không dùng được. Khi AD tạo lại cùng username, hệ thống không chặn theo profile cũ; chỉ chặn nếu mã nhân viên thuộc username khác. Hệ thống tạo Firebase Auth mới/slot mới, ghi và xác minh users/{UID} mới, sau đó mới xóa các profile E-REPORT cũ cùng username. Không xóa Firebase Auth cũ.",
+  "message": "V6.4.93 TEST: repair orphan active profiles such as VUTP by creating verified Firebase Auth."
 }
