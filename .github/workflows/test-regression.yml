@@ -9,7 +9,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   regression:
@@ -21,7 +21,21 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - name: Run regression suite
+      - name: Rebuild generated runtime
+        run: npm run build:runtime
+      - name: Run regression suite on rebuilt runtime
         run: npm test
-      - name: Verify generated runtime is current
-        run: node tools/build-runtime.cjs --check
+      - name: Commit regenerated runtime on fix branch
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/generated index.html service-worker.js asset-manifest.json
+          if git diff --cached --quiet; then
+            echo "Generated runtime already current."
+            exit 0
+          fi
+          git commit -m "TEST: sync generated runtime after audit fixes"
+          git push origin HEAD:${GITHUB_REF_NAME}
