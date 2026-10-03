@@ -2,10 +2,12 @@
   "private": true,
   "scripts": {
     "build:runtime": "node tools/build-runtime.cjs",
-    "test": "node tests/run.cjs"
+    "test": "node tests/run.cjs",
+    "test:browser": "node tests/browser/dossier.cjs"
   },
   "devDependencies": {
     "acorn": "8.18.0",
+    "playwright": "1.62.1",
     "terser": "5.51.2"
   }
 }

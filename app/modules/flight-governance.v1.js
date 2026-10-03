@@ -49,9 +49,9 @@ function department(){
   if(r==='PVHK'||/PVHK|HANH KHACH|PASSENGER/.test(raw))return'PVHK';
   return S(p.systemDepartment||p.departmentCode||r);
 }
-function isAdmin(){return['AD','ADMIN'].includes(role())}
-function isManager(){return isAdmin()||MANAGER_POSITIONS.has(positionCode())}
-function canManageDepartment(unit){unit=U(unit);return isAdmin()||(MANAGER_POSITIONS.has(positionCode())&&department()===unit)}
+function isAdmin(){return profile().active!==false&&['AD','ADMIN'].includes(role())}
+function isManager(){return profile().active!==false&&role()!=='VIEWER'&&(isAdmin()||MANAGER_POSITIONS.has(positionCode()))}
+function canManageDepartment(unit){unit=U(unit);return profile().active!==false&&role()!=='VIEWER'&&(isAdmin()||(MANAGER_POSITIONS.has(positionCode())&&department()===unit))}
 function assignmentUnit(item){
   const roleKey=U(item?.roleKey),src=U(item?.sourceColumn),form=U(item?.formGroup);
   if(roleKey==='CBTT'||src.includes('GRND_LS')||['FINAL','FSAGS54','FSAGS94','FSAGS94_CLC','CLC_CHECKLIST'].includes(form))return'CBTT';
@@ -136,6 +136,7 @@ async function reassignAssignment(date,fid,aid,newUser,reason){
   date=S(date)||currentDate();fid=S(fid);aid=S(aid);newUser=S(newUser).toUpperCase();if(!newUser)throw new Error('Thiếu tài khoản nhận mới.');reason=requireReason(reason);
   const [flight,manSnap]=await Promise.all([readFlight(date,fid),db('roster_manifests/'+safe(date)+'/items/'+safe(aid)).once('value')]);
   const item=manSnap.val()||flight?.assignments?.[aid];if(!flight||!item)throw new Error('Không tìm thấy assignment.');
+  if(S(item.flightId)!==fid||item.active===false)throw new Error('Phân công không thuộc chuyến đang chọn hoặc đã bị hủy.');
   const unit=assignmentUnit(item);requireManager(unit);
   const oldUser=S(item.user||item.targetUser||item.ownerUser).toUpperCase();if(oldUser===newUser)return false;
   const now=Date.now(),next={...item,user:newUser,targetUser:newUser,ownerUser:newUser,reassignedAtMs:now,reassignedBy:actorSnapshot(),reassignReason:reason,updatedAtMs:now,active:true},patch={};
@@ -159,6 +160,7 @@ async function reopenAssignment(date,fid,aid,reason){
   date=S(date)||currentDate();fid=S(fid);aid=S(aid);reason=requireReason(reason);
   const [flight,manSnap]=await Promise.all([readFlight(date,fid),db('roster_manifests/'+safe(date)+'/items/'+safe(aid)).once('value')]);
   const item=manSnap.val()||flight?.assignments?.[aid];if(!flight||!item)throw new Error('Không tìm thấy assignment.');
+  if(S(item.flightId)!==fid||item.active===false)throw new Error('Phân công không thuộc chuyến đang chọn hoặc đã bị hủy.');
   const unit=assignmentUnit(item);requireManager(unit);
   const now=Date.now(),patch={};
   patch['roster_sessions/'+safe(aid)+'/claimStatus']='CLAIMED';
@@ -260,7 +262,12 @@ function wrapFlightOpen(){
   const fn=root.flightWorkspaceOpenFlight;if(typeof fn!=='function'||fn.__sagsGovernanceWrapped)return false;
   const w=function(fid){const out=fn.apply(this,arguments),date=currentDate();setTimeout(()=>decorate(date,S(fid)),0);return out};w.__sagsGovernanceWrapped=true;w.__base=fn;root.flightWorkspaceOpenFlight=w;return true;
 }
-function openUnifiedDossier(date,fid){date=S(date)||currentDate();try{root.flightWorkspaceOpenList?.(date)}catch(_){}setTimeout(()=>{try{root.flightWorkspaceOpenFlight?.(fid)}catch(_){}},120)}
+async function openUnifiedDossier(date,fid){
+ date=S(date)||currentDate();fid=S(fid);
+ if(!fid)throw new Error('Chọn một chuyến bay trước khi mở hồ sơ.');
+ if(typeof root.sagsV338OpenDossier!=='function')throw new Error('Chức năng hồ sơ chuyến chưa sẵn sàng. Hãy tải lại ứng dụng.');
+ return await root.sagsV338OpenDossier(date,fid);
+}
 function install(){ensureStyle();wrapFlightOpen()}
 root.sagsFlightGovernance={build:root.__SAGS_FLIGHT_GOVERNANCE_V1,MANAGER_POSITIONS,SPECIAL_MANUAL_LOAD_CARRIERS,STATUS_TEXT,department,positionCode,isManager,canManageDepartment,assignmentUnit,loadSystemMode,isSpecialManualCarrier,statusOverride,setLoadSystemMode,setDepartmentStatus,clearDepartmentOverride,reassignAssignment,reopenAssignment,reassignCargo208,openAudit,openManager,decorate,openUnifiedDossier};
 root.sagsOpenUnifiedFlightDossier=openUnifiedDossier;

@@ -216,7 +216,7 @@ function installRampSync(){root.sagsFlightHubSyncCurrentRamp=function(){clearTim
 
 /* ---------- Policy-driven CBTT auxiliary forms ---------- */
 function policySession(){try{return root.__sagsGetSession?.()||{role:root.currentRole||'',profile:root.currentUserProfile||{}}}catch(_){return{role:root.currentRole||'',profile:root.currentUserProfile||{}}}}
-function canPolicyReconcile(){try{const x=policySession(),p=x.profile||{},r=U(x.role||p.role);return !!r&&!['GUEST','ANONYMOUS'].includes(r)&&p.active!==false}catch(_){return false}}
+function canPolicyReconcile(){try{const x=policySession(),p=x.profile||{},r=U(x.role||p.role);return !!r&&!['GUEST','ANONYMOUS','VIEWER'].includes(r)&&p.active!==false}catch(_){return false}}
 function isAdminSession(){try{const x=policySession(),p=x.profile||{};return ['AD','ADMIN'].includes(U(x.role||p.role||root.currentRole))}catch(_){return ['AD','ADMIN'].includes(U(root.currentRole))}}
 function policyAuxAid(date,item,group){return 'RP_'+hash([S(date),flightIdentity(item),normUser(item?.user||item?.targetUser),U(group),'POLICY_AUX'].join('|'))}
 function policyDates(extra=''){const set=new Set(),add=v=>{v=S(v);if(/^\d{4}-\d{2}-\d{2}$/.test(v))set.add(v)};add(extra);add(opDate());add(document.getElementById('drManageDate')?.value);add(document.getElementById('fwcDate')?.value);try{add(sessionStorage.getItem('sagsV36FwcDate'))}catch(_){}return [...set]}
@@ -491,16 +491,26 @@ root.sagsPersonalFlightTasks={async renderInto(host,date,fid){
  const {groups}=await personalGroups(date,fid);if(!host.isConnected||me()!==owner)return;
  host.innerHTML=groups.length?groups.map(g=>'<div class="v1199OwnerNote">'+esc(owner)+' · '+esc(flightLabel(g.primary))+'</div><div class="v1199Tasks">'+taskPills(g,date)+'</div>').join(''):'<p>Không có nhiệm vụ roster được phân cho bạn trên chuyến này. Bạn vẫn có thể xem các tài liệu đã gửi theo quyền truy cập chuyến.</p>';bindDossierTasks(host);
 }};
+async function openFlightDossier(date,fid){
+ const open=root.sagsOpenUnifiedFlightDossier||root.sagsV338OpenDossier;
+ if(typeof open!=='function')throw new Error('Chức năng hồ sơ chuyến chưa sẵn sàng. Hãy tải lại ứng dụng.');
+ return await open(date,fid);
+}
 async function renderPersonal(date=opDate()){
-  if(role()==='AD'||!me())return;date=syncQueueDate(queueDate(date));const token=++renderToken;installStyle();setHeader(date);const host=document.getElementById('fwcList');if(!host)return;const hadQueue=host.classList.contains('v1199Queue');host.classList.add('v1199Queue');if(!hadQueue&&!host.children.length)host.innerHTML='<div class="v1199Empty">Đang tải công việc được phân…</div>';
+  if(['AD','KH','CARGO'].includes(role())||root.__SAGS_CARGO_ALL_FLIGHTS?.isCargo?.()||!me())return;date=syncQueueDate(queueDate(date));const token=++renderToken;installStyle();setHeader(date);const host=document.getElementById('fwcList');if(!host)return;const hadQueue=host.classList.contains('v1199Queue');host.classList.add('v1199Queue');if(!hadQueue&&!host.children.length)host.innerHTML='<div class="v1199Empty">Đang tải công việc được phân…</div>';
   try{
     const {dd,groups}=await personalGroups(date);if(token!==renderToken)return;
     const pending=groups.filter(x=>!x.flightClosed),done=groups.filter(x=>x.flightClosed),show=activeTab==='completed'?done:pending;
     const next='<div class="v1199Tabs"><button class="v1199Tab '+(activeTab==='pending'?'active':'')+'" onclick="v1199QueueTab(\'pending\')">ĐANG LÀM <span class="v1199Count">'+pending.length+'</span></button><button class="v1199Tab '+(activeTab==='completed'?'active':'')+'" onclick="v1199QueueTab(\'completed\')">CHUYẾN ĐÃ HOÀN TẤT <span class="v1199Count">'+done.length+'</span></button></div><div class="v1199OwnerNote">'+esc(me())+' · '+esc(date)+' · '+groups.length+' chuyến được phân · đã loại '+dd.dupes.length+' vé/bản ghi trùng khỏi màn hình</div>'+(show.length?'<div class="v1199FlightGrid">'+show.map(g=>cardHtml(g,date)).join('')+'</div>':'<div class="v1199Empty">'+(activeTab==='completed'?'Chưa có chuyến nào bạn đã bấm Kết thúc chuyến.':'Không còn chuyến đang làm.')+'</div>');
     if(host.innerHTML!==next){
       host.innerHTML=next;
-      host.querySelectorAll('.v1199DossierBtn').forEach(btn=>btn.onclick=()=>{if(typeof root.sagsOpenUnifiedFlightDossier==='function')root.sagsOpenUnifiedFlightDossier(btn.dataset.dossierDate,btn.dataset.dossierFid);else root.sagsV338OpenDossier?.(btn.dataset.dossierDate,btn.dataset.dossierFid)});
-      host.querySelectorAll('.v1199DocChip').forEach(btn=>btn.onclick=async()=>{btn.disabled=true;try{if(btn.dataset.docCode==='FSAGS208'&&typeof root.__SAGS_FSAGS208_WORKSPACE?.openView==='function')await root.__SAGS_FSAGS208_WORKSPACE.openView(btn.dataset.docDate,btn.dataset.docFid);else if(typeof root.sagsOpenUnifiedFlightDossier==='function')root.sagsOpenUnifiedFlightDossier(btn.dataset.docDate,btn.dataset.docFid);else await root.sagsV338OpenDossier?.(btn.dataset.docDate,btn.dataset.docFid)}catch(e){alert('Không mở được tài liệu đã gửi: '+S(e?.message||e))}finally{if(btn.isConnected)btn.disabled=false}});
+      host.querySelectorAll('.v1199DossierBtn').forEach(btn=>btn.onclick=async()=>{
+       btn.disabled=true;
+       try{await openFlightDossier(btn.dataset.dossierDate,btn.dataset.dossierFid)}
+       catch(e){alert('Không mở được hồ sơ chuyến: '+S(e?.message||e))}
+       finally{if(btn.isConnected)btn.disabled=false}
+      });
+      host.querySelectorAll('.v1199DocChip').forEach(btn=>btn.onclick=async()=>{btn.disabled=true;try{if(btn.dataset.docCode==='FSAGS208'&&typeof root.__SAGS_FSAGS208_WORKSPACE?.openView==='function')await root.__SAGS_FSAGS208_WORKSPACE.openView(btn.dataset.docDate,btn.dataset.docFid);else await openFlightDossier(btn.dataset.docDate,btn.dataset.docFid)}catch(e){alert('Không mở được tài liệu đã gửi: '+S(e?.message||e))}finally{if(btn.isConnected)btn.disabled=false}});
       host.querySelectorAll('.v1199FlightCloseBtn').forEach(btn=>btn.onclick=()=>setFlightCloseout(btn.dataset.flightDate,btn.dataset.flightFkey,btn.dataset.flightClose==='1',btn));
       host.querySelectorAll('.v1199TaskBtn').forEach(btn=>btn.onclick=()=>openTask(btn.dataset.taskAid,btn.dataset.taskFid,btn.dataset.taskCompleted==='1',btn.dataset.taskDate,true,btn));
       host.querySelectorAll('.v1199PdfBtn').forEach(btn=>btn.onclick=async()=>{btn.disabled=true;try{if(typeof root.v310ExportAssignment!=='function')throw new Error('Chức năng XUẤT PDF chưa sẵn sàng.');await root.v310ExportAssignment(btn.dataset.pdfAid)}catch(e){alert('Không mở được XUẤT PDF: '+S(e?.message||e))}finally{if(btn.isConnected)btn.disabled=false}});
