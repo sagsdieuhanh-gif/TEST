@@ -38,8 +38,12 @@ function bundleCss(h){
   return{html:h,saved};
 }
 (async()=>{
-  for(const f of fs.readdirSync(path.join(root,'app/generated')))if(/^startup-bundle-\d+\.js$|^legacy-0[567]\.min\.js$|^legacy-ui\.bundle\.css$/.test(f))fs.rmSync(path.join(root,'app/generated',f));
-  let h=read('index.html');h=await minifyLegacy(h);const j=await bundleIifes(h);h=j.html;const c=bundleCss(h);h=c.html;write('index.html',h);
+  for(const f of fs.readdirSync(path.join(root,'app/generated')))if(/^legacy-0[567]\.min\.js$/.test(f))fs.rmSync(path.join(root,'app/generated',f));
+  let h=read('index.html'),alreadyOptimized=h.includes('./app/generated/startup-bundle-');
+  h=await minifyLegacy(h);
+  let j={html:h,saved:0,groups:[]},c={html:h,saved:0};
+  if(!alreadyOptimized){j=await bundleIifes(h);h=j.html;c=bundleCss(h);h=c.html;}
+  write('index.html',h);
   const scripts=[...h.matchAll(/<script\b[^>]*src=["'](\.\/[^"'?]+)[^"']*["']/g)].map(m=>m[1]),styles=[...h.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["'](\.\/[^"'?]+)[^"']*["']/g)].map(m=>m[1]);
   const bytes=scripts.reduce((n,p)=>n+fs.statSync(path.join(root,local(p))).size,0);
   console.log(JSON.stringify({scriptCount:scripts.length,stylesheetCount:styles.length,startupJsBytes:bytes,scriptRequestsSaved:j.saved,cssRequestsSaved:c.saved,bundles:j.groups},null,2));
