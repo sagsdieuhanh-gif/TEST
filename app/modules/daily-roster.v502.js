@@ -482,6 +482,25 @@ async function personalGroups(date,fid=''){
  if(me()!==owner)throw new Error('Đã đổi tài khoản; mở lại My Flight.');
  const groups=groupTasks(dd.items.map((item,i)=>({item,st:states[i]})).filter(x=>itemCompleted(x.item,x.st)||root.sagsAirlineFormPolicy?.allowed(x.item,x.item.formGroup)!==false));await attachDossierDocs(date,groups);return {dd,groups};
 }
+async function openQueueDossier(date,fid,button=null){
+  date=S(date);fid=S(fid);
+  if(!date||!fid){alert('Chọn một chuyến bay trước khi mở hồ sơ.');return false}
+  if(button?.isConnected)button.disabled=true;
+  try{
+    // Prefer the actual dossier modal. Governance may provide a wrapper, but
+    // My Flight must never depend on a timed workspace redirect.
+    const fn=typeof root.sagsV338OpenDossier==='function'
+      ?root.sagsV338OpenDossier
+      :root.sagsOpenUnifiedFlightDossier;
+    if(typeof fn!=='function')throw new Error('Bộ HỒ SƠ CHUYẾN chưa tải xong. Bấm UPDATE rồi mở lại.');
+    const out=await Promise.resolve(fn(date,fid));
+    return out!==false;
+  }catch(e){
+    console.error('Mở HỒ SƠ CHUYẾN từ My Flight thất bại',e);
+    alert('Không mở được HỒ SƠ CHUYẾN: '+S(e?.message||e));
+    return false;
+  }finally{if(button?.isConnected)button.disabled=false}
+}
 function bindDossierTasks(host){
  host.querySelectorAll('.v1199TaskBtn').forEach(btn=>btn.onclick=()=>openTask(btn.dataset.taskAid,btn.dataset.taskFid,btn.dataset.taskCompleted==='1',btn.dataset.taskDate,true,btn));
  host.querySelectorAll('.v1199PdfBtn').forEach(btn=>btn.onclick=async()=>{btn.disabled=true;try{if(typeof root.v310ExportAssignment!=='function')throw new Error('Chức năng XUẤT PDF chưa sẵn sàng.');root.sagsFlightDossierClose?.();await root.v310ExportAssignment(btn.dataset.pdfAid)}catch(e){alert('Không mở được XUẤT PDF: '+S(e?.message||e))}finally{if(btn.isConnected)btn.disabled=false}});
@@ -499,8 +518,8 @@ async function renderPersonal(date=opDate()){
     const next='<div class="v1199Tabs"><button class="v1199Tab '+(activeTab==='pending'?'active':'')+'" onclick="v1199QueueTab(\'pending\')">ĐANG LÀM <span class="v1199Count">'+pending.length+'</span></button><button class="v1199Tab '+(activeTab==='completed'?'active':'')+'" onclick="v1199QueueTab(\'completed\')">CHUYẾN ĐÃ HOÀN TẤT <span class="v1199Count">'+done.length+'</span></button></div><div class="v1199OwnerNote">'+esc(me())+' · '+esc(date)+' · '+groups.length+' chuyến được phân · đã loại '+dd.dupes.length+' vé/bản ghi trùng khỏi màn hình</div>'+(show.length?'<div class="v1199FlightGrid">'+show.map(g=>cardHtml(g,date)).join('')+'</div>':'<div class="v1199Empty">'+(activeTab==='completed'?'Chưa có chuyến nào bạn đã bấm Kết thúc chuyến.':'Không còn chuyến đang làm.')+'</div>');
     if(host.innerHTML!==next){
       host.innerHTML=next;
-      host.querySelectorAll('.v1199DossierBtn').forEach(btn=>btn.onclick=()=>{if(typeof root.sagsOpenUnifiedFlightDossier==='function')root.sagsOpenUnifiedFlightDossier(btn.dataset.dossierDate,btn.dataset.dossierFid);else root.sagsV338OpenDossier?.(btn.dataset.dossierDate,btn.dataset.dossierFid)});
-      host.querySelectorAll('.v1199DocChip').forEach(btn=>btn.onclick=async()=>{btn.disabled=true;try{if(btn.dataset.docCode==='FSAGS208'&&typeof root.__SAGS_FSAGS208_WORKSPACE?.openView==='function')await root.__SAGS_FSAGS208_WORKSPACE.openView(btn.dataset.docDate,btn.dataset.docFid);else if(typeof root.sagsOpenUnifiedFlightDossier==='function')root.sagsOpenUnifiedFlightDossier(btn.dataset.docDate,btn.dataset.docFid);else await root.sagsV338OpenDossier?.(btn.dataset.docDate,btn.dataset.docFid)}catch(e){alert('Không mở được tài liệu đã gửi: '+S(e?.message||e))}finally{if(btn.isConnected)btn.disabled=false}});
+      host.querySelectorAll('.v1199DossierBtn').forEach(btn=>btn.onclick=()=>openQueueDossier(btn.dataset.dossierDate,btn.dataset.dossierFid,btn));
+      host.querySelectorAll('.v1199DocChip').forEach(btn=>btn.onclick=async()=>{btn.disabled=true;try{if(btn.dataset.docCode==='FSAGS208'&&typeof root.__SAGS_FSAGS208_WORKSPACE?.openView==='function')await root.__SAGS_FSAGS208_WORKSPACE.openView(btn.dataset.docDate,btn.dataset.docFid);else await openQueueDossier(btn.dataset.docDate,btn.dataset.docFid,btn)}catch(e){alert('Không mở được tài liệu đã gửi: '+S(e?.message||e))}finally{if(btn.isConnected)btn.disabled=false}});
       host.querySelectorAll('.v1199FlightCloseBtn').forEach(btn=>btn.onclick=()=>setFlightCloseout(btn.dataset.flightDate,btn.dataset.flightFkey,btn.dataset.flightClose==='1',btn));
       host.querySelectorAll('.v1199TaskBtn').forEach(btn=>btn.onclick=()=>openTask(btn.dataset.taskAid,btn.dataset.taskFid,btn.dataset.taskCompleted==='1',btn.dataset.taskDate,true,btn));
       host.querySelectorAll('.v1199PdfBtn').forEach(btn=>btn.onclick=async()=>{btn.disabled=true;try{if(typeof root.v310ExportAssignment!=='function')throw new Error('Chức năng XUẤT PDF chưa sẵn sàng.');await root.v310ExportAssignment(btn.dataset.pdfAid)}catch(e){alert('Không mở được XUẤT PDF: '+S(e?.message||e))}finally{if(btn.isConnected)btn.disabled=false}});
@@ -546,7 +565,7 @@ function wrapWorkspace(){if(!baseOpen&&typeof root.flightWorkspaceOpenList==='fu
 function install(){wrapPublish();wrapWorkspace();installStyle();if(role()==='AD')setTimeout(()=>cleanupDuplicates(opDate()).catch(()=>{}),800);const b=document.getElementById('roleBtnRosterFlights');if(b&&role()!=='AD')b.textContent='✓ CÔNG VIỆC HÔM NAY'}
 install();setTimeout(install,350);setTimeout(install,1100);window.addEventListener('pageshow',()=>setTimeout(install,100),{passive:true});document.addEventListener('visibilitychange',()=>{if(!document.hidden)setTimeout(install,100)},{passive:true});
 root.sagsV478OpenExactAssignment=(aid,fid,date)=>openTask(aid,fid,false,date,true);
-root.__SAGS_DAILY_ROSTER_FINAL_V1199={build:BUILD,dedupeItems,slotKey,flightKey,itemCompleted,itemWorking,visibleFormTasks,clearStaleClaimIfNeeded,groupTasks,setFlightCloseout,cleanupDuplicates,renderPersonal,personalGroups,cardHtml,taskPills,queueDate,syncQueueDate,resolveOwnedItem,readDossierDocs,invalidateDossierDocs};
+root.__SAGS_DAILY_ROSTER_FINAL_V1199={build:BUILD,dedupeItems,slotKey,flightKey,itemCompleted,itemWorking,visibleFormTasks,clearStaleClaimIfNeeded,groupTasks,setFlightCloseout,cleanupDuplicates,renderPersonal,personalGroups,cardHtml,taskPills,queueDate,syncQueueDate,resolveOwnedItem,readDossierDocs,invalidateDossierDocs,openQueueDossier};
 })(typeof window!=='undefined'?window:globalThis);
 /* === IT PUBLIC 6-TIME SYNC · FREE RTDB REST · IT GET 120s === */
 (function(root){
