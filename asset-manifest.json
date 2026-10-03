@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.84",
-  "build": "V6.4.84-20261003-TEST-DOSSIER-REPAIR-01",
-  "strategy": "TEST atomic release + governance + exact-flight dossier + statusSummary + optimized startup",
+  "version": "V6.4.85",
+  "build": "V6.4.85-20261003-TEST-MYFLIGHT-CLEANUP-01",
+  "strategy": "TEST atomic release + canonical My Flight dossier routing + concise closeout UX",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "5b9d5ca50d74f18e9862d36dc848c826b85d9403e1e751473c7b1ef94538dfac",
-      "bytes": 78149
+      "sha256": "ed39760131242d755893bbe22c063abf8bcf351d44b89b231ef28d0f12201ac9",
+      "bytes": 78275
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 4925
     },
     "./service-worker.js": {
-      "sha256": "a8feecb60b2ede3ab1e6beec37f67d59d7a607da62ce05e529fa3cab3d363a15",
-      "bytes": 19863
+      "sha256": "6a96dc9e2782699eabf8892bd58f1259867b18806ee1aa697dae0ebfc33426fd",
+      "bytes": 19869
     },
     "./version.json": {
-      "sha256": "98a7daf76aebecd0586db11c1256862dddfa2c135ed76c31cb36cebe0932d6f7",
-      "bytes": 1032
+      "sha256": "ba7f8d4148ed94f11fe1d5721377f9494fe039095c40844d06d2f9a85678dd74",
+      "bytes": 800
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",

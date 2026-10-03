@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.84",
-  "displayVersion": "V6.4.84",
-  "label": "V6.4.84 - TEST DOSSIER + AUTHORIZATION REPAIR",
-  "build": "V6.4.84-20261003-TEST-DOSSIER-REPAIR-01",
-  "releasedAt": "2026-10-03T10:00:00Z",
+  "version": "V6.4.85",
+  "displayVersion": "V6.4.85",
+  "label": "V6.4.85 - TEST MY FLIGHT CLEANUP",
+  "build": "V6.4.85-20261003-TEST-MYFLIGHT-CLEANUP-01",
+  "releasedAt": "2026-10-03T09:50:00Z",
   "type": "feature",
-  "base": "V6.4.83-20261003-TEST-STANDALONE-01",
+  "base": "V6.4.84-20261003-TEST-DOSSIER-REPAIR-01",
   "updatePolicy": "required",
-  "notes": "TEST repair: direct My Flight dossier routing without timers; visible click failures; VIEWER and inactive account mutation guards; exact-flight assignment checks; browser regression and CI; reproducible workspace source; final F54/F94 airline policy; 9G/QH/VU per-flight NORMAL→F94 and SYSTEM DOWN→F54; department manager governance for Đội/Ca; append-only flight audit history; exact-flight F54/F94/208 dossier summaries; Firebase statusSummary optimization; startup JS/CSS request consolidation; verified PWA/Repair contract retained; GitHub Pages remains on TEST and never redirects to production.",
-  "message": "V6.4.84: TEST standalone governance + exact-flight dossier + performance release."
+  "notes": "TEST cleanup: My Flight opens the canonical dossier directly before governance fallback; technical state-model wording was removed from flight cards and closeout confirmations; closeout prompts now use concise operational language; regression guards prevent routing and wording regressions; V6.4.84 dossier, authorization, Cargo list, governance, airline-policy, performance and PWA protections remain retained.",
+  "message": "V6.4.85: TEST My Flight routing and wording cleanup."
 }
