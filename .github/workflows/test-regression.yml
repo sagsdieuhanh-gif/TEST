@@ -1,0 +1,27 @@
+name: TEST Regression Gate
+
+on:
+  push:
+    branches:
+      - "fix/**"
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Run regression suite
+        run: npm test
+      - name: Verify generated runtime is current
+        run: node tools/build-runtime.cjs --check
