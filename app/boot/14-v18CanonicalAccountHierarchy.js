@@ -164,3 +164,229 @@ adminCreatePersonalAccount=async function(){
 };
 root.adminCreatePersonalAccount=adminCreatePersonalAccount;
 })(window);
+
+
+/* E-REPORT SAGS V6.4.92 — recreate accounts without deleting or knowing the password of old Firebase Auth users. */
+(function(root){
+'use strict';
+if(root.__SAGS_V6492_FIREBASE_RECREATE_SLOTS__)return;root.__SAGS_V6492_FIREBASE_RECREATE_SLOTS__=true;
+const V6492_MAX_AUTH_SLOTS=8;
+
+function v6492AuthCandidates(raw){
+  const base=firebaseLoginEmail(raw);
+  if(!base||!base.includes("@"))return base?[base]:[];
+  const at=base.lastIndexOf("@"),local=base.slice(0,at),domain=base.slice(at+1),out=[base];
+  for(let i=1;i<=V6492_MAX_AUTH_SLOTS;i++)out.push(local+".r"+i+"@"+domain);
+  return out;
+}
+root.v6492AuthCandidates=v6492AuthCandidates;
+
+async function v6492CreateFreshAuth(secAuth,username){
+  const emails=v6492AuthCandidates(username);
+  let lastCollision=null;
+  for(let slot=0;slot<emails.length;slot++){
+    const email=emails[slot];
+    try{
+      const cred=await secAuth.createUserWithEmailAndPassword(email,"123456");
+      if(!cred?.user?.uid)throw new Error("Firebase chưa trả UID cho Auth mới.");
+      return {user:cred.user,email,slot};
+    }catch(e){
+      const code=String(e?.code||"");
+      if(code.includes("email-already-in-use")){lastCollision=e;continue}
+      throw e;
+    }
+  }
+  const e=new Error("Các vị trí Firebase Auth dành cho username này đã được sử dụng hết. Hãy tạo username khác.");
+  e.code="auth/recreate-slots-exhausted";e.cause=lastCollision;throw e;
+}
+
+async function v6492ProfileFromSignedIn(authUser){
+  authUser=await firebaseAuthHardRecheck(authUser);
+  const snap=await firebase.firestore().collection("users").doc(authUser.uid).get();
+  if(!snap.exists){const e=new Error("firebase-profile-missing");e.code="sags/profile-missing";throw e}
+  const d=snap.data()||{};
+  if(d.active!==true){
+    const e=new Error(d.replacedByUid?"firebase-profile-replaced":"firebase-profile-disabled");
+    e.code=d.replacedByUid?"sags/profile-replaced":"sags/profile-disabled";e.profile=d;throw e;
+  }
+  const role=normalizeFirebaseOperationalRole(d.role);
+  if(!firebasePersonalRoleAllowed(role))throw new Error("firebase-role-invalid");
+  const username=normalizePersonalUsername(d.username||String(authUser.email||"").split("@")[0]||"");
+  if(!username)throw new Error("firebase-username-missing");
+  return {
+    docId:String(authUser.uid),uid:String(authUser.uid),firebaseUid:String(authUser.uid),
+    firebaseEmail:String(authUser.email||d.email||""),authProvider:FIREBASE_PERSONAL_PROVIDER,
+    username,employeeCode:String(d.employeeCode||""),name:String(d.name||username),role,
+    roleCode:String(d.roleCode||""),departmentCode:String(d.departmentCode||d.systemDepartment||""),
+    groupCode:String(d.groupCode||""),positionCode:String(d.positionCode||""),
+    systemDepartment:String(d.systemDepartment||d.departmentCode||""),jobTitle:String(d.jobTitle||""),
+    unit:String(d.unit||d.workUnit||""),workUnit:String(d.workUnit||d.unit||""),active:true,
+    mustChangePassword:!!d.mustChangePassword,
+    featureOverridesV485:d.featureOverridesV485&&typeof d.featureOverridesV485==="object"?d.featureOverridesV485:{},
+    permissionRevV485:Number(d.permissionRevV485||0),verifiedAtMs:Date.now()
+  };
+}
+
+personalAccountLogin=async function(){
+  const err=document.getElementById("roleLoginError"),
+        raw=String(document.getElementById("personalLoginUser")?.value||"").trim(),
+        pass=String(document.getElementById("roleLoginPass")?.value||"");
+  if(!raw){if(err)err.textContent="Nhập username hoặc email Firebase hợp lệ.";return false}
+  if(!pass){if(err)err.textContent="Nhập mật khẩu.";return false}
+  if(!adFirebaseAuthAvailable()){if(err)err.textContent="Firebase Authentication chưa sẵn sàng. Hãy tải lại ứng dụng.";return false}
+  const auth=adFirebaseGetAuth();if(!auth){if(err)err.textContent="Đăng nhập chưa sẵn sàng. Tải lại ứng dụng.";return false}
+  try{await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)}catch(_){}
+  const usernameMode=!raw.includes("@"),wanted=usernameMode?normalizePersonalUsername(raw):"";
+  if(usernameMode&&wanted==="AD"){if(err)err.textContent="AD phải nhập đúng email Firebase Authentication.";return false}
+  const candidates=usernameMode?v6492AuthCandidates(raw):[raw.toLowerCase()];
+  let sawDisabled=false,lastAuthError=null;
+  if(err)err.textContent="Đang xác thực tài khoản Firebase...";
+  for(const email of candidates){
+    let user=null;
+    try{
+      const cred=await auth.signInWithEmailAndPassword(email,pass);user=cred?.user||null;
+    }catch(e){
+      const code=String(e?.code||"");lastAuthError=e;
+      if(code.includes("network-request-failed")){if(err)err.textContent="Không có kết nối. Kiểm tra mạng rồi thử lại.";return false}
+      if(code.includes("too-many-requests")){if(err)err.textContent="Đăng nhập sai quá nhiều lần. Vui lòng thử lại sau.";return false}
+      if(code.includes("unauthorized-domain")||code.includes("invalid-api-key")||code.includes("operation-not-allowed")){if(err)err.textContent="Đăng nhập Firebase chưa sẵn sàng trên thiết bị này.";return false}
+      continue;
+    }
+    try{
+      const profile=await v6492ProfileFromSignedIn(user);
+      if(wanted&&profile.username!==wanted){await auth.signOut();continue}
+      currentUserProfile=profile;currentRole=profile.role;
+      localStorage.setItem(PERSONAL_SESSION_KEY,JSON.stringify(profile));localStorage.removeItem(ROLE_SESSION_KEY);
+      if(err)err.textContent="Đăng nhập Firebase thành công. Đang mở vùng dữ liệu cá nhân...";
+      try{
+        sessionStorage.setItem("sagsPostLoginLandingV6439","1");
+        sessionStorage.setItem("sagsActiveMenuV2","home");
+        sessionStorage.removeItem("sagsUiWorkspaceV181");
+        v1153ClearRefreshView?.();
+      }catch(_){}
+      setTimeout(()=>location.reload(),60);return true;
+    }catch(e){
+      const msg=String(e?.message||e);
+      try{await auth.signOut()}catch(_){}
+      if(msg==="firebase-profile-disabled"){sawDisabled=true;break}
+      if(msg==="firebase-profile-missing"||msg==="firebase-profile-replaced")continue;
+      if(err)err.textContent=msg==="firebase-role-invalid"?"Tài khoản chưa được cấp quyền hợp lệ.":"Tài khoản chưa được cấp hồ sơ sử dụng.";
+      return false;
+    }
+  }
+  if(err)err.textContent=sawDisabled?"Tài khoản đã bị khóa.":"Sai tài khoản hoặc mật khẩu.";
+  console.warn("V6.4.92 Firebase slot login failed",wanted||raw,lastAuthError?.code||"");
+  return false;
+};
+root.personalAccountLogin=personalAccountLogin;
+
+adminDeletePersonalAccount=async function(id){
+  if(currentRole!=="AD")return roleDenied("Chỉ AD được xóa hồ sơ tài khoản.");
+  if(String(currentUserProfile?.firebaseUid||"")===String(id))return alert("Không thể xóa hồ sơ của chính tài khoản đang đăng nhập.");
+  const users=firebase.firestore().collection("users"),ref=users.doc(id),snap=await ref.get();
+  if(!snap.exists)return setAccountManagerStatus("Hồ sơ tài khoản không còn tồn tại.",true);
+  const d=snap.data()||{},username=normalizePersonalUsername(d.username||""),employeeCode=String(d.employeeCode||"");
+  if(normalizeFirebaseOperationalRole(d.role)==="AD")return alert("Không xóa ADMIN bằng chức năng này.");
+  if(!confirm("XÓA HỒ SƠ E-REPORT "+String(username||d.email||id)+"?\n\nHệ thống sẽ xóa các hồ sơ E-REPORT cũ cùng username để giải phóng username/mã nhân viên. Firebase Authentication cũ KHÔNG bị xóa."))return;
+  try{
+    setAccountManagerStatus("Đang xóa hồ sơ E-REPORT và giải phóng username/mã nhân viên...");
+    const victims=new Map([[snap.id,snap]]);
+    if(username){
+      const same=await users.where("username","==",username).get();
+      same.forEach(doc=>{const x=doc.data()||{};if(String(doc.id)!==String(currentUserProfile?.firebaseUid||"")&&normalizeFirebaseOperationalRole(x.role)!=="AD")victims.set(doc.id,doc)});
+    }
+    const batch=firebase.firestore().batch();
+    victims.forEach((_,uid)=>batch.delete(users.doc(uid)));
+    await batch.commit();
+    try{
+      if(username){
+        const legacyRef=initHandoverFirebase().collection(HANDOVER_COLLECTION).doc(personalUserDocId(username));
+        const legacySnap=await legacyRef.get();
+        if(legacySnap.exists&&legacySnap.data()?.kind===PERSONAL_USER_KIND)await legacyRef.delete();
+      }
+    }catch(e){console.info("V6.4.92 legacy cleanup",e?.message||e)}
+    try{if(username&&typeof sagsV470Ref==="function")await sagsV470Ref("account_permissions/"+sagsV470Safe(username)).remove()}catch(e){}
+    await refreshAccountManager();
+    setAccountManagerStatus("✓ ĐÃ XÓA "+victims.size+" HỒ SƠ E-REPORT: "+(username||id)+(employeeCode?" · "+employeeCode:"")+". Có thể tạo lại ngay; Firebase Auth cũ được giữ nguyên.");
+  }catch(e){
+    setAccountManagerStatus("Không xóa được hồ sơ E-REPORT: "+String(e?.message||e),true);
+  }
+};
+root.adminDeletePersonalAccount=adminDeletePersonalAccount;
+
+adminCreatePersonalAccount=async function(){
+  if(currentRole!=="AD")return roleDenied("Chỉ AD được tạo tài khoản.");
+  const employeeCode=normalizeEmployeeCode(document.getElementById("admEmployeeCode")?.value||""),
+        name=String(document.getElementById("admFullName")?.value||"").trim(),
+        username=normalizePersonalUsername(document.getElementById("admUsername")?.value),
+        dep=String(document.getElementById("admSystemDepartment")?.value||"").toUpperCase(),
+        group=String(document.getElementById("admGroupCode")?.value||"").toUpperCase(),
+        jobTitle=String(document.getElementById("admJobTitle")?.value||"").trim();
+  const def=v18GroupDef(dep,group),role=String(def?.role||"").toUpperCase(),roleCode=String(def?.roleCode||v18RoleLabel(role)),
+        unit=String(def?.unit||""),positionCode=V18_POSITION_CODES[jobTitle]||"",storedRole=role==="AD"?"ADMIN":role;
+  if(!employeeCode||!name||!username||!def||!role||!positionCode||!firebaseLoginEmail(username))return setAccountManagerStatus("Cần nhập/chọn đủ Mã nhân viên, Họ tên, Tài khoản, Phòng, Nhóm/chức năng và Chức danh.",true);
+  const reserved=new Set(["AD","ĐH","DH","CBTT","PVHK","LNF","LOSTFOUND","KH","VIEWER","PĐH","ADMIN"]);
+  if(reserved.has(username))return setAccountManagerStatus("Không dùng tên tài khoản "+username+" vì trùng mã hệ thống.",true);
+  let secApp=null,secAuth=null,authUser=null,profileWritten=false;
+  try{
+    const users=firebase.firestore().collection("users");
+    const sameUser=await users.where("username","==",username).get();
+    if(sameUser.docs.some(x=>(x.data()||{}).active===true))return setAccountManagerStatus("Username "+username+" đang có tài khoản hoạt động.",true);
+    const sameCode=await users.where("employeeCode","==",employeeCode).get();
+    if(sameCode.docs.some(x=>(x.data()||{}).active===true))return setAccountManagerStatus("Mã nhân viên "+employeeCode+" đang được tài khoản khác sử dụng.",true);
+    setAccountManagerStatus("Đang tạo Firebase Authentication mới cho "+username+"...");
+    secApp=firebase.initializeApp(firebase.app().options,"sags-create-v6492-"+Date.now());secAuth=secApp.auth();
+    const fresh=await v6492CreateFreshAuth(secAuth,username);authUser=fresh.user;
+    const uid=String(authUser.uid),now=Date.now(),profile={
+      active:true,email:fresh.email,username,employeeCode,name,role:storedRole,roleCode,
+      departmentCode:dep,groupCode:group,systemDepartment:dep,positionCode,jobTitle,unit,workUnit:unit,
+      mustChangePassword:true,featureOverridesV485:{},permissionRoleV485:role,permissionRevV485:now,
+      createdAtMs:now,updatedAtMs:now,createdByUid:String(currentUserProfile?.firebaseUid||currentUserProfile?.uid||""),
+      authMode:fresh.slot===0?"FIREBASE_100":"FIREBASE_SLOT_V6492",authSlot:fresh.slot
+    };
+    await users.doc(uid).set(profile,{merge:false});profileWritten=true;
+    const verify=await users.doc(uid).get(),vd=verify.data()||{};
+    if(!verify.exists||vd.active!==true||normalizePersonalUsername(vd.username||"")!==username||String(vd.email||"").toLowerCase()!==fresh.email)throw new Error("Firebase users/{UID} chưa xác nhận đúng hồ sơ vừa tạo.");
+    try{
+      const legacy=initHandoverFirebase().collection(HANDOVER_COLLECTION).doc(personalUserDocId(username)),oldLegacy=await legacy.get();
+      if(oldLegacy.exists&&oldLegacy.data()?.kind===PERSONAL_USER_KIND)await legacy.delete();
+    }catch(e){}
+    ["admEmployeeCode","admFullName","admUsername","admJobTitle"].forEach(id=>{const x=document.getElementById(id);if(x)x.value=""});
+    v18InitAccountUi();
+    setAccountManagerStatus("✓ ĐÃ TẠO: "+username+" · mật khẩu ban đầu 123456 · Firebase slot "+fresh.slot+". Người dùng vẫn đăng nhập bằng USERNAME.");
+    await refreshAccountManager();
+  }catch(e){
+    if(authUser){try{if(profileWritten)await firebase.firestore().collection("users").doc(authUser.uid).delete()}catch(_){}try{await authUser.delete()}catch(_){}}
+    setAccountManagerStatus("Không tạo được tài khoản: "+String(e?.message||e),true);
+  }finally{try{await secAuth?.signOut()}catch(_){}try{await secApp?.delete()}catch(_){}}
+};
+root.adminCreatePersonalAccount=adminCreatePersonalAccount;
+
+adminRecreateFirebaseAccount=async function(id){
+  if(currentRole!=="AD")return;
+  const users=firebase.firestore().collection("users"),oldRef=users.doc(id),snap=await oldRef.get();
+  if(!snap.exists)return alert("Hồ sơ users/{UID} không còn tồn tại.");
+  const d=snap.data()||{},username=normalizePersonalUsername(d.username||""),role=normalizeFirebaseOperationalRole(d.role);
+  if(!username)return alert("Tài khoản chưa có username.");
+  if(role==="AD")return alert("Không tạo lại ADMIN bằng chức năng này.");
+  if(!confirm("TẠO LẠI ĐĂNG NHẬP cho "+username+"?\n\nFirebase Auth cũ được giữ nguyên. Hệ thống sẽ tạo một Auth slot mới, mật khẩu 123456 và chuyển hồ sơ đang hoạt động sang UID mới."))return;
+  let secApp=null,secAuth=null,newUser=null,profileWritten=false;
+  try{
+    secApp=firebase.initializeApp(firebase.app().options,"sags-recreate-v6492-"+Date.now());secAuth=secApp.auth();
+    const fresh=await v6492CreateFreshAuth(secAuth,username);newUser=fresh.user;
+    const now=Date.now(),newUid=String(newUser.uid),next={...d,active:true,email:fresh.email,username,mustChangePassword:true,
+      authMode:"FIREBASE_SLOT_V6492",authSlot:fresh.slot,permissionRevV485:now,updatedAtMs:now,recreatedAtMs:now,
+      recreatedByUid:String(currentUserProfile?.firebaseUid||""),recreatedFromUid:String(id)};
+    delete next.disabledAtMs;delete next.replacedByUid;
+    await users.doc(newUid).set(next,{merge:false});profileWritten=true;
+    await oldRef.set({active:false,disabledAtMs:now,replacedByUid:newUid,updatedAtMs:now,permissionRevV485:now},{merge:true});
+    try{if(typeof sagsV470Ref==="function")await sagsV470Ref("account_permissions/"+sagsV470Safe(username)).set({rev:now,updatedAtMs:now,source:"ACCOUNT_RECREATE_SLOT_V6492"})}catch(_){}
+    setAccountManagerStatus("✓ ĐÃ TẠO LẠI "+username+" · mật khẩu 123456 · vẫn đăng nhập bằng USERNAME.");
+    await refreshAccountManager();
+  }catch(e){
+    if(newUser){try{if(profileWritten)await users.doc(newUser.uid).delete()}catch(_){}try{await newUser.delete()}catch(_){}}
+    setAccountManagerStatus("Không tạo lại được đăng nhập: "+String(e?.message||e),true);
+  }finally{try{await secAuth?.signOut()}catch(_){}try{await secApp?.delete()}catch(_){}}
+};
+root.adminRecreateFirebaseAccount=adminRecreateFirebaseAccount;
+})(window);

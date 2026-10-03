@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.91",
-  "displayVersion": "V6.4.91",
-  "label": "V6.4.91 TEST - GLOBAL CONTRAST AUDIT",
-  "build": "V6.4.91-20261003-GLOBAL-CONTRAST-AUDIT-01",
-  "releasedAt": "2026-10-03T15:16:58Z",
+  "version": "V6.4.92",
+  "displayVersion": "V6.4.92",
+  "label": "V6.4.92 TEST - FIREBASE ACCOUNT RECREATE FIX",
+  "build": "V6.4.92-20261003-FIREBASE-RECREATE-SLOTS-01",
+  "releasedAt": "2026-10-03T15:28:02Z",
   "type": "fix",
-  "base": "V6.4.90-20261003-ACCOUNT-RECREATE-01",
+  "base": "V6.4.91-20261003-GLOBAL-CONTRAST-AUDIT-01",
   "updatePolicy": "required",
-  "notes": "Rà soát tương phản chữ toàn bộ lớp CSS của TEST. Bổ sung lớp global contrast cuối cùng: tăng độ đậm chữ phụ/placeholder trên nền sáng; tăng độ sáng chữ phụ trong drawer tối; sửa avatar chữ trên nền gradient; làm tối màu nền nút cảnh báo/thành công có chữ trắng; tăng độ đọc được của trạng thái disabled; sửa các vùng Fleet, AD Control Center, Progress, Final Paper và FS09 Quick. Không thay đổi bố cục hay nghiệp vụ.",
-  "message": "V6.4.91 TEST: global text contrast audit and WCAG-oriented visual fixes."
+  "notes": "Sửa triệt để tài khoản xóa rồi tạo lại khi Firebase Authentication cũ không thể xóa từ client. Không còn cố đăng nhập Auth cũ bằng 123456. Khi email Auth chuẩn đã tồn tại, AD tạo một Auth slot mới username.r1..r8, còn người dùng vẫn đăng nhập bằng username bình thường; màn hình đăng nhập tự dò Auth slot và chỉ nhận UID có users/{UID} đang hoạt động. Nút XÓA/TẠO LẠI xóa cả các hồ sơ E-REPORT cũ cùng username nhưng không xóa Firebase Auth. TẠO LẠI AUTH/RESET cũng chuyển sang slot mới.",
+  "message": "V6.4.92 TEST: fix recreated Firebase accounts so username login works without deleting old Auth."
 }

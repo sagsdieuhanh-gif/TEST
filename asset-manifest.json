@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.91",
-  "build": "V6.4.91-20261003-GLOBAL-CONTRAST-AUDIT-01",
-  "strategy": "atomic test release + global text contrast audit + account recreate flow",
+  "version": "V6.4.92",
+  "build": "V6.4.92-20261003-FIREBASE-RECREATE-SLOTS-01",
+  "strategy": "atomic test release + Firebase auth slots for recreated accounts + global contrast audit",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "6bba5bfb5794115233c15c052b398b54df63350cd52b148274d2803d44d9e3ca",
-      "bytes": 81409
+      "sha256": "0275dd55d16668d4b8f0648b9927b04129db2cf9699b61a9aa49de1cc4c16426",
+      "bytes": 81601
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "a7136f8d57c745df299ab8564da22a3c81804a6a4717ab8be53c2f7aa7f14f82",
-      "bytes": 21790
+      "sha256": "75ff53c3a84fd848434ffbdb10f236e6d439f0d669eeda187629dce8aee76f52",
+      "bytes": 21796
     },
     "./version.json": {
-      "sha256": "43748f862043cb785b97ef3f0e5a921dc2c44476b49da3eab0e93ce7379ef942",
-      "bytes": 927
+      "sha256": "da8e21f8ecb0f2a6729e130655a182738728d4f9e3a4758a5244d21ff63088c2",
+      "bytes": 1046
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -338,8 +338,8 @@
       "bytes": 13785
     },
     "./app/boot/14-v18CanonicalAccountHierarchy.js": {
-      "sha256": "e92edf38a3165b182dd849b77fdaf90f7c7eba43b2a0deb289cb9fc738dca676",
-      "bytes": 37061
+      "sha256": "ecd6c1bc5c76d9de32175026bcc27df9c3fa3399986d71c885db1fc274174b69",
+      "bytes": 52841
     },
     "./app/boot/15-v116-account-name-search.js": {
       "sha256": "b2ffc046f021ab5218cc5a5090fd7cee940451e85c6db0d332c39f9036e55eb1",
