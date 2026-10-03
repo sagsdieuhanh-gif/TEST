@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "version": "V6.4.82",
-  "build": "V6.4.82-20261003-TEST-GOVERNANCE-PERF-01",
+  "version": "V6.4.83",
+  "build": "V6.4.83-20261003-TEST-STANDALONE-01",
   "strategy": "TEST atomic release + governance + exact-flight dossier + statusSummary + optimized startup",
   "mutableMetadata": [
     "./forms/forms.registry.json",
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "2f9388b0e0224f2d817851819599be4f2ee4df1e45dbd944c58aef102f3d8ec8",
-      "bytes": 78466
+      "sha256": "eb84fc7236fd21a8203ada477082cde129a8dcb3887d7dc71244f2458bc03e51",
+      "bytes": 77897
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 4925
     },
     "./service-worker.js": {
-      "sha256": "383cd42a1cc7b299b82cd09685807a9f01eae4ced2f94dc5e58a057b1d0a79fe",
-      "bytes": 19866
+      "sha256": "896a5232b195dd9c706f5c70b18f7797b27f9fa0395366ac3ae64622d0861748",
+      "bytes": 19851
     },
     "./version.json": {
-      "sha256": "2dcd244a8b788263da60afa212efaf3bb51f5bb0c9b20171ca678d530c820e10",
-      "bytes": 769
+      "sha256": "52b1af33dc6e681af3dc23582e9a690c8a504ee68e7e6755f38807f309f7792c",
+      "bytes": 842
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
