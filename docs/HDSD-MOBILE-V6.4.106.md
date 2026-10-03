@@ -28,3 +28,7 @@ My Flight cá nhân được thu gọn: đầu trang 56px, bộ lọc 44px, tab 
 
 ### V6.4.109 — My Flight từ menu
 Bấm My Flight mở màn gọn: header 54px, ô biểu mẫu 60px, ô ngày 44px. QUAY LẠI để về menu; giữ LÀM MỚI, TỰ NHẬN VIỆC, HỒ SƠ CHUYẾN và KẾT THÚC CHUYẾN. Bấm CẬP NHẬT để nạp bản mới.
+
+## V6.4.110
+
+MENU và TRANG CHỦ ở đáy mobile và luôn dùng được trong My Flight. ĐỔI MẬT KHẨU và ĐĂNG XUẤT nằm cùng một hàng trong menu. Bỏ QUAY LẠI và TỰ NHẬN VIỆC trong My Flight. Daily Roster mặc định cập nhật một phần: đọc preview, kiểm tra và xác nhận publish; chỉ chọn FULL khi thay toàn bộ ngày. Xem báo cáo trong TEST-V6.4.110-ROSTER-MOBILE.md.

@@ -138,7 +138,7 @@ async function reassignAssignment(date,fid,aid,newUser,reason){
   const item=manSnap.val()||flight?.assignments?.[aid];if(!flight||!item)throw new Error('Không tìm thấy assignment.');
   if(S(item.flightId)!==fid||item.active===false)throw new Error('Phân công không thuộc chuyến đang chọn hoặc đã bị hủy.');
   const unit=assignmentUnit(item);requireManager(unit);
-  const oldUser=S(item.user||item.targetUser||item.ownerUser).toUpperCase();if(oldUser===newUser)return false;
+  if(item.formInstanceId){const r=await root.SAGSRosterResponsibility.instance().reassign(date,aid,newUser,reason);return !r.same&&!r.cancelled;}const oldUser=S(item.user||item.targetUser||item.ownerUser).toUpperCase();if(oldUser===newUser)return false;
   const now=Date.now(),next={...item,user:newUser,targetUser:newUser,ownerUser:newUser,reassignedAtMs:now,reassignedBy:actorSnapshot(),reassignReason:reason,updatedAtMs:now,active:true},patch={};
   patch['roster_manifests/'+safe(date)+'/items/'+safe(aid)]=next;
   if(oldUser)patch['roster_mail/'+safe(oldUser)+'/items/'+safe(aid)+'/active']=false;
@@ -162,6 +162,7 @@ async function reopenAssignment(date,fid,aid,reason){
   const item=manSnap.val()||flight?.assignments?.[aid];if(!flight||!item)throw new Error('Không tìm thấy assignment.');
   if(S(item.flightId)!==fid||item.active===false)throw new Error('Phân công không thuộc chuyến đang chọn hoặc đã bị hủy.');
   const unit=assignmentUnit(item);requireManager(unit);
+  if(item.formInstanceId)throw Error('Form dùng chung đã bàn giao; AD cập nhật phân công qua preview roster để bảo toàn trách nhiệm ARR/DEP.');
   const now=Date.now(),patch={};
   patch['roster_sessions/'+safe(aid)+'/claimStatus']='CLAIMED';
   patch['roster_sessions/'+safe(aid)+'/workPartStatus']='IN_PROGRESS';

@@ -72,7 +72,7 @@ function enhance(){
   if(role()!=='DH'||!me())return;
   const tools=document.querySelector('#fwcModal.show .fwcTools');if(!tools)return;
   style();
-  if(!tools.querySelector('#hf4OpenBtn')){
+  if(false){
     const b=document.createElement('button');b.id='hf4OpenBtn';b.type='button';b.className='hf4Open';
     b.textContent='⇄ TỰ NHẬN VIỆC';b.onclick=openUI;tools.appendChild(b);
   }

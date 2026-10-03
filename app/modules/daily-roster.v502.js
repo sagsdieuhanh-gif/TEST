@@ -23,11 +23,11 @@ function slotSource(x){const src=U(x?.sourceColumn),rk=U(x?.roleKey),fg=U(x?.for
 function canonicalForm(x){const g=U(x?.formGroup||x);if(g==='FSAGS423'||g==='FSAGS')return 'FSAGS423';if(g==='FSAGS421')return 'FSAGS421';if(g==='FSAGS551')return 'FSAGS551';if(g==='FSAGS09')return 'FSAGS09';if(g==='FSAGS54')return 'FSAGS54';if(g==='CLC_CHECKLIST'||g==='FSAGS94'||g==='FSAGS94_CLC')return 'FSAGS94';if(g==='FINAL')return 'FINAL';return g||'FORM'}
 function unitFor(x){const s=slotSource(x);return s==='GRND_LS'?'CBTT':s==='PAX_SUPR'?'PVHK':['GRND_COR','GRND_LD'].includes(s)?'DH':''}
 function flightIdentity(x){const f=flightTokens(x);return f.join('/')||U(x?.flightId||x?.flightRaw||x?.flightName).replace(/[^A-Z0-9]/g,'')||'UNKNOWN'}
-function workspaceKey(date,x){return `RW97_${hash([S(date),flightIdentity(x),slotSource(x),canonicalForm(x)].join('|'))}`}
+function workspaceKey(date,x){if(root.SAGSRosterResponsibility)return root.SAGSRosterResponsibility.identity(date,x);return `RW97_${hash([S(date),flightIdentity(x),slotSource(x),canonicalForm(x)].join('|'))}`}
 function workSlotKey(date,x){return [S(date),flightIdentity(x),slotSource(x),U(x?.assignmentLeg)||'TURN',Number(x?.workPartOrder||1)].join('|')}
 let workspaceMap={};try{workspaceMap=JSON.parse(localStorage.getItem(MAP_KEY)||'{}')||{}}catch(_){workspaceMap={}}
 function saveMap(){try{localStorage.setItem(MAP_KEY,JSON.stringify(workspaceMap))}catch(_){}}
-function rememberWorkspace(item,date=''){const aid=S(item?.assignmentId),wk=S(item?.workspaceKey||item?.rosterWorkspaceKey)||workspaceKey(date||item?.opDate,item);if(!aid||!wk)return null;workspaceMap[aid]={workspaceKey:wk,scope:S(item?.assignmentScope||'TURNAROUND'),opDate:S(date||item?.opDate),flightId:S(item?.flightId),formGroup:S(item?.formGroup),sourceColumn:S(item?.sourceColumn),atMs:Date.now()};saveMap();return workspaceMap[aid]}
+function rememberWorkspace(item,date=''){if(item?.formInstanceId)root.SAGSRosterResponsibility?.instance().register(item);const aid=S(item?.assignmentId),wk=S(item?.workspaceKey||item?.rosterWorkspaceKey)||workspaceKey(date||item?.opDate,item);if(!aid||!wk)return null;workspaceMap[aid]={workspaceKey:wk,scope:S(item?.assignmentScope||'TURNAROUND'),opDate:S(date||item?.opDate),flightId:S(item?.flightId),formGroup:S(item?.formGroup),sourceColumn:S(item?.sourceColumn),atMs:Date.now()};saveMap();return workspaceMap[aid]}
 function meaningfulEnvelope(env){const st=env?.state&&typeof env.state==='object'?env.state:{};return Object.entries(st).some(([k,v])=>{if(/attachment/i.test(k))return false;if(v===true)return true;if(v===false||v===null||v===undefined)return false;if(Array.isArray(v))return v.length>0;if(typeof v==='object')return Object.keys(v).length>0;return S(v)!==''})}
 function sanitizeEnvelope(env){const x=env&&typeof env==='object'?env:{},src=x.state&&typeof x.state==='object'?x.state:{},state={};for(const [k,v] of Object.entries(src)){if(/attachment/i.test(k))continue;try{const j=JSON.stringify(v);if(j.length<=180000)state[k]=JSON.parse(j)}catch(_){}}return {state,mainForm:S(x.mainForm||x.activeFormGroup||'fsags'),activeFormGroup:S(x.mainForm||x.activeFormGroup||'fsags'),currentPage:Number(x.currentPage)||1,scrollY:0,arrivalOp:S(x.arrivalOp||'passenger'),departureOp:S(x.departureOp||'passenger'),rosterSeed:clone(x.rosterSeed||{})}}
 function mergeSeedSafe(target,source){target=clone(target)||{};source=source||{};target.state=target.state&&typeof target.state==='object'?target.state:{};const src=source.state&&typeof source.state==='object'?source.state:{};const seed=target.rosterSeed&&typeof target.rosterSeed==='object'?target.rosterSeed:{};for(const [k,v] of Object.entries(src)){if(/attachment/i.test(k))continue;const cur=target.state[k],old=seed[k];const blank=cur===null||cur===undefined||S(cur)==='';let sameSeed=false;try{sameSeed=(k in seed)&&JSON.stringify(cur)===JSON.stringify(old)}catch(_){sameSeed=S(cur)===S(old)}if(blank||sameSeed)target.state[k]=clone(v)}return target}
@@ -70,7 +70,7 @@ function installRefClean(){
     }
     if(p!==''||!ref||typeof ref.update!=='function')return ref;
     const baseUpdate=ref.update.bind(ref);
-    ref.update=async function(patch){
+    ref.update=async function(patch){if(patch?.__canonicalRoster)return baseUpdate(patch);
       if(!patch||typeof patch!=='object'||Array.isArray(patch))return baseUpdate(collapseUpdatePathConflicts(patch));
       // Any parent-manifest write becomes cumulative by construction, so older wrappers
       // cannot accidentally turn a later roster batch into REPLACE_SAME_DAY.
@@ -132,7 +132,7 @@ async function hf4StillOwns(aid,date='',fid=''){
 async function writeWorkspaceForActive(delay=420){
   clearTimeout(writeWorkspaceForActive._t);writeWorkspaceForActive._t=setTimeout(async()=>{try{
     const meta=root.currentFlightSessionMeta?.();if(!meta?.rosterAssignmentId||typeof root.sagsV470Ref!=='function')return;
-    const aid=S(meta.rosterAssignmentId),info=workspaceMap[aid]||null;if(!info?.workspaceKey)return;
+    const aid=S(meta.rosterAssignmentId);if(meta.formInstanceId||root.SAGSRosterResponsibility?.instance().isCanonical(aid))return;const info=workspaceMap[aid]||null;if(!info?.workspaceKey)return;
     if(!await hf4StillOwns(aid,S(info.opDate||meta.rosterOpDate),S(info.flightId||meta.rosterFlightId)))return;
     const env=root.readFlightSessionEnvelope?.(meta.id);if(!env||!meaningfulEnvelope(env))return;
     const clean=sanitizeEnvelope(env),sig=JSON.stringify(clean);if(wsTimers.get(info.workspaceKey)===sig)return;
@@ -145,7 +145,7 @@ async function writeWorkspaceForActive(delay=420){
 // another person's session just because they have the same flight number.
 // Only the explicitly selected assignment may be hydrated, on actual open.
 async function hydrateWorkspaceForFlight(date,fid,aid){
-  aid=S(aid);date=S(date);if(!aid||!date||typeof root.sagsV470Ref!=='function')return 0;
+  aid=S(aid);date=S(date);if(root.SAGSRosterResponsibility?.instance().isCanonical(aid))return 0;if(!aid||!date||typeof root.sagsV470Ref!=='function')return 0;
   // Fresh per-assignment mailbox check; stale on-device workspace mapping alone
   // must never authorize a read or an automatic copy after reassignment.
   let item=null;
@@ -178,7 +178,7 @@ function flightSignature(meta,env){const st=env?.state&&typeof env.state==='obje
 let lastPbSig='',pbTimer=0,lastRampSyncSig='',rampSyncInFlight=false;
 async function syncPushbackFromActive(){
   try{
-    const meta=root.currentFlightSessionMeta?.();if(!meta?.rosterAssignmentId)return;
+    const meta=root.currentFlightSessionMeta?.();if(!meta?.rosterAssignmentId||meta.formInstanceId)return;
     const env=root.readFlightSessionEnvelope?.(meta.id)||{};if(!sourceGroup(meta,env))return;
     const st=env.state&&typeof env.state==='object'?env.state:{},date=S(meta.rosterOpDate||env.rosterOpDate||opDate()),sig=flightSignature(meta,env);
     if(!date||!sig)return;
@@ -226,6 +226,7 @@ async function reconcilePolicyAuxForms(date=opDate()){
  const [policy,manSnap,flightSnap]=await Promise.all([root.sagsAirlineFormPolicy.ready?.(true),root.sagsV470Ref(`${MANIFEST}/${safe(date)}`).once('value'),root.sagsV470Ref(`${FLIGHTS}/${safe(date)}`).once('value')]);
  const man=manSnap.val()||{},flights=flightSnap.val()||{},allItems=Object.values(man.items||{}).filter(Boolean);
  const bases=allItems.filter(x=>x.active!==false&&U(x.roleKey)==='CBTT'&&(U(x.formGroup)==='FINAL'||U(x.sourceColumn).includes('GRND_LS'))&&!['FSAGS54','FSAGS94'].includes(canonicalForm(x)));
+ if(man.canonicalSchema)return {ok:true,date,added:0,reactivated:0,deactivated:0,already:0};
  const specs=[{group:'FSAGS54',canon:'FSAGS54'},{group:'clc_checklist',canon:'FSAGS94'}],desired=new Map(),patch={},now=Date.now();let added=0,reactivated=0,deactivated=0,already=0;
  for(const base0 of bases){const user=normUser(base0.user||base0.targetUser),fid=S(base0.flightId);if(!user||!fid)continue;const base=policyFlightRecord(flights,fid,base0);
    for(const spec of specs){if(root.sagsAirlineFormPolicy.allowed(base,spec.group)!==true)continue;const key=[user,fid,spec.canon].join('|');desired.set(key,{base,user,fid,spec});
@@ -294,7 +295,7 @@ function formLabel(x){const g=canonicalForm(x),src=sourceKey(x);if(g==='TVJGOF03
 function pbOf(st){const e=st?.envelope?.state||{},c=st?.completionEnvelope?.state||{};return S(st?.completedPushback||e.h24Start||e.f421_h24Start||c.h24Start||c.f421_h24Start)}
 function isPushbackSource(x){return ['FSAGS','FSAGS423','FSAGS421'].includes(U(x?.formGroup))}
 function normalizedTask(st){return U(st?.taskStatusV333||st?.taskStatus||st?.workPartStatus||st?.claimStatus).replace(/[\s-]+/g,'_')}
-function itemCompleted(item,st){if(st?.autoSkippedCoAssignee===true&&norm(st.completedBy)!==me())return false;if(st?.pushbackEditReopened===true||st?.pushbackEditMode===true)return false;const t=normalizedTask(st);if(st?.skippedNoEform===true||st?.autoSkippedByNextUser===true||['COMPLETED','PART_COMPLETED','HANDED_OVER','NOT_APPLICABLE','SKIPPED'].includes(t))return true;if(isPushbackSource(item)&&!!pbOf(st))return true;return false}
+function itemCompleted(item,st){if(item.formInstanceId)return st?.assignmentCompletion==='COMPLETED'||st?.taskStatusV333==='COMPLETED';if(st?.autoSkippedCoAssignee===true&&norm(st.completedBy)!==me())return false;if(st?.pushbackEditReopened===true||st?.pushbackEditMode===true)return false;const t=normalizedTask(st);if(st?.skippedNoEform===true||st?.autoSkippedByNextUser===true||['COMPLETED','PART_COMPLETED','HANDED_OVER','NOT_APPLICABLE','SKIPPED'].includes(t))return true;if(isPushbackSource(item)&&!!pbOf(st))return true;return false}
 function itemWorking(item,st){
   const t=normalizedTask(st);if(!['IN_PROGRESS','CLAIMED','ACTIVE','WORKING'].includes(t))return false;
   const claimant=norm(st?.claimedBy);if(claimant)return claimant===me();
@@ -312,7 +313,7 @@ async function clearStaleClaimIfNeeded(item){
 }
 function timeScore(x){const raw=S(x?.std||x?.sta),plus=/\+\s*$/.test(raw),s=raw.replace(/\D/g,'');if(s.length<3)return 99999;return (plus?1440:0)+Number(s.slice(0,-2))*60+Number(s.slice(-2))}
 async function readManifest(date){if(role()!=='AD'){if(typeof root.sagsV477ManifestForWorker!=='function')throw new Error('Hộp phân công đang khởi tạo; vui lòng đợi hoặc bấm UPDATE.');return await root.sagsV477ManifestForWorker(date)}return (await db(`roster_manifests/${safe(date)}`).once('value')).val()||{}}
-const QUEUE_STATUS_FIELDS=['claimStatus','workPartStatus','taskStatusV333','taskStatus','ownerUser','claimedBy','claimedAtMs','reassignedAtMs','skippedNoEform','autoSkippedByNextUser','pushbackEditReopened','pushbackEditMode','completedPushback','flightCloseoutV6445','flightCloseoutAtMs','flightCloseoutBy','flightCloseoutDate','flightCloseoutFlightKey','flightCloseoutUnit'];
+const QUEUE_STATUS_FIELDS=['assignmentCompletion','claimStatus','workPartStatus','taskStatusV333','taskStatus','ownerUser','claimedBy','claimedAtMs','reassignedAtMs','skippedNoEform','autoSkippedByNextUser','pushbackEditReopened','pushbackEditMode','completedPushback','flightCloseoutV6445','flightCloseoutAtMs','flightCloseoutBy','flightCloseoutDate','flightCloseoutFlightKey','flightCloseoutUnit'];
 const queueStatusCache=new Map();
 root.sagsV477InvalidateQueueStatus=function(){queueStatusCache.clear()};
 async function readState(aid,force=false){
@@ -410,7 +411,7 @@ function setHeader(date){const h=document.querySelector('#fwcModal .fwcHead h3')
 function visibleFormTasks(g){
   const buckets=new Map();
   g.items.forEach((item,i)=>{
-    const form=canonicalForm(item);
+    const form=item.formInstanceId||canonicalForm(item);
     if(!buckets.has(form))buckets.set(form,[]);
     buckets.get(form).push({item,st:g.states[i]||{},index:i});
   });
@@ -444,7 +445,7 @@ function taskPills(g,date){return visibleFormTasks(g).map(({item:x,st,done})=>{
 function departmentLabel(item){const code=String(item.formGroup||'').toLowerCase();if(/loading208/.test(code))return '📦 Kho hàng';if(/ramp|423|42[._]/.test(code))return '✈ CO · Điều hành';if(/54|94|final|load|balance/.test(code))return '⚖ Cân bằng trọng tải';if(/passenger|pax|customer/.test(code))return '👥 Phục vụ khách';return '📄 '+formLabel(item);}
 function cardHtml(g,date){
  const x=g.primary,route=S(x?.route),ac=S(x?.acReg)||'—',sta=S(x?.sta)||'—',std=S(x?.std)||'—';
- const forms=visibleFormTasks(g).map(({item,st,done})=>'<div class="v1199FormTile '+(done?'done':'')+'"><b>'+esc(departmentLabel(item))+'</b><span>FSAGS '+esc(formLabel(item))+'</span><small>'+(done?'Đã hoàn thành nhập':itemWorking(item,st)?'Đang nhập':'Chờ nhận')+'</small></div>').join('');
+ const forms=visibleFormTasks(g).map(({item,st,done})=>'<div class="v1199FormTile '+(done?'done':'')+'"><b>'+esc(departmentLabel(item))+'</b><span>FSAGS '+esc(formLabel(item))+(item.formInstanceId?' · '+esc(item.assignmentLeg==='TURN'?'ĐẾN + ĐI':item.assignmentLeg==='ARR'?'ĐẾN':'ĐI'):'')+'</span><small>'+(done?'Đã hoàn thành nhập':itemWorking(item,st)?'Đang nhập':'Chờ nhận')+'</small></div>').join('');
  const t=closeoutTime(g),closedNote=g.flightClosed?'<div class="v1199FlightState">✓ CHUYẾN ĐÃ HOÀN TẤT'+(t?' · '+new Date(t).toLocaleString('vi-VN',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}):'')+'</div>':'';
  const closeBtn=g.flightClosed?'<button type="button" class="v1199Action reopenFlight v1199FlightCloseBtn" data-flight-fkey="'+esc(g.key)+'" data-flight-date="'+esc(date)+'" data-flight-close="0">↻ MỞ LẠI CHUYẾN</button>':'<button type="button" class="v1199Action finish v1199FlightCloseBtn" data-flight-fkey="'+esc(g.key)+'" data-flight-date="'+esc(date)+'" data-flight-close="1">✓ KẾT THÚC CHUYẾN</button>';
  const docCount=Array.isArray(g.dossierDocs)?g.dossierDocs.length:0,docSummary=dossierDocsHtml(g,date),policySummary=policyAuxHtml(g),dossierText='📁 HỒ SƠ CHUYẾN'+(docCount?' · '+docCount+' TÀI LIỆU':'');

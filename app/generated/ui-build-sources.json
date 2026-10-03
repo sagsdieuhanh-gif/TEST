@@ -71,6 +71,7 @@
       "app/modules/tvj-gof-035.v632.js"
     ],
     "app/generated/startup-bundle-4.js": [
+      "app/modules/roster-responsibility.v1.js",
       "app/modules/fsags54-94.v622.js",
       "app/modules/form-registry-runtime.v647.js",
       "app/modules/form-registry-runtime.v6419.js",

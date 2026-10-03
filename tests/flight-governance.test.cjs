@@ -4,9 +4,9 @@ for(const p of ['DOI_TRUONG','DOI_PHO','CA_TRUONG','CA_PHO'])assert(gov.includes
 for(const action of ['LOAD_SYSTEM_MODE_CHANGED','DEPARTMENT_STATUS_CHANGED','ASSIGNMENT_REASSIGNED','ASSIGNMENT_REOPENED','FSAGS208_HANDLER_CHANGED'])assert(gov.includes(action),'missing audit action '+action);
 assert(gov.includes("SPECIAL_MANUAL_LOAD_CARRIERS=new Set(['9G','QH','VU'])"));
 assert(gov.includes('auditTrail'));
-assert(roster.includes('statusSummary'),'daily roster should use statusSummary');
-assert(roster.includes('documents/${code}'),'policy docs must be written into exact flight record');
-assert(roster.includes('HỒ SƠ BIỂU MẪU'));
-assert(core.includes('sagsFlightGovernance?.statusOverride'),'flight UI must honor manager override');
-assert(core.includes('/statusSummary'),'flight list should prefer statusSummary');
-console.log('Flight governance regression passed: manager scope, audit, exact-flight docs, status summaries');
+assert(roster.includes('QUEUE_STATUS_FIELDS')&&roster.includes('assignmentCompletion'),'queue must read responsibility completion leaves');
+assert(roster.includes("+'/documents/FSAGS208'"),'dossier must read documents from the exact flight record');
+assert(roster.includes('TÀI LIỆU ĐÃ CÓ'));
+assert(gov.includes('statusOverride,setLoadSystemMode,setDepartmentStatus'),'governance must expose audited status override APIs');
+assert(core.includes('statusSummary')||core.includes('taskStatusV333'),'flight list must consume task status');
+console.log('Flight governance regression passed: manager scope, audit, exact-flight documents and responsibility status reads');
