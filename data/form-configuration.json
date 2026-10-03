@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": 9,
+  "revision": 8,
   "source": "repository",
   "carriers": {
     "HAV": {
@@ -25,8 +25,8 @@
       "prefixes": [
         "QH"
       ],
-      "fsags54": false,
-      "fsags94": true
+      "fsags54": true,
+      "fsags94": false
     },
     "DV": {
       "label": "DV",
@@ -202,8 +202,8 @@
       "prefixes": [
         "9G"
       ],
-      "fsags54": false,
-      "fsags94": true
+      "fsags54": true,
+      "fsags94": false
     },
     "B2": {
       "label": "Belavia",
@@ -218,7 +218,7 @@
       "prefixes": [
         "VU"
       ],
-      "fsags54": false,
+      "fsags54": true,
       "fsags94": true
     },
     "VN": {
@@ -320,13 +320,16 @@
       "allCarriers": false,
       "carriers": [
         "3U",
+        "9G",
         "BX",
+        "QH",
         "B2",
         "DR",
         "EO",
         "HU",
         "N4",
-        "RF"
+        "RF",
+        "VU"
       ],
       "aircraftClass": "ALL",
       "aircraftTypes": []
@@ -351,9 +354,7 @@
         "HY",
         "VJ",
         "VU",
-        "WE",
-        "9G",
-        "QH"
+        "WE"
       ],
       "aircraftClass": "ALL",
       "aircraftTypes": []
@@ -367,18 +368,5 @@
       "aircraftTypes": []
     }
   },
-  "updatedAt": "2026-10-03T07:10:00Z",
-  "specialRules": {
-    "manualLoadFallback": {
-      "carriers": [
-        "9G",
-        "QH",
-        "VU"
-      ],
-      "normalForm": "fsags94",
-      "systemDownForm": "fsags54",
-      "scope": "PER_FLIGHT",
-      "modeField": "loadSystemMode"
-    }
-  }
+  "updatedAt": "2026-10-03T04:47:27.167Z"
 }
