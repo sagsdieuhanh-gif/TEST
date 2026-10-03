@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.81",
-  "build": "V6.4.81-20261003-MOBILE-COMPACT-UPDATE-STABLE-01",
-  "strategy": "atomic release + index-meta runtime version + repair contract + mobile compact UI",
+  "version": "V6.4.82",
+  "build": "V6.4.82-20261003-TEST-GOVERNANCE-PERF-01",
+  "strategy": "TEST atomic release + governance + exact-flight dossier + statusSummary + optimized startup",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "3ac72f85f18461b659d23f3be2bd94600feedf9b92278df25d5e83f7489b5155",
-      "bytes": 82164
+      "sha256": "02f3506b490ce07bec170cbe3e1b4743e8ba34be8423f28893e4e38d7803b79f",
+      "bytes": 85300
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
@@ -86,7 +86,7 @@
       "bytes": 41473
     },
     "./app/styles/new-ui-v1.css": {
-      "sha256": "dae5fa0e5297c005c66a932b3b9575261276b2697217f7209056ffca6705738d",
+      "sha256": "990500a9f3c82cbb5d15ac5642419ebbc343d3e63168705e1584f06841e8bb40",
       "bytes": 264604
     },
     "./assets/audio/alert-crosscheck-complete.mp3": {
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "ed4f00602a2cb4b2135ebf4907c4bc4d18b018076073b8369406aab6c12d100d",
-      "bytes": 81868
+      "sha256": "2f9388b0e0224f2d817851819599be4f2ee4df1e45dbd944c58aef102f3d8ec8",
+      "bytes": 78466
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,16 +274,16 @@
       "bytes": 465580
     },
     "./repair.html": {
-      "sha256": "174e7898b6a4e8414e8a8abc2007df0d4d671c18e406ce58ccea6e2914b2c962",
+      "sha256": "5318382581a507453d95efd0c219f2e370f3e9e3ee363ef657f815f7caee0822",
       "bytes": 4925
     },
     "./service-worker.js": {
-      "sha256": "484b38fafcbaa7d6f61bef812c60e68fdca492f83725973e9018340d63b2e625",
-      "bytes": 21353
+      "sha256": "383cd42a1cc7b299b82cd09685807a9f01eae4ced2f94dc5e58a057b1d0a79fe",
+      "bytes": 19866
     },
     "./version.json": {
-      "sha256": "a8fbc4c49bc593495e4e6be036510356bf6e4debaa9178254d11cc73de5f7f24",
-      "bytes": 989
+      "sha256": "2dcd244a8b788263da60afa212efaf3bb51f5bb0c9b20171ca678d530c820e10",
+      "bytes": 769
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -302,7 +302,7 @@
       "bytes": 1253
     },
     "./app/boot/05-legacy.js": {
-      "sha256": "830e50190ae65f59d4def691ee81d711021dab8104ecfaa00b73510cf5ecd544",
+      "sha256": "5acb6a5c1c0e0d5070b2f52cb163ff70633af4b1f4ab3e478881580dab4e1f05",
       "bytes": 293705
     },
     "./app/boot/06-legacy.js": {
@@ -518,15 +518,15 @@
       "bytes": 22267
     },
     "./app/modules/airline-form-policy.v1.js": {
-      "sha256": "d92ca37647a4697299f767983b1435f7df6cf88ee6718073bf383ab6fde2a653",
-      "bytes": 27751
+      "sha256": "ef5deb8741a1ce309308b524f42575f1476c4d3b946a7f25163a08c3a7929308",
+      "bytes": 28457
     },
     "./data/airline-form-catalog.json": {
       "sha256": "8ca152be48b0150cbb0705da55a4177103cccd01bd8402faf53a9275669695f5",
       "bytes": 2661
     },
     "./app/modules/fsags208-workspace.v1.js": {
-      "sha256": "c416c53325885ae1026fc3fcaf1154a073a1ec64c0932c8271bda5ec6436cf24",
+      "sha256": "c0514943509927f7d9871544ca832dcf35c6232b293559aef2c548e08ed2ee37",
       "bytes": 42251
     },
     "./app/modules/cargo-all-flights.v1.js": {
@@ -534,20 +534,20 @@
       "bytes": 3567
     },
     "./data/form-configuration.json": {
-      "sha256": "b295ee323313d6639bf9a88082c39650d98e78ca054340f6c4f5b220f8e229ab",
-      "bytes": 6533
+      "sha256": "5a5cfe5cc27f5f3b10f785b853ddd06eeb31e43de785f5d33ba5cc3bfdc30bc2",
+      "bytes": 6776
     },
     "./app/generated/core-archive.js": {
       "sha256": "8c9e20707dc7a0d1510326a7b1f591e8db891054f471db336a5dafcf18d314f3",
       "bytes": 71353
     },
     "./app/generated/core-control.js": {
-      "sha256": "cbbb4241ab2402e73d911d07ec4059c451ff00503d17fd746b32d150014f801a",
+      "sha256": "01d97d1537b96685b7f110d84b485d36f0ee222eefcc13f555b1af3443289c24",
       "bytes": 84928
     },
     "./app/generated/core-flight.js": {
-      "sha256": "adc6b3ff7388ef5eb7724e292a0e13f212080c8ea8d779a11c38de703b706c1e",
-      "bytes": 208656
+      "sha256": "fe57a840665ab68ed4da1fdd721caf71b30eeaf4d3521922fe075905aaf4e16c",
+      "bytes": 209059
     },
     "./app/generated/core-performance.js": {
       "sha256": "005c80dc9ce412f9e1c8b74d24b48e68b27ddaa05d5de203cb2029e7f93364d8",
@@ -610,12 +610,72 @@
       "bytes": 25399
     },
     "./app/generated/boot-group-4.js": {
-      "sha256": "359491fc70beaddfc23ee82e5531f0c0b61cfe004657cc8e44d87a3504dcb9f4",
+      "sha256": "dfed695aab4e87a47e7a4a963ff79984f114c2175c793d10b2f5ec301170e580",
       "bytes": 11325
     },
     "./app/generated/boot-group-5.js": {
       "sha256": "5e63b64c8450611004cdf7983028cfef05f0c5ade6e72b2e34338f58ae048201",
       "bytes": 3559
+    },
+    "./app/generated/legacy-05.min.js": {
+      "sha256": "c04440b417c39c63f2106d2980cfaa46cf38dc8f527889ee9f688b93f13ab771",
+      "bytes": 283923
+    },
+    "./app/generated/legacy-06.min.js": {
+      "sha256": "35f1764d73576f554db6dd77ee50ce7d1436a0b724e3f78c3f12f8899426e2db",
+      "bytes": 386738
+    },
+    "./app/generated/legacy-07.min.js": {
+      "sha256": "7dc537b02522604d61e9702fed2df2430f2dafaacebb13ef9aa49f66111ce87b",
+      "bytes": 29239
+    },
+    "./app/generated/startup-bundle-1.js": {
+      "sha256": "a6c5097efd367b2593c2b9bd281b8f9e3c3e987bca6548eaa74b32cbecb1847e",
+      "bytes": 366557
+    },
+    "./app/generated/startup-bundle-2.js": {
+      "sha256": "00d4e8da0fbfa2cc6305276b8b399f5b38f52b716e97152ad699aae8c9848328",
+      "bytes": 32664
+    },
+    "./app/generated/startup-bundle-3.js": {
+      "sha256": "6dfa44baf880ff3910b05bc4dedd1db39f906afd1319aea73fbc670dff30254c",
+      "bytes": 31645
+    },
+    "./app/generated/startup-bundle-4.js": {
+      "sha256": "6ff4fcf5ef2fe34fd455ed15fcb67025d8e773dfb9e9c2a6d7dcdb6fe83167ed",
+      "bytes": 136231
+    },
+    "./app/modules/flight-governance.v1.js": {
+      "sha256": "ff99906add03e30ad821d6cb93f98f454658e43f032268309eef31d5003d1e53",
+      "bytes": 25818
+    },
+    "./app/generated/legacy-ui-bundle-1.css": {
+      "sha256": "24f81b53d5eebc372e20fbd5ff845fcbd445bd2545487a62c2f22a1dbc5a70a3",
+      "bytes": 102536
+    },
+    "./app/generated/legacy-ui-bundle-2.css": {
+      "sha256": "085202e77f4a8b942e3796ef99077676aca55f03492dc15f92bbe5ee30046b4c",
+      "bytes": 886
+    },
+    "./app/generated/legacy-ui-bundle-3.css": {
+      "sha256": "f48f57d586c22d50c9e716105e4fb0a3bceadabaf61a3fdef96c09601b79d36c",
+      "bytes": 1368
+    },
+    "./app/generated/legacy-ui-bundle-4.css": {
+      "sha256": "5fd7011617fe07aa665b4ae9a8d1fbc26fcfd16b846c81afb8749f00d32800f3",
+      "bytes": 9402
+    },
+    "./app/generated/legacy-ui-bundle-5.css": {
+      "sha256": "a38b3de2c7f7a66d1dbd8ce01b05b1ccdf1f517a053fd33cddc539bc13e082d5",
+      "bytes": 9764
+    },
+    "./app/boot/25-v1154-update-detector-r2.js": {
+      "sha256": "68c7ed26f0f180b4193cd71554a0214bddded76fe3f731132ec83895c7ff18c9",
+      "bytes": 7297
+    },
+    "./form-configuration.json": {
+      "sha256": "5a5cfe5cc27f5f3b10f785b853ddd06eeb31e43de785f5d33ba5cc3bfdc30bc2",
+      "bytes": 6776
     }
   }
 }
