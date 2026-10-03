@@ -1,15 +1,15 @@
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),write=(p,s)=>fs.writeFileSync(path.join(root,p),s),exists=p=>fs.existsSync(path.join(root,p));
-const VERSION='V6.4.82',BUILD='V6.4.82-20261003-TEST-GOVERNANCE-PERF-01',LABEL='V6.4.82 - TEST GOVERNANCE + PERFORMANCE',RELEASED='2026-10-03T07:20:00Z';
+const VERSION='V6.4.83',BUILD='V6.4.83-20261003-TEST-STANDALONE-01',LABEL='V6.4.83 - TEST STANDALONE GOVERNANCE + PERFORMANCE',RELEASED='2026-10-03T07:30:00Z';
 const old=JSON.parse(read('version.json')),oldV=String(old.version||''),oldB=String(old.build||'');
 if(!oldV||!oldB)throw Error('Current version metadata missing');
 let index=read('index.html').split(oldB).join(BUILD).split(oldV).join(VERSION);
 assert(index.includes('name="sags-release-build" content="'+BUILD+'"'));assert(index.includes('name="sags-release-version" content="'+VERSION+'"'));
 write('index.html',index);
-const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'feature',base:oldB,updatePolicy:'required',notes:'TEST integrated release: final F54/F94 airline policy; 9G/QH/VU per-flight NORMAL→F94 and SYSTEM DOWN→F54; department manager governance for Đội/Ca; append-only flight audit history; exact-flight F54/F94/208 dossier summaries; Firebase statusSummary optimization; startup JS/CSS request consolidation; verified PWA/Repair contract retained.',message:VERSION+': TEST governance + exact-flight dossier + performance release.'};
+const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'feature',base:oldB,updatePolicy:'required',notes:'TEST standalone release: final F54/F94 airline policy; 9G/QH/VU per-flight NORMAL→F94 and SYSTEM DOWN→F54; department manager governance for Đội/Ca; append-only flight audit history; exact-flight F54/F94/208 dossier summaries; Firebase statusSummary optimization; startup JS/CSS request consolidation; verified PWA/Repair contract retained; GitHub Pages remains on TEST and never redirects to production.',message:VERSION+': TEST standalone governance + exact-flight dossier + performance release.'};
 write('version.json',JSON.stringify(version,null,2)+'\n');
 let sw=read('service-worker.js').split(oldB).join(BUILD).split(oldV).join(VERSION);
-sw=sw.replace(/sags-app-shell-v\d+-[a-z0-9-]+/g,'sags-app-shell-v682-test-governance-perf-01').replace(/sags-app-meta-v\d+-[a-z0-9-]+/g,'sags-app-meta-v682-test-governance-perf-01');
+sw=sw.replace(/sags-app-shell-v\d+-[a-z0-9-]+/g,'sags-app-shell-v683-test-standalone-01').replace(/sags-app-meta-v\d+-[a-z0-9-]+/g,'sags-app-meta-v683-test-standalone-01');
 const scripts=[...index.matchAll(/<script\b[^>]*src=["'](\.\/[^"'?]+)[^"']*["'][^>]*>/g)].map(m=>m[1]);
 const styles=[...index.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["'](\.\/[^"'?]+)[^"']*["'][^>]*>/g)].map(m=>m[1]);
 const uniq=a=>[...new Set(a)],bootstrap=uniq(['./index.html',...scripts,...styles,'./service-worker.js','./version.json','./data/airline-form-catalog.json','./app/modules/stability.v6-core.js','./app/modules/mobile-draft-recovery.v1.js','./app/modules/indexeddb-flight-store.v1.js']);
