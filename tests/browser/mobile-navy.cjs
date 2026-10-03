@@ -12,6 +12,13 @@ try{for(const width of [320,360,390,430,1280]){const page=await browser.newPage(
  console.log('Compact '+width+'px: header '+header.height+'px; menu cards '+Math.max(...cards)+'px');
  if(process.env.SAGS_UI_SCREENSHOTS)await page.screenshot({path:path.join(process.env.SAGS_UI_SCREENSHOTS,'menu-'+width+'.png')});
  }
+ if(width<768){
+ await page.evaluate(()=>{const modal=document.getElementById('fwcModal');modal.classList.add('show');modal.style.display='flex';document.body.classList.remove('v157-drawer-open');modal.innerHTML='<div class="fwcPanel"><div class="fwcHead"><h3>MY FLIGHT</h3><button class="fwcBtn">ĐÓNG</button></div><div class="fwcTools"><input type="date"><input placeholder="Tìm chuyến"><button>LÀM MỚI</button><button>TỰ NHẬN VIỆC</button></div><div id="fwcList"></div></div>';document.getElementById('fwcList').innerHTML='<div class="v1199Tabs"><button class="v1199Tab">ĐANG LÀM</button><button class="v1199Tab">ĐÃ HOÀN TẤT</button></div><div class="v1199FlightGrid"><article class="v1199Card"><div class="v1199Title">VU1270</div><div class="v1199Meta">CXR-HAN · VN-A123 · STD 11:00</div><div class="v1199Tasks"><button class="v1199TaskBtn">42.1</button><button class="v1199TaskBtn">FINAL</button></div></article></div>'});
+ const density=await page.locator('#fwcModal').evaluate(e=>({hero:e.querySelector('.fwcHead').getBoundingClientRect().height,form:e.querySelector('.v1199TaskBtn').getBoundingClientRect().height,flight:e.querySelector('.v1199Card').getBoundingClientRect().bottom,overflow:e.scrollWidth>innerWidth}));
+ assert(density.hero<=64,'My Flight header must be compact');assert(density.form<=56,'My Flight task must be compact');assert(density.flight<=640,'first flight must fit a small mobile screen');assert.equal(density.overflow,false);console.log('My Flight '+width+'px: header '+density.hero+'px, task '+density.form+'px');
+ if(process.env.SAGS_UI_SCREENSHOTS)await page.screenshot({path:path.join(process.env.SAGS_UI_SCREENSHOTS,'myflight-'+width+'.png')});
+ await page.evaluate(()=>{document.getElementById('fwcModal').classList.remove('show');document.getElementById('fwcModal').style.display='none'});
+ }
  await page.evaluate(()=>{document.getElementById('accountManagerModal').style.display='flex'});assert((await page.locator('#accountManagerModal .sagsAdminPanel').boundingBox()).width<=width);await page.evaluate(()=>{document.getElementById('accountManagerModal').style.display='none'});
  assert.deepEqual(errors,[]);await page.close();}
  console.log('Mobile UI: 320/360/390/430/1280px; login inputs, navy theme, menu, admin panel, touch targets, no JS errors passed.');

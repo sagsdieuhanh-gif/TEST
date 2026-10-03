@@ -104,3 +104,27 @@ html.new-ui-v1.new-ui-v1 body :is(.sagsAdminPanel,.sagsDossierPanel,.fleetManage
 html.new-ui-v1.new-ui-v1 body :is(#roleLoginError,.fwcStatus.err){color:#ffb7c4!important}
 @media(max-width:360px){html.new-ui-v1.new-ui-v1 body #fwcModal .fwcTools{grid-template-columns:1fr!important}html.new-ui-v1.new-ui-v1 body #v6497MobileHome .m6497Grid{grid-template-columns:1fr!important}}
 }
+
+/* V6.4.108: operational screen density; login and menu retain V6.4.107 sizes. */
+@media(max-width:767px){
+html.new-ui-v1.new-ui-v1 body #fwcModal .fwcHead{min-height:56px!important;padding:6px!important;gap:6px!important;margin-bottom:6px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .fwcHead h3{margin:0!important;font-size:18px!important;line-height:1.2!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .fwcHead .fwcSub{display:none!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .fwcTools{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:6px!important;gap:6px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .fwcTools>:is(input,button),html.new-ui-v1.new-ui-v1 body #fwcModal .sagsFlightSearchBox{height:44px!important;min-height:44px!important;padding:6px!important;border-radius:8px!important;min-width:0!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199Tabs{gap:6px!important;margin:6px 0!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199Tab{height:44px!important;min-height:44px!important;padding:6px!important;border-radius:8px!important;font-size:10px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199Count{height:22px!important;min-width:22px!important;line-height:22px!important;font-size:10px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199Title{font-size:20px!important;line-height:1.15!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199Meta{font-size:11px!important;line-height:1.3!important;margin-top:4px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199FlightGrid{gap:7px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199TaskBtn{min-height:48px!important;padding:7px!important;font-size:11px!important;line-height:1.25!important;border-radius:8px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199Task{padding:4px 6px!important;margin-bottom:2px!important;font-size:9px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199FlightActions{gap:6px!important;margin-top:6px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199Action{min-height:44px!important;padding:6px!important;font-size:11px!important;border-radius:8px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal :is(.v1199DossierSummary,.v1199PolicySummary){padding:6px!important;margin-top:5px!important;font-size:10px!important;line-height:1.3!important}
+html.new-ui-v1.new-ui-v1 body :is(.hf4Head,.fwcWorkspaceHead,.sagsDossierHead,.fleetManagerHead){padding:8px!important;gap:6px!important}
+html.new-ui-v1.new-ui-v1 body :is(.hf4Item,.fwcUnit,.sagsDossierDoc,.sagsGovPanel,.fleetManagerCard){padding:9px!important;border-radius:10px!important;font-size:12px!important}
+}
+
+@media(max-width:767px){html.new-ui-v1.new-ui-v1 body #fwcModal#fwcModal .fwcPanel{background:#00162e!important;width:100%!important;max-width:100%!important;margin:0!important}html.new-ui-v1.new-ui-v1 body #fwcModal#fwcModal{padding:0!important}}

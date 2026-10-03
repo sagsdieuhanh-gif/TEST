@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.107",
-  "displayVersion": "V6.4.107",
-  "label": "V6.4.107 TEST - COMPACT MOBILE",
-  "build": "V6.4.107-20261004-COMPACT-MOBILE-01",
-  "releasedAt": "2026-10-04T02:51:31+07:00",
+  "version": "V6.4.108",
+  "displayVersion": "V6.4.108",
+  "label": "V6.4.108 TEST - COMPACT OPERATIONS",
+  "build": "V6.4.108-20261004-COMPACT-OPERATIONS-01",
+  "releasedAt": "2026-10-04T03:15:00+07:00",
   "type": "ui",
-  "base": "V6.4.106-20261004-MOBILE-NAVY-OPTIMIZED-01",
+  "base": "V6.4.107-20261004-COMPACT-MOBILE-01",
   "updatePolicy": "optional",
-  "notes": "Thu gọn giao diện mobile: header 48px, thẻ menu 48px, icon 28px, nhãn 12px; giảm khoảng trống giữa nhóm chức năng. Login gọn hơn, đầu My Flight khoảng 68px, tên chuyến 22px. Nút chính giữ vùng chạm 44px. Kiểm tra cả màn hình 320×640. Sửa cache để mỗi build có định danh riêng. Giữ bộ màu navy và cập nhật khi người dùng bấm CẬP NHẬT.",
-  "message": "V6.4.107: thu gọn giao diện mobile, hiển thị nhiều nội dung hơn."
+  "notes": "Thu gọn trực tiếp giao diện My Flight cá nhân: đầu trang 56px, bộ lọc 44px, tab 44px, ô biểu mẫu 48px, tên chuyến 20px. Bỏ khối giải thích MY FLIGHT lặp lại, rút gọn khoảng cách các màn nghiệp vụ. Giữ nguyên login và menu V6.4.107. Cập nhật khi bấm CẬP NHẬT.",
+  "message": "V6.4.108: My Flight và màn nghiệp vụ gọn hơn trên mobile."
 }
