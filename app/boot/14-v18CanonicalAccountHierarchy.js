@@ -200,6 +200,8 @@ async function v6492CreateFreshAuth(secAuth,username){
   e.code="auth/recreate-slots-exhausted";e.cause=lastCollision;throw e;
 }
 
+root.v6492CreateFreshAuth=v6492CreateFreshAuth;
+
 async function v6492ProfileFromSignedIn(authUser){
   authUser=await firebaseAuthHardRecheck(authUser);
   const snap=await firebase.firestore().collection("users").doc(authUser.uid).get();
@@ -336,7 +338,7 @@ adminCreatePersonalAccount=async function(){
     if(sameCode.docs.some(x=>(x.data()||{}).active===true))return setAccountManagerStatus("Mã nhân viên "+employeeCode+" đang được tài khoản khác sử dụng.",true);
     setAccountManagerStatus("Đang tạo Firebase Authentication mới cho "+username+"...");
     secApp=firebase.initializeApp(firebase.app().options,"sags-create-v6492-"+Date.now());secAuth=secApp.auth();
-    const fresh=await v6492CreateFreshAuth(secAuth,username);authUser=fresh.user;
+    const fresh=await root.v6492CreateFreshAuth(secAuth,username);authUser=fresh.user;
     const uid=String(authUser.uid),now=Date.now(),profile={
       active:true,email:fresh.email,username,employeeCode,name,role:storedRole,roleCode,
       departmentCode:dep,groupCode:group,systemDepartment:dep,positionCode,jobTitle,unit,workUnit:unit,
@@ -373,7 +375,7 @@ adminRecreateFirebaseAccount=async function(id){
   let secApp=null,secAuth=null,newUser=null,profileWritten=false;
   try{
     secApp=firebase.initializeApp(firebase.app().options,"sags-recreate-v6492-"+Date.now());secAuth=secApp.auth();
-    const fresh=await v6492CreateFreshAuth(secAuth,username);newUser=fresh.user;
+    const fresh=await root.v6492CreateFreshAuth(secAuth,username);newUser=fresh.user;
     const now=Date.now(),newUid=String(newUser.uid),next={...d,active:true,email:fresh.email,username,mustChangePassword:true,
       authMode:"FIREBASE_SLOT_V6492",authSlot:fresh.slot,permissionRevV485:now,updatedAtMs:now,recreatedAtMs:now,
       recreatedByUid:String(currentUserProfile?.firebaseUid||""),recreatedFromUid:String(id)};
@@ -443,7 +445,7 @@ adminCreatePersonalAccount=async function(){
 
     secApp=firebase.initializeApp(firebase.app().options,"sags-create-v6493-"+Date.now());
     secAuth=secApp.auth();
-    const fresh=await v6492CreateFreshAuth(secAuth,username);
+    const fresh=await root.v6492CreateFreshAuth(secAuth,username);
     authUser=fresh.user;newUid=String(authUser.uid);
 
     const now=Date.now(),profile={

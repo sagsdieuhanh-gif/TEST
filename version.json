@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.93",
-  "displayVersion": "V6.4.93",
-  "label": "V6.4.93 TEST - ORPHAN FIREBASE PROFILE REPAIR",
-  "build": "V6.4.93-20261003-ORPHAN-PROFILE-REPAIR-01",
-  "releasedAt": "2026-10-03T15:37:32Z",
+  "version": "V6.4.94",
+  "displayVersion": "V6.4.94",
+  "label": "V6.4.94 TEST - AUTH HELPER SCOPE FIX",
+  "build": "V6.4.94-20261003-AUTH-HELPER-SCOPE-FIX-01",
+  "releasedAt": "2026-10-03T15:43:23Z",
   "type": "fix",
-  "base": "V6.4.92-20261003-FIREBASE-RECREATE-SLOTS-01",
+  "base": "V6.4.93-20261003-ORPHAN-PROFILE-REPAIR-01",
   "updatePolicy": "required",
-  "notes": "Sửa trường hợp E-REPORT báo username đang hoạt động chỉ vì Firestore users/{UID} còn active nhưng Firebase Authentication thực tế không có/không dùng được. Khi AD tạo lại cùng username, hệ thống không chặn theo profile cũ; chỉ chặn nếu mã nhân viên thuộc username khác. Hệ thống tạo Firebase Auth mới/slot mới, ghi và xác minh users/{UID} mới, sau đó mới xóa các profile E-REPORT cũ cùng username. Không xóa Firebase Auth cũ.",
-  "message": "V6.4.93 TEST: repair orphan active profiles such as VUTP by creating verified Firebase Auth."
+  "notes": "Sửa lỗi 'v6492CreateFreshAuth is not defined': export helper tạo Firebase Auth ra root/window và đổi toàn bộ 3 call-site tạo mới/tạo lại/sửa hồ sơ mồ côi sang helper dùng chung. Giữ nguyên Auth slot và không xóa Firebase Auth cũ.",
+  "message": "V6.4.94 TEST: Firebase auth helper scope fixed."
 }
