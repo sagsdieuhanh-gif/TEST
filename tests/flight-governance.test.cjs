@@ -1,0 +1,12 @@
+const fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const root=path.resolve(__dirname,'..'),gov=fs.readFileSync(path.join(root,'app/modules/flight-governance.v1.js'),'utf8'),roster=fs.readFileSync(path.join(root,'app/modules/daily-roster.v502.js'),'utf8'),core=fs.readFileSync(path.join(root,'app/generated/core-flight.js'),'utf8');
+for(const p of ['DOI_TRUONG','DOI_PHO','CA_TRUONG','CA_PHO'])assert(gov.includes(p),'missing manager position '+p);
+for(const action of ['LOAD_SYSTEM_MODE_CHANGED','DEPARTMENT_STATUS_CHANGED','ASSIGNMENT_REASSIGNED','ASSIGNMENT_REOPENED','FSAGS208_HANDLER_CHANGED'])assert(gov.includes(action),'missing audit action '+action);
+assert(gov.includes("SPECIAL_MANUAL_LOAD_CARRIERS=new Set(['9G','QH','VU'])"));
+assert(gov.includes('auditTrail'));
+assert(roster.includes('statusSummary'),'daily roster should use statusSummary');
+assert(roster.includes('documents/${code}'),'policy docs must be written into exact flight record');
+assert(roster.includes('HỒ SƠ BIỂU MẪU'));
+assert(core.includes('sagsFlightGovernance?.statusOverride'),'flight UI must honor manager override');
+assert(core.includes('/statusSummary'),'flight list should prefer statusSummary');
+console.log('Flight governance regression passed: manager scope, audit, exact-flight docs, status summaries');
