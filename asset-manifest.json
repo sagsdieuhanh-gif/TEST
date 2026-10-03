@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.97",
-  "build": "V6.4.97-20261003-PIXEL-MOBILE-SHELL-01",
-  "strategy": "atomic test release + live pixel mobile shell + strict desktop isolation + V6.4.94 auth fixes",
+  "version": "V6.4.98",
+  "build": "V6.4.98-20261003-MOBILE-ACTIONS-WIRED-01",
+  "strategy": "pixel mobile shell + direct live action wiring + strict desktop isolation",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "4bc912a5ff51bb0ead06636c997966af27c457ba9a3217af4955230d1f3e4300",
-      "bytes": 81881
+      "sha256": "932511445d2c52f67b59578905f57554e67c9ad67322dbd3951e56ed66e3b4ea",
+      "bytes": 82083
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "097b833e405250ad8fdb732e26599eaf2db8ae38654486d254abd40abbaa9e73",
-      "bytes": 22024
+      "sha256": "6481cacdc3f7ccd8c9d466b13f836fc510a2e071a8f2b2c9ed9363d8ab4aa2bd",
+      "bytes": 22030
     },
     "./version.json": {
-      "sha256": "0b6c7267d897886912c13fc0ac07f0aa5b8e14e51f11cc3b6f09cdc2c7712d73",
-      "bytes": 824
+      "sha256": "61f89670b98f9c103af3e306b401c307a3b070dfed9d39cbc0ee36850591fedf",
+      "bytes": 801
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -638,8 +638,8 @@
       "bytes": 11717
     },
     "./app/boot/37-v6497-pixel-mobile-shell.js": {
-      "sha256": "defa9141740570b565c33186abc777037b65e6626f637329f6321df640b97eae",
-      "bytes": 8641
+      "sha256": "b0e5f0909910f50c56d9fdc55bb6c9e1fa8c352c14213d359f61414907f837ec",
+      "bytes": 13136
     }
   }
 }

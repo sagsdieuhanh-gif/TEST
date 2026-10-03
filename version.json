@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.97",
-  "displayVersion": "V6.4.97",
-  "label": "V6.4.97 TEST - PIXEL MOBILE SHELL",
-  "build": "V6.4.97-20261003-PIXEL-MOBILE-SHELL-01",
-  "releasedAt": "2026-10-03T16:18:16Z",
-  "type": "ui",
-  "base": "V6.4.96-20261003-APPROVED-MOBILE-UI-01",
+  "version": "V6.4.98",
+  "displayVersion": "V6.4.98",
+  "label": "V6.4.98 TEST - MOBILE ACTIONS WIRED",
+  "build": "V6.4.98-20261003-MOBILE-ACTIONS-WIRED-01",
+  "releasedAt": "2026-10-03T16:31:22Z",
+  "type": "fix",
+  "base": "V6.4.97-20261003-PIXEL-MOBILE-SHELL-01",
   "updatePolicy": "required",
-  "notes": "Mobile <=767px chuyển sang shell giao diện riêng bám sát ảnh duyệt: masthead E-REPORT, hàng MENU/SAGS/TRANG CHỦ, user card live, 4 nhóm card 2 cột, footer không sticky gồm Đổi mật khẩu/Đăng xuất/version. Shell chỉ là visual proxy: dữ liệu user/version lấy từ hệ thống thật và mọi card forward click tới nút nghiệp vụ gốc. PC >=768px không thay đổi.",
-  "message": "V6.4.97 TEST: pixel-match mobile shell based on approved mockup, desktop untouched."
+  "notes": "Nối trực tiếp các nút mobile shell vào hàm nghiệp vụ thật. My Flight, Sổ tay hãng, Kết sổ, FINAL, Crosscheck, Hồ sơ chuyến, Biểu mẫu, Quản lý tài khoản, Báo cáo, Đổi mật khẩu và Đăng xuất đều có action riêng. Shell được ẩn trong lúc modal/workspace nghiệp vụ đang mở và chỉ hiện lại sau khi đóng. PC không thay đổi.",
+  "message": "V6.4.98 TEST: mobile shell buttons wired to live business functions."
 }

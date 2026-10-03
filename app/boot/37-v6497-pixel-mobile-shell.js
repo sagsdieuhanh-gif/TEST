@@ -175,3 +175,96 @@ if(root.MutationObserver){
 }
 schedule();
 })(window);
+
+
+/* E-REPORT SAGS V6.4.98 — DIRECT MOBILE ACTION WIRING.
+   Capture shell taps before the V6.4.97 proxy handler, call live functions directly,
+   and keep the visual shell hidden while the live workspace/modal is open. */
+(function(root){
+'use strict';
+if(root.__SAGS_V6498_MOBILE_ACTIONS__)return;
+root.__SAGS_V6498_MOBILE_ACTIONS__=true;
+const MOBILE='(max-width: 767px)';
+let actionSeq=0,watchTimer=0;
+
+function mobile(){return !!root.matchMedia?.(MOBILE).matches}
+function call(name,args=[]){
+  try{const fn=root[name];if(typeof fn==='function'){fn.apply(root,args);return true}}catch(e){console.warn('V6.4.98 '+name,e)}
+  return false;
+}
+function clickId(id){
+  const el=document.getElementById(id);if(!el)return false;
+  try{el.click();return true}catch(_){return false}
+}
+function clickMenu(key){
+  const el=document.querySelector('#v157MenuBody [data-v157-key="'+key+'"]');if(!el)return false;
+  try{el.click();return true}catch(_){return false}
+}
+function shell(on){
+  const el=document.getElementById('v6497MobileHome');if(!el)return;
+  if(on)el.style.removeProperty('display');
+  else el.style.setProperty('display','none','important');
+}
+function openSurface(){
+  const sels='#fwcModal,#finalFormsModal,#accountManagerModal,#changePasswordModal,#csgModal,.sagsAdminModal,[role="dialog"],[aria-modal="true"]';
+  return Array.from(document.querySelectorAll(sels)).some(el=>{
+    if(!el||el.id==='roleLoginModal'||el.closest('#v6497MobileHome'))return false;
+    const s=getComputedStyle(el);
+    return !el.hidden&&el.getAttribute('aria-hidden')!=='true'&&s.display!=='none'&&s.visibility!=='hidden'&&el.getClientRects().length>0;
+  });
+}
+function watchReturn(seq){
+  clearTimeout(watchTimer);
+  const tick=()=>{
+    if(seq!==actionSeq)return;
+    const b=document.body;
+    if(!b||!b.classList.contains('v157-authenticated')){shell(false);return}
+    if(!b.classList.contains('v157-home')||openSurface()){watchTimer=setTimeout(tick,220);return}
+    shell(true);
+  };
+  watchTimer=setTimeout(tick,300);
+}
+function reports(){
+  const role=String(root.currentRole||root.currentUserProfile?.role||'').toUpperCase();
+  if(role==='AD'||role==='ADMIN'||role==='DH'||role==='ĐH'){
+    if(call('v1171OpenDayReport')||call('sagsShiftOpen'))return true;
+  }else if(call('sagsQuickOpen'))return true;
+  return clickMenu('shift')||clickId('srOpen')||clickId('v157ReportBtn');
+}
+function run(action){
+  const seq=++actionSeq;shell(false);
+  let ok=false;
+  switch(action){
+    case 'myflight': ok=call('flightWorkspaceOpenList')||clickMenu('myflight')||clickId('roleBtnFlights');break;
+    case 'handbook': ok=call('sagsV6118OpenCarrierNotebook')||call('sagsCarrierGuideOpen')||clickMenu('guide')||clickId('roleBtnNotebook');break;
+    case 'closeout': ok=call('openFS09SheetManager')||clickMenu('closeout')||clickId('fs09QuickBtn');break;
+    case 'final': ok=call('openFinalSheetManager')||clickMenu('final')||clickId('finalFormsQuickBtn');break;
+    case 'crosscheck':
+      if(call('sagsV342Open')){ok=true;setTimeout(()=>{try{root.sagsV342SetTab?.('cross')}catch(_){}},0)}
+      else ok=clickMenu('cross')||clickId('finalFormsQuickBtn');
+      break;
+    case 'dossier': ok=call('sagsV338OpenCurrentDossier')||clickMenu('archive')||clickId('roleBtnArchive')||clickId('roleBtnFlights');break;
+    case 'forms': ok=call('sagsV440OpenFormManager')||clickId('v440FormManagerBtn');break;
+    case 'accounts': ok=call('openAccountManager')||clickId('roleBtnAccounts');break;
+    case 'reports': ok=reports();break;
+    case 'password': ok=call('openChangePasswordModal')||clickId('roleChangePasswordBtn')||clickId('v157PasswordBtn');break;
+    case 'logout': ok=call('roleLogout')||clickId('roleLogoutBtn')||clickId('v157LogoutBtn');break;
+  }
+  if(!ok){shell(true);alert('Chức năng này chưa được cấp quyền hoặc chưa sẵn sàng trên tài khoản hiện tại.');return}
+  watchReturn(seq);
+}
+document.addEventListener('click',e=>{
+  if(!mobile())return;
+  const action=e.target.closest('#v6497MobileHome [data-v6497-action]');
+  if(action){
+    e.preventDefault();e.stopImmediatePropagation();
+    run(action.dataset.v6497Action);return;
+  }
+  const nav=e.target.closest('#v6497MobileHome [data-v6497-nav]');
+  if(!nav)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  const home=document.getElementById('v6497MobileHome');
+  if(nav.dataset.v6497Nav==='home'){try{root.sagsV479GoHome?.()}catch(_){}}
+  home?.scrollTo({top:0,behavior:'smooth'});
+},true);
+})(window);
