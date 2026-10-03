@@ -1,0 +1,12 @@
+{
+  "version": "V6.4.81",
+  "displayVersion": "V6.4.81",
+  "label": "V6.4.81 - MOBILE COMPACT + UPDATE STABLE",
+  "build": "V6.4.81-20261003-MOBILE-COMPACT-UPDATE-STABLE-01",
+  "releasedAt": "2026-10-03T05:58:00Z",
+  "type": "fix",
+  "base": "V6.4.80-20261003-UNIFIED-FLIGHT-WORKSPACE-REPAIR-01",
+  "updatePolicy": "required",
+  "notes": "Áp dụng giao diện mobile compact đã duyệt: header, bộ lọc Flight Workspace, card chuyến, chi tiết trạng thái và thanh thao tác form được thu gọn trên điện thoại; desktop giữ nguyên. Sửa tận gốc vòng lặp cập nhật: APP_BUILD_VERSION/APP_DISPLAY_VERSION không còn hard-code trong 05-legacy mà đọc trực tiếp meta của index đang chạy. Update detector và Repair xác minh version + manifest + meta index cùng build/version trước khi cho cập nhật hoặc mở app.",
+  "message": "V6.4.81: giao diện mobile compact; update/repair chống lặp và đồng bộ build theo index."
+}
