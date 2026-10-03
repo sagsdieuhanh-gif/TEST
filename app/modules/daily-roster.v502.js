@@ -382,9 +382,9 @@ async function setFlightCloseout(date,fkey,closed,button=null){
     const {groups}=await personalGroups(date),g=groups.find(x=>x.key===S(fkey));if(!g)throw new Error('Chuyến không còn trong danh sách được phân của bạn.');
     const openCount=g.items.reduce((n,x,i)=>n+(itemCompleted(x,g.states[i])?0:1),0),label=flightLabel(g.primary);
     if(closed){
-      const warn=openCount?'KẾT THÚC CHUYẾN BAY\n\n'+label+'\n\nCòn '+openCount+' công việc/biểu mẫu chưa ở trạng thái hoàn tất nhập. Kết thúc chuyến chỉ ẩn chuyến khỏi danh sách đang làm, KHÔNG thay đổi dữ liệu biểu mẫu.\n\nBạn vẫn muốn kết thúc chuyến?':'KẾT THÚC CHUYẾN BAY\n\n'+label+'\n\nThao tác này khác với Hoàn tất nhập biểu mẫu. Chuyến sẽ được chuyển sang mục CHUYẾN ĐÃ HOÀN TẤT và ẩn khỏi danh sách ĐANG LÀM.';
+      const warn=openCount?'KẾT THÚC CHUYẾN BAY\n\n'+label+'\n\nCòn '+openCount+' công việc/biểu mẫu chưa hoàn tất.\n\nBạn vẫn muốn kết thúc chuyến?':'KẾT THÚC CHUYẾN BAY\n\n'+label+'\n\nChuyến sẽ được chuyển sang mục CHUYẾN ĐÃ HOÀN TẤT.\n\nBạn muốn tiếp tục?';
       if(!confirm(warn))return false;
-    }else if(!confirm('MỞ LẠI CHUYẾN BAY\n\n'+label+'\n\nChuyến sẽ quay lại danh sách ĐANG LÀM. Dữ liệu biểu mẫu không bị thay đổi.'))return false;
+    }else if(!confirm('MỞ LẠI CHUYẾN BAY\n\n'+label+'\n\nChuyến sẽ quay lại danh sách ĐANG LÀM.\n\nBạn muốn tiếp tục?'))return false;
     const t=Date.now(),patch={},unit=closeoutUnit(),seen=new Set();
     for(const item of g.items){const aid=S(item?.assignmentId);if(!aid||seen.has(aid)||!ownedActive(item))continue;seen.add(aid);const base='roster_sessions/'+safe(aid);
       patch[base+'/flightCloseoutV6445']=closed?true:null;
@@ -475,7 +475,7 @@ function cardHtml(g,date){
  const t=closeoutTime(g),closedNote=g.flightClosed?'<div class="v1199FlightState">✓ CHUYẾN ĐÃ HOÀN TẤT'+(t?' · '+new Date(t).toLocaleString('vi-VN',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}):'')+'</div>':'';
  const closeBtn=g.flightClosed?'<button type="button" class="v1199Action reopenFlight v1199FlightCloseBtn" data-flight-fkey="'+esc(g.key)+'" data-flight-date="'+esc(date)+'" data-flight-close="0">↻ MỞ LẠI CHUYẾN</button>':'<button type="button" class="v1199Action finish v1199FlightCloseBtn" data-flight-fkey="'+esc(g.key)+'" data-flight-date="'+esc(date)+'" data-flight-close="1">✓ KẾT THÚC CHUYẾN</button>';
  const docCount=Array.isArray(g.dossierDocs)?g.dossierDocs.length:0,docSummary=dossierDocsHtml(g,date),policySummary=policyAuxHtml(g),dossierText='📁 HỒ SƠ CHUYẾN'+(docCount?' · '+docCount+' TÀI LIỆU':'');
- return '<article class="v1199Card" data-fkey="'+esc(g.key)+'"><div class="v1199Title">'+esc(flightLabel(x))+'</div><div class="v1199Meta">'+esc(route)+(route?' · ':'')+'A/C '+esc(ac)+' · STA '+esc(sta)+' · STD '+esc(std)+'</div>'+closedNote+'<div class="v1199Tasks">'+forms+'</div>'+policySummary+docSummary+'<div class="v1199OwnerNote">Hoàn tất nhập biểu mẫu và Kết thúc chuyến là hai trạng thái riêng biệt.</div><div class="v1199FlightActions"><button type="button" class="v1199Action v1199DossierBtn" data-dossier-fid="'+esc(x.flightId)+'" data-dossier-date="'+esc(date)+'">'+dossierText+'</button>'+closeBtn+'</div></article>';
+ return '<article class="v1199Card" data-fkey="'+esc(g.key)+'"><div class="v1199Title">'+esc(flightLabel(x))+'</div><div class="v1199Meta">'+esc(route)+(route?' · ':'')+'A/C '+esc(ac)+' · STA '+esc(sta)+' · STD '+esc(std)+'</div>'+closedNote+'<div class="v1199Tasks">'+forms+'</div>'+policySummary+docSummary+'<div class="v1199FlightActions"><button type="button" class="v1199Action v1199DossierBtn" data-dossier-fid="'+esc(x.flightId)+'" data-dossier-date="'+esc(date)+'">'+dossierText+'</button>'+closeBtn+'</div></article>';
 }
 async function personalGroups(date,fid=''){
  await root.sagsAirlineFormPolicy?.ready();const owner=me(),man=await readManifest(date),all=Object.values(man?.items||{}).filter(x=>x&&x.active!==false&&norm(x.user||x.targetUser)===owner&&(!fid||S(x.flightId)===S(fid))),dd=dedupeItems(date,all),states=await Promise.all(dd.items.map(x=>readState(x.assignmentId)));
