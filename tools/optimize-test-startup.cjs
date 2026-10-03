@@ -9,7 +9,7 @@ async function minifyLegacy(h){
     if(!fs.existsSync(path.join(root,src)))continue;
     const min=await terser.minify(read(src),{compress:false,mangle:false,format:{comments:false,semicolons:true}});
     if(min.error)throw min.error;write(out,(min.code||'')+'\n');
-    const re=new RegExp('<script([^>]*)src=["\\']\\./'+escRe(src)+'\\?[^"\\']*["\\']([^>]*)><\\/script>','g');
+    const re=new RegExp("<script([^>]*)src=[\\\"']\\\\./"+escRe(src)+"\\\\?[^\\\"']*[\\\"']([^>]*)><\\\\/script>","g");
     h=h.replace(re,(m,a,b)=>'<script'+a+'src="./'+out+'?v='+build+'"'+b+'></script>');
   }
   return h;
