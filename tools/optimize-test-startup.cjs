@@ -27,10 +27,16 @@ async function bundleIifes(h){
 }
 function bundleCss(h){
   const re=/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["'](\.\/app\/styles\/boot-[^"'?]+\.css)(?:\?[^"']*)?["'][^>]*>/gi,all=[...h.matchAll(re)];if(all.length<2)return{html:h,saved:0};
-  const first=all[0],last=all[all.length-1],mid=h.slice(first.index,last.index+last[0].length),rest=mid.replace(/<link\b[^>]*>/gi,'').trim();if(rest)throw Error('boot CSS links are not contiguous');
-  const css=all.map(m=>'/* '+local(m[1])+' */\n'+read(local(m[1])).replace(/^\s*@charset[^;]+;\s*/i,'')).join('\n'),out='app/generated/legacy-ui.bundle.css';write(out,css);
-  h=h.slice(0,first.index)+'<link rel="stylesheet" href="./'+out+'?v='+build+'">'+h.slice(last.index+last[0].length);
-  return{html:h,saved:all.length-1};
+  const groups=[];let cur=[];const flush=()=>{if(cur.length>=2)groups.push(cur);cur=[]};
+  for(let i=0;i<all.length;i++){const x=all[i],prev=i?all[i-1]:null,between=prev?h.slice(prev.index+prev[0].length,x.index):'';if(prev&&between.trim())flush();cur.push(x)}flush();
+  const reps=[];let no=0,saved=0;
+  for(const g of groups){
+    no++;const css=g.map(m=>'/* '+local(m[1])+' */\n'+read(local(m[1])).replace(/^\s*@charset[^;]+;\s*/i,'')).join('\n'),out='app/generated/legacy-ui-bundle-'+no+'.css';write(out,css);
+    const markers=g.map(m=>{const id=(m[0].match(/\bid=["']([^"']+)["']/i)||[])[1];return id?'<style id="'+id+'" data-sags-bundled-style="1"></style>':''}).filter(Boolean).join('');
+    reps.push([g[0].index,g[g.length-1].index+g[g.length-1][0].length,'<link rel="stylesheet" href="./'+out+'?v='+build+'">'+markers]);saved+=g.length-1;
+  }
+  for(const [a,b,v] of reps.sort((x,y)=>y[0]-x[0]))h=h.slice(0,a)+v+h.slice(b);
+  return{html:h,saved};
 }
 (async()=>{
   for(const f of fs.readdirSync(path.join(root,'app/generated')))if(/^startup-bundle-\d+\.js$|^legacy-0[567]\.min\.js$|^legacy-ui\.bundle\.css$/.test(f))fs.rmSync(path.join(root,'app/generated',f));
