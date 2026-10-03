@@ -33,7 +33,7 @@ assert(!govFn.includes('setTimeout'),'dossier routing must not use a fixed timer
   const qa=roster.indexOf('async function openQueueDossier('),qb=roster.indexOf('function bindDossierTasks(',qa);
   assert(qa>=0&&qb>qa,'openQueueDossier must exist');
   assert(roster.includes("btn.onclick=()=>openQueueDossier(btn.dataset.dossierDate,btn.dataset.dossierFid,btn)"),'My Flight dossier button must use guarded canonical opener');
-  const q={Promise,S:v=>String(v??'').trim(),console,alerts:[],alert(m){this.alerts.push(String(m))},root:{}};
+  const qAlerts=[];const q={Promise,S:v=>String(v??'').trim(),console,alert:m=>qAlerts.push(String(m)),root:{}};
   vm.createContext(q);vm.runInContext(roster.slice(qa,qb),q);
   let calls=[];q.root.sagsV338OpenDossier=async(d,f)=>{calls.push(['direct',d,f]);return true};
   q.root.sagsOpenUnifiedFlightDossier=async(d,f)=>{calls.push(['wrapper',d,f]);return true};
@@ -48,7 +48,7 @@ assert(!govFn.includes('setTimeout'),'dossier routing must not use a fixed timer
 
   delete q.root.sagsOpenUnifiedFlightDossier;
   assert.equal(await q.openQueueDossier('2026-10-03','F5'),false);
-  assert(q.alerts.some(x=>x.includes('HỒ SƠ CHUYẾN')),'missing dossier runtime must be visible to user');
+  assert(qAlerts.some(x=>x.includes('HỒ SƠ CHUYẾN')),'missing dossier runtime must be visible to user');
 
   const perms=read('app/boot/13-v485FeaturePermissions.js');
   assert(perms.includes('const V485_FEATURE_KEYS=Object.keys(SAGS_FEATURES_V485);'),'FSAGS09 must be editable by AD like other feature permissions');
