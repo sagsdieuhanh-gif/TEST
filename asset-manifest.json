@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.89",
-  "build": "V6.4.89-20261003-MOBILE-ACCOUNT-MIGRATION-02",
-  "strategy": "atomic test release + mobile work-menu landing + Firebase account canonicalization + legacy-account migration + automatic old-cache cleanup",
+  "version": "V6.4.90",
+  "build": "V6.4.90-20261003-ACCOUNT-RECREATE-01",
+  "strategy": "atomic test release + account profile delete/recreate without Firebase Auth deletion",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "75c90b9ff7ff2bd17ec594e27fa9f27ef60874ce5f0def5bb2b0196ccc49b3cd",
-      "bytes": 81539
+      "sha256": "090f5015ccc56b40cf51844c7b144eec5c0c933eea1cbd267846327f0d795876",
+      "bytes": 80779
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "717c7d1617b89725801fda03f353b7aa805e4a135d94878b35c6af9f8a0b1ea3",
-      "bytes": 21750
+      "sha256": "9c88686115d46693ab370dc04fc6efd9ed5d85d77d7c5f0e1d9035e9f20a2e61",
+      "bytes": 21742
     },
     "./version.json": {
-      "sha256": "bdc984a5a946788d9ddd533a1975517d4849472e8fe29df185818ed7e3f2ebf2",
-      "bytes": 1471
+      "sha256": "d0df04adaa26f095412023133462db5fdf2881b167fbc9faead25c3a12934067",
+      "bytes": 873
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -338,8 +338,8 @@
       "bytes": 13785
     },
     "./app/boot/14-v18CanonicalAccountHierarchy.js": {
-      "sha256": "687a5d3626801e3892e90f5cb411f93cb0ac5d30c974de85e6fba1cc0b99e28a",
-      "bytes": 29017
+      "sha256": "e92edf38a3165b182dd849b77fdaf90f7c7eba43b2a0deb289cb9fc738dca676",
+      "bytes": 37061
     },
     "./app/boot/15-v116-account-name-search.js": {
       "sha256": "b2ffc046f021ab5218cc5a5090fd7cee940451e85c6db0d332c39f9036e55eb1",
