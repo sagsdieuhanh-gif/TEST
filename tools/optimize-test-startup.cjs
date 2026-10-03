@@ -7,10 +7,9 @@ async function minifyLegacy(h){
   for(const n of ['05','06','07']){
     const src='app/boot/'+n+'-legacy.js',out='app/generated/legacy-'+n+'.min.js';
     if(!fs.existsSync(path.join(root,src)))continue;
-    const min=await terser.minify(read(src),{compress:false,mangle:false,format:{comments:false,semicolons:true}});
+    const min=await terser.minify(read(src),{compress:{passes:2,sequences:false},mangle:false,format:{comments:false,semicolons:true}});
     if(min.error)throw min.error;write(out,(min.code||'')+'\n');
-    const re=new RegExp("<script([^>]*)src=[\\\"']\\\\./"+escRe(src)+"\\\\?[^\\\"']*[\\\"']([^>]*)><\\\\/script>","g");
-    h=h.replace(re,(m,a,b)=>'<script'+a+'src="./'+out+'?v='+build+'"'+b+'></script>');
+    h=h.replace('./'+src+'?','./'+out+'?');
   }
   return h;
 }
