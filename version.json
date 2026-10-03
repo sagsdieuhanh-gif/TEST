@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.104",
-  "displayVersion": "V6.4.104",
-  "label": "V6.4.104 TEST - GLOBAL STYLE ONLY RESTORE",
-  "build": "V6.4.104-20261003-GLOBAL-STYLE-ONLY-RESTORE-01",
-  "releasedAt": "2026-10-03T17:42:49Z",
-  "type": "fix",
-  "base": "V6.4.103-20261003-RESTORE-FLOW-STYLE-ONLY-01",
+  "version": "V6.4.105",
+  "displayVersion": "V6.4.105",
+  "label": "V6.4.105 TEST - APPROVED COMPACT MOBILE",
+  "build": "V6.4.105-20261004-APPROVED-COMPACT-MOBILE-01",
+  "releasedAt": "2026-10-04T01:01:54+07:00",
+  "type": "ui",
+  "base": "V6.4.104-20261003-GLOBAL-STYLE-ONLY-RESTORE-01",
   "updatePolicy": "required",
-  "notes": "Rà soát toàn bộ mobile và gỡ V6.4.97/98 custom mobile shell/action proxy khỏi runtime. Menu ngoài quay lại DOM/handler gốc #v157Drawer/.v157MenuItem. My Flight đã quay lại handler gốc từ V6.4.100. Toàn bộ thay đổi giao diện hiện chỉ bằng CSS thuần; không proxy click, không route mới, không gọi trực tiếp hàm nghiệp vụ từ lớp giao diện. PC không thay đổi.",
-  "message": "V6.4.104 TEST: restore original mobile handlers globally; styling is CSS-only."
+  "notes": "Áp giao diện mobile compact theo ảnh đã duyệt. Thu nhỏ thanh MENU/SAGS/TRANG CHỦ, logo/brand, user card, section/card menu, footer; đồng thời thu gọn header, tools, tabs, flight card và task tiles của My Flight. Chỉ sửa CSS/visual, không thay JS, handler, route hay nghiệp vụ. PC không thay đổi.",
+  "message": "V6.4.105 TEST: approved compact mobile proportions; style-only."
 }

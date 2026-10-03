@@ -1,13 +1,13 @@
 {
   "schema": 2,
-  "version": "V6.4.104",
-  "build": "V6.4.104-20261003-GLOBAL-STYLE-ONLY-RESTORE-01",
-  "strategy": "global original handlers + CSS-only mobile styling",
+  "version": "V6.4.105",
+  "build": "V6.4.105-20261004-APPROVED-COMPACT-MOBILE-01",
+  "strategy": "original handlers + approved compact mobile CSS-only styling",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
   ],
-  "bootstrapChanged": true,
+  "bootstrapChanged": false,
   "assets": {
     "./app/modules/admin-reset.v503hf2.js": {
       "sha256": "820a96f835cc27e5aa7f98eb1c2093739fdde6b4975b381accc42df4a62acc38",
@@ -227,7 +227,7 @@
     },
     "./index.html": {
       "sha256": "pending",
-      "bytes": 81072
+      "bytes": 80866
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -279,11 +279,11 @@
     },
     "./service-worker.js": {
       "sha256": "pending",
-      "bytes": 22149
+      "bytes": 22143
     },
     "./version.json": {
       "sha256": "pending",
-      "bytes": 787
+      "bytes": 714
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -646,8 +646,8 @@
       "bytes": 0
     },
     "./app/styles/boot-43-v64103-myflight-style-only.css": {
-      "sha256": "git-pending-v64104",
-      "bytes": 12352
+      "sha256": "pending",
+      "bytes": 23006
     }
   }
 }
