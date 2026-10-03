@@ -38,7 +38,7 @@ jobs:
             echo "No release changes."
             exit 0
           fi
-          git commit -m "V6.4.82 TEST integrated governance and performance release"
+          git commit -m "$(node -p 'require("./version.json").version') TEST verified release"
           git push origin HEAD:main
 
 # gate-retry-20261003-0722
