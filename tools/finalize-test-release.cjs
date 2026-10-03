@@ -23,3 +23,5 @@ write(mp,JSON.stringify(m,null,2)+'\n');
 const cfg=JSON.parse(read('data/form-configuration.json'));for(const c of ['9G','QH','VU']){assert(cfg.forms.fsags94.carriers.includes(c));assert(!cfg.forms.fsags54.carriers.includes(c))}
 for(const c of ['3U','BX','B2','DR','EO','HU','N4','RF'])assert(cfg.forms.fsags54.carriers.includes(c));
 console.log(JSON.stringify({version:VERSION,build:BUILD,bootstrapAssets:bootstrap.length,localScripts:scripts.length,stylesheets:styles.length},null,2));
+
+// standalone-gate-20261003-0732
