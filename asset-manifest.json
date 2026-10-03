@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "version": "V6.4.108",
-  "build": "V6.4.108-20261004-COMPACT-OPERATIONS-01",
+  "version": "V6.4.109",
+  "build": "V6.4.109-20261004-MYFLIGHT-ROUTE-01",
   "strategy": "Ordered source bundles + unified mobile navy + targeted UI observers",
   "mutableMetadata": [
     "./forms/forms.registry.json",
@@ -218,8 +218,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "9725f64917f00011d5a80738f1ae3d6229321370137ee61a7045e5297c65cf82",
-      "bytes": 79018
+      "sha256": "6ea41c6efd8986fa9b41092d5b0cbd11f6b62f364dc27336a74c804ddfb5b2a5",
+      "bytes": 78758
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -270,12 +270,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "d16c7287b0916ff4e16081bcbd0badd8699cbc96e2a9353c8cdf86c4c35a0778",
-      "bytes": 20444
+      "sha256": "9d39593c569d501fb1ccdada0e2e8e91180628b347ff25fdad3b5fd5404563e5",
+      "bytes": 20432
     },
     "./version.json": {
-      "sha256": "3440ba918c042da540c5b1eddb4aa6d9c3fee26b0fdd4a22f00ac645b14d5c75",
-      "bytes": 722
+      "sha256": "b931aa144bddcea12f1152d5d38a5a30a465dd66c36eed089789cd94716f909e",
+      "bytes": 807
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -530,8 +530,8 @@
       "bytes": 135481
     },
     "./app/styles/mobile-navy-v64106.css": {
-      "sha256": "e970829f29de76a47f21bf9180f2135a2c6b232532db7c88a54dd55658b349ac",
-      "bytes": 21901
+      "sha256": "2b59d2dcc4a735987a8f05b084e57284b140141739ecfbb3e1ef089bf2e4353a",
+      "bytes": 26426
     },
     "./assets/ui/myflight-hero-v64101.webp": {
       "sha256": "7d694ad1b8d0ce6140a9655f8b619856db47beeee017c93b4d4b706f0855e7ec",

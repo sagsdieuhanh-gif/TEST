@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.108",
-  "displayVersion": "V6.4.108",
-  "label": "V6.4.108 TEST - COMPACT OPERATIONS",
-  "build": "V6.4.108-20261004-COMPACT-OPERATIONS-01",
-  "releasedAt": "2026-10-04T03:15:00+07:00",
+  "version": "V6.4.109",
+  "displayVersion": "V6.4.109",
+  "label": "V6.4.109 TEST - MY FLIGHT ROUTE FIX",
+  "build": "V6.4.109-20261004-MYFLIGHT-ROUTE-01",
+  "releasedAt": "2026-10-04T03:45:00+07:00",
   "type": "ui",
-  "base": "V6.4.107-20261004-COMPACT-MOBILE-01",
+  "base": "V6.4.108-20261004-COMPACT-OPERATIONS-01",
   "updatePolicy": "optional",
-  "notes": "Thu gọn trực tiếp giao diện My Flight cá nhân: đầu trang 56px, bộ lọc 44px, tab 44px, ô biểu mẫu 48px, tên chuyến 20px. Bỏ khối giải thích MY FLIGHT lặp lại, rút gọn khoảng cách các màn nghiệp vụ. Giữ nguyên login và menu V6.4.107. Cập nhật khi bấm CẬP NHẬT.",
-  "message": "V6.4.108: My Flight và màn nghiệp vụ gọn hơn trên mobile."
+  "notes": "Sửa đúng luồng bấm My Flight từ menu: header 54px, bỏ hàng CÔNG VIỆC trùng nút QUAY LẠI, ô ngày bọc lịch 44px, thẻ biểu mẫu canonical 60px. Bỏ nhãn bộ phận lặp lại trên thẻ để tên biểu mẫu và trạng thái rõ hơn. Kiểm tra bằng click menu và renderer cardHtml thật trên mobile 320–430px. Giữ login và menu; cập nhật tự nguyện.",
+  "message": "V6.4.109: sửa kích thước My Flight trong luồng mở thật."
 }

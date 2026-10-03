@@ -24,3 +24,7 @@ Header cao 48px, thẻ chức năng cao 48px, icon 28px. Thu gọn logo, thẻ t
 
 ### V6.4.108 — màn nghiệp vụ
 My Flight cá nhân được thu gọn: đầu trang 56px, bộ lọc 44px, tab 44px, ô biểu mẫu 48px. Bỏ khối hướng dẫn lặp lại; giữ nút QUAY LẠI, LÀM MỚI, TỰ NHẬN VIỆC. Login và menu giữ nguyên. Bấm CẬP NHẬT để nạp bản mới.
+
+
+### V6.4.109 — My Flight từ menu
+Bấm My Flight mở màn gọn: header 54px, ô biểu mẫu 60px, ô ngày 44px. QUAY LẠI để về menu; giữ LÀM MỚI, TỰ NHẬN VIỆC, HỒ SƠ CHUYẾN và KẾT THÚC CHUYẾN. Bấm CẬP NHẬT để nạp bản mới.
