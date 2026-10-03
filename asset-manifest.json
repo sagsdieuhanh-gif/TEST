@@ -672,6 +672,10 @@
     "./form-configuration.json": {
       "sha256": "5a5cfe5cc27f5f3b10f785b853ddd06eeb31e43de785f5d33ba5cc3bfdc30bc2",
       "bytes": 6776
+    },
+    "./app/boot/25-v1154-update-detector-r2.js": {
+      "sha256": "68c7ed26f0f180b4193cd71554a0214bddded76fe3f731132ec83895c7ff18c9",
+      "bytes": 7297
     }
   }
 }
