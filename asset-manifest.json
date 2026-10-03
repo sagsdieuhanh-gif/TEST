@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "version": "V6.4.106",
-  "build": "V6.4.106-20261004-MOBILE-NAVY-OPTIMIZED-01",
+  "version": "V6.4.107",
+  "build": "V6.4.107-20261004-COMPACT-MOBILE-01",
   "strategy": "Ordered source bundles + unified mobile navy + targeted UI observers",
   "mutableMetadata": [
     "./forms/forms.registry.json",
@@ -218,8 +218,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "eb63c81e1e0a794227091f99611d1ed64ba13c2171b3baf6a596f648c2250d8d",
-      "bytes": 79213
+      "sha256": "1d334b20d52250a77870918578a27763bcc1ca69a60e2d583bca161a7e112451",
+      "bytes": 78758
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -270,12 +270,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "d93560e7036218800681bba8f5302c9069267c7998e386485645d462ad0b9a03",
-      "bytes": 20409
+      "sha256": "81174263b8e6c1bd660e49cb5b4ec155733052c025e671e0033e6f08a0ae59af",
+      "bytes": 20432
     },
     "./version.json": {
-      "sha256": "b3862cf6388db1dc7d61d1bab213110e5f78217fe7e19a5f90366b0e0d36bc03",
-      "bytes": 814
+      "sha256": "1d3165036c8e05360155108ca8b8416a3bb1efd7a64600532136fb78c465153f",
+      "bytes": 820
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -530,8 +530,8 @@
       "bytes": 135481
     },
     "./app/styles/mobile-navy-v64106.css": {
-      "sha256": "f724de0e52992e441fd263a3405f4e7086fb2c754c7d489cfeefe8bec3aececf",
-      "bytes": 13833
+      "sha256": "f423a092485ecea545c70f40059eb28fb1e986896efe04e1433d64f9bfaf8044",
+      "bytes": 18996
     },
     "./assets/ui/myflight-hero-v64101.webp": {
       "sha256": "7d694ad1b8d0ce6140a9655f8b619856db47beeee017c93b4d4b706f0855e7ec",

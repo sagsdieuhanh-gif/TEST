@@ -5,7 +5,8 @@ const assets=[...h.matchAll(/<(?:script|link)\b[^>]*(?:src|href)=["'](\.\/[^"'?]
 const executable=[...new Set(assets.filter(p=>/\.(js|css)$/.test(p)))];
 let sw=read('service-worker.js');sw=sw.replace(/const BUILD='[^']+'/,"const BUILD='"+v.build+"'");
 sw=sw.replace(/const DISPLAY_VERSION='[^']+'/,"const DISPLAY_VERSION='"+v.version+"'");
-sw=sw.replace(/sags-app-shell-v\d+-[a-z0-9-]+/g,'sags-app-shell-v64106-mobile-navy').replace(/sags-app-meta-v\d+-[a-z0-9-]+/g,'sags-app-meta-v64106-mobile-navy');
+const cacheId=v.build.toLowerCase().replace(/[^a-z0-9-]/g,'');
+sw=sw.replace(/const CACHE_NAME='[^']+'/,"const CACHE_NAME='sags-app-shell-"+cacheId+"'").replace(/const META_CACHE_NAME='[^']+'/,"const META_CACHE_NAME='sags-app-meta-"+cacheId+"'");
 const prior=JSON.parse(sw.match(/const SAGS_BOOTSTRAP=(\[[^\n]+\]);/)[1]);
 const bootstrap=[...new Set(['./index.html',...executable,...prior.filter(p=>!p.endsWith('.js')&&!p.endsWith('.css')),'./service-worker.js','./version.json','./data/airline-form-catalog.json','./app/modules/stability.v6-core.js','./app/modules/mobile-draft-recovery.v1.js','./app/modules/indexeddb-flight-store.v1.js','./assets/ui/myflight-hero-v64101.webp','./assets/branding/login-logo-10years.png'])];
 sw=sw.replace(/const SAGS_BOOTSTRAP=\[[^\n]*\];/,'const SAGS_BOOTSTRAP='+JSON.stringify(bootstrap)+';');write('service-worker.js',sw);
