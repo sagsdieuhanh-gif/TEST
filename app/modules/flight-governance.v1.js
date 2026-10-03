@@ -5,7 +5,7 @@
 (function(root){
 'use strict';
 if(root.__SAGS_FLIGHT_GOVERNANCE_V1)return;
-root.__SAGS_FLIGHT_GOVERNANCE_V1='V1.0.0-20261003-TEST';
+root.__SAGS_FLIGHT_GOVERNANCE_V1='V1.0.1-20261003-TEST-DOSSIER-FIX';
 
 const ROOT='flight_records';
 const MANAGER_POSITIONS=new Set(['DOI_TRUONG','DOI_PHO','CA_TRUONG','CA_PHO']);
@@ -260,7 +260,27 @@ function wrapFlightOpen(){
   const fn=root.flightWorkspaceOpenFlight;if(typeof fn!=='function'||fn.__sagsGovernanceWrapped)return false;
   const w=function(fid){const out=fn.apply(this,arguments),date=currentDate();setTimeout(()=>decorate(date,S(fid)),0);return out};w.__sagsGovernanceWrapped=true;w.__base=fn;root.flightWorkspaceOpenFlight=w;return true;
 }
-function openUnifiedDossier(date,fid){date=S(date)||currentDate();try{root.flightWorkspaceOpenList?.(date)}catch(_){}setTimeout(()=>{try{root.flightWorkspaceOpenFlight?.(fid)}catch(_){}},120)}
+function openUnifiedDossier(date,fid){
+  date=S(date)||currentDate();fid=S(fid);
+  if(!fid){root.alert?.('Chọn một chuyến bay trước khi mở hồ sơ.');return false}
+  // The dossier modal is the canonical entry point. Governance must decorate
+  // the flight, not replace dossier navigation with a timed workspace hop.
+  if(typeof root.sagsV338OpenDossier==='function')return root.sagsV338OpenDossier(date,fid);
+  if(typeof root.flightWorkspaceOpenList!=='function'){
+    root.alert?.('HỒ SƠ CHUYẾN chưa sẵn sàng. Bấm UPDATE rồi mở lại.');
+    return false
+  }
+  let opened;
+  try{opened=root.flightWorkspaceOpenList(date)}catch(e){
+    root.alert?.('Không mở được HỒ SƠ CHUYẾN: '+S(e?.message||e));return false
+  }
+  Promise.resolve(opened).then(()=>{
+    if(typeof root.sagsV338OpenDossier==='function')return root.sagsV338OpenDossier(date,fid);
+    if(typeof root.flightWorkspaceOpenFlight==='function')return root.flightWorkspaceOpenFlight(fid);
+    root.alert?.('HỒ SƠ CHUYẾN chưa tải xong. Bấm UPDATE rồi thử lại.');
+  }).catch(e=>root.alert?.('Không mở được HỒ SƠ CHUYẾN: '+S(e?.message||e)));
+  return opened
+}
 function install(){ensureStyle();wrapFlightOpen()}
 root.sagsFlightGovernance={build:root.__SAGS_FLIGHT_GOVERNANCE_V1,MANAGER_POSITIONS,SPECIAL_MANUAL_LOAD_CARRIERS,STATUS_TEXT,department,positionCode,isManager,canManageDepartment,assignmentUnit,loadSystemMode,isSpecialManualCarrier,statusOverride,setLoadSystemMode,setDepartmentStatus,clearDepartmentOverride,reassignAssignment,reopenAssignment,reassignCargo208,openAudit,openManager,decorate,openUnifiedDossier};
 root.sagsOpenUnifiedFlightDossier=openUnifiedDossier;
