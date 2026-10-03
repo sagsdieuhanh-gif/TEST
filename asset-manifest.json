@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.96",
-  "build": "V6.4.96-20261003-APPROVED-MOBILE-UI-01",
-  "strategy": "atomic test release + approved mobile-only UI + PC isolation + V6.4.94 auth fixes",
+  "version": "V6.4.97",
+  "build": "V6.4.97-20261003-PIXEL-MOBILE-SHELL-01",
+  "strategy": "atomic test release + live pixel mobile shell + strict desktop isolation + V6.4.94 auth fixes",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "7c83165db5cf486613ca403e7c1dd8e9ec30a803a821f689c1cc5ea7038102d8",
-      "bytes": 81579
+      "sha256": "4bc912a5ff51bb0ead06636c997966af27c457ba9a3217af4955230d1f3e4300",
+      "bytes": 81881
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "4748f8c24dcccf7d310000558214cc5ef8382e75e125f26882a9b5638ded0b08",
-      "bytes": 21928
+      "sha256": "097b833e405250ad8fdb732e26599eaf2db8ae38654486d254abd40abbaa9e73",
+      "bytes": 22024
     },
     "./version.json": {
-      "sha256": "a7cb11b757c794f68d55e199de081598ac44a20d243e049b76d23d38049027ce",
-      "bytes": 733
+      "sha256": "0b6c7267d897886912c13fc0ac07f0aa5b8e14e51f11cc3b6f09cdc2c7712d73",
+      "bytes": 824
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -632,6 +632,14 @@
     "./app/boot/36-v6496-approved-mobile-ui.js": {
       "sha256": "3f5e216061ab4f2ca9e10205349a4503f02b70bf1d679a562e35df4d4edebf7d",
       "bytes": 1834
+    },
+    "./app/styles/boot-39-v6497-pixel-mobile-shell.css": {
+      "sha256": "ff55227858a395e212c538ec504a40cec4c5e1c19d32bb7f71d8ee90c9e7a289",
+      "bytes": 11717
+    },
+    "./app/boot/37-v6497-pixel-mobile-shell.js": {
+      "sha256": "defa9141740570b565c33186abc777037b65e6626f637329f6321df640b97eae",
+      "bytes": 8641
     }
   }
 }
