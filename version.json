@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.99",
-  "displayVersion": "V6.4.99",
-  "label": "V6.4.99 TEST - UNIFIED MOBILE NAVY",
-  "build": "V6.4.99-20261003-UNIFIED-MOBILE-NAVY-01",
-  "releasedAt": "2026-10-03T16:57:21Z",
-  "type": "ui",
-  "base": "V6.4.98-20261003-MOBILE-ACTIONS-WIRED-01",
+  "version": "V6.4.100",
+  "displayVersion": "V6.4.100",
+  "label": "V6.4.100 TEST - UI COPY CLEANUP",
+  "build": "V6.4.100-20261003-UI-COPY-CLEANUP-01",
+  "releasedAt": "2026-10-03T17:10:32Z",
+  "type": "ui-fix",
+  "base": "V6.4.99-20261003-UNIFIED-MOBILE-NAVY-01",
   "updatePolicy": "required",
-  "notes": "Đồng bộ toàn bộ mobile theo phương án navy tối đã chốt. Màn ngoài và My Flight dùng cùng palette: nền navy, card xanh than, chữ trắng/xanh xám, xanh lam cho action chính, xanh lá nhẹ cho trạng thái đang làm. Loại bỏ card đỏ/tím/cam ở màn ngoài. My Flight mobile chuyển sang full-screen dark workspace, card chuyến dark navy và controls cùng style. PC >=768px không thay đổi.",
-  "message": "V6.4.99 TEST: unified dark navy design system across mobile home and My Flight."
+  "notes": "Xóa toàn cục các câu kỹ thuật khỏi UI, gồm 'Hoàn tất nhập biểu mẫu', 'Kết thúc chuyến là hai trạng thái riêng biệt', 'trạng thái riêng biệt', kể cả nội dung sinh động sau khi mở modal/tab. Chuẩn hóa typography mobile: tiêu đề 26px, flight title 28px, text chính 14px, meta 12px, badge 11px, nút 14px, hint 11.5px. PC không thay đổi.",
+  "message": "V6.4.100 TEST: remove technical copy everywhere and normalize mobile typography."
 }
