@@ -566,8 +566,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "ec309967e4705518da6c9593dabaf5dee12db8ed34f872bc605687525398b5a3",
-      "bytes": 134662
+      "sha256": "36220889f8372618ef7b5261933762c2969bc840558f6fbef9e4eb852cee21d4",
+      "bytes": 134787
     },
     "./app/generated/runtime-2.js": {
       "sha256": "70c3afc263d84a028c0acef1c1ced1eee9a5ef162c530f0b5a40325b7c150fa0",
@@ -672,10 +672,6 @@
     "./form-configuration.json": {
       "sha256": "5a5cfe5cc27f5f3b10f785b853ddd06eeb31e43de785f5d33ba5cc3bfdc30bc2",
       "bytes": 6776
-    },
-    "./app/boot/25-v1154-update-detector-r2.js": {
-      "sha256": "68c7ed26f0f180b4193cd71554a0214bddded76fe3f731132ec83895c7ff18c9",
-      "bytes": 7297
     }
   }
 }
