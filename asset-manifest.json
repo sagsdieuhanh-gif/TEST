@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "0f44a5c09e90c307f2c0bef780242aaa5b5302eaabddb64aaac1c29e86642852",
-      "bytes": 85485
+      "sha256": "3e6c30eb1a5ec8cbd89786c39c5eaa5782e38a0ea8177ef89ac5f3b3261e99c6",
+      "bytes": 85552
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
@@ -672,6 +672,10 @@
     "./form-configuration.json": {
       "sha256": "5a5cfe5cc27f5f3b10f785b853ddd06eeb31e43de785f5d33ba5cc3bfdc30bc2",
       "bytes": 6776
+    },
+    "./app/boot/25-v1154-update-detector-r2.js": {
+      "sha256": "68c7ed26f0f180b4193cd71554a0214bddded76fe3f731132ec83895c7ff18c9",
+      "bytes": 7297
     }
   }
 }

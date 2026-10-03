@@ -21,7 +21,8 @@ const rendering=roster.slice(roster.indexOf('async function openFlightDossier(')
  await page.addScriptTag({content:read('app/modules/flight-governance.v1.js')});
  await page.addScriptTag({content:`const root=window,S=v=>String(v??''),role=()=>testRole,me=()=>currentUserProfile.username;let renderToken=0,activeTab='pending';const opDate=()=> '2026-10-03',syncQueueDate=x=>x,queueDate=x=>x,installStyle=()=>{},setHeader=()=>{},esc=S;const personalGroups=async()=>({dd:{dupes:[]},groups:[{key:'F1',flightClosed:false}]});const cardHtml=()=>'<button class="v1199DossierBtn" data-dossier-date="2026-10-03" data-dossier-fid="F1">HỒ SƠ CHUYẾN</button>';${rendering}`});
  // AD uses the common dossier entrypoint; personal queues intentionally omit AD.
- if(role==='AD')await page.evaluate(()=>{document.getElementById('fwcList').innerHTML='<button id="adDossier">HỒ SƠ CHUYẾN</button>';document.getElementById('adDossier').onclick=()=>sagsOpenUnifiedFlightDossier('2026-10-03','F1')});
+ if(role==='KH'){await page.evaluate(()=>{document.getElementById('fwcList').textContent='Cargo all flights';return renderPersonal('2026-10-03')});assert.equal(await page.locator('#fwcList').textContent(),'Cargo all flights');}
+ if(['AD','KH'].includes(role))await page.evaluate(()=>{document.getElementById('fwcList').innerHTML='<button id="adDossier">HỒ SƠ CHUYẾN</button>';document.getElementById('adDossier').onclick=()=>sagsOpenUnifiedFlightDossier('2026-10-03','F1')});
  else await page.evaluate(()=>renderPersonal('2026-10-03'));
  const btn=page.getByRole('button',{name:'HỒ SƠ CHUYẾN',exact:true});await btn.click();
  const modal=page.locator('#sagsFlightDossierModal');await modal.waitFor({state:'visible'});
@@ -29,7 +30,7 @@ const rendering=roster.slice(roster.indexOf('async function openFlightDossier(')
  assert((await modal.textContent()).includes('NHIỆM VỤ CỦA TÔI'));
  await page.locator('#sagsDossierClose').click();await modal.waitFor({state:'hidden'});
  await btn.click();await modal.waitFor({state:'visible'});await page.locator('#sagsDossierClose').click();
- if(role!=='AD'){
+ if(!['AD','KH'].includes(role)){
   await page.evaluate(()=>{delete window.sagsOpenUnifiedFlightDossier;delete window.sagsV338OpenDossier});await btn.click();
   assert.match(await page.evaluate(()=>window.lastAlert),/chưa sẵn sàng/);assert.equal(await btn.isEnabled(),true);
  }
