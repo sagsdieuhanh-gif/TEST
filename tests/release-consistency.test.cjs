@@ -6,5 +6,5 @@ assert.equal(sw.match(/const BUILD='([^']+)'/)[1],v.build);
 assert.equal(h.match(/name="sags-release-build" content="([^"]+)"/)[1],v.build);
 assert.equal(h.match(/name="sags-release-version" content="([^"]+)"/)[1],v.version);
 assert(legacy.includes('sags-release-build'),'runtime identity must derive from index meta');
-assert(!/const APP_BUILD_VERSION="V6\.4\./.test(legacy),'runtime build must not be hard-coded');
+assert(!/const APP_BUILD_VERSION="V6\.4\./.test(legacy),'runtime build must not be hard-coded');assert(!h.includes('sagsCanonicalProduction'),'TEST must not redirect GitHub Pages to production');assert(!h.includes('e-report-sags.vercel.app'),'TEST index must stay isolated from production URL');
 console.log('Release consistency passed: '+v.build);
