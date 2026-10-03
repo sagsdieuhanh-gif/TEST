@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.101",
-  "build": "V6.4.101-20261003-PIXEL-MYFLIGHT-01",
-  "strategy": "atomic test release + pixel live My Flight shell + unified mobile navy + direct business handlers",
+  "version": "V6.4.102",
+  "build": "V6.4.102-20261003-MYFLIGHT-ACTION-FIX-01",
+  "strategy": "atomic test release + My Flight action handoff fix + technical copy cleanup + pixel mobile shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "1d0bcbebbdeb462465b387c8d9c4b4ed1ef939bf7626a13005725ca8cc3f0d91",
-      "bytes": 82314
+      "sha256": "pending",
+      "bytes": 80896
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "9c3a489abe6af3366ad6ff0e646ed0d65c895f112c9b00b7e4b698c0d77ddb2c",
-      "bytes": 22296
+      "sha256": "pending",
+      "bytes": 22303
     },
     "./version.json": {
-      "sha256": "11c15b6f2220d029208e7e115ed60dd9cbda78cd392526c17ba761cd5df04b1f",
-      "bytes": 897
+      "sha256": "pending",
+      "bytes": 781
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -650,8 +650,8 @@
       "bytes": 2335
     },
     "./app/boot/38-v64100-ui-copy-cleanup.js": {
-      "sha256": "a6d633a074b890b7392d70dab98752a50df5773b8a8258b65c68c249c06baada",
-      "bytes": 2488
+      "sha256": "pending",
+      "bytes": 0
     },
     "./app/boot/39-v64101-pixel-myflight.js": {
       "sha256": "pending",
