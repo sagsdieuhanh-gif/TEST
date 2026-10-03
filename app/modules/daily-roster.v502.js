@@ -1,4 +1,4 @@
-/* E-REPORT/SAGS V1.1.110 DAILY ROSTER FINAL · TEST GOVERNANCE + DOSSIER SUMMARY
+/* E-REPORT/SAGS V1.1.109 DAILY ROSTER FINAL · UNIFIED FLIGHT WORKSPACE
  * - Same-day roster imports are cumulative MERGE updates.
  * - One canonical work-slot/workspace identity across manifest/mailbox/session/Flight Record.
  * - ARR/DEP assignments of the same roster duty share a sanitized working workspace.
@@ -7,8 +7,8 @@
  */
 (function(root){
 'use strict';
-const BUILD='V1.1.110-20261003-TEST-GOVERNANCE-DOSSIER';
-const DISPLAY='V1.1.110';
+const BUILD='V1.1.109-20261003-UNIFIED-FLIGHT-WORKSPACE';
+const DISPLAY='V1.1.109';
 const MANIFEST='roster_manifests',MAIL='roster_mail',SESSION='roster_sessions',STATUS='roster_flight_status',WORKSPACE='roster_flight_workspaces',FLIGHTS='flight_records';
 const MAP_KEY='sags_roster_workspace_map_v1197';
 const S=v=>String(v??'').trim(),U=v=>S(v).toUpperCase();
@@ -216,7 +216,7 @@ function installRampSync(){root.sagsFlightHubSyncCurrentRamp=function(){clearTim
 
 /* ---------- Policy-driven CBTT auxiliary forms ---------- */
 function policySession(){try{return root.__sagsGetSession?.()||{role:root.currentRole||'',profile:root.currentUserProfile||{}}}catch(_){return{role:root.currentRole||'',profile:root.currentUserProfile||{}}}}
-function canPolicyReconcile(){try{const x=policySession(),p=x.profile||{},r=U(x.role||p.role);return !!r&&!['GUEST','ANONYMOUS','VIEWER'].includes(r)&&p.active!==false}catch(_){return false}}
+function canPolicyReconcile(){try{const x=policySession(),p=x.profile||{},r=U(x.role||p.role);return !!r&&!['GUEST','ANONYMOUS'].includes(r)&&p.active!==false}catch(_){return false}}
 function isAdminSession(){try{const x=policySession(),p=x.profile||{};return ['AD','ADMIN'].includes(U(x.role||p.role||root.currentRole))}catch(_){return ['AD','ADMIN'].includes(U(root.currentRole))}}
 function policyAuxAid(date,item,group){return 'RP_'+hash([S(date),flightIdentity(item),normUser(item?.user||item?.targetUser),U(group),'POLICY_AUX'].join('|'))}
 function policyDates(extra=''){const set=new Set(),add=v=>{v=S(v);if(/^\d{4}-\d{2}-\d{2}$/.test(v))set.add(v)};add(extra);add(opDate());add(document.getElementById('drManageDate')?.value);add(document.getElementById('fwcDate')?.value);try{add(sessionStorage.getItem('sagsV36FwcDate'))}catch(_){}return [...set]}
@@ -238,16 +238,6 @@ async function reconcilePolicyAuxForms(date=opDate()){
    }
  }
  for(const item of allItems){const canon=canonicalForm(item);if(item.policyGenerated!==true||!['FSAGS54','FSAGS94'].includes(canon)||item.active===false)continue;const user=normUser(item.user||item.targetUser),fid=S(item.flightId),key=[user,fid,canon].join('|');if(desired.has(key))continue;const aid=S(item.assignmentId);if(!aid)continue;const disabled={...item,active:false,policyDisabledAtMs:now,policyRevision:Number(policy?.revision||0),updatedAtMs:now};patch[`${MANIFEST}/${safe(date)}/items/${safe(aid)}`]=disabled;if(user)patch[`${MAIL}/${safe(user)}/items/${safe(aid)}`]={...disabled,engine:item.engine||'daily-roster-v2',schema:item.schema||2,opDate:date,date:S(item.date||date)};patch[`${SESSION}/${safe(aid)}/active`]=false;patch[`${SESSION}/${safe(aid)}/policyDisabledAtMs`]=now;patch[`${SESSION}/${safe(aid)}/policyRevision`]=Number(policy?.revision||0);patch[`${SESSION}/${safe(aid)}/updatedAtMs`]=now;if(fid)patch[`${FLIGHTS}/${safe(date)}/${safe(fid)}/assignments/${safe(aid)}`]=disabled;deactivated++}
- const docMap=new Map();
- for(const {base,user,fid,spec} of desired.values()){
-   const candidates=allItems.filter(x=>normUser(x.user||x.targetUser)===user&&S(x.flightId)===fid&&canonicalForm(x)===spec.canon),active=candidates.find(x=>x.active!==false),aid=S(active?.assignmentId||policyAuxAid(date,base,spec.group)),k=fid+'|'+spec.canon;
-   if(!docMap.has(k))docMap.set(k,{fid,canon:spec.canon,ids:[],users:[],base});const d=docMap.get(k);if(aid&&!d.ids.includes(aid))d.ids.push(aid);if(user&&!d.users.includes(user))d.users.push(user);
- }
- for(const d of docMap.values()){
-   const code=d.canon,label=code==='FSAGS54'?'F/SAGS-CXR/54':'F/SAGS-CXR/94',mode=U(d.base?.loadSystemMode||d.base?.governance?.loadSystemMode||'NORMAL');
-   patch[`${FLIGHTS}/${safe(date)}/${safe(d.fid)}/documents/${code}`]={code,label,status:'ASSIGNED',active:true,policyGenerated:true,assignmentId:d.ids[0]||'',assignmentIds:d.ids,assignedUser:d.users[0]||'',assignedUsers:d.users,policyRevision:Number(policy?.revision||0),loadSystemMode:mode,updatedAtMs:now};
- }
- for(const [fid,rec] of Object.entries(flights||{}))for(const code of ['FSAGS54','FSAGS94']){const old=rec?.documents?.[code];if(old?.policyGenerated&&old.active!==false&&!docMap.has(fid+'|'+code))patch[`${FLIGHTS}/${safe(date)}/${safe(fid)}/documents/${code}`]={...old,active:false,status:'NOT_APPLICABLE',disabledAtMs:now,policyRevision:Number(policy?.revision||0),updatedAtMs:now}}
  patch[`${MANIFEST}/${safe(date)}/policyAuxReconciledAtMs`]=now;patch[`${MANIFEST}/${safe(date)}/policyAuxReconciledBuild`]=BUILD;patch[`${MANIFEST}/${safe(date)}/policyAuxRevision`]=Number(policy?.revision||0);patch[`${MANIFEST}/${safe(date)}/policyAuxExpectedCount`]=desired.size;patch[`${MANIFEST}/${safe(date)}/policyAuxAddedCount`]=added;patch[`${MANIFEST}/${safe(date)}/policyAuxReactivatedCount`]=reactivated;patch[`${MANIFEST}/${safe(date)}/policyAuxDeactivatedCount`]=deactivated;
  await root.sagsV470Ref('').update(patch);try{root.sagsV477InvalidateQueueStatus?.()}catch(_){}try{root.dispatchEvent(new CustomEvent('sags:policy-assignments-reconciled',{detail:{date,revision:Number(policy?.revision||0),added,reactivated,deactivated}}))}catch(_){}
  return {ok:true,date,policyRevision:Number(policy?.revision||0),expected:desired.size,added,reactivated,deactivated,already}
@@ -282,7 +272,7 @@ install();setTimeout(install,350);setTimeout(install,1100);setTimeout(install,26
  */
 (function(root){
 'use strict';
-const BUILD='V1.1.110-20261003-TEST-GOVERNANCE-DOSSIER';
+const BUILD='V1.1.109-20261003-UNIFIED-FLIGHT-WORKSPACE';
 const S=v=>String(v??'').trim(),U=v=>S(v).toUpperCase(),safe=v=>S(v).replace(/[.#$\[\]\/]/g,'_');
 const norm=v=>{try{return typeof root.normalizePersonalUsername==='function'?root.normalizePersonalUsername(v):U(v).replace(/\s+/g,'').replace(/[^A-Z0-9._-]/g,'_').slice(0,40)}catch(_){return U(v).replace(/\s+/g,'').replace(/[^A-Z0-9._-]/g,'_').slice(0,40)}};
 const esc=v=>S(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -326,50 +316,33 @@ const QUEUE_STATUS_FIELDS=['claimStatus','workPartStatus','taskStatusV333','task
 const queueStatusCache=new Map();
 root.sagsV477InvalidateQueueStatus=function(){queueStatusCache.clear()};
 async function readState(aid,force=false){
+  // Only status leaves, never the entire session/envelope/signatures.
   aid=S(aid);if(!aid)return {};
-  const k=me()+'|'+aid,old=queueStatusCache.get(k);if(!force&&old&&Date.now()-old.at<30000)return old.promise;
-  const promise=(async()=>{
-    if(!force)try{const x=(await db('roster_sessions/'+safe(aid)+'/statusSummary').once('value')).val();if(x&&Date.now()-Number(x.summaryAtMs||0)<30000)return x}catch(_){}
-    const out={};await Promise.all(QUEUE_STATUS_FIELDS.map(async field=>{try{const val=(await db('roster_sessions/'+safe(aid)+'/'+field).once('value')).val();if(val!==null&&val!==undefined)out[field]=val}catch(_){}}));
-    const summary={...out,summaryAtMs:Date.now()};try{db('roster_sessions/'+safe(aid)+'/statusSummary').set(summary).catch?.(()=>{})}catch(_){}
-    return summary
-  })();queueStatusCache.set(k,{at:Date.now(),promise});try{return await promise}catch(e){queueStatusCache.delete(k);throw e}
+  const k=me()+'|'+aid,old=queueStatusCache.get(k);
+  if(!force&&old&&Date.now()-old.at<30000)return old.promise;
+  const promise=(async()=>{const out={};await Promise.all(QUEUE_STATUS_FIELDS.map(async field=>{
+    try{const val=(await db(`roster_sessions/${safe(aid)}/${field}`).once('value')).val();if(val!==null&&val!==undefined)out[field]=val}catch(_){}
+  }));return out})();queueStatusCache.set(k,{at:Date.now(),promise});
+  try{return await promise}catch(e){queueStatusCache.delete(k);throw e}
 }
 const dossierDocCache=new Map();
 function published208Doc(mod){
   let pub=null;try{pub=root.__SAGS_FSAGS208_WORKSPACE?.published208?.(mod)||null}catch(_){}
   if(!pub&&mod?.published?.state&&Number(mod.published.revisionNo)>0)pub=mod.published;
   if(!pub&&U(mod?.status)==='SENT'&&Number(mod?.revisionNo)>0&&mod?.state)pub={revisionNo:Number(mod.revisionNo),sentAtMs:Number(mod.lastSentAtMs||0),sentBy:mod.lastSentBy||{}};
-  return pub?{code:'FSAGS208',label:'FSAGS 208',status:'HOÀN TẤT',revisionNo:Number(pub.revisionNo||mod?.revisionNo||0),sentAtMs:Number(pub.sentAtMs||mod?.lastSentAtMs||0)}:null;
+  return pub?{code:'FSAGS208',label:'FSAGS 208',revisionNo:Number(pub.revisionNo||mod?.revisionNo||0),sentAtMs:Number(pub.sentAtMs||mod?.lastSentAtMs||0)}:null;
 }
-function normalizedDoc(code,x){
-  if(!x||typeof x!=='object')return null;code=U(code);const active=x.active!==false,status=U(x.status||'ASSIGNED');
-  if(!active&&status==='NOT_APPLICABLE'&&!Number(x.revisionNo||0))return null;
-  const label=code==='FSAGS54'?'F-54':code==='FSAGS94'?'F-94':'FSAGS 208';
-  const text=['COMPLETED','SENT','AVAILABLE'].includes(status)?'HOÀN TẤT':status==='IN_PROGRESS'?'ĐANG THỰC HIỆN':status==='NOT_APPLICABLE'?'KHÔNG ÁP DỤNG':'CHỜ NHẬN';
-  return {code,label,status:text,revisionNo:Number(x.revisionNo||0),assignmentId:S(x.assignmentId||(x.assignmentIds||[])[0]),active};
-}
+function normalized208Summary(x){if(!x||typeof x!=='object')return null;const rev=Number(x.revisionNo||0),status=U(x.status);if(status!=='AVAILABLE'&&status!=='SENT'&&rev<=0)return null;return {code:'FSAGS208',label:'FSAGS 208',revisionNo:rev,sentAtMs:Number(x.sentAtMs||x.lastSentAtMs||0)}}
 async function readDossierDocs(date,fid,force=false){
   date=S(date);fid=S(fid);if(!date||!fid)return [];
   const key=date+'|'+fid,old=dossierDocCache.get(key);if(!force&&old&&Date.now()-old.at<20000)return old.promise;
-  const promise=(async()=>{try{
-    const docs=(await db('flight_records/'+safe(date)+'/'+safe(fid)+'/documents').once('value')).val()||{},out=[];
-    for(const code of ['FSAGS54','FSAGS94','FSAGS208']){const d=normalizedDoc(code,docs[code]);if(d)out.push(d)}
-    if(!out.some(x=>x.code==='FSAGS208')){const mod=(await db('flight_records/'+safe(date)+'/'+safe(fid)+'/modules/FSAGS208').once('value')).val()||null,doc=published208Doc(mod);if(doc)out.push(doc)}
-    return out;
-  }catch(_){return []}})();
+  const promise=(async()=>{try{const summary=(await db('flight_records/'+safe(date)+'/'+safe(fid)+'/documents/FSAGS208').once('value')).val()||null,doc0=normalized208Summary(summary);if(doc0)return [doc0];const mod=(await db('flight_records/'+safe(date)+'/'+safe(fid)+'/modules/FSAGS208').once('value')).val()||null,doc=published208Doc(mod);return doc?[doc]:[]}catch(_){return []}})();
   dossierDocCache.set(key,{at:Date.now(),promise});try{return await promise}catch(e){dossierDocCache.delete(key);return []}
 }
-function embeddedPolicyDocs(g){
-  const out=[];for(let i=0;i<(g?.items||[]).length;i++){const item=g.items[i],canon=canonicalForm(item);if(!['FSAGS54','FSAGS94'].includes(canon))continue;const st=g.states?.[i]||{},done=itemCompleted(item,st),working=itemWorking(item,st);out.push({code:canon,label:canon==='FSAGS54'?'F-54':'F-94',status:done?'HOÀN TẤT':working?'ĐANG THỰC HIỆN':'CHỜ NHẬN',assignmentId:S(item.assignmentId),revisionNo:Number(st.revisionNo||0),active:true})}
-  return out;
-}
-async function attachDossierDocs(date,groups){
-  await Promise.all((groups||[]).map(async g=>{const remote=await readDossierDocs(date,S(g?.primary?.flightId)),local=embeddedPolicyDocs(g),embedded208=(g.items||[]).map(x=>normalizedDoc('FSAGS208',x?.flightDocuments?.FSAGS208)).find(Boolean),map=new Map();for(const d of remote)map.set(d.code,d);for(const d of local)map.set(d.code,d);if(embedded208)map.set('FSAGS208',embedded208);g.dossierDocs=[...map.values()]}));return groups
-}
+async function attachDossierDocs(date,groups){await Promise.all((groups||[]).map(async g=>{const embedded=(g.items||[]).map(x=>normalized208Summary(x?.flightDocuments?.FSAGS208)).find(Boolean);g.dossierDocs=embedded?[embedded]:await readDossierDocs(date,S(g?.primary?.flightId));}));return groups}
 function dossierDocsHtml(g,date){
   const docs=Array.isArray(g?.dossierDocs)?g.dossierDocs:[];if(!docs.length)return '';
-  return '<div class="v1199DossierSummary"><span class="v1199DossierLabel">📁 HỒ SƠ BIỂU MẪU</span><span class="v1199DocChips">'+docs.map(d=>'<button type="button" class="v1199DocChip" data-doc-code="'+esc(d.code)+'" data-doc-fid="'+esc(g.primary?.flightId)+'" data-doc-date="'+esc(date)+'">'+esc(d.label)+' · '+esc(d.status)+(d.revisionNo?' · R'+esc(d.revisionNo):'')+'</button>').join('')+'</span></div>';
+  return '<div class="v1199DossierSummary"><span class="v1199DossierLabel">📁 TÀI LIỆU ĐÃ CÓ</span><span class="v1199DocChips">'+docs.map(d=>'<button type="button" class="v1199DocChip" data-doc-code="'+esc(d.code)+'" data-doc-fid="'+esc(g.primary?.flightId)+'" data-doc-date="'+esc(date)+'">✓ '+esc(d.label)+(d.revisionNo?' · R'+esc(d.revisionNo):'')+'</button>').join('')+'</span></div>';
 }
 function invalidateDossierDocs(){dossierDocCache.clear()}
 function groupTasks(rows){const map=new Map();for(const r of rows){const k=flightKey(r.item);if(!map.has(k))map.set(k,{key:k,items:[],states:[],sort:timeScore(r.item)});const g=map.get(k);g.items.push(r.item);g.states.push(r.st);g.sort=Math.min(g.sort,timeScore(r.item))}return [...map.values()].map(g=>{g.completed=g.items.every((x,i)=>itemCompleted(x,g.states[i]));g.flightClosed=g.states.length>0&&g.states.every(st=>st?.flightCloseoutV6445===true);g.working=g.items.some((x,i)=>!itemCompleted(x,g.states[i])&&itemWorking(x,g.states[i]));const candidates=g.items.map((x,i)=>({item:x,st:g.states[i],done:itemCompleted(x,g.states[i]),working:itemWorking(x,g.states[i]),ord:Number(x?.workPartOrder||1),leg:U(x?.assignmentLeg)==='ARR'?0:U(x?.assignmentLeg)==='DEP'?2:1,rec:recency(x)})).sort((a,b)=>(a.done?1:0)-(b.done?1:0)||(b.working?1:0)-(a.working?1:0)||a.leg-b.leg||a.ord-b.ord||a.rec-b.rec);let pick=candidates[0];if(g.completed){const pb=candidates.find(c=>isPushbackSource(c.item));if(pb)pick=pb;}g.primary=pick?.item||g.items[0];g.primaryState=pick?.st||g.states[0];g.pushback=g.items.map((x,i)=>isPushbackSource(x)?pbOf(g.states[i]):'').find(Boolean)||'';return g}).sort((a,b)=>a.sort-b.sort||flightLabel(a.primary).localeCompare(flightLabel(b.primary),'vi'))}
@@ -382,9 +355,9 @@ async function setFlightCloseout(date,fkey,closed,button=null){
     const {groups}=await personalGroups(date),g=groups.find(x=>x.key===S(fkey));if(!g)throw new Error('Chuyến không còn trong danh sách được phân của bạn.');
     const openCount=g.items.reduce((n,x,i)=>n+(itemCompleted(x,g.states[i])?0:1),0),label=flightLabel(g.primary);
     if(closed){
-      const warn=openCount?'KẾT THÚC CHUYẾN BAY\n\n'+label+'\n\nCòn '+openCount+' công việc/biểu mẫu chưa hoàn tất.\n\nBạn vẫn muốn kết thúc chuyến?':'KẾT THÚC CHUYẾN BAY\n\n'+label+'\n\nChuyến sẽ được chuyển sang mục CHUYẾN ĐÃ HOÀN TẤT.\n\nBạn muốn tiếp tục?';
+      const warn=openCount?'KẾT THÚC CHUYẾN BAY\n\n'+label+'\n\nCòn '+openCount+' công việc/biểu mẫu chưa ở trạng thái hoàn tất nhập. Kết thúc chuyến chỉ ẩn chuyến khỏi danh sách đang làm, KHÔNG thay đổi dữ liệu biểu mẫu.\n\nBạn vẫn muốn kết thúc chuyến?':'KẾT THÚC CHUYẾN BAY\n\n'+label+'\n\nThao tác này khác với Hoàn tất nhập biểu mẫu. Chuyến sẽ được chuyển sang mục CHUYẾN ĐÃ HOÀN TẤT và ẩn khỏi danh sách ĐANG LÀM.';
       if(!confirm(warn))return false;
-    }else if(!confirm('MỞ LẠI CHUYẾN BAY\n\n'+label+'\n\nChuyến sẽ quay lại danh sách ĐANG LÀM.\n\nBạn muốn tiếp tục?'))return false;
+    }else if(!confirm('MỞ LẠI CHUYẾN BAY\n\n'+label+'\n\nChuyến sẽ quay lại danh sách ĐANG LÀM. Dữ liệu biểu mẫu không bị thay đổi.'))return false;
     const t=Date.now(),patch={},unit=closeoutUnit(),seen=new Set();
     for(const item of g.items){const aid=S(item?.assignmentId);if(!aid||seen.has(aid)||!ownedActive(item))continue;seen.add(aid);const base='roster_sessions/'+safe(aid);
       patch[base+'/flightCloseoutV6445']=closed?true:null;
@@ -475,7 +448,7 @@ function cardHtml(g,date){
  const t=closeoutTime(g),closedNote=g.flightClosed?'<div class="v1199FlightState">✓ CHUYẾN ĐÃ HOÀN TẤT'+(t?' · '+new Date(t).toLocaleString('vi-VN',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}):'')+'</div>':'';
  const closeBtn=g.flightClosed?'<button type="button" class="v1199Action reopenFlight v1199FlightCloseBtn" data-flight-fkey="'+esc(g.key)+'" data-flight-date="'+esc(date)+'" data-flight-close="0">↻ MỞ LẠI CHUYẾN</button>':'<button type="button" class="v1199Action finish v1199FlightCloseBtn" data-flight-fkey="'+esc(g.key)+'" data-flight-date="'+esc(date)+'" data-flight-close="1">✓ KẾT THÚC CHUYẾN</button>';
  const docCount=Array.isArray(g.dossierDocs)?g.dossierDocs.length:0,docSummary=dossierDocsHtml(g,date),policySummary=policyAuxHtml(g),dossierText='📁 HỒ SƠ CHUYẾN'+(docCount?' · '+docCount+' TÀI LIỆU':'');
- return '<article class="v1199Card" data-fkey="'+esc(g.key)+'"><div class="v1199Title">'+esc(flightLabel(x))+'</div><div class="v1199Meta">'+esc(route)+(route?' · ':'')+'A/C '+esc(ac)+' · STA '+esc(sta)+' · STD '+esc(std)+'</div>'+closedNote+'<div class="v1199Tasks">'+forms+'</div>'+policySummary+docSummary+'<div class="v1199FlightActions"><button type="button" class="v1199Action v1199DossierBtn" data-dossier-fid="'+esc(x.flightId)+'" data-dossier-date="'+esc(date)+'">'+dossierText+'</button>'+closeBtn+'</div></article>';
+ return '<article class="v1199Card" data-fkey="'+esc(g.key)+'"><div class="v1199Title">'+esc(flightLabel(x))+'</div><div class="v1199Meta">'+esc(route)+(route?' · ':'')+'A/C '+esc(ac)+' · STA '+esc(sta)+' · STD '+esc(std)+'</div>'+closedNote+'<div class="v1199Tasks">'+forms+'</div>'+policySummary+docSummary+'<div class="v1199OwnerNote">Hoàn tất nhập biểu mẫu và Kết thúc chuyến là hai trạng thái riêng biệt.</div><div class="v1199FlightActions"><button type="button" class="v1199Action v1199DossierBtn" data-dossier-fid="'+esc(x.flightId)+'" data-dossier-date="'+esc(date)+'">'+dossierText+'</button>'+closeBtn+'</div></article>';
 }
 async function personalGroups(date,fid=''){
  await root.sagsAirlineFormPolicy?.ready();const owner=me(),man=await readManifest(date),all=Object.values(man?.items||{}).filter(x=>x&&x.active!==false&&norm(x.user||x.targetUser)===owner&&(!fid||S(x.flightId)===S(fid))),dd=dedupeItems(date,all),states=await Promise.all(dd.items.map(x=>readState(x.assignmentId)));
@@ -491,32 +464,16 @@ root.sagsPersonalFlightTasks={async renderInto(host,date,fid){
  const {groups}=await personalGroups(date,fid);if(!host.isConnected||me()!==owner)return;
  host.innerHTML=groups.length?groups.map(g=>'<div class="v1199OwnerNote">'+esc(owner)+' · '+esc(flightLabel(g.primary))+'</div><div class="v1199Tasks">'+taskPills(g,date)+'</div>').join(''):'<p>Không có nhiệm vụ roster được phân cho bạn trên chuyến này. Bạn vẫn có thể xem các tài liệu đã gửi theo quyền truy cập chuyến.</p>';bindDossierTasks(host);
 }};
-async function openFlightDossier(date,fid){
- date=S(date);fid=S(fid);
- if(!date||!fid)throw new Error('Thiếu thông tin chuyến bay.');
- // My Flight must open the canonical dossier directly. Governance may decorate
- // the dossier, but it must not become a separate navigation dependency.
- const open=typeof root.sagsV338OpenDossier==='function'
-  ?root.sagsV338OpenDossier
-  :root.sagsOpenUnifiedFlightDossier;
- if(typeof open!=='function')throw new Error('Chức năng hồ sơ chuyến chưa sẵn sàng. Hãy tải lại ứng dụng.');
- return await open(date,fid);
-}
 async function renderPersonal(date=opDate()){
-  if(['AD','KH','CARGO'].includes(role())||root.__SAGS_CARGO_ALL_FLIGHTS?.isCargo?.()||!me())return;date=syncQueueDate(queueDate(date));const token=++renderToken;installStyle();setHeader(date);const host=document.getElementById('fwcList');if(!host)return;const hadQueue=host.classList.contains('v1199Queue');host.classList.add('v1199Queue');if(!hadQueue&&!host.children.length)host.innerHTML='<div class="v1199Empty">Đang tải công việc được phân…</div>';
+  if(role()==='AD'||!me())return;date=syncQueueDate(queueDate(date));const token=++renderToken;installStyle();setHeader(date);const host=document.getElementById('fwcList');if(!host)return;const hadQueue=host.classList.contains('v1199Queue');host.classList.add('v1199Queue');if(!hadQueue&&!host.children.length)host.innerHTML='<div class="v1199Empty">Đang tải công việc được phân…</div>';
   try{
     const {dd,groups}=await personalGroups(date);if(token!==renderToken)return;
     const pending=groups.filter(x=>!x.flightClosed),done=groups.filter(x=>x.flightClosed),show=activeTab==='completed'?done:pending;
     const next='<div class="v1199Tabs"><button class="v1199Tab '+(activeTab==='pending'?'active':'')+'" onclick="v1199QueueTab(\'pending\')">ĐANG LÀM <span class="v1199Count">'+pending.length+'</span></button><button class="v1199Tab '+(activeTab==='completed'?'active':'')+'" onclick="v1199QueueTab(\'completed\')">CHUYẾN ĐÃ HOÀN TẤT <span class="v1199Count">'+done.length+'</span></button></div><div class="v1199OwnerNote">'+esc(me())+' · '+esc(date)+' · '+groups.length+' chuyến được phân · đã loại '+dd.dupes.length+' vé/bản ghi trùng khỏi màn hình</div>'+(show.length?'<div class="v1199FlightGrid">'+show.map(g=>cardHtml(g,date)).join('')+'</div>':'<div class="v1199Empty">'+(activeTab==='completed'?'Chưa có chuyến nào bạn đã bấm Kết thúc chuyến.':'Không còn chuyến đang làm.')+'</div>');
     if(host.innerHTML!==next){
       host.innerHTML=next;
-      host.querySelectorAll('.v1199DossierBtn').forEach(btn=>btn.onclick=async()=>{
-       btn.disabled=true;
-       try{await openFlightDossier(btn.dataset.dossierDate,btn.dataset.dossierFid)}
-       catch(e){alert('Không mở được hồ sơ chuyến: '+S(e?.message||e))}
-       finally{if(btn.isConnected)btn.disabled=false}
-      });
-      host.querySelectorAll('.v1199DocChip').forEach(btn=>btn.onclick=async()=>{btn.disabled=true;try{if(btn.dataset.docCode==='FSAGS208'&&typeof root.__SAGS_FSAGS208_WORKSPACE?.openView==='function')await root.__SAGS_FSAGS208_WORKSPACE.openView(btn.dataset.docDate,btn.dataset.docFid);else await openFlightDossier(btn.dataset.docDate,btn.dataset.docFid)}catch(e){alert('Không mở được tài liệu đã gửi: '+S(e?.message||e))}finally{if(btn.isConnected)btn.disabled=false}});
+      host.querySelectorAll('.v1199DossierBtn').forEach(btn=>btn.onclick=()=>root.sagsV338OpenDossier?.(btn.dataset.dossierDate,btn.dataset.dossierFid));
+      host.querySelectorAll('.v1199DocChip').forEach(btn=>btn.onclick=async()=>{btn.disabled=true;try{if(btn.dataset.docCode==='FSAGS208'&&typeof root.__SAGS_FSAGS208_WORKSPACE?.openView==='function')await root.__SAGS_FSAGS208_WORKSPACE.openView(btn.dataset.docDate,btn.dataset.docFid);else await root.sagsV338OpenDossier?.(btn.dataset.docDate,btn.dataset.docFid)}catch(e){alert('Không mở được tài liệu đã gửi: '+S(e?.message||e))}finally{if(btn.isConnected)btn.disabled=false}});
       host.querySelectorAll('.v1199FlightCloseBtn').forEach(btn=>btn.onclick=()=>setFlightCloseout(btn.dataset.flightDate,btn.dataset.flightFkey,btn.dataset.flightClose==='1',btn));
       host.querySelectorAll('.v1199TaskBtn').forEach(btn=>btn.onclick=()=>openTask(btn.dataset.taskAid,btn.dataset.taskFid,btn.dataset.taskCompleted==='1',btn.dataset.taskDate,true,btn));
       host.querySelectorAll('.v1199PdfBtn').forEach(btn=>btn.onclick=async()=>{btn.disabled=true;try{if(typeof root.v310ExportAssignment!=='function')throw new Error('Chức năng XUẤT PDF chưa sẵn sàng.');await root.v310ExportAssignment(btn.dataset.pdfAid)}catch(e){alert('Không mở được XUẤT PDF: '+S(e?.message||e))}finally{if(btn.isConnected)btn.disabled=false}});
