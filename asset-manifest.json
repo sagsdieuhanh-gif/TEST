@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.94",
-  "build": "V6.4.94-20261003-AUTH-HELPER-SCOPE-FIX-01",
-  "strategy": "atomic test release + auth helper scope fix + orphan profile repair + Firebase auth slots",
+  "version": "V6.4.95",
+  "build": "V6.4.95-20261003-MOBILE-UI-REFRESH-01",
+  "strategy": "atomic test release + approved mobile work-menu refresh + auth helper scope fix",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "d9a437799fbfdf0b566313ed72cfbe42c6c85ee9963cf7d9a9b9eae5c9675673",
-      "bytes": 81409
+      "sha256": "9b0bf275c639e14f6ed8ccdd86e0f1c212c1cbb5237445a1e3d6b9f1a158bf06",
+      "bytes": 81180
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "68f94cf6fb9aa0411e304dc27ecb9660cc2a97754dfa753e87ea7d8ab5140b74",
-      "bytes": 21790
+      "sha256": "cca05ea6087dd53966112e6d829ae1137921d6fd1dff74773cfedc505b74a37c",
+      "bytes": 21829
     },
     "./version.json": {
-      "sha256": "de41d0f2983442ceb5a6e299e6464abd066a459654e5156e8aa148f413b750cb",
-      "bytes": 652
+      "sha256": "436748bee5fabafce0474020bb7f8baa120bfa61013e4912cb762b7ebbc60128",
+      "bytes": 876
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -620,6 +620,10 @@
     "./app/styles/boot-36-v6491-global-contrast.css": {
       "sha256": "9761f124689dbbbdb40a756c6b6e5095ed30851dddff8b8a68b063cf5ba14a24",
       "bytes": 3742
+    },
+    "./app/styles/boot-37-v6495-mobile-ui-refresh.css": {
+      "sha256": "cf301f41df1f90f41ea571b6f030972a93118404c432f535466336922594f5a5",
+      "bytes": 12790
     }
   }
 }

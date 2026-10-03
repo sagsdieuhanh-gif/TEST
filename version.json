@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.94",
-  "displayVersion": "V6.4.94",
-  "label": "V6.4.94 TEST - AUTH HELPER SCOPE FIX",
-  "build": "V6.4.94-20261003-AUTH-HELPER-SCOPE-FIX-01",
-  "releasedAt": "2026-10-03T15:43:23Z",
-  "type": "fix",
-  "base": "V6.4.93-20261003-ORPHAN-PROFILE-REPAIR-01",
+  "version": "V6.4.95",
+  "displayVersion": "V6.4.95",
+  "label": "V6.4.95 TEST - MOBILE UI REFRESH",
+  "build": "V6.4.95-20261003-MOBILE-UI-REFRESH-01",
+  "releasedAt": "2026-10-03T15:48:57Z",
+  "type": "ui",
+  "base": "V6.4.94-20261003-AUTH-HELPER-SCOPE-FIX-01",
   "updatePolicy": "required",
-  "notes": "Sửa lỗi 'v6492CreateFreshAuth is not defined': export helper tạo Firebase Auth ra root/window và đổi toàn bộ 3 call-site tạo mới/tạo lại/sửa hồ sơ mồ côi sang helper dùng chung. Giữ nguyên Auth slot và không xóa Firebase Auth cũ.",
-  "message": "V6.4.94 TEST: Firebase auth helper scope fixed."
+  "notes": "Thiết kế lại giao diện mobile dựa trên bố cục V6.4.89 đã được duyệt: MENU LÀM VIỆC là màn hình chính toàn màn hình sau đăng nhập; header/logo/user card compact; menu 2 cột để giảm số hàng; footer Đổi mật khẩu/Đăng xuất một hàng; thanh tác vụ nghiệp vụ co giãn 2–3 nút/hàng và không tràn viền, máy <=360px tự hạ mật độ. Không thay đổi logic tài khoản V6.4.94 hoặc nghiệp vụ.",
+  "message": "V6.4.95 TEST: approved mobile work-menu refresh and compact action dock."
 }
