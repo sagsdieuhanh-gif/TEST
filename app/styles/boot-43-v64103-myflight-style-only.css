@@ -46,3 +46,116 @@ html.new-ui-v1 .hf4Row input{background:#08213b!important;color:#fff!important;b
 html.new-ui-v1 .hf4Row button,html.new-ui-v1 .hf4Done{background:#0d5d9d!important;color:#fff!important;border:1px solid #4b87b8!important}
 @media(max-width:390px){html.new-ui-v1 #fwcModal .fwcHead{min-height:132px!important;padding-left:5px!important;padding-right:5px!important}html.new-ui-v1 #fwcModal .fwcHead h3{font-size:24px!important}html.new-ui-v1 #fwcModal .fwcTools{gap:7px!important;padding:9px!important}html.new-ui-v1 #fwcModal .v1199Tab{font-size:10.5px!important;padding:0 7px!important}html.new-ui-v1 #fwcModal .v1199Title{font-size:26px!important}html.new-ui-v1 #fwcModal .v1199TaskBtn{min-height:94px!important;font-size:12px!important}}
 }
+
+/* V6.4.104 — original mobile work menu, style-only. */
+@media(max-width:767px){
+  html.new-ui-v1 #v157Drawer{
+    background:linear-gradient(180deg,#06284a 0%,#041d34 18%,#031523 100%)!important;
+    color:#f7fbff!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157DrawerHead{
+    background:transparent!important;
+    border-bottom:1px solid rgba(88,147,190,.20)!important;
+    padding:12px 14px!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157LogoBox{
+    background:#fff!important;
+    border:1px solid rgba(255,255,255,.35)!important;
+    border-radius:12px!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157Brand,
+  html.new-ui-v1 #v157Drawer .v157Brand strong{
+    color:#fff!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157Brand small{
+    color:#9dbbd0!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157User{
+    background:linear-gradient(135deg,#0e3152,#0a2742)!important;
+    border:1px solid #2a5c7d!important;
+    border-radius:16px!important;
+    color:#fff!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157Avatar{
+    background:linear-gradient(145deg,#4f9ed7,#68bbdf)!important;
+    color:#fff!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157UserName{color:#fff!important}
+  html.new-ui-v1 #v157Drawer .v157UserMeta,
+  html.new-ui-v1 #v157Drawer .v157UserRole,
+  html.new-ui-v1 #v157Drawer .v157User small{
+    color:#a6c3d6!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157MenuBody{
+    background:transparent!important;
+    padding:10px 12px 18px!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157MenuSection{
+    margin:0 0 15px!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157MenuSectionTitle{
+    color:#a7c3d7!important;
+    font-size:12px!important;
+    font-weight:900!important;
+    letter-spacing:.08em!important;
+    margin:0 0 8px!important;
+    padding:0 3px!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157MenuSectionGrid,
+  html.new-ui-v1 #v157Drawer .v157MenuGrid{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157MenuItem{
+    min-width:0!important;
+    min-height:82px!important;
+    padding:10px 24px 10px 10px!important;
+    border:1px solid #245679!important;
+    border-radius:15px!important;
+    background:linear-gradient(135deg,#0d2d4d,#09253f)!important;
+    color:#fff!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157MenuItem::after{
+    color:#c7deec!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157MenuIcon{
+    width:46px!important;height:46px!important;
+    border-radius:12px!important;
+    background:linear-gradient(145deg,#15598b,#247db7)!important;
+    border:1px solid #3f86b4!important;
+    color:#eef8ff!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157MenuTitle{
+    color:#fff!important;
+    font-size:13px!important;
+    line-height:1.15!important;
+    font-weight:900!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157MenuMeta{
+    color:#9dbcd1!important;
+    font-size:10.5px!important;
+    line-height:1.25!important;
+  }
+  html.new-ui-v1 #v157Drawer .v157DrawerFooter{
+    background:transparent!important;
+    border-top:1px solid rgba(88,147,190,.18)!important;
+  }
+  html.new-ui-v1 #v157Drawer #v157PasswordBtn,
+  html.new-ui-v1 #v157Drawer #v157LogoutBtn{
+    border-radius:14px!important;
+    min-height:52px!important;
+    font-size:12px!important;
+    font-weight:900!important;
+  }
+  html.new-ui-v1 #v157Drawer #v157PasswordBtn{
+    background:#0b365a!important;border-color:#245e87!important;color:#fff!important;
+  }
+  html.new-ui-v1 #v157Drawer #v157LogoutBtn{
+    background:#10273a!important;border-color:#36546c!important;color:#c5d4df!important;
+  }
+  /* Redundant legacy close button is visual clutter on mobile home; original nav/menu behavior remains untouched. */
+  html.new-ui-v1 #v157Drawer #v6444MenuClose{display:none!important}
+}

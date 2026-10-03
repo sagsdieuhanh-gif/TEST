@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.103",
-  "displayVersion": "V6.4.103",
-  "label": "V6.4.103 TEST - RESTORE FLOW / STYLE ONLY",
-  "build": "V6.4.103-20261003-RESTORE-FLOW-STYLE-ONLY-01",
+  "version": "V6.4.104",
+  "displayVersion": "V6.4.104",
+  "label": "V6.4.104 TEST - GLOBAL STYLE ONLY RESTORE",
+  "build": "V6.4.104-20261003-GLOBAL-STYLE-ONLY-RESTORE-01",
   "releasedAt": "2026-10-03T17:42:49Z",
   "type": "fix",
-  "base": "V6.4.102-20261003-MYFLIGHT-ACTION-FIX-01",
+  "base": "V6.4.103-20261003-RESTORE-FLOW-STYLE-ONLY-01",
   "updatePolicy": "required",
-  "notes": "Khôi phục toàn bộ luồng My Flight và Tự nhận việc về logic V6.4.100 ổn định. Gỡ V6.4.101/102 pixel My Flight shell khỏi index và service worker. Chỉ giữ thay đổi giao diện bằng CSS thuần trên DOM gốc .v1199*. Câu kỹ thuật được rút gọn bằng thay text tại source, không thay handler. PC không thay đổi.",
-  "message": "V6.4.103 TEST: restore stable My Flight flow; visual changes are CSS-only."
+  "notes": "Rà soát toàn bộ mobile và gỡ V6.4.97/98 custom mobile shell/action proxy khỏi runtime. Menu ngoài quay lại DOM/handler gốc #v157Drawer/.v157MenuItem. My Flight đã quay lại handler gốc từ V6.4.100. Toàn bộ thay đổi giao diện hiện chỉ bằng CSS thuần; không proxy click, không route mới, không gọi trực tiếp hàm nghiệp vụ từ lớp giao diện. PC không thay đổi.",
+  "message": "V6.4.104 TEST: restore original mobile handlers globally; styling is CSS-only."
 }
