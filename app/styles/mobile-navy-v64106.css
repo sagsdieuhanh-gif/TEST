@@ -1,0 +1,73 @@
+/* V6.4.106: unified mobile design, based on the supplied My Flight reference.
+   Paper forms retain their print layout; this layer styles application chrome. */
+@media (max-width:767px){
+html.new-ui-v1.new-ui-v1{--ui-primary:#69baff;--ui-primary-strong:#9bd0ff;--ui-primary-soft:#123e68;--ui-text:#f7fbff;--ui-text-muted:#a8c6de;--ui-surface:#082744;--ui-surface-soft:#05213e;--ui-border:#285d88;--ui-border-soft:#285d88;--mobile-bg:#00162e;--mobile-card:#082744;--mobile-line:#285d88;--mobile-text:#f7fbff;--mobile-muted:#a8c6de;--mobile-accent:#69baff;color-scheme:dark;--v157-navy:#082744;--v157-navy2:#00162e;--v157-blue:#69baff;--v157-bg:#00162e;--v157-text:#f7fbff;--v157-muted:#a8c6de;--v157-line:#285d88;--v157-card:#082744}
+html.new-ui-v1.new-ui-v1 body{background:var(--mobile-bg)!important;font-family:system-ui,-apple-system,'Segoe UI',sans-serif!important;color:var(--mobile-text)!important}
+html.new-ui-v1.new-ui-v1 body :focus-visible{outline:2px solid #69baff!important;outline-offset:3px}
+html.new-ui-v1.new-ui-v1 body :is(#roleLoginModal,#roleHomeIdle,#v157HomeDashboard,#v6497MobileHome,#v157Drawer){background:radial-gradient(ellipse at 90% 0%,#0b3970 0,transparent 48%),linear-gradient(180deg,#06254c,#00162e 70%)!important;color:var(--mobile-text)!important}
+html.new-ui-v1.new-ui-v1 body #roleLoginModal{padding:calc(24px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom))!important;overflow-y:auto!important;min-height:100dvh;box-sizing:border-box;background-image:linear-gradient(180deg,rgba(0,22,46,.35),#00162e 100%),url('../../assets/ui/myflight-hero-v64101.webp')!important;background-position:center,center top!important;background-size:100% 340px,auto 340px!important;background-repeat:no-repeat!important}
+html.new-ui-v1.new-ui-v1 body #roleLoginModal .roleLoginCard{width:min(100%,420px)!important;padding:26px 22px!important;border:1px solid var(--mobile-line)!important;border-radius:22px!important;background:rgba(6,34,64,.96)!important;color:var(--mobile-text)!important;box-shadow:0 16px 48px #0005!important;box-sizing:border-box}
+html.new-ui-v1.new-ui-v1 body #roleLoginModal :is(h2,label){color:var(--mobile-text)!important}
+html.new-ui-v1.new-ui-v1 body #roleLoginModal .roleLoginLogo{width:92px!important;max-width:100%!important;margin:0 auto 22px!important;background:#fff!important;border-radius:16px!important}
+html.new-ui-v1.new-ui-v1 body #roleLoginModal .newUiLoginEyebrow{color:var(--mobile-muted)!important;letter-spacing:.06em}
+html.new-ui-v1.new-ui-v1 body #roleLoginModal .newUiLoginEyebrow span{background:#123e68!important;color:#b8dfff!important}
+html.new-ui-v1.new-ui-v1 body #roleLoginModal .roleLoginCard::after{color:var(--mobile-muted)!important}
+html.new-ui-v1.new-ui-v1 body #roleLoginModal .roleLoginCard input{height:52px!important;border:1px solid #4077a6!important;background:#05213e!important;color:#fff!important;font-size:16px!important;box-sizing:border-box}
+html.new-ui-v1.new-ui-v1 body #roleLoginModal .roleLoginCard #roleLoginSubmit{background:linear-gradient(135deg,#4fa6e9,#73bdf7)!important;border:1px solid #75c2ff!important;color:#052446!important;min-height:52px!important;box-shadow:none!important}
+html.new-ui-v1.new-ui-v1 body #roleLoginError:empty{display:none!important}
+/* Shared shell and concise menu labels. */
+html.new-ui-v1.new-ui-v1 body :is(#v6497MobileHome,#v157Drawer,#v157HomeDashboard) :is(.m6497Card,.m6497User,.v157User,.v157Metric,.v157Panel,.v200WeatherCard,.v157MenuItem){background:linear-gradient(135deg,#0b2f55,#082744)!important;border:1px solid var(--mobile-line)!important;border-radius:16px!important;color:var(--mobile-text)!important;box-shadow:none!important}
+html.new-ui-v1.new-ui-v1 body #v6497MobileHome :is(.m6497Icon,.m6497Card.green .m6497Icon,.m6497Card.purple .m6497Icon,.m6497Card.orange .m6497Icon,.m6497Card.red .m6497Icon,.m6497Card.teal .m6497Icon){background:#123e68!important;border-color:#4077a6!important;color:#9bd0ff!important}
+html.new-ui-v1.new-ui-v1 body :is(#v6497MobileHome,#v157Drawer,#v157HomeDashboard) :is(strong,h3,h4,.m6497Label,.m6497UserName,.m6497BrandTitle,.v157PanelHead,.v157MetricNum,.v157UserName){color:var(--mobile-text)!important}
+html.new-ui-v1.new-ui-v1 body :is(#v6497MobileHome,#v157Drawer,#v157HomeDashboard) :is(.m6497BrandSub,.m6497UserJob,.v157SectionTitle,.v157UserMeta,.v157Welcome span,.v157MetricSub){color:var(--mobile-muted)!important}
+html.new-ui-v1.new-ui-v1 body #v6497MobileHome .m6497Card{min-height:72px!important;padding:14px!important;gap:12px!important}
+html.new-ui-v1.new-ui-v1 body #v6497MobileHome .m6497Label{font-size:14px!important;line-height:1.3!important}
+html.new-ui-v1.new-ui-v1 body :is(#v6497MobileHome .m6497Meta,#v157Drawer .v157MenuItem .meta,#v157Drawer .v157MenuItem small){display:none!important}
+html.new-ui-v1.new-ui-v1 body :is(#v157BottomBar,.m6497Nav,.m6497Footer,.v157DrawerHead){background:#05213e!important;border-color:var(--mobile-line)!important;color:var(--mobile-text)!important}
+html.new-ui-v1.new-ui-v1 body :is(#v6497MobileHome,#v157Drawer,#v157BottomBar) :is(button,.m6497NavBtn,.m6497FooterBtn,.v157BottomBtn){min-height:44px!important;color:var(--mobile-text)!important;touch-action:manipulation}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated.v157-home.v157-drawer-open #v157Drawer{position:fixed!important;inset:60px 0 0!important;z-index:18000!important;width:100%!important;height:calc(100dvh - 60px)!important;max-height:calc(100dvh - 60px)!important;display:flex!important;flex-direction:column!important;transform:none!important;transition:none!important;overflow:hidden!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated #sagsNavigationHeader{z-index:18001!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated.v157-home.v157-drawer-open #v157Drawer .v157MenuBody{overflow-y:auto!important;overscroll-behavior:contain;min-height:0;flex:1 1 auto!important}
+html.new-ui-v1.new-ui-v1 body #sagsMobileFormDock button{background:#0b315a!important;color:#f7fbff!important;border:1px solid #4077a6!important;border-radius:12px!important;min-height:44px!important;font-size:14px!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated.v157-home.v157-drawer-open #v157Drawer .v157DrawerHead{padding:12px 10px!important;min-height:0!important;flex:0 0 auto!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated.v157-home.v157-drawer-open #v157Drawer .v157Brand{margin:0!important;padding:0!important;min-height:42px!important}
+html.new-ui-v1.new-ui-v1 body #v157Drawer #v6444MenuClose{display:none!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated.v157-home.v157-drawer-open #v157Drawer .v157DrawerFooter{display:block!important;padding:10px 10px calc(10px + env(safe-area-inset-bottom))!important;background:#05213e!important;border-top:1px solid #285d88!important}
+html.new-ui-v1.new-ui-v1 body #v157Drawer .v157AccountActions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+html.new-ui-v1.new-ui-v1 body #v157Drawer #v6441ReleaseBadge{background:transparent!important;color:#a8c6de!important;padding:6px 0 0!important;margin:0!important;font-size:10px!important}
+html.new-ui-v1.new-ui-v1 body .v6496MobileVersion{top:42px!important;left:50%!important;transform:translateX(-50%)!important;background:transparent!important;color:#a8c6de!important;font-size:9px!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated.v157-home.v157-drawer-open #v157Drawer .v157MenuItem :is(.title,.v157MenuTitle){font-size:13px!important;overflow-wrap:normal!important;word-break:normal!important}
+/* All operational dialogs share one visual vocabulary. */
+html.new-ui-v1.new-ui-v1 body :is(.sagsAdminModal,.fwcModal,.hf4Modal,#flightSessionModal,#sagsFlightDossierModal){background:rgba(0,12,28,.86)!important;padding:10px!important}
+html.new-ui-v1.new-ui-v1 body :is(.sagsAdminPanel,.flightSessionBox,.fwcPanel,.hf4Panel,.sagsDossierPanel,.sagsGovCard,.fleetManagerPanel,.finalFormsPanel,.formMenuBox,.fs09qPanel,.quickTimePanel,.v485PermBox,.v479ThreeUActionPanel){background:linear-gradient(180deg,#082744,#031c35)!important;border:1px solid var(--mobile-line)!important;border-radius:20px!important;color:var(--mobile-text)!important;max-width:100%!important;box-sizing:border-box;overflow:auto;max-height:calc(100dvh - 20px);padding:18px 14px calc(18px + env(safe-area-inset-bottom))!important}
+html.new-ui-v1.new-ui-v1 body :is(.sagsAdminPanel,.flightSessionBox,.fwcPanel,.hf4Panel,.sagsDossierPanel,.sagsGovCard,.fleetManagerPanel,.finalFormsPanel,.formMenuBox,.fs09qPanel,.quickTimePanel,.v485PermBox,.v479ThreeUActionPanel) :is(h2,h3,h4,label,th,b,strong){color:var(--mobile-text)!important}
+html.new-ui-v1.new-ui-v1 body :is(.sagsAdminPanel,.flightSessionBox,.fwcPanel,.hf4Panel,.sagsDossierPanel,.sagsGovCard,.fleetManagerPanel,.finalFormsPanel,.formMenuBox,.fs09qPanel,.quickTimePanel,.v485PermBox,.v479ThreeUActionPanel) :is(input,select,textarea){background:#05213e!important;color:var(--mobile-text)!important;border:1px solid #4077a6!important;border-radius:12px!important;font-size:16px!important;min-width:0;max-width:100%;box-sizing:border-box}
+html.new-ui-v1.new-ui-v1 body :is(input,textarea)::placeholder{color:#91b4d0!important;opacity:1}
+html.new-ui-v1.new-ui-v1 body :is(.sagsAdminPanel,.flightSessionBox,.fwcPanel,.hf4Panel,.sagsDossierPanel,.sagsGovCard,.fleetManagerPanel,.finalFormsPanel,.formMenuBox,.fs09qPanel,.quickTimePanel,.v485PermBox,.v479ThreeUActionPanel) button{min-height:44px!important;padding:10px 14px!important;background:#10385e!important;border:1px solid #4077a6!important;border-radius:12px!important;color:var(--mobile-text)!important;font:750 14px/1.25 system-ui,sans-serif!important;white-space:normal;touch-action:manipulation}
+html.new-ui-v1.new-ui-v1 body :is(.sagsAdminGrid,.fwcUnitGrid){grid-template-columns:minmax(0,1fr)!important}
+html.new-ui-v1.new-ui-v1 body :is(.sagsUserItem,.hf4Item,.fwcUnit,.fwcWorkspaceHead,.v1199Card,.sagsDossierDoc,.sagsGovPanel,.sagsGovAssignment,.fleetManagerCard){background:#082744!important;border:1px solid var(--mobile-line)!important;border-radius:16px!important;color:var(--mobile-text)!important;box-shadow:none!important}
+html.new-ui-v1.new-ui-v1 body :is(.sagsUserMeta,.hf4Note,.fwcMeta,.fwcOwner,.fwcSub,.v1199Meta,.sagsDossierDoc small,.sagsGovTitle){color:var(--mobile-muted)!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .fwcHead{min-height:130px!important;background:linear-gradient(90deg,#06254cee,#06254c66),url('../../assets/ui/myflight-hero-v64101.webp') right center/cover!important;border-radius:16px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .fwcHead h3{font-size:26px!important;margin-top:36px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199TaskBtn{min-height:52px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .fwcTools>.hf4Open{background:linear-gradient(135deg,#4fa6e9,#73bdf7)!important;color:#052446!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199Tab{height:auto!important;min-height:52px!important;font-size:12px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .v1199Title{font-size:28px!important}
+html.new-ui-v1.new-ui-v1 body :is(#v157Drawer .v157MenuItem,#v6497MobileHome .m6497Card):active{border-color:#69baff!important;background:#123e68!important}
+html.new-ui-v1.new-ui-v1 body button:disabled{opacity:.5!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated.v157-home.v157-drawer-open #v157Drawer .v157MenuItem{min-height:72px!important;padding:12px 24px 12px 12px!important;border-radius:16px!important;background:linear-gradient(135deg,#0b2f55,#082744)!important;border-color:#285d88!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated.v157-home.v157-drawer-open #v157Drawer .v157MenuItem :is(.title,.v157MenuTitle){font-size:14px!important;line-height:1.25!important;color:#f7fbff!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated.v157-home.v157-drawer-open #v157Drawer .v157MenuItem :is(.meta,.v157MenuMeta,small){display:none!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated.v157-home.v157-drawer-open #v157Drawer .v157MenuItem :is(.ico,.v157MenuIcon){background:#123e68!important;color:#9bd0ff!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated #sagsNavigationHeader :is(button,a){min-height:44px!important;height:44px!important;font-size:13px!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated #sagsNavigationHeader{min-height:60px!important;height:60px!important}
+html.new-ui-v1.new-ui-v1 body.v157-authenticated.v157-home.v157-drawer-open #v157Drawer :is(.v157PasswordBtn,.v157LogoutBtn,#v157PasswordBtn,#v157LogoutBtn){min-height:44px!important;height:44px!important;font-size:13px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal .fwcHead .fwcBtn{min-width:44px!important;min-height:44px!important;width:44px!important;height:44px!important}
+html.new-ui-v1.new-ui-v1 body #fwcModal :is(.v1199TaskBtn,.v1199Action,.fwcBtn){font-size:14px!important;min-height:44px!important}
+html.new-ui-v1.new-ui-v1 body #sagsFlightDossierModal .sagsDossierDoc{background:#082744!important;border-color:#285d88!important}
+html.new-ui-v1.new-ui-v1 body #sagsFlightDossierModal .sagsDossierDoc small{color:#a8c6de!important}
+html.new-ui-v1.new-ui-v1 body :is(.sagsAdminPanel,.fleetManagerPanel,.v485PermBox) [style*="background"]:not(button):not(input):not(select):not(textarea){background:#082744!important;color:#f7fbff!important;border-color:#285d88!important}
+/* Preserve red errors and green completion status. */
+html.new-ui-v1.new-ui-v1 body :is(#roleLoginError,.fwcStatus.err){color:#ffb7c4!important}
+@media(max-width:360px){html.new-ui-v1.new-ui-v1 body #fwcModal .fwcTools{grid-template-columns:1fr!important}html.new-ui-v1.new-ui-v1 body #v6497MobileHome .m6497Grid{grid-template-columns:1fr!important}}
+}

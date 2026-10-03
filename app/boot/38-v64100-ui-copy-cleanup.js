@@ -49,23 +49,44 @@ function cleanElement(el){
 function sweep(rootNode=document.body){
   if(!rootNode)return;
   if(rootNode.nodeType===1)cleanElement(rootNode);
-  const w=document.createTreeWalker(rootNode,NodeFilter.SHOW_TEXT|NodeFilter.SHOW_ELEMENT);
+  const w=document.createTreeWalker(rootNode,NodeFilter.SHOW_TEXT|NodeFilter.SHOW_ELEMENT,{
+    acceptNode(n){return n.nodeType===1&&['SCRIPT','STYLE','TEXTAREA','INPUT','OPTION'].includes(n.tagName)?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT}
+  });
   let n;
   while((n=w.nextNode())){
     if(n.nodeType===3)cleanTextNode(n);
     else cleanElement(n);
   }
 }
+// Process changed subtrees once per frame instead of rescanning the whole app.
 let queued=false;
-function schedule(){
+const pending=new Set();
+function schedule(node=document.body){
+  if(!node)return;
+  if(node.nodeType===3)node=node.parentElement;
+  if(!node||['SCRIPT','STYLE','TEXTAREA','INPUT','OPTION'].includes(node.tagName))return;
+  pending.add(node);
   if(queued)return;queued=true;
-  requestAnimationFrame(()=>{queued=false;sweep(document.body)});
+  requestAnimationFrame(()=>{
+    queued=false;
+    const nodes=Array.from(pending);pending.clear();
+    for(const el of nodes){
+      if(!el.isConnected)continue;
+      if(nodes.some(parent=>parent!==el&&parent.contains(el)))continue;
+      sweep(el);
+    }
+  });
 }
-document.addEventListener('DOMContentLoaded',schedule,{once:true});
+document.addEventListener('DOMContentLoaded',()=>schedule(),{once:true});
 if(root.MutationObserver){
-  const mo=new MutationObserver(schedule);
+  const mo=new MutationObserver(records=>{
+    for(const record of records){
+      if(record.type==='characterData')schedule(record.target);
+      else for(const node of record.addedNodes)schedule(node);
+    }
+  });
   mo.observe(document.documentElement,{childList:true,subtree:true,characterData:true});
 }
-root.addEventListener('pageshow',schedule,{passive:true});
+root.addEventListener('pageshow',()=>schedule(),{passive:true});
 schedule();
 })(window);

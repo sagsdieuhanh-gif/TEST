@@ -1,0 +1,24 @@
+name: Mobile UI and release checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  mobile-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run check:ui
+      - run: node tests/release-consistency.test.cjs
+      - run: node tests/startup-performance.test.cjs
+      - run: node tests/pwa-staging.test.cjs
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - run: node tests/browser/mobile-navy.cjs

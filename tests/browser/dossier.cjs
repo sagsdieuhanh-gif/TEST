@@ -5,7 +5,7 @@ const roster=read('app/modules/daily-roster.v502.js');
 // Execute production rendering and click handlers, with deterministic Firebase data.
 const rendering=roster.slice(roster.indexOf('async function openFlightDossier('),roster.indexOf('const openingTasks=new Set();'));
 (async()=>{
- const browser=await chromium.launch({headless:true,channel:process.env.SAGS_BROWSER_CHANNEL||"chromium"});
+ const browser=await chromium.launch({headless:true,...(process.env.SAGS_BROWSER_EXECUTABLE?{executablePath:process.env.SAGS_BROWSER_EXECUTABLE,args:["--no-sandbox","--disable-dev-shm-usage","--disable-gpu"]}:{channel:process.env.SAGS_BROWSER_CHANNEL||"chromium"})});
  try{
  for(const viewport of [{width:1280,height:800},{width:390,height:844}]){
  for(const role of ['DH','CBTT','KH','PVHK','VIEWER','AD']){

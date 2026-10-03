@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.105",
-  "displayVersion": "V6.4.105",
-  "label": "V6.4.105 TEST - APPROVED COMPACT MOBILE",
-  "build": "V6.4.105-20261004-APPROVED-COMPACT-MOBILE-01",
-  "releasedAt": "2026-10-04T01:01:54+07:00",
+  "version": "V6.4.106",
+  "displayVersion": "V6.4.106",
+  "label": "V6.4.106 TEST - MOBILE NAVY OPTIMIZED",
+  "build": "V6.4.106-20261004-MOBILE-NAVY-OPTIMIZED-01",
+  "releasedAt": "2026-10-04T01:30:00+07:00",
   "type": "ui",
-  "base": "V6.4.104-20261003-GLOBAL-STYLE-ONLY-RESTORE-01",
-  "updatePolicy": "required",
-  "notes": "Áp giao diện mobile compact theo ảnh đã duyệt. Thu nhỏ thanh MENU/SAGS/TRANG CHỦ, logo/brand, user card, section/card menu, footer; đồng thời thu gọn header, tools, tabs, flight card và task tiles của My Flight. Chỉ sửa CSS/visual, không thay JS, handler, route hay nghiệp vụ. PC không thay đổi.",
-  "message": "V6.4.105 TEST: approved compact mobile proportions; style-only."
+  "base": "V6.4.105-20261004-APPROVED-COMPACT-MOBILE-01",
+  "updatePolicy": "optional",
+  "notes": "Đồng nhất giao diện mobile navy theo ảnh mẫu: đăng nhập, menu, My Flight và các màn hình quản lý. Nút ngắn gọn, vùng chạm tối thiểu 44px. Gom CSS/JS theo đúng thứ tự, nén CSS, chỉ quét vùng giao diện thay đổi. Bỏ chuyển hướng TEST sang dự án khác. Cập nhật HDSD và cache; cập nhật khi người dùng bấm CẬP NHẬT.",
+  "message": "V6.4.106: giao diện mobile navy đồng nhất và tối ưu tải trang."
 }
