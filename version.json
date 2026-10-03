@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.98",
-  "displayVersion": "V6.4.98",
-  "label": "V6.4.98 TEST - MOBILE ACTIONS WIRED",
-  "build": "V6.4.98-20261003-MOBILE-ACTIONS-WIRED-01",
-  "releasedAt": "2026-10-03T16:31:22Z",
-  "type": "fix",
-  "base": "V6.4.97-20261003-PIXEL-MOBILE-SHELL-01",
+  "version": "V6.4.99",
+  "displayVersion": "V6.4.99",
+  "label": "V6.4.99 TEST - UNIFIED MOBILE NAVY",
+  "build": "V6.4.99-20261003-UNIFIED-MOBILE-NAVY-01",
+  "releasedAt": "2026-10-03T16:57:21Z",
+  "type": "ui",
+  "base": "V6.4.98-20261003-MOBILE-ACTIONS-WIRED-01",
   "updatePolicy": "required",
-  "notes": "Nối trực tiếp các nút mobile shell vào hàm nghiệp vụ thật. My Flight, Sổ tay hãng, Kết sổ, FINAL, Crosscheck, Hồ sơ chuyến, Biểu mẫu, Quản lý tài khoản, Báo cáo, Đổi mật khẩu và Đăng xuất đều có action riêng. Shell được ẩn trong lúc modal/workspace nghiệp vụ đang mở và chỉ hiện lại sau khi đóng. PC không thay đổi.",
-  "message": "V6.4.98 TEST: mobile shell buttons wired to live business functions."
+  "notes": "Đồng bộ toàn bộ mobile theo phương án navy tối đã chốt. Màn ngoài và My Flight dùng cùng palette: nền navy, card xanh than, chữ trắng/xanh xám, xanh lam cho action chính, xanh lá nhẹ cho trạng thái đang làm. Loại bỏ card đỏ/tím/cam ở màn ngoài. My Flight mobile chuyển sang full-screen dark workspace, card chuyến dark navy và controls cùng style. PC >=768px không thay đổi.",
+  "message": "V6.4.99 TEST: unified dark navy design system across mobile home and My Flight."
 }

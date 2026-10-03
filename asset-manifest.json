@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.98",
-  "build": "V6.4.98-20261003-MOBILE-ACTIONS-WIRED-01",
-  "strategy": "pixel mobile shell + direct live action wiring + strict desktop isolation",
+  "version": "V6.4.99",
+  "build": "V6.4.99-20261003-UNIFIED-MOBILE-NAVY-01",
+  "strategy": "atomic test release + unified mobile navy + direct live action wiring + strict desktop isolation",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "932511445d2c52f67b59578905f57554e67c9ad67322dbd3951e56ed66e3b4ea",
-      "bytes": 82083
+      "sha256": "261ebd44a7e41739770fcaf6076d71da235d0612074b439ee7a97555eb0b5e6f",
+      "bytes": 82143
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "6481cacdc3f7ccd8c9d466b13f836fc510a2e071a8f2b2c9ed9363d8ab4aa2bd",
-      "bytes": 22030
+      "sha256": "6f9ce34504cc4a464b1482f6279add7d291d29299f222eb8987b51164dc0e4b6",
+      "bytes": 22080
     },
     "./version.json": {
-      "sha256": "61f89670b98f9c103af3e306b401c307a3b070dfed9d39cbc0ee36850591fedf",
-      "bytes": 801
+      "sha256": "cb1aa22ca30ec09795ab369cf044b6e73105da0f7fa6155bee05b5d7c0a44347",
+      "bytes": 846
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -640,6 +640,10 @@
     "./app/boot/37-v6497-pixel-mobile-shell.js": {
       "sha256": "b0e5f0909910f50c56d9fdc55bb6c9e1fa8c352c14213d359f61414907f837ec",
       "bytes": 13136
+    },
+    "./app/styles/boot-40-v6499-unified-mobile-navy.css": {
+      "sha256": "ea2c055f6d7efbcf636df5436b3cd1db452d64d8c6dc9d1f97c8154e7d2ac5a8",
+      "bytes": 12720
     }
   }
 }
