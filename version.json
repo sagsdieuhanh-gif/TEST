@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.90",
-  "displayVersion": "V6.4.90",
-  "label": "V6.4.90 TEST - ACCOUNT DELETE / RECREATE",
-  "build": "V6.4.90-20261003-ACCOUNT-RECREATE-01",
-  "releasedAt": "2026-10-03T14:55:15Z",
+  "version": "V6.4.91",
+  "displayVersion": "V6.4.91",
+  "label": "V6.4.91 TEST - GLOBAL CONTRAST AUDIT",
+  "build": "V6.4.91-20261003-GLOBAL-CONTRAST-AUDIT-01",
+  "releasedAt": "2026-10-03T15:16:58Z",
   "type": "fix",
-  "base": "V6.4.89-20261003-MOBILE-ACCOUNT-MIGRATION-02",
+  "base": "V6.4.90-20261003-ACCOUNT-RECREATE-01",
   "updatePolicy": "required",
-  "notes": "Sửa quản lý tài khoản theo giới hạn Firebase client/Free: nút XÓA / TẠO LẠI chỉ xóa hồ sơ E-REPORT users/{UID}, record legacy và quyền account_permissions để giải phóng username/mã nhân viên; không cố xóa Firebase Authentication. Khi AD tạo lại cùng username và Auth cũ vẫn tồn tại, hệ thống thử nhận lại Auth đó bằng mật khẩu khởi tạo 123456 rồi tạo lại users/{UID}.",
-  "message": "V6.4.90 TEST: xóa hồ sơ để tạo lại tài khoản, giữ Firebase Auth cũ."
+  "notes": "Rà soát tương phản chữ toàn bộ lớp CSS của TEST. Bổ sung lớp global contrast cuối cùng: tăng độ đậm chữ phụ/placeholder trên nền sáng; tăng độ sáng chữ phụ trong drawer tối; sửa avatar chữ trên nền gradient; làm tối màu nền nút cảnh báo/thành công có chữ trắng; tăng độ đọc được của trạng thái disabled; sửa các vùng Fleet, AD Control Center, Progress, Final Paper và FS09 Quick. Không thay đổi bố cục hay nghiệp vụ.",
+  "message": "V6.4.91 TEST: global text contrast audit and WCAG-oriented visual fixes."
 }

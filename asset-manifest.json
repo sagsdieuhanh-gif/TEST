@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.90",
-  "build": "V6.4.90-20261003-ACCOUNT-RECREATE-01",
-  "strategy": "atomic test release + account profile delete/recreate without Firebase Auth deletion",
+  "version": "V6.4.91",
+  "build": "V6.4.91-20261003-GLOBAL-CONTRAST-AUDIT-01",
+  "strategy": "atomic test release + global text contrast audit + account recreate flow",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "090f5015ccc56b40cf51844c7b144eec5c0c933eea1cbd267846327f0d795876",
-      "bytes": 80779
+      "sha256": "6bba5bfb5794115233c15c052b398b54df63350cd52b148274d2803d44d9e3ca",
+      "bytes": 81409
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "9c88686115d46693ab370dc04fc6efd9ed5d85d77d7c5f0e1d9035e9f20a2e61",
-      "bytes": 21742
+      "sha256": "a7136f8d57c745df299ab8564da22a3c81804a6a4717ab8be53c2f7aa7f14f82",
+      "bytes": 21790
     },
     "./version.json": {
-      "sha256": "d0df04adaa26f095412023133462db5fdf2881b167fbc9faead25c3a12934067",
-      "bytes": 873
+      "sha256": "43748f862043cb785b97ef3f0e5a921dc2c44476b49da3eab0e93ce7379ef942",
+      "bytes": 927
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -616,6 +616,10 @@
     "./app/generated/boot-group-5.js": {
       "sha256": "5e63b64c8450611004cdf7983028cfef05f0c5ade6e72b2e34338f58ae048201",
       "bytes": 3559
+    },
+    "./app/styles/boot-36-v6491-global-contrast.css": {
+      "sha256": "9761f124689dbbbdb40a756c6b6e5095ed30851dddff8b8a68b063cf5ba14a24",
+      "bytes": 3742
     }
   }
 }
