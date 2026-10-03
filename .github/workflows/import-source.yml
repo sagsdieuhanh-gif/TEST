@@ -1,0 +1,46 @@
+name: Import E-REPORT-SAGS into TEST
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/import-source.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TEST
+        uses: actions/checkout@v4
+        with:
+          path: target
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          repository: sagsdieuhanh-gif/E-REPORT-SAGS
+          ref: 183fa6d0bf543e1c5749d7f9c1857f8f9b3971f4
+          path: source
+          fetch-depth: 1
+
+      - name: Mirror source into TEST
+        shell: bash
+        run: |
+          set -euo pipefail
+          rsync -a --delete --exclude='.git/' source/ target/
+          cd target
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to import."
+            exit 0
+          fi
+          git commit -m "Import E-REPORT-SAGS V6.4.81 baseline"
+          git push origin HEAD:main
