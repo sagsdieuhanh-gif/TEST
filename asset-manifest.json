@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.100",
-  "build": "V6.4.100-20261003-UI-COPY-CLEANUP-01",
-  "strategy": "atomic test release + global user-facing copy cleanup + mobile typography normalization + unified navy",
+  "version": "V6.4.101",
+  "build": "V6.4.101-20261003-PIXEL-MYFLIGHT-01",
+  "strategy": "atomic test release + pixel live My Flight shell + unified mobile navy + direct business handlers",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "3ac72f85f18461b659d23f3be2bd94600feedf9b92278df25d5e83f7489b5155",
-      "bytes": 82164
+      "sha256": "pending",
+      "bytes": 0
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
@@ -54,8 +54,8 @@
       "bytes": 15193
     },
     "./app/modules/self-accept.v502.js": {
-      "sha256": "83910062d799570aab35e66ad91edf3d0e9a30bd62a229721e2162becd7b8203",
-      "bytes": 18421
+      "sha256": "pending",
+      "bytes": 0
     },
     "./app/modules/stability.v6-core.js": {
       "sha256": "930372721342bb68abb18b5d7b48f10c280812987e467c61ba0720366df571b4",
@@ -226,8 +226,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "f1d5a64523bd14589d1c8955591253b2f4a0dd3d0b99e1e88bc9424071616509",
-      "bytes": 82134
+      "sha256": "1d0bcbebbdeb462465b387c8d9c4b4ed1ef939bf7626a13005725ca8cc3f0d91",
+      "bytes": 82314
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -278,12 +278,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "80d620974bdcd11114f92a3467311d84f8de514fbdd4121765afcba9f212087b",
-      "bytes": 22169
+      "sha256": "9c3a489abe6af3366ad6ff0e646ed0d65c895f112c9b00b7e4b698c0d77ddb2c",
+      "bytes": 22296
     },
     "./version.json": {
-      "sha256": "d69209fd8b73537306b288acd8eff5e73c02bfc6e29ec848e3393eb151ae006c",
-      "bytes": 809
+      "sha256": "11c15b6f2220d029208e7e115ed60dd9cbda78cd392526c17ba761cd5df04b1f",
+      "bytes": 897
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -652,6 +652,14 @@
     "./app/boot/38-v64100-ui-copy-cleanup.js": {
       "sha256": "a6d633a074b890b7392d70dab98752a50df5773b8a8258b65c68c249c06baada",
       "bytes": 2488
+    },
+    "./app/boot/39-v64101-pixel-myflight.js": {
+      "sha256": "pending",
+      "bytes": 0
+    },
+    "./app/styles/boot-42-v64101-pixel-myflight.css": {
+      "sha256": "pending",
+      "bytes": 0
     }
   }
 }

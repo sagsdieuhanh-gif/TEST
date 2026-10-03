@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.100",
-  "displayVersion": "V6.4.100",
-  "label": "V6.4.100 TEST - UI COPY CLEANUP",
-  "build": "V6.4.100-20261003-UI-COPY-CLEANUP-01",
-  "releasedAt": "2026-10-03T17:10:32Z",
-  "type": "ui-fix",
-  "base": "V6.4.99-20261003-UNIFIED-MOBILE-NAVY-01",
+  "version": "V6.4.101",
+  "displayVersion": "V6.4.101",
+  "label": "V6.4.101 TEST - PIXEL MY FLIGHT",
+  "build": "V6.4.101-20261003-PIXEL-MYFLIGHT-01",
+  "releasedAt": "2026-10-03T17:19:00Z",
+  "type": "ui",
+  "base": "V6.4.100-20261003-UI-COPY-CLEANUP-01",
   "updatePolicy": "required",
-  "notes": "Xóa toàn cục các câu kỹ thuật khỏi UI, gồm 'Hoàn tất nhập biểu mẫu', 'Kết thúc chuyến là hai trạng thái riêng biệt', 'trạng thái riêng biệt', kể cả nội dung sinh động sau khi mở modal/tab. Chuẩn hóa typography mobile: tiêu đề 26px, flight title 28px, text chính 14px, meta 12px, badge 11px, nút 14px, hint 11.5px. PC không thay đổi.",
-  "message": "V6.4.100 TEST: remove technical copy everywhere and normalize mobile typography."
+  "notes": "Thay My Flight mobile bằng shell riêng bám ảnh navy đã chốt: header QUAY LẠI + MY FLIGHT, bộ lọc 2x2, info card, tab 2 cột, owner line, flight card, status chip và form tiles đúng bố cục/màu/chữ. Dữ liệu lấy trực tiếp từ personalGroups/visibleFormTasks; mở biểu mẫu bằng assignment thật, hồ sơ chuyến bằng dossier thật, TỰ NHẬN VIỆC dùng handler thật. Xóa câu kỹ thuật ở nguồn daily-roster và rút gọn self-accept. PC không thay đổi.",
+  "message": "V6.4.101 TEST: pixel-match live My Flight mobile shell."
 }
