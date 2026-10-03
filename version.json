@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.102",
-  "displayVersion": "V6.4.102",
-  "label": "V6.4.102 TEST - MY FLIGHT ACTION FIX",
-  "build": "V6.4.102-20261003-MYFLIGHT-ACTION-FIX-01",
-  "releasedAt": "2026-10-03T17:33:07Z",
-  "type": "ui-fix",
-  "base": "V6.4.101-20261003-PIXEL-MYFLIGHT-01",
+  "version": "V6.4.103",
+  "displayVersion": "V6.4.103",
+  "label": "V6.4.103 TEST - RESTORE FLOW / STYLE ONLY",
+  "build": "V6.4.103-20261003-RESTORE-FLOW-STYLE-ONLY-01",
+  "releasedAt": "2026-10-03T17:42:49Z",
+  "type": "fix",
+  "base": "V6.4.102-20261003-MYFLIGHT-ACTION-FIX-01",
   "updatePolicy": "required",
-  "notes": "Sửa My Flight mobile: khi bấm 42.3/42.1/55.1 hoặc hồ sơ chuyến, shell đóng hẳn và không tự phủ lại sau khi hàm mở nghiệp vụ trả về. Shell chỉ được kích hoạt lại khi người dùng mở My Flight lại. Xóa/rút gọn các câu kỹ thuật còn sót trong xác nhận Kết thúc/Mở lại chuyến, bỏ dòng lọc bản ghi trùng và rút mô tả My Flight thành một câu ngắn. PC không thay đổi.",
-  "message": "V6.4.102 TEST: fix mobile My Flight action handoff and remove remaining technical copy."
+  "notes": "Khôi phục toàn bộ luồng My Flight và Tự nhận việc về logic V6.4.100 ổn định. Gỡ V6.4.101/102 pixel My Flight shell khỏi index và service worker. Chỉ giữ thay đổi giao diện bằng CSS thuần trên DOM gốc .v1199*. Câu kỹ thuật được rút gọn bằng thay text tại source, không thay handler. PC không thay đổi.",
+  "message": "V6.4.103 TEST: restore stable My Flight flow; visual changes are CSS-only."
 }

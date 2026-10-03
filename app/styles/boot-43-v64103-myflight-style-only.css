@@ -1,0 +1,48 @@
+/* V6.4.103 — MY FLIGHT mobile style-only override. No JS, no routing. */
+@media(max-width:767px){
+html.new-ui-v1 #fwcModal{inset:0!important;padding:0!important;align-items:stretch!important;justify-content:stretch!important;background:linear-gradient(180deg,#06254c 0%,#031b36 25%,#00162e 100%)!important}
+html.new-ui-v1 #fwcModal .fwcPanel{width:100vw!important;max-width:100vw!important;height:100dvh!important;max-height:100dvh!important;margin:0!important;padding:calc(14px + env(safe-area-inset-top)) 14px calc(22px + env(safe-area-inset-bottom))!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:auto!important;color:#f7fbff!important}
+html.new-ui-v1 #fwcModal .fwcHead{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:12px!important;align-items:start!important;min-height:142px!important;margin:0 0 12px!important;padding:16px 8px 18px!important;border:0!important;border-bottom:1px solid rgba(74,132,180,.28)!important;background:linear-gradient(135deg,#07305d,#05213f)!important}
+html.new-ui-v1 #fwcModal .fwcHead h3{margin:45px 0 0!important;color:#fff!important;font:900 27px/1.05 Arial,sans-serif!important}
+html.new-ui-v1 #fwcModal .fwcHead .fwcSub{margin:7px 0 0!important;color:#9fc0dc!important;font:400 12.5px/1.35 Arial,sans-serif!important}
+html.new-ui-v1 #fwcModal .fwcHead .fwcBtn{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;padding:0!important;border-radius:13px!important;border:1px solid #3d6e96!important;background:#0a3155!important;color:#fff!important;font-size:24px!important}
+html.new-ui-v1 #fwcModal .fwcTools{display:grid!important;grid-template-columns:1fr 1.07fr!important;gap:9px!important;margin:0 0 11px!important;padding:11px!important;border:1px solid #1f5b8f!important;border-radius:16px!important;background:#062342!important;box-shadow:none!important}
+html.new-ui-v1 #fwcModal .fwcTools>input,html.new-ui-v1 #fwcModal .fwcTools>.sagsFlightSearchBox,html.new-ui-v1 #fwcModal .fwcTools>.fwcBtn,html.new-ui-v1 #fwcModal .fwcTools>.hf4Open{min-width:0!important;width:100%!important;height:52px!important;min-height:52px!important;border-radius:13px!important;box-sizing:border-box!important}
+html.new-ui-v1 #fwcModal .fwcTools>input,html.new-ui-v1 #fwcModal .fwcTools .sagsFlightSearchBox input{border:1px solid #4077a6!important;background:#08294d!important;color:#fff!important;font:700 14px Arial,sans-serif!important}
+html.new-ui-v1 #fwcModal .fwcTools input::placeholder{color:#8aa9c2!important;opacity:1!important}
+html.new-ui-v1 #fwcModal .fwcTools>.fwcBtn{border:1px solid #3e75a3!important;background:#0a3156!important;color:#f3f8fc!important;font:900 13px/1.1 Arial,sans-serif!important}
+html.new-ui-v1 #fwcModal .fwcTools>.hf4Open{border:1px solid #75c2ff!important;background:linear-gradient(135deg,#4fa6e9,#73bdf7)!important;color:#06264b!important;font:900 13px/1.1 Arial,sans-serif!important}
+html.new-ui-v1 #fwcModal #fwcList.v1199Queue{display:block!important;background:transparent!important;color:#fff!important}
+html.new-ui-v1 #fwcModal .v1199Tabs{display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px!important;margin:10px 0 9px!important}
+html.new-ui-v1 #fwcModal .v1199Tab{height:64px!important;min-height:64px!important;padding:0 10px!important;border:1px solid #285d88!important;border-radius:14px!important;background:#082744!important;color:#abc5d9!important;font:900 11.5px/1.15 Arial,sans-serif!important;box-shadow:none!important}
+html.new-ui-v1 #fwcModal .v1199Tab.active{border-color:#22bdf8!important;background:linear-gradient(135deg,#0a3b75,#0a2f60)!important;color:#fff!important;box-shadow:inset 0 0 0 1px rgba(56,189,248,.25)!important}
+html.new-ui-v1 #fwcModal .v1199Count{min-width:29px!important;height:29px!important;margin-left:6px!important;padding:0 8px!important;border-radius:999px!important;background:#78bbf0!important;color:#072649!important;font:900 13px/29px Arial,sans-serif!important}
+html.new-ui-v1 #fwcModal .v1199OwnerNote{margin:0 2px 9px!important;color:#a8c2d6!important;font:700 11.5px/1.35 Arial,sans-serif!important}
+html.new-ui-v1 #fwcModal .v1199FlightGrid{display:grid!important;grid-template-columns:1fr!important;gap:10px!important}
+html.new-ui-v1 #fwcModal .v1199Card{margin:0!important;padding:14px!important;border:1px solid #235b88!important;border-radius:16px!important;background:linear-gradient(135deg,#0a2c50,#07243f)!important;color:#fff!important;box-shadow:none!important}
+html.new-ui-v1 #fwcModal .v1199Title{color:#fff!important;font:900 28px/1.05 Arial,sans-serif!important}
+html.new-ui-v1 #fwcModal .v1199Meta{margin-top:8px!important;color:#a9c5da!important;font:400 13px/1.42 Arial,sans-serif!important}
+html.new-ui-v1 #fwcModal .v1199Tasks{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin:12px 0!important}
+html.new-ui-v1 #fwcModal .v1199TaskBtn{min-width:0!important;min-height:100px!important;padding:11px 10px!important;border:1px solid #2f6899!important;border-radius:13px!important;background:#0c335b!important;color:#fff!important;font:900 13px/1.25 Arial,sans-serif!important;text-align:left!important;box-shadow:none!important}
+html.new-ui-v1 #fwcModal .v1199TaskBtn.done{background:#0a3a3d!important;border-color:#2a6f67!important;color:#d8f8eb!important}
+html.new-ui-v1 #fwcModal .v1199Task{display:inline-flex!important;margin:0 4px 4px 0!important;padding:5px 8px!important;border-radius:999px!important;background:#102f4e!important;color:#bfd5e5!important;font:800 10px/1 Arial,sans-serif!important}
+html.new-ui-v1 #fwcModal .v1199Task.done{background:#0c443b!important;color:#72eab4!important}
+html.new-ui-v1 #fwcModal .v1199DossierSummary,html.new-ui-v1 #fwcModal .v1199PolicySummary{border-color:#2b5f86!important;background:#082a49!important;color:#b9d1e1!important}
+html.new-ui-v1 #fwcModal .v1199DocChip,html.new-ui-v1 #fwcModal .v1199PolicyChip{background:#0d3a56!important;border-color:#39769d!important;color:#d7edf7!important}
+html.new-ui-v1 #fwcModal .v1199PolicyChip.warn{background:#3a321c!important;border-color:#7e6c2d!important;color:#f4dfa1!important}
+html.new-ui-v1 #fwcModal .v1199FlightActions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin-top:11px!important}
+html.new-ui-v1 #fwcModal .v1199Action{width:100%!important;min-height:47px!important;padding:9px!important;border:1px solid #3a6e96!important;border-radius:12px!important;background:#0d365c!important;color:#fff!important;font:900 11.5px/1.15 Arial,sans-serif!important}
+html.new-ui-v1 #fwcModal .v1199Action.finish{background:#0b4a42!important;border-color:#287a70!important;color:#7df0bd!important}
+html.new-ui-v1 #fwcModal .v1199Action.reopenFlight{background:#3c3420!important;border-color:#77693c!important;color:#f3dda3!important}
+html.new-ui-v1 #fwcModal .v1199FlightState{background:#0b443b!important;color:#79edb8!important;border:1px solid #2b786c!important}
+html.new-ui-v1 #fwcModal .v1199Empty{border-color:#2b5d83!important;background:#082846!important;color:#a9c4d8!important}
+html.new-ui-v1 .hf4Modal{background:rgba(0,12,28,.78)!important;backdrop-filter:blur(5px)!important}
+html.new-ui-v1 .hf4Panel{background:#062544!important;border:1px solid #2d6492!important;color:#f5f9fd!important}
+html.new-ui-v1 .hf4Head h3{color:#fff!important}
+html.new-ui-v1 .hf4Note,html.new-ui-v1 .hf4Item small,html.new-ui-v1 .hf4Status{color:#9bbbd2!important}
+html.new-ui-v1 .hf4Item{background:#092b4b!important;border-color:#2b5e87!important;color:#fff!important}
+html.new-ui-v1 .hf4Item b{color:#fff!important}
+html.new-ui-v1 .hf4Row input{background:#08213b!important;color:#fff!important;border-color:#3d6b90!important}
+html.new-ui-v1 .hf4Row button,html.new-ui-v1 .hf4Done{background:#0d5d9d!important;color:#fff!important;border:1px solid #4b87b8!important}
+@media(max-width:390px){html.new-ui-v1 #fwcModal .fwcHead{min-height:132px!important;padding-left:5px!important;padding-right:5px!important}html.new-ui-v1 #fwcModal .fwcHead h3{font-size:24px!important}html.new-ui-v1 #fwcModal .fwcTools{gap:7px!important;padding:9px!important}html.new-ui-v1 #fwcModal .v1199Tab{font-size:10.5px!important;padding:0 7px!important}html.new-ui-v1 #fwcModal .v1199Title{font-size:26px!important}html.new-ui-v1 #fwcModal .v1199TaskBtn{min-height:94px!important;font-size:12px!important}}
+}

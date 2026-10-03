@@ -7,10 +7,7 @@ root.__SAGS_V64100_UI_COPY_CLEANUP__=true;
 const banned=[
   'hoan tat nhap bieu mau',
   'ket thuc chuyen la hai trang thai rieng biet',
-  'trang thai rieng biet',
-  'ban ghi trung khoi man hinh',
-  'du lieu bieu mau khong bi thay doi',
-  'giu nguyen du lieu'
+  'trang thai rieng biet'
 ];
 
 function norm(v){
@@ -28,9 +25,6 @@ function cleanTextNode(node){
   next=next.replace(/Hoàn\s*[Tt]ất\s+nhập\s+biểu\s+mẫu[^.!?\n]*(?:[.!?]|$)/giu,'');
   next=next.replace(/Kết\s+thúc\s+chuyến\s+là\s+hai\s+trạng\s+thái\s+riêng\s+biệt\.?/giu,'');
   next=next.replace(/trạng\s+thái\s+riêng\s+biệt\.?/giu,'');
-  next=next.replace(/đã\s+loại\s+\d+\s+vé\/bản\s+ghi\s+trùng\s+khỏi\s+màn\s+hình\.?/giu,'');
-  next=next.replace(/dữ\s+liệu\s+biểu\s+mẫu\s+không\s+bị\s+thay\s+đổi\.?/giu,'');
-  next=next.replace(/giữ\s+nguyên\s+dữ\s+liệu[^.!?\n]*(?:[.!?]|$)/giu,'');
   next=next.replace(/\s{2,}/g,' ').replace(/^\s*[·•|—–-]\s*/,'').trim();
   node.nodeValue=next;
 }
