@@ -4,7 +4,7 @@ const buf=p=>fs.readFileSync(path.join(root,p));
 const txt=p=>buf(p).toString('utf8');
 const sha=p=>crypto.createHash('sha256').update(buf(p)).digest('hex');
 const expected={
-  'app/boot/32-fixed-ui-rule-v64113.js':'48e2a29c35d2529f0d4003299e5897d3f71277866b09737af6096ec1450ca250',
+  'app/boot/32-fixed-ui-rule-v64113.js':'13098140ce34a54fe9e6ee8325e2eba877d673546157a08a92b64ef60fdd0132',
   'app/modules/fsags208-workspace.v1.js':'56858bc07e206636abb7f923b68eb75f3ad7d7cfd66317e4d7faa8f87e7bd6a6'
 };
 for(const [p,h] of Object.entries(expected))assert.equal(sha(p),h,p+' must match the current verified stability baseline byte-for-byte');
@@ -14,4 +14,4 @@ assert(!/V6\.4\.(119|120|121)/.test(html),'index must not reference later runtim
 assert(!/V6\.4\.(119|120|121)/.test(sw),'service worker must not reference later runtime builds');
 assert(!html.includes('cargo-myflight-ui.v64120.js'),'V6.4.120 route module must stay absent');
 assert(!sw.includes('cargo-myflight-ui.v64120.js'),'V6.4.120 route module must stay absent from PWA bootstrap');
-console.log('Verified core baseline retained; fixed UI observer baseline intentionally advances to V6.4.129 mobile stability.');
+console.log('Verified core baseline retained; fixed UI baseline intentionally advances to V6.4.142 FSAGS54/94 technical-hit exclusion.');
