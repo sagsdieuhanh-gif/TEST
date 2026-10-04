@@ -1,7 +1,7 @@
 /* E-REPORT SAGS V6.4.116 — shared Button Base and fixed UI runtime guard */
 (function(root){
 'use strict';
-const BUILD='V6.4.118-PERF-SCOPED-OBSERVER-01';
+const BUILD='V6.4.129-MOBILE-UI-STABILITY-01';
 if(root.__SAGS_FIXED_UI_RULE_V64113__===BUILD)return;
 root.__SAGS_FIXED_UI_RULE_V64113__=BUILD;
 const $=id=>document.getElementById(id);
@@ -82,6 +82,19 @@ function stripDuplicateCopy(scope=document.body){
 }
 let scheduled=false,fullScanQueued=false,dockQueued=false;
 const pendingScopes=new Set();
+let dockObserver=null,dockObserverTarget=null;
+function needsCopyCleanup(node){
+  const text=String(node?.nodeValue||node?.textContent||'');
+  return /Hoàn\s+tất\s+nhập\s+biểu\s+mẫu|Kết\s+thúc\s+chuyến\s+là\s+hai\s+trạng\s+thái|HỒ\s+SƠ\s+BIỂU\s+MẪU|CHO\s+NHẬN/i.test(text);
+}
+function bindDockObserver(){
+  const row=$('v324FormActions');
+  if(!row||row===dockObserverTarget)return;
+  dockObserver?.disconnect();
+  dockObserverTarget=row;
+  dockObserver=new MutationObserver(()=>schedule(null,{dock:true}));
+  dockObserver.observe(row,{subtree:true,childList:true,attributes:true,attributeFilter:['class','style','hidden']});
+}
 function elementScope(node){
   if(!node)return null;
   if(node.nodeType===Node.TEXT_NODE)node=node.parentElement;
@@ -106,6 +119,7 @@ function apply(){
     if(full){tagLegacyButtons(document);stripDuplicateCopy(document.body);}
     else for(const scope of scopes){tagLegacyButtons(scope);stripDuplicateCopy(scope);}
     if(full||dockQueued)reconcileFormDock();
+    bindDockObserver();
   }catch(e){console.info('Fixed UI rule',e?.message||e);}
   finally{dockQueued=false;}
 }
@@ -117,20 +131,18 @@ function schedule(node=null,{full=false,dock=false}={}){
 }
 const initial=()=>schedule(document.body,{full:true,dock:true});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initial,{once:true});else initial();
+// Global UI changes only need structural/text observation. Attribute visibility changes
+// are scoped to the form dock below so overlays, keyboard resize and live status updates
+// cannot trigger a full-document fixed-UI reconciliation loop on mobile.
 new MutationObserver(records=>{
   for(const r of records){
     if(r.type==='childList'){
       if(r.addedNodes?.length)for(const n of r.addedNodes)queueScope(n);
       else queueScope(r.target);
-    }else if(r.type==='characterData')queueScope(r.target?.parentElement);
-    else if(r.type==='attributes'){
-      // Ignore our own normalization-only class/style echo once the node is already stable.
-      if(r.target?.dataset?.sagsUiNormalized==='1'&&r.target?.classList?.contains('sagsUiButton')&&!touchesDock(r.target))continue;
-      queueScope(r.target);
-    }
+    }else if(r.type==='characterData'&&needsCopyCleanup(r.target))queueScope(r.target?.parentElement);
   }
   if(pendingScopes.size||dockQueued)schedule();
-}).observe(document.documentElement,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['class','style']});
+}).observe(document.documentElement,{childList:true,subtree:true,characterData:true});
 root.addEventListener('pageshow',()=>schedule(document.body,{full:true,dock:true}),{passive:true});
 root.addEventListener('resize',()=>schedule(null,{dock:true}),{passive:true});
 })(window);

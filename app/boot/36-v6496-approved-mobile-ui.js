@@ -36,7 +36,12 @@ function apply(){
     });
   }
 }
-function schedule(){requestAnimationFrame(()=>requestAnimationFrame(apply))}
+let scheduled=false;
+function schedule(){
+  if(scheduled)return;
+  scheduled=true;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{scheduled=false;apply()}));
+}
 document.addEventListener('DOMContentLoaded',schedule,{once:true});
 document.addEventListener('click',e=>{
   if(e.target.closest('#v157Drawer,#sagsNavigationHeader'))setTimeout(apply,20);
