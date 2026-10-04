@@ -52,3 +52,12 @@ assert(fixed.includes('V6.4.139 · OPERATIONAL FORM FIELD SAFETY'),'form field s
 assert(fixed.includes('background:#fff!important;'),'operational paper fields must stay white');
 assert(fixed.includes('accent-color:#123a72!important;'),'checkbox/radio state must stay visible');
 console.log('V6.4.139 field readability + balanced desktop toolbar guard passed.');
+
+const workflow=read('app/modules/workflow-cleanup.v6444.js');
+assert(workflow.includes("const desktopMyFlight=e.id==='fwcModal'&&matchMedia('(min-width:1024px)').matches"),'desktop My Flight must be special-cased in the overlay normalizer');
+assert(workflow.includes("'left':'var(--sags-desktop-sidebar,268px)'"),'overlay manager must preserve the desktop sidebar offset');
+assert(workflow.includes("'width':'auto'"),'desktop My Flight overlay must not be forced to width 100 percent');
+assert(fixed.includes('V6.4.140 · RUNTIME FIELD LIGHT SAFETY'),'runtime field light safety missing');
+assert(fixed.includes('.v440RuntimeField'),'runtime field selector must be covered');
+assert(fixed.includes('[data-v440-bind]'),'registry/runtime bound inputs must be covered');
+console.log('V6.4.140 overlay manager + runtime field safety guard passed.');
