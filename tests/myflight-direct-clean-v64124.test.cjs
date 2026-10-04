@@ -1,0 +1,14 @@
+const fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const roster=read('app/modules/daily-roster.v502.js');
+const css=read('app/styles/fixed-ui-rule-v64113.css');
+const version=JSON.parse(read('version.json'));
+assert.equal(version.version,'V6.4.124');
+assert(roster.includes('class="v1199FormTile v1199DirectTask'),'My Flight form tiles must be direct task buttons');
+assert(roster.includes("host.querySelectorAll('.v1199DirectTask').forEach(btn=>btn.onclick=()=>openTask("),'direct tiles must call the exact assignment open/receive flow');
+assert(roster.includes("sub.hidden=true;sub.style.display='none'"),'My Flight descriptive subtitle must be hidden');
+assert(css.includes('#sagsV61DraftStatus#sagsV61DraftStatus'),'local draft status badge must be hidden');
+assert(css.includes('#fwcModal .fwcHead #v477Close'),'redundant My Flight header MENU must be hidden');
+assert(css.includes('margin-bottom:calc(var(--sags-form-dock-height,56px) + var(--sags-nav-bar-height,60px) + env(safe-area-inset-bottom) + 28px)'),'visible form sheet must have bottom clearance above fixed bars');
+assert(css.includes('pointer-events:none!important'),'hidden draft/menu controls must not retain a tappable area');
+console.log('V6.4.124 My Flight direct/mobile clearance regression guard passed.');
