@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.115",
-  "build": "V6.4.115-20261004-MOBILE-RELEASE-SYNC-01",
-  "strategy": "TEST atomic release + build-unique PWA cache + mixed-build guard",
+  "version": "V6.4.116",
+  "build": "V6.4.116-20261004-FIXED-UI-AUDIT-02",
+  "strategy": "Ordered source bundles + unified mobile navy + targeted UI observers",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "fc4dc7514e696907679a193148abf632d69375f6ac33a744d2a851466900a0e3",
-      "bytes": 80991
+      "sha256": "b2cb8280d9684f1555b99a829284cb024570bd895fdd707e0f50f3e0cabcd248",
+      "bytes": 81654
     },
     "./service-worker.js": {
-      "sha256": "a7f8a8321728c2fd690bf39f35b4ffe69c68a58af4c1225843c88fb387d42925",
-      "bytes": 20683
+      "sha256": "0de292bf9b2f511d79f6e932bc84262143d06264c7683ec2bad0974b7d755978",
+      "bytes": 20751
     },
     "./version.json": {
-      "sha256": "cf1d8036aba5e556d06daa9d195453355ab60642dc273a1209089d5eb93b41d0",
-      "bytes": 669
+      "sha256": "05784da7615eedc712814cd27ee9638a4cac86996d47e6bec93486b0b341c193",
+      "bytes": 723
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -206,8 +206,8 @@
       "bytes": 1870
     },
     "./app/modules/workflow-cleanup.v6444.js": {
-      "sha256": "b40f41e3504f859754c45bfbd1849a40d94c70e61af43558ee2af42dc8fef81b",
-      "bytes": 22504
+      "sha256": "1b68e0f03773bbb7779b82b71a1aa100cc6c0b3b464ae75853aa5b0c36708072",
+      "bytes": 22686
     },
     "./app/modules/airline-form-policy.v1.js": {
       "sha256": "d92ca37647a4697299f767983b1435f7df6cf88ee6718073bf383ab6fde2a653",
@@ -334,8 +334,8 @@
       "bytes": 31645
     },
     "./app/generated/startup-bundle-4.js": {
-      "sha256": "ef5f6b659609e4968b10d9de3dc327afa35941f6d4f65e66b11f987b239c0b85",
-      "bytes": 178385
+      "sha256": "9e2983821134aaae3aa6ef38df29506a66897e1422a000bd5dc4cb1f1871008a",
+      "bytes": 178441
     },
     "./app/styles/mobile-navy-v64106.css": {
       "sha256": "e8abcc1ef135517585287c521ff6506d0d874c7b2f22c1feb31f3ebdc0a031e0",
@@ -530,12 +530,12 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "b86cd904f28cd3b08422e854919f64630ccb339b90a3a361de818df292825efa",
-      "bytes": 13899
+      "sha256": "db31046d57e2270fe1218c4c76fc06f3cf0d39732d8ca40a433bcf30a47349fb",
+      "bytes": 24186
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
-      "sha256": "64253edb45c85cff7b7ade88b4cad91b89db4444a69fd6800276dfe42a1031e3",
-      "bytes": 3634
+      "sha256": "84ca4908b71faf7ed43dcab6efde747b63cd08da7c05e02afa6a7564f11be7ac",
+      "bytes": 5809
     },
     "./app/boot/25-v1154-update-detector-r2.js": {
       "sha256": "68c7ed26f0f180b4193cd71554a0214bddded76fe3f731132ec83895c7ff18c9",

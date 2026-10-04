@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.115",
-  "displayVersion": "V6.4.115",
-  "label": "V6.4.115 - MOBILE RELEASE SYNC",
-  "build": "V6.4.115-20261004-MOBILE-RELEASE-SYNC-01",
-  "releasedAt": "2026-10-04T13:45:00+07:00",
-  "type": "stability",
-  "base": "V6.4.114-20261004-FIXED-UI-AUDIT-01",
+  "version": "V6.4.116",
+  "displayVersion": "V6.4.116",
+  "label": "V6.4.116 - FIXED UI RULE",
+  "build": "V6.4.116-20261004-FIXED-UI-AUDIT-02",
+  "releasedAt": "2026-10-04T14:05:24+07:00",
+  "type": "ui",
+  "base": "V6.4.115-20261004-MOBILE-RELEASE-SYNC-01",
   "updatePolicy": "required",
-  "notes": "Fix mobile update integrity: every release now gets build-unique CacheStorage; cached UI assets are checksum-verified before use; activated verified workers claim clients; index detects controller/build mismatch and enters repair instead of showing a new version with old UI.",
-  "message": "V6.4.115: mobile release cache and controller sync fix."
+  "notes": "Shared Button Base with cascade-layer priority, compact 12px geometry, readable typography and isolated accent icons. Preserve signature and permission-hidden actions; fix A/C Limits overflow, mobile/tablet navigation clearance and print visibility. Add measured browser audit across required mobile sizes, tablet and desktop.",
+  "message": "V6.4.116: đồng bộ nút và toolbar theo FIXED UI RULE."
 }

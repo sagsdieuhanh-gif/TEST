@@ -1,12 +1,12 @@
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),write=(p,s)=>fs.writeFileSync(path.join(root,p),s),exists=p=>fs.existsSync(path.join(root,p));
-const VERSION='V6.4.115',BUILD='V6.4.115-20261004-MOBILE-RELEASE-SYNC-01',LABEL='V6.4.115 - MOBILE RELEASE SYNC',RELEASED='2026-10-04T13:45:00+07:00';
+const VERSION='V6.4.116',BUILD='V6.4.116-20261004-FIXED-UI-AUDIT-02',LABEL='V6.4.116 - FIXED UI RULE',RELEASED='2026-10-04T14:05:24+07:00';
 const old=JSON.parse(read('version.json')),oldV=String(old.version||''),oldB=String(old.build||'');
 if(!oldV||!oldB)throw Error('Current version metadata missing');
 let index=read('index.html').split(oldB).join(BUILD).split(oldV).join(VERSION);
 assert(index.includes('name="sags-release-build" content="'+BUILD+'"'));assert(index.includes('name="sags-release-version" content="'+VERSION+'"'));
 write('index.html',index);
-const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'stability',base:oldB===BUILD?old.base:oldB,updatePolicy:'required',notes:'Fix mobile update integrity: every release now gets build-unique CacheStorage; cached UI assets are checksum-verified before use; activated verified workers claim clients; index detects controller/build mismatch and enters repair instead of showing a new version with old UI.',message:VERSION+': mobile release cache and controller sync fix.'};
+const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'ui',base:oldB===BUILD?old.base:oldB,updatePolicy:'required',notes:'Shared Button Base with cascade-layer priority, compact 12px geometry, readable typography and isolated accent icons. Preserve signature and permission-hidden actions; fix A/C Limits overflow, mobile/tablet navigation clearance and print visibility. Add measured browser audit across required mobile sizes, tablet and desktop.',message:VERSION+': shared Button Base and fixed UI audit.'};
 write('version.json',JSON.stringify(version,null,2)+'\n');
 let sw=read('service-worker.js').split(oldB).join(BUILD).split(oldV).join(VERSION);
 const cacheId=BUILD.toLowerCase().replace(/[^a-z0-9-]/g,'');

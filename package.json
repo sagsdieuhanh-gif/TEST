@@ -6,7 +6,8 @@
     "test:browser": "node tests/browser/dossier.cjs",
     "build:ui": "node tools/build-ui-assets.cjs",
     "check:ui": "node tools/build-ui-assets.cjs --check",
-    "release:assets": "node tools/refresh-release-assets.cjs"
+    "release:assets": "node tools/refresh-release-assets.cjs",
+    "test:ui": "node tests/browser/mobile-navy.cjs && node tests/browser/fixed-ui-audit.cjs"
   },
   "devDependencies": {
     "acorn": "8.18.0",

@@ -62,3 +62,11 @@ Implementation authority for current release:
 - Cache hit của executable/CSS phải được đối chiếu checksum của manifest hiện hành; cache sai checksum phải bị loại bỏ và tải lại.
 - Service worker sau khi activate và vượt qua xác minh release phải claim client để tránh tình trạng “version mới nhưng giao diện/nội dung bên trong vẫn là bản cũ”.
 - Mọi thay đổi UI/PWA release phải có regression guard cho cache identity và mixed-build protection.
+
+
+## Xác nhận của người quản lý — 04/10/2026
+- Văn bản đầy đủ, bắt buộc: `FIXED_UI_RULE.md`.
+- Giữ nút **Ký** và chức năng chữ ký hiện có, theo xác nhận trực tiếp của người quản lý. Hàng thao tác hiện tại: **Nhập nhanh | Ký | Xuất PDF | Hoàn tất**, tùy quyền và trạng thái biểu mẫu.
+- Trên màn hình 430px trở xuống, nhãn Nhập nhanh được rút gọn thành **Nhập** để giữ chữ 13px và icon 18px; tên trợ năng đầy đủ vẫn là Nhập nhanh.
+- `SAGSButtonBase.create/enhance` là API dùng chung cho nút mới/cũ. Các nút động kế thừa lớp `sagsUiButton`.
+- CSS layer `sags-fixed-ui` có quyền ưu tiên các thuộc tính UI chuẩn trước CSS lịch sử; không được ghi đè trạng thái ẩn theo quyền hoặc trạng thái hoàn tất.
