@@ -2,7 +2,7 @@
   "schema": 2,
   "version": "V6.4.122",
   "build": "V6.4.122-20261004-ROLLBACK118-01",
-  "strategy": "TEST atomic release + verified V6.4.118 runtime rollback + fresh cache",
+  "strategy": "TEST atomic release + build-unique PWA cache + mixed-build guard",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
