@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.124",
-  "build": "V6.4.124-20261004-MYFLIGHT-DIRECT-CLEAN-01",
-  "strategy": "TEST atomic release + My Flight direct task + mobile bottom clearance + hidden draft badge",
+  "version": "V6.4.125",
+  "build": "V6.4.125-20261004-CLEAN-UPDATE-MOBILE-01",
+  "strategy": "TEST atomic release + mandatory clean old shell + compact mobile update UI",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "10e820ef0ab3acf890970fdb9675e0056c77ea93f083ac5ed35cef75807b5d19",
-      "bytes": 81576
+      "sha256": "d9a5a1a660d63fd11b6f77b2666450ee87561cd5fe65e596ac3dfd22d3d309b0",
+      "bytes": 81503
     },
     "./service-worker.js": {
-      "sha256": "a5a84839d5bd22eba325a8f15b6caacf0cfd8bdf34b5ea5af7ac8416ab61f83f",
-      "bytes": 22001
+      "sha256": "e0ea02cfc8977a3d1979de039d09108419739e34143685aa53aa7e5fd262d7b2",
+      "bytes": 22037
     },
     "./version.json": {
-      "sha256": "794b0bf2f9bdf74089c7e5e02ca18303ae4a84f33825df24452504401853a061",
-      "bytes": 984
+      "sha256": "754e6fd745f382208db9df78366bccc48c89df0c930e54ee629016c9f4ff0f00",
+      "bytes": 866
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -566,8 +566,12 @@
       "bytes": 8462
     },
     "./repair.html": {
-      "sha256": "ef9bbaf64f2dfe797c39135ada88d8ef2808303130ddb30b361e0d5c484cb362",
-      "bytes": 7014
+      "sha256": "f0e77f347bb6aba7210d3f308137d5b33757ec2c7c0c45a26cd26fdc45beac81",
+      "bytes": 6598
+    },
+    "./app/modules/update-ui-clean.v64125.js": {
+      "sha256": "edd06a1f97c6c822e1562db1c8ddbb9d6985e7344c436fcfb1e8a3b86326836b",
+      "bytes": 2573
     }
   }
 }
