@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.127",
-  "displayVersion": "V6.4.127",
-  "label": "V6.4.127 - RESTORE FORM DOCK + CONFIRM OPEN",
-  "build": "V6.4.127-20261004-RESTORE-FORM-DOCK-CONFIRM-01",
-  "releasedAt": "2026-10-04T21:28:00+07:00",
-  "type": "stability",
-  "base": "V6.4.126-20261004-REMOVE-LEGACY-TOOLBAR-01",
+  "version": "V6.4.128",
+  "displayVersion": "V6.4.128",
+  "label": "V6.4.128 - DESKTOP LAYOUT + SAFE FORM OPEN",
+  "build": "V6.4.128-20261004-DESKTOP-LAYOUT-CONFIRM-01",
+  "releasedAt": "2026-10-04T21:36:00+07:00",
+  "type": "ui",
+  "base": "V6.4.127-20261004-RESTORE-FORM-DOCK-CONFIRM-01",
   "updatePolicy": "required",
-  "notes": "Restore the operational form dock after V6.4.126 removed its legacy DOM anchor. Keep only an off-screen compatibility toolbar anchor with no legacy action buttons. Remove CHUYẾN buttons from both operational navigation generators. Direct My Flight form tiles now require explicit confirmation before receiving/opening the assignment. Preserve V6.4.125 clean-update behavior.",
-  "message": "V6.4.127: khôi phục hàng NHẬP/KÝ/XUẤT PDF/HOÀN TẤT, xóa nút CHUYẾN và yêu cầu xác nhận trước khi mở biểu mẫu."
+  "notes": "Add a dedicated desktop workspace instead of stretching the mobile layout: permanent left sidebar on desktop home, centered max-width content, multi-column My Flight cards, desktop-sized dialogs, and a compact top/right operational form command bar. Retain the restored NHẬP/KÝ/XUẤT PDF/HOÀN TẤT dock behavior on mobile, keep CHUYẾN removed from operational navigation, and require confirmation before exact My Flight form receive/open.",
+  "message": "V6.4.128: giao diện PC riêng, không kéo giãn mobile; giữ lại thanh NHẬP/KÝ/XUẤT PDF/HOÀN TẤT, bỏ CHUYẾN và xác nhận trước khi mở biểu mẫu."
 }
