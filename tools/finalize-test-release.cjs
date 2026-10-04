@@ -1,12 +1,12 @@
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),write=(p,s)=>fs.writeFileSync(path.join(root,p),s),exists=p=>fs.existsSync(path.join(root,p));
-const VERSION='V6.4.142',BUILD='V6.4.142-20261005-FSAGS5494-HITBOX-EXCLUSION-01',LABEL='V6.4.142 - FSAGS54/94 HITBOX FIX',RELEASED='2026-10-05T00:43:00+07:00';
+const VERSION='V6.4.143',BUILD='V6.4.143-20261005-MOBILE-UNLOCK-SAFE-01',LABEL='V6.4.143 - MOBILE UNLOCK SAFE',RELEASED='2026-10-05T00:49:00+07:00';
 const old=JSON.parse(read('version.json')),oldV=String(old.version||''),oldB=String(old.build||'');
 if(!oldV||!oldB)throw Error('Current version metadata missing');
 let index=read('index.html').split(oldB).join(BUILD).split(oldV).join(VERSION);
 assert(index.includes('name="sags-release-build" content="'+BUILD+'"'));assert(index.includes('name="sags-release-version" content="'+VERSION+'"'));
 write('index.html',index);
-const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'ui',base:'V6.4.141-20261005-FSAGS5494-OVERLAY-FIX-01',updatePolicy:'required',notes:'Definitive FSAGS54/94 dark-field fix. Technical sags5494DirectHit buttons were being picked up by the global fixed-ui normalizer and tagged as sagsUiButton, whose high-specificity navy background overrode the intended transparent hitbox. Fixed-ui now excludes and repairs these technical controls, while a high-specificity CSS failsafe guarantees transparent, borderless, shadowless hitboxes. Direct field coordinates, tap handling, form data and PDF rendering are unchanged.',message:VERSION+': loại hẳn hitbox kỹ thuật 54/94 khỏi theme nút UI; dứt điểm các field bị bôi đen.'};
+const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'ui',base:'V6.4.141-20261005-FSAGS5494-OVERLAY-FIX-01',updatePolicy:'required',notes:'Mobile post-login unlock safety while retaining the FSAGS54/94 hitbox exclusion. Touch blockers are cleared before MENU enhancement, MENU insertion only uses a direct child anchor, and any navigation enhancement error is contained so it cannot leave an invisible layer blocking the phone screen. The 54/94 technical hitboxes remain excluded from the fixed UI theme.',message:VERSION+': giữ sửa field 54/94 và sửa mobile đăng nhập xong không thao tác được do lỗi DOM MENU làm gián đoạn touch unlock.'};
 write('version.json',JSON.stringify(version,null,2)+'\n');
 let sw=read('service-worker.js').split(oldB).join(BUILD).split(oldV).join(VERSION);
 const cacheId=BUILD.toLowerCase().replace(/[^a-z0-9-]/g,'');
@@ -18,7 +18,7 @@ sw=sw.replace(/const SAGS_BOOTSTRAP=\[[^\n]*\];/,'const SAGS_BOOTSTRAP='+JSON.st
 assert(sw.includes("const BUILD='"+BUILD+"'"));assert(sw.includes("const CACHE_NAME='sags-app-shell-"+cacheId+"';"),'cache name must derive from current build');assert(sw.includes("const META_CACHE_NAME='sags-app-meta-"+cacheId+"';"),'meta cache name must derive from current build');write('service-worker.js',sw);
 // Match .gitattributes before measuring bytes, including Windows working copies.
 const hash=p=>{const file=path.join(root,p);let b=fs.readFileSync(file);if(/\.(html|js|css|json|webmanifest|cjs)$/.test(p)){const normalized=Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'));if(!normalized.equals(b)){fs.writeFileSync(file,normalized);b=normalized}}return{sha256:crypto.createHash('sha256').update(b).digest('hex'),bytes:b.length}};
-const mp='asset-manifest.json',m=JSON.parse(read(mp));m.version=VERSION;m.build=BUILD;m.strategy='TEST atomic release + overlay-manager desktop My Flight exception + runtime field light safety + balanced V6.4.88 action-row geometry with new UI visuals + mandatory clean old shell';m.bootstrapChanged=true;m.assets=m.assets||{};
+const mp='asset-manifest.json',m=JSON.parse(read(mp));m.version=VERSION;m.build=BUILD;m.strategy='TEST atomic release + mobile post-login unlock fail-safe + FSAGS54/94 hitbox exclusion + mandatory clean old shell';m.bootstrapChanged=true;m.assets=m.assets||{};
 for(const k of Object.keys(m.assets)){const p=k.replace(/^\.\//,'');if(exists(p))m.assets[k]=hash(p);else delete m.assets[k]}
 for(const k of uniq([...bootstrap,'./asset-manifest.json','./repair.html','./app/modules/flight-governance.v1.js','./app/boot/05-legacy.js','./app/boot/25-v1154-update-detector-r2.js','./data/form-configuration.json','./form-configuration.json'])){const p=k.replace(/^\.\//,'');if(exists(p)&&k!=='./asset-manifest.json')m.assets[k]=hash(p)}
 assert(m.assets['./repair.html']?.sha256&&Number.isSafeInteger(Number(m.assets['./repair.html']?.bytes)),'repair page must be present in every verified release');
@@ -94,3 +94,5 @@ write(mp,JSON.stringify(m,null,2)+'\n');
 // fsags5494-hitbox-exclusion-v64142-retry
 
 // fsags5494-hitbox-exclusion-v64142-baseline
+
+// mobile-unlock-safe-v64143

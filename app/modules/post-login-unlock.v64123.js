@@ -39,7 +39,8 @@ function ensureMobileMenuButton(){
     btn.setAttribute('aria-controls','v157Drawer');
     btn.textContent='☰ MENU';
     const brand=nav.querySelector('.sagsNavBrand');
-    nav.insertBefore(btn,brand||nav.firstChild);
+    const anchor=brand?.parentElement===nav?brand:(nav.firstElementChild||null);
+    nav.insertBefore(btn,anchor);
   }
   btn.onclick=e=>{
     e?.preventDefault?.();e?.stopPropagation?.();
@@ -60,7 +61,8 @@ function ensureMobileMenuButton(){
 function unlockTouchSurface({resetState=false}={}){
   if(!document.body?.classList.contains('v157-authenticated'))return false;
   const body=document.body;
-  ensureMobileMenuButton();
+  // Clear inherited blockers first. MENU enhancement must never abort the
+  // authenticated-screen unlock on slower/mobile DOM layouts.
   // Clear inherited blockers exactly once. Later safety passes must never
   // close a drawer/modal that the user has intentionally opened.
   if(resetState&&body.classList.contains('v157-home')){
@@ -90,13 +92,14 @@ function unlockTouchSurface({resetState=false}={}){
     e.style.setProperty('pointer-events','auto','important');
     e.style.removeProperty('visibility');
   }
+  try{ensureMobileMenuButton()}catch(e){console.warn('V6.4.143 MENU fallback',e?.message||e)}
   return true;
 }
 let touchUnlockEpoch=0;
 function armTouchUnlock(){
   const epoch=++touchUnlockEpoch;
-  const safeRun=()=>{if(epoch!==touchUnlockEpoch)return;try{unlockTouchSurface({resetState:false})}catch(e){console.warn('V6.4.134 touch unlock',e?.message||e)}};
-  try{unlockTouchSurface({resetState:true})}catch(e){console.warn('V6.4.134 initial touch unlock',e?.message||e)}
+  const safeRun=()=>{if(epoch!==touchUnlockEpoch)return;try{unlockTouchSurface({resetState:false})}catch(e){console.warn('V6.4.143 touch unlock',e?.message||e)}};
+  try{unlockTouchSurface({resetState:true})}catch(e){console.warn('V6.4.143 initial touch unlock',e?.message||e)}
   requestAnimationFrame(safeRun);
   [80,260,900,1800].forEach(ms=>setTimeout(safeRun,ms));
 }

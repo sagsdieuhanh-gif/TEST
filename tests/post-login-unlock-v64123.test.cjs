@@ -30,3 +30,11 @@ assert(hotfix.includes("btn.id='sagsMobileMenuBtn'"),'mobile MENU fallback needs
 assert(hotfix.includes("if(typeof root.v157OpenMenu==='function')root.v157OpenMenu()"),'mobile MENU must call the canonical drawer opener');
 assert(hotfix.includes("body.v157-authenticated.v157-home #sagsGoStartBtn{display:none!important}"),'redundant Home button must hide on mobile Home');
 console.log('V6.4.134 guaranteed mobile MENU entry guard passed.');
+
+assert(hotfix.includes("const anchor=brand?.parentElement===nav?brand:(nav.firstElementChild||null)"),'mobile MENU insertion must only use a direct-child anchor');
+const v143Start=hotfix.indexOf("function unlockTouchSurface({resetState=false}={})");
+const v143Blocker=hotfix.indexOf("body.classList.remove('v157-drawer-open'",v143Start);
+const v143Menu=hotfix.indexOf("try{ensureMobileMenuButton()}",v143Start);
+assert(v143Blocker>=0&&v143Menu>v143Blocker,'touch blockers must clear before MENU enhancement');
+assert(hotfix.includes("catch(e){console.warn('V6.4.143 MENU fallback'"),'MENU enhancement failure must be contained');
+console.log('V6.4.143 mobile unlock fail-safe guard passed.');
