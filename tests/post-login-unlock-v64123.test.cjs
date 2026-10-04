@@ -1,0 +1,13 @@
+const fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const html=read('index.html'),hotfix=read('app/modules/post-login-unlock.v64123.js');
+assert(html.includes('post-login-unlock.v64123.js'),'post-login unlock module must load from index.html');
+assert(html.indexOf('post-login-unlock.v64123.js')>html.indexOf('fixed-ui-rule-runtime-v64113'),'post-login unlock must load late, after the shared UI runtime');
+assert(hotfix.includes('firebasePersonalAccountLogin=patchedLogin'),'real Firebase login function must be replaced');
+assert(hotfix.includes("m.style.setProperty('display','none','important')"),'successful login must forcibly close the full-screen login overlay');
+assert(hotfix.includes("document.body?.classList.add('v157-authenticated','v157-home')"),'successful login must enter authenticated Home in-place');
+assert(hotfix.includes('restoreWatchdog'),'cached-session restore needs a watchdog');
+assert(hotfix.includes('Khôi phục phiên đăng nhập mất quá lâu'),'watchdog must return a stalled blank restore to a usable login card');
+assert(!hotfix.includes('location.reload'),'post-login hotfix must never force a second page reload');
+assert(hotfix.includes('testTransition'),'browser regression hook must exercise the actual unlock transition');
+console.log('V6.4.123 post-login unlock regression guard passed.');
