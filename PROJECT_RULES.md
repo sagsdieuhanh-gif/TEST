@@ -88,3 +88,16 @@ Implementation authority for current release:
 - MutationObserver/UI patch không được quét lại toàn bộ DOM cho mỗi mutation. Chỉ xử lý vùng DOM thay đổi; full scan chỉ dùng ở initial/pageshow hoặc fallback có giới hạn.
 - Danh sách My Flight/Daily Roster không được phát sinh hàng loạt Firebase reads không giới hạn. Chỉ đọc field thực sự dùng và phải có concurrency cap cho status leaves.
 - Mọi tối ưu hiệu năng phải có regression guard, không được đánh đổi tính đúng của roster, form state, chữ ký, PDF, quyền truy cập hoặc release/PWA consistency.
+
+
+## Cross-role My Flight UI contract
+- Điều hành, CBTT, PVHK và Kho hàng phải dùng **cùng một My Flight shell/card/tile/button geometry**. Không tạo tiêu đề, card hoặc màn hình danh sách riêng chỉ vì khác vai trò.
+- Khác biệt vai trò chỉ nằm ở **phạm vi dữ liệu và nghiệp vụ**: ĐH/CBTT/PVHK thấy chuyến được phân theo roster; Kho hàng thấy toàn bộ chuyến có FSAGS 208 đủ điều kiện và được tìm theo số hiệu chuyến.
+- Kho hàng vẫn phải hiển thị tiêu đề `MY FLIGHT`, cùng tab `ĐANG LÀM / CHUYẾN ĐÃ HOÀN TẤT`, cùng card chuyến và cùng nút `HỒ SƠ CHUYẾN` như các vai trò khai thác.
+- Không được tái sử dụng giao diện legacy `DANH SÁCH CHUYẾN BAY` làm shell riêng cho Kho hàng.
+
+## Quick Input UI contract
+- `NHẬP NHANH` phải dùng cùng hệ navy/blue, border 1px, radius 10–12px và button height 40px như FIXED UI RULE.
+- Trên mobile Quick Input phải là panel gọn, không chiếm gần toàn màn hình nếu không cần; hàng dữ liệu và ô giờ phải ưu tiên mật độ hiển thị.
+- Không dùng nút quay lại dạng mũi tên trong Quick Input; chỉ giữ nút đóng gọn rõ nghĩa.
+- Footer Quick Input ưu tiên một hàng action gọn khi đủ chiều rộng, không tạo CTA cao hoặc nhiều hàng chiếm màn hình.
