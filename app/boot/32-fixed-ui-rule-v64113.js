@@ -164,6 +164,8 @@ new MutationObserver(records=>{
       else queueScope(r.target);
     }else if(r.type==='characterData')queueScope(r.target?.parentElement);
     else if(r.type==='attributes'){
+      // Focused editors must never be pulled into UI-normalization churn while typing.
+      if(activeEditor(r.target)&&!touchesDock(r.target))continue;
       // Ignore our own normalization-only class/style echo once the node is already stable.
       if(r.target?.dataset?.sagsUiNormalized==='1'&&r.target?.classList?.contains('sagsUiButton')&&!touchesDock(r.target))continue;
       queueScope(r.target);
