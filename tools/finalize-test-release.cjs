@@ -90,3 +90,5 @@ write(mp,JSON.stringify(m,null,2)+'\n');
 // fsags5494-overlay-fix-v64141
 
 // fsags5494-hitbox-exclusion-v64142
+
+// fsags5494-hitbox-exclusion-v64142-retry
