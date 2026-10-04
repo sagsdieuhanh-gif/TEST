@@ -4,13 +4,14 @@ const scripts=[...h.matchAll(/<script\b[^>]*src=["'](\.\/[^"'?]+)[^"']*["'][^>]*
 const css=[...h.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["'](\.\/[^"'?]+)[^"']*["'][^>]*>/g)].map(m=>m[1]);
 assert.equal(new Set(scripts).size,scripts.length,'startup must not execute same local script twice');
 const sizes=scripts.map(p=>({p,bytes:fs.statSync(path.join(root,p)).size})),bytes=sizes.reduce((n,x)=>n+x.bytes,0),max=sizes.reduce((a,b)=>a.bytes>b.bytes?a:b,{p:'',bytes:0});
-assert(scripts.length<=52,'startup local scripts <= 52 after runtime cache-granularity split, got '+scripts.length);
+assert(scripts.length<=53,'startup local scripts <= 53 (includes late Cargo shared-UI route authority), got '+scripts.length);
 assert(css.length<=16,'startup stylesheets <= 16 (includes final FIXED UI override), got '+css.length);
 assert(bytes<2700000,'startup JS budget < 2.7MB, got '+bytes);
 assert(max.bytes<400000,'no executed startup JS asset may reach 400KB; largest '+max.p+' = '+max.bytes);
 assert(scripts.includes('./app/modules/flight-governance.v1.js'),'governance engine must load');
 assert(scripts.some(p=>p.includes('startup-bundle-')),'safe IIFE bundles must be active');
 assert(!scripts.includes('./app/generated/startup-bundle-1.js'),'runtime 2-5 must not be rebound into one large startup bundle');
+assert(scripts.includes('./app/boot/33-v64120-cargo-myflight-route.js'),'Cargo exact-UI route authority must be part of startup');
 for(const n of [2,3,4,5])assert(scripts.includes('./app/generated/runtime-'+n+'.js'),'runtime-'+n+' must load independently for cache reuse');
 assert(!scripts.some(p=>/app\/core\/(?:app\.v503|runtime\.v503hf2\.bundle)\.js$/.test(p)),'source monoliths must never execute in startup');
 assert(css.some(p=>p.includes('legacy-ui-bundle-')),'legacy CSS clusters must be bundled');
