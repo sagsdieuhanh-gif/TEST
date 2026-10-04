@@ -4,6 +4,7 @@ const html=read('index.html');
 const desktop=read('app/styles/desktop-shell-v64128.css');
 const roster=read('app/modules/daily-roster.v502.js');
 const runtime=read('app/generated/runtime-1.js');
+const app=read('app/core/app.v503.js');
 const sw=read('service-worker.js');
 const version=JSON.parse(read('version.json'));
 
