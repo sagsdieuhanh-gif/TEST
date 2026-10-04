@@ -23,3 +23,5 @@ write(mp,JSON.stringify(m,null,2)+'\n');
 // UI release finalizer intentionally does not assert carrier routing; airline policy has its own regression tests.\nconsole.log(JSON.stringify({version:VERSION,build:BUILD,bootstrapAssets:bootstrap.length,localScripts:scripts.length,stylesheets:styles.length},null,2));
 
 // standalone-gate-20261003-0732
+
+// ui-audit-gate-retry-20261004-0630
