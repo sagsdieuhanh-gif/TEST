@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.140",
-  "displayVersion": "V6.4.140",
-  "label": "V6.4.140 - DESKTOP FIELD SAFE",
-  "build": "V6.4.140-20261005-DESKTOP-FIELD-SAFE-01",
-  "releasedAt": "2026-10-05T00:26:00+07:00",
+  "version": "V6.4.141",
+  "displayVersion": "V6.4.141",
+  "label": "V6.4.141 - FSAGS54/94 OVERLAY FIX",
+  "build": "V6.4.141-20261005-FSAGS5494-OVERLAY-FIX-01",
+  "releasedAt": "2026-10-05T00:39:00+07:00",
   "type": "ui",
-  "base": "V6.4.139-20261005-DESKTOP-FORM-UI-01",
+  "base": "V6.4.140-20261005-DESKTOP-FIELD-SAFE-01",
   "updatePolicy": "required",
-  "notes": "Root desktop/form-field fix. The global overlay normalizer now special-cases desktop My Flight so it no longer overwrites the sidebar workspace position with inline full-screen styles. Generic runtime form fields and bound inputs/check controls are explicitly protected from dark shell styling while preserving transparent paper overlays and readable black text. Retains balanced V6.4.88-style two-row desktop action geometry with the new UI visual language.",
-  "message": "V6.4.140: sửa gốc My Flight PC bị overlay ép full-screen và field biểu mẫu bị bôi đen; giữ bố cục nút cân đối kiểu V6.4.88 với UI mới."
+  "notes": "Root FSAGS54/94 field-overlay fix. The dark blocks were not form inputs: they were sags5494DirectHit button hitboxes inheriting the new global button skin because their transparent background was not important. Direct-hit overlays now explicitly remain transparent, borderless, shadowless and appearance-free in both source and generated startup bundle. Form data, hit geometry and direct-tap behavior are unchanged.",
+  "message": "V6.4.141: sửa đúng nguyên nhân field 54/94 bị bôi đen do button hitbox ăn theme UI mới; giữ nguyên dữ liệu và thao tác trực tiếp."
 }

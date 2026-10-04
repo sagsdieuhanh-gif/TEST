@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "version": "V6.4.140",
-  "build": "V6.4.140-20261005-DESKTOP-FIELD-SAFE-01",
+  "version": "V6.4.141",
+  "build": "V6.4.141-20261005-FSAGS5494-OVERLAY-FIX-01",
   "strategy": "TEST atomic release + overlay-manager desktop My Flight exception + runtime field light safety + balanced V6.4.88 action-row geometry with new UI visuals + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
@@ -30,8 +30,8 @@
       "bytes": 84939
     },
     "./app/modules/fsags54-94.v622.js": {
-      "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
-      "bytes": 42031
+      "sha256": "7d0997d46fd818a31edd88f35480700cc197b9f9296600dd3ae7605772ac9796",
+      "bytes": 42543
     },
     "./app/modules/indexeddb-flight-store.v1.js": {
       "sha256": "52c8ae561259fc408a5e3996d7864c8d82b45176d8c1d11b991e877971599b84",
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "23d1dabf592f9eacc0df7088ee11d2475dbfebdea2d57d29752400d6a9c04318",
-      "bytes": 81936
+      "sha256": "7a863d590fdee3e70a186fee55f059cbbb2e2eb0bb53fc44aa2d784e24db48aa",
+      "bytes": 82155
     },
     "./service-worker.js": {
-      "sha256": "f418dc821327df6b035f4b89dec68e6d6567a1ca23b18e4d2e2638b3e45d8d6d",
-      "bytes": 22342
+      "sha256": "e442cadd6a75210b5521c3db7bea9ce979b40e132dd33a88d6403cb2ff66d6ab",
+      "bytes": 22351
     },
     "./version.json": {
-      "sha256": "34ecba3f03e9cafec6c3e54ac6a6a3d149f75233ce1d2812e428780a80d8a9b6",
-      "bytes": 956
+      "sha256": "0dbb7a0159f8342d498497cf4961eec37c8968b860bab4eca7cfe089c786625e",
+      "bytes": 912
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "2288c3ec7eb272835b9863e619387da485cd84b7f7d8ad278361e3e9b03b2073",
@@ -330,8 +330,8 @@
       "bytes": 31645
     },
     "./app/generated/startup-bundle-4.js": {
-      "sha256": "80d85d7b7d3b8de04c498adf6d1ef78fee6931f01a61d846d8fb4fc78bf2dcb9",
-      "bytes": 180801
+      "sha256": "99b930704aec7b475057b8c61e778cb0da2a2a12b8047578cd0e15321c8f4a23",
+      "bytes": 181313
     },
     "./app/styles/mobile-navy-v64106.css": {
       "sha256": "e8abcc1ef135517585287c521ff6506d0d874c7b2f22c1feb31f3ebdc0a031e0",
