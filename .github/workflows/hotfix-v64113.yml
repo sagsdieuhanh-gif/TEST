@@ -1,0 +1,65 @@
+name: Build V6.4.113 roster hotfix
+
+on:
+  push:
+    branches: [fix/roster-stale-parser-v64113]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Stamp V6.4.113
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const read=p=>fs.readFileSync(p,'utf8'),write=(p,s)=>fs.writeFileSync(p,s);
+          const old=JSON.parse(read('version.json'));
+          const oldV=String(old.version||''),oldB=String(old.build||'');
+          const VERSION='V6.4.113',BUILD='V6.4.113-20261004-ROSTER-STALE-GATE-01';
+          const version={
+            version:VERSION,
+            displayVersion:VERSION,
+            label:'V6.4.113 TEST - ROSTER STALE PARSER GATE',
+            build:BUILD,
+            releasedAt:new Date().toISOString(),
+            type:'fix',
+            base:oldB,
+            updatePolicy:'required',
+            notes:'DAILY ROSTER hotfix: dấu / chỉ là chuỗi bàn giao theo thời gian; chấp nhận timeline ngay ở lần import đầu, giữ originalOwner và assignmentTimeline; TW1 với Grnd_Cor KIENNT và Grnd_Ld PHUONGDD / HUYNDL không còn bị hiểu thành leg. Trước khi đọc roster, runtime tự kiểm tra build và parser; nếu còn cache/parser cũ sẽ chuyển qua repair để nạp bản mới.',
+            message:'V6.4.113: khóa parser roster cũ và sửa first-import handover timeline.'
+          };
+          write('version.json',JSON.stringify(version,null,2)+'\n');
+          let h=read('index.html');
+          h=h.split(oldB).join(BUILD).split(oldV).join(VERSION);
+          write('index.html',h);
+          NODE
+      - run: npm run build:ui
+      - run: npm run build:runtime
+      - run: npm run release:assets
+      - run: node tools/build-runtime.cjs --check
+      - run: npm run check:ui
+      - run: npm test
+      - run: node tests/release-consistency.test.cjs
+      - name: Commit verified hotfix
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/hotfix-v64113.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "build: verify and generate V6.4.113 TEST assets"
+          git push origin HEAD:fix/roster-stale-parser-v64113
