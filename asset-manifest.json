@@ -214,8 +214,8 @@
       "bytes": 27751
     },
     "./app/modules/fsags208-workspace.v1.js": {
-      "sha256": "56858bc07e206636abb7f923b68eb75f3ad7d7cfd66317e4d7faa8f87e7bd6a6",
-      "bytes": 54710
+      "sha256": "3dd6504922db23634fa10987a597989c3800ed4685cef7107f1fb5dc5c338eab",
+      "bytes": 52959
     },
     "./app/modules/cargo-all-flights.v1.js": {
       "sha256": "01cac72281fad8bdf5903548515fdffb92415e66f0ba541e91ec54531fd91923",
@@ -250,8 +250,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "d82ce403a83efcd0da070c81a9b74be6b5b6dd172ea12b81688e473bcc350440",
-      "bytes": 134809
+      "sha256": "9dc3f9d2f327355b9288a643cdef9d0bfc96f87dfe5eba3ea1f3128b4d52dde3",
+      "bytes": 133990
     },
     "./app/modules/feature-loader.v1.js": {
       "sha256": "dcd4029fa8de624e597b695906ae4adc9d3d61d7dad013c52d5895bb4249a6fd",
@@ -526,8 +526,8 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "5b0092b1ae6558e7ccf1a3836386eaa0ed1ab16ae7a49359b40f1f559f79a832",
-      "bytes": 24842
+      "sha256": "92f1502e9405abafcdafbf67c19c2963239a1362e822d9a5a660451b0fb15760",
+      "bytes": 28825
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
       "sha256": "2109a24ab29092ffe728bde74f70a3c77bb320bbfe8fa44f25c4f068b5064150",

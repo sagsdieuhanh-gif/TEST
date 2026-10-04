@@ -73,11 +73,11 @@ Implementation authority for current release:
 
 
 ## My Flight navigation contract
-- Luồng quay lại phải có đích xác định, không được dựa vào một nút context bị MutationObserver gỡ/chèn liên tục.
-- Từ Hồ sơ chuyến: Quay lại phải trở về My Flight của ngày/chuyến đang thao tác.
-- Từ My Flight khi không có ngữ cảnh AD/Data Hub phía trước: Quay lại phải về Trang chủ; **không được mở lại chính My Flight**, không tạo vòng lặp focus và không yêu cầu refresh.
-- Nếu My Flight được mở từ AD Control hoặc Data Hub, Quay lại phải ưu tiên đúng ngữ cảnh đó.
-- KH/Cargo dùng cùng ngôn ngữ giao diện My Flight với ĐH/CBTT/PVHK: card chuyến + tile biểu mẫu; khác biệt chỉ nằm ở nghiệp vụ/quyền FSAGS 208, không tạo một shell UI riêng.
+- **Không tạo nút mũi tên Quay lại trong My Flight.** Điều hướng dùng **MENU** và **TRANG CHỦ** của hệ thống.
+- Không dùng MutationObserver để gỡ/chèn nút back theo trạng thái; cấm tái tạo vòng lặp focus/render trên mobile.
+- Từ Hồ sơ chuyến đóng hồ sơ để trở về My Flight; từ My Flight dùng MENU để mở menu hệ thống hoặc TRANG CHỦ để về màn hình chính.
+- KH/Cargo phải dùng **cùng chính renderer/card/tile/header/tabs của My Flight** như ĐH/CBTT/PVHK. Không dùng tiêu đề “DANH SÁCH CHUYẾN BAY”, không tạo shell UI riêng.
+- Khác biệt của KH/Cargo chỉ là phạm vi dữ liệu: được xem toàn bộ chuyến có FSAGS 208, tìm theo số hiệu và nhận chuyến cần xử lý; không phụ thuộc roster theo tên như ĐH/CBTT.
 
 
 ## Performance / scale contract
@@ -88,3 +88,10 @@ Implementation authority for current release:
 - MutationObserver/UI patch không được quét lại toàn bộ DOM cho mỗi mutation. Chỉ xử lý vùng DOM thay đổi; full scan chỉ dùng ở initial/pageshow hoặc fallback có giới hạn.
 - Danh sách My Flight/Daily Roster không được phát sinh hàng loạt Firebase reads không giới hạn. Chỉ đọc field thực sự dùng và phải có concurrency cap cho status leaves.
 - Mọi tối ưu hiệu năng phải có regression guard, không được đánh đổi tính đúng của roster, form state, chữ ký, PDF, quyền truy cập hoặc release/PWA consistency.
+
+
+## Quick input compact contract
+- Màn **NHẬP NHANH** phải dùng cùng FIXED UI RULE với giao diện bên ngoài; không có button/icon/time control quá cao hoặc quá lớn.
+- Tab khoảng **36px**, nút giờ hiện tại khoảng **34px**, footer action khoảng **38px**; radius 10–12px, navy + border xanh.
+- Input giờ giữ kích thước chữ đủ dùng trên mobile nhưng giảm padding/chiều cao; không biến từng field thành card lớn.
+- Không thay đổi logic lưu giờ, N/A, xóa giờ, keyboard hoặc thứ tự nghiệp vụ chỉ để đổi giao diện.

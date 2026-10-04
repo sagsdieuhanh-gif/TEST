@@ -229,69 +229,28 @@ async function injectWorkspace(date,fid){const paint=++workspacePaint;root.__sag
  }catch(e){pending.textContent='Không tải được FSAGS 208: '+S(e?.message||e)+' · Bấm tải lại danh sách để thử lại.';console.info('FSAGS208 workspace card',e?.message||e)}}
 root.sags208RenderWorkspace=injectWorkspace;
 
-/* V6.4.117 — KH/CARGO uses the same MY FLIGHT card/tile language as other roles.
-   The business path remains FSAGS 208 Flight Workspace; only the list/shell is unified. */
-let cargoMyFlightPaint=0,myFlightBackBusy=false,myFlightBackObserver=null,myFlightBackRootObserver=null,cargoOpenBase=null,cargoRefreshBase=null;
+/* V6.4.127 — Cargo/Kho hàng uses the exact shared MY FLIGHT visual language.
+   Cargo differs only in data scope: all eligible FSAGS 208 flights are visible/searchable. */
+let cargoMyFlightPaint=0,cargoOpenBase=null,cargoRefreshBase=null,cargoTab='pending';
 function cargoRole(){return role()!=='AD'&&isHandlerRole()&&(['KH','CARGO'].includes(role())||root.__SAGS_CARGO_ALL_FLIGHTS?.isCargo?.()===true)}
+function removeDeprecatedBackControls(){
+ for(const id of ['sagsStableMyFlightBack','v644MyFlightBack','sagsContextBackRow'])document.getElementById(id)?.remove();
+ const head=document.querySelector?.('#fwcModal .fwcHead');if(!head)return;
+ (head.querySelectorAll?.('button')||[]).forEach(btn=>{
+   const t=U(btn.textContent),aria=U(btn.getAttribute('aria-label')),title=U(btn.getAttribute('title'));
+   if(t==='←'||t==='‹'||t==='QUAY LẠI'||aria.includes('QUAY LẠI')||title.includes('QUAY LẠI'))btn.remove();
+ });
+}
 function ensureCargoQueueStyle(){
  if(document.getElementById('sagsCargo208UnifiedStyle'))return;
  const st=document.createElement('style');st.id='sagsCargo208UnifiedStyle';st.textContent=`
- #fwcList.sagsCargo208Queue{display:block}
- #fwcList.sagsCargo208Queue .v1199FlightGrid{display:grid;grid-template-columns:1fr;gap:8px}
- #fwcList.sagsCargo208Queue .v1199Card{border:1px solid #d4dee8;border-radius:12px;background:#fff;padding:11px;margin:8px 0;box-shadow:0 2px 7px rgba(0,0,0,.04)}
- #fwcList.sagsCargo208Queue .v1199Title{font:900 17px Arial;color:#0b4f91}
- #fwcList.sagsCargo208Queue .v1199Meta{font:12px/1.45 Arial;color:#5d6f80;margin-top:4px}
- #fwcList.sagsCargo208Queue .v1199Tasks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:9px 0}
- #fwcList.sagsCargo208Queue .v1199TaskBtn{min-width:0;min-height:68px;padding:8px;border:1px solid #8eb7df;border-radius:12px;background:#e9f3ff;color:#064b85;font:900 12px/1.25 Arial;text-align:left;cursor:pointer}
- #fwcList.sagsCargo208Queue .v1199TaskBtn.done{background:#e8f6ee;color:#14713d;border-color:#a4d7b8}
- #fwcList.sagsCargo208Queue .v1199TaskBtn small{display:block;margin-top:4px;font:700 10px/1.25 Arial;opacity:.82}
- #fwcList.sagsCargo208Queue .v1199FlightActions{display:grid;grid-template-columns:1fr;gap:6px;margin-top:8px}
- #fwcList.sagsCargo208Queue .v1199Action{width:100%;min-height:42px;border:1px solid #3a6e96;border-radius:12px;background:#0b67b2;color:#fff;font:900 12px Arial;cursor:pointer}
- #fwcList.sagsCargo208Queue .v1199Empty{padding:22px 12px;border:1px dashed #c7d1db;border-radius:11px;background:#fafcfe;text-align:center;color:#607080;font:800 12px/1.5 Arial}
- @media(max-width:767px){#fwcList.sagsCargo208Queue .v1199Card{margin:0!important}#fwcList.sagsCargo208Queue .v1199TaskBtn{min-height:72px}}
+ #fwcList.sagsCargo208Queue .sagsCargo208Card{margin:0}
+ #fwcList.sagsCargo208Queue .v1199FormTile{cursor:pointer}
+ #fwcList.sagsCargo208Queue .v1199FlightGrid{display:grid;grid-template-columns:1fr;gap:10px}
+ #fwcList.sagsCargo208Queue .v1199FlightActions{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ #fwcList.sagsCargo208Queue .sagsCargo208TakeBtn{cursor:pointer}
+ @media(max-width:767px){#fwcList.sagsCargo208Queue .v1199FlightGrid{gap:10px}}
  `;document.head.appendChild(st);
-}
-function uiReturnStack(){try{const a=JSON.parse(sessionStorage.getItem('sagsUiBackStackV183')||'[]');return Array.isArray(a)?a.filter(x=>['admin','datahub'].includes(String(x))):[]}catch(_){return[]}}
-function workspaceShown(){const m=document.getElementById('fwcModal');if(!m||m.hidden||!m.classList.contains('show'))return false;try{return getComputedStyle(m).display!=='none'&&getComputedStyle(m).visibility!=='hidden'}catch(_){return true}}
-function dossierShown(){const m=document.getElementById('sagsFlightDossierModal');if(!m||m.hidden)return false;try{return getComputedStyle(m).display!=='none'&&getComputedStyle(m).visibility!=='hidden'}catch(_){return m.classList.contains('show')}}
-function stableMyFlightBack(ev){
- try{ev?.preventDefault?.();ev?.stopPropagation?.();ev?.stopImmediatePropagation?.()}catch(_){}
- if(myFlightBackBusy)return false;myFlightBackBusy=true;
- try{document.activeElement?.blur?.()}catch(_){}
- const hasReturn=uiReturnStack().length>0,m=document.getElementById('fwcModal');
- try{root.flightWorkspaceClose?.()}catch(_){}
- if(m){m.classList.remove('show','open','active');m.hidden=true;m.style.display='none';m.setAttribute('aria-hidden','true')}
- try{root.sagsOverlayLayout?.refresh()}catch(_){}
- if(hasReturn&&typeof root.sagsUiReturnPrevious==='function'){try{root.sagsUiReturnPrevious()}catch(_){}}
- else{try{root.sagsUiClearBackStack?.()}catch(_){}try{root.sagsV479GoHome?.()}catch(_){}}
- setTimeout(()=>{myFlightBackBusy=false},180);return false;
-}
-function ensureStableMyFlightBack(){
- const modal=document.getElementById('fwcModal'),head=modal?.querySelector('.fwcHead');if(!head)return;
- let b=head.querySelector('#sagsStableMyFlightBack');
- if(!b){b=document.createElement('button');b.id='sagsStableMyFlightBack';b.type='button';b.className='fwcBtn gray';b.textContent='←';b.title='Quay lại';b.setAttribute('aria-label','Quay lại');b.addEventListener('click',stableMyFlightBack);const first=head.querySelector('button');head.insertBefore(b,first||null)}
- const runtimeBack=head.querySelector('#v644MyFlightBack'),hasReturn=uiReturnStack().length>0,hideStable=hasReturn&&!!runtimeBack&&!runtimeBack.hidden;
- if(b.hidden!==hideStable)b.hidden=hideStable;
- if(workspaceShown()&&!dossierShown())document.getElementById('sagsContextBackRow')?.remove();
-}
-function installStableMyFlightBack(){
- ensureStableMyFlightBack();
- if(typeof MutationObserver!=='function')return;
- const modal=document.getElementById('fwcModal');
- if(modal&&!myFlightBackObserver){
-   myFlightBackObserver=new MutationObserver(()=>ensureStableMyFlightBack());
-   myFlightBackObserver.observe(modal,{subtree:true,childList:true,attributes:true,attributeFilter:['class','hidden','style']});
-   try{myFlightBackRootObserver?.disconnect?.()}catch(_){}myFlightBackRootObserver=null;
-   return;
- }
- if(modal||myFlightBackObserver||myFlightBackRootObserver)return;
- const host=document.body||document.documentElement;if(!host)return;
- myFlightBackRootObserver=new MutationObserver(()=>{
-   if(!document.getElementById('fwcModal'))return;
-   try{myFlightBackRootObserver?.disconnect?.()}catch(_){}myFlightBackRootObserver=null;
-   installStableMyFlightBack();
- });
- myFlightBackRootObserver.observe(host,{subtree:true,childList:true});
 }
 function cargoStatus(mod){
  const cur=mod?.currentHandler||{},mine=norm(cur.username)===me(),rev=Number(mod?.revisionNo||0);
@@ -299,16 +258,32 @@ function cargoStatus(mod){
  if(cur.username)return{done:false,label:(mine?'Đang nhập':'Đang xử lý · '+S(cur.name||cur.username)),mine};
  return{done:false,label:'Chờ nhận',mine:false};
 }
-function cargoCardHtml(date,x){
- const rec=x.rec||{},mod=x.mod||{},st=cargoStatus(mod),route=S(rec.route),ac=S(rec.acReg||rec.acRegn)||'—',sta=S(rec.sta)||'—',std=S(rec.std)||'—',cur=mod.currentHandler||{};
- const openLabel=st.mine?'TIẾP TỤC FSAGS 208':cur.username?'NHẬN LẠI FSAGS 208':'NHẬN FSAGS 208';
- const view=published208(mod)?'<button type="button" class="v1199TaskBtn done" data-cargo208-view="'+esc(x.fid)+'"><b>✓ BẢN ĐÃ GỬI</b><small>Mở xem FSAGS 208 · R'+Number(mod.revisionNo||0)+'</small></button>':'';
- return '<article class="v1199Card sagsCargo208Card" data-cargo208-fid="'+esc(x.fid)+'"><div class="v1199Title">'+esc(flightName(rec))+'</div><div class="v1199Meta">'+esc(route)+(route?' · ':'')+'A/C '+esc(ac)+' · STA '+esc(sta)+' · STD '+esc(std)+'</div><div class="v1199Tasks"><button type="button" class="v1199TaskBtn '+(st.done?'done':'')+'" data-cargo208-open="'+esc(x.fid)+'"><b>📦 KHO HÀNG · FSAGS 208</b><small>'+esc(st.label)+'</small><small>➜ '+esc(openLabel)+'</small></button>'+view+'</div><div class="v1199FlightActions"><button type="button" class="v1199Action v1199DossierBtn" data-cargo208-dossier="'+esc(x.fid)+'">📁 HỒ SƠ CHUYẾN</button></div></article>';
+function cargoSharedCard(date,x){
+ const shared=root.__SAGS_DAILY_ROSTER_FINAL_V1199;
+ if(!shared?.cardHtml)throw new Error('Giao diện MY FLIGHT dùng chung chưa sẵn sàng.');
+ const rec=x.rec||{},mod=x.mod||{},st=cargoStatus(mod),handler=mod.currentHandler||{},pub=published208(mod);
+ const item={
+   assignmentId:'CARGO208_'+safe(x.fid),flightId:S(x.fid),formGroup:'loading208',sourceColumn:'CARGO',roleKey:'KH',assignmentLeg:'TURN',
+   active:true,user:me(),targetUser:me(),flightName:flightName(rec),flightRaw:flightName(rec),arrFlight:S(rec.arrFlight),depFlight:S(rec.depFlight),
+   route:S(rec.route),acReg:S(rec.acReg||rec.acRegn),sta:S(rec.sta),std:S(rec.std),updatedAtMs:Number(mod.updatedAtMs||0)
+ };
+ const state=st.done?{taskStatusV333:'COMPLETED'}:handler.username?{
+   taskStatusV333:'IN_PROGRESS',claimStatus:'CLAIMED',ownerUser:norm(handler.username),claimedBy:norm(handler.username),claimedAtMs:Number(handler.receivedAtMs||mod.lastReceiveAtMs||Date.now())
+ }:{taskStatusV333:'READY'};
+ const docs=pub?[{code:'FSAGS208',label:'FSAGS 208',revisionNo:Number(pub.revisionNo||mod.revisionNo||0),sentAtMs:Number(pub.sentAtMs||mod.lastSentAtMs||0)}]:[];
+ const group={key:'CARGO208|'+S(x.fid),items:[item],states:[state],primary:item,primaryState:state,flightClosed:st.done,dossierDocs:docs};
+ let html=shared.cardHtml(group,date);
+ const openLabel=st.mine?'TIẾP TỤC FSAGS 208':handler.username?'NHẬN LẠI FSAGS 208':'NHẬN FSAGS 208';
+ html=html.replace('<article class="v1199Card"','<article class="v1199Card sagsCargo208Card" data-cargo208-fid="'+esc(x.fid)+'"');
+ html=html.replace(/<button type="button" class="v1199Action (?:finish|reopenFlight) v1199FlightCloseBtn"[^>]*>[^<]*<\/button>/,
+   '<button type="button" class="v1199Action finish sagsCargo208TakeBtn" data-cargo208-open="'+esc(x.fid)+'">'+esc(openLabel)+'</button>');
+ return html;
 }
 function filterCargoCards(){
  const q=U(document.getElementById('sagsFlightSearch')?.value).replace(/\s+/g,'');
  document.querySelectorAll('#fwcList.sagsCargo208Queue .sagsCargo208Card').forEach(card=>{const hay=U(card.textContent).replace(/\s+/g,'');card.hidden=!!q&&!hay.includes(q)});
 }
+root.sagsCargo208QueueTab=function(tab){cargoTab=tab==='completed'?'completed':'pending';return renderCargoMyFlight(S(document.getElementById('fwcDate')?.value)||currentDate())};
 async function renderCargoMyFlight(date=currentDate()){
  if(!cargoRole())return false;date=S(date)||today();ensureCargoQueueStyle();
  let modal=document.getElementById('fwcModal');
@@ -316,41 +291,51 @@ async function renderCargoMyFlight(date=currentDate()){
  if(!modal)return false;
  modal.hidden=false;modal.style.removeProperty('display');modal.removeAttribute('aria-hidden');modal.classList.add('show');
  const head=modal.querySelector('.fwcHead'),title=head?.querySelector('h3');if(title)title.textContent='✈ MY FLIGHT';
- let sub=head?.querySelector('.fwcSub');if(!sub&&title){sub=document.createElement('div');sub.className='fwcSub';title.insertAdjacentElement('afterend',sub)}if(sub)sub.textContent='FSAGS 208 · Kho hàng';
- ensureStableMyFlightBack();root.sagsOverlayLayout?.refresh();
+ let sub=head?.querySelector('.fwcSub');if(!sub&&title){sub=document.createElement('div');sub.className='fwcSub';title.insertAdjacentElement('afterend',sub)}if(sub)sub.textContent='Hồ sơ chuyến bay';
+ removeDeprecatedBackControls();
  const body=document.getElementById('fwcBody');if(!body)return false;
- body.innerHTML='<div class="fwcTools"><input id="fwcDate" type="date" value="'+esc(date)+'"><label class="sagsFlightSearchBox"><span>TÌM CHUYẾN BAY</span><input id="sagsFlightSearch" type="search" placeholder="Ví dụ: VJ834, VN123" aria-label="Tìm số hiệu chuyến bay" autocomplete="off"></label><button class="fwcBtn" id="sagsCargo208Refresh" type="button">TẢI DANH SÁCH</button></div><div id="fwcStatus" class="fwcStatus">Đang tải công việc FSAGS 208…</div><div id="fwcList" class="v1199Queue sagsCargo208Queue"></div>';
+ body.innerHTML='<div class="fwcTools"><input id="fwcDate" type="date" value="'+esc(date)+'"><label class="sagsFlightSearchBox"><span>TÌM CHUYẾN BAY</span><input id="sagsFlightSearch" type="search" placeholder="Tìm số hiệu" aria-label="Tìm số hiệu chuyến bay" autocomplete="off"></label><button class="fwcBtn" id="sagsCargo208Refresh" type="button">↻ LÀM MỚI</button></div><div class="v1199QueueIntro">MY FLIGHT · hồ sơ các chuyến khai thác · mở hồ sơ để nhận việc và xem tài liệu</div><div id="fwcStatus" class="fwcStatus">Đang tải MY FLIGHT…</div><div id="fwcList" class="v1199Queue sagsCargo208Queue"></div>';
  const dateInput=document.getElementById('fwcDate'),search=document.getElementById('sagsFlightSearch'),refresh=document.getElementById('sagsCargo208Refresh');
  if(dateInput)dateInput.onchange=()=>renderCargoMyFlight(dateInput.value);
  if(search)search.oninput=filterCargoCards;
  if(refresh)refresh.onclick=()=>renderCargoMyFlight(S(dateInput?.value)||date);
  try{sessionStorage.setItem('sagsV36FwcDate',date)}catch(_){}
  const token=++cargoMyFlightPaint,host=document.getElementById('fwcList');
- try{const rows=await workspaceRows(date);if(token!==cargoMyFlightPaint||!host?.isConnected)return true;
-   host.innerHTML=rows.length?'<div class="v1199OwnerNote">'+esc(myName())+' · '+esc(date)+' · '+rows.length+' chuyến có FSAGS 208</div><div class="v1199FlightGrid">'+rows.map(x=>cargoCardHtml(date,x)).join('')+'</div>':'<div class="v1199Empty">Không có FSAGS 208 áp dụng cho ngày này.</div>';
-   const status=document.getElementById('fwcStatus');if(status){status.textContent=rows.length?'':'Ngày này chưa có công việc FSAGS 208.';status.style.display=rows.length?'none':'block'}
-   host.querySelectorAll('[data-cargo208-open]').forEach(b=>b.onclick=async()=>{if(b.disabled)return;b.disabled=true;try{await takeoverOpen(date,b.dataset.cargo208Open)}finally{if(b.isConnected)b.disabled=false}});
-   host.querySelectorAll('[data-cargo208-view]').forEach(b=>b.onclick=async()=>{if(b.disabled)return;b.disabled=true;try{await openView(date,b.dataset.cargo208View)}finally{if(b.isConnected)b.disabled=false}});
-   host.querySelectorAll('[data-cargo208-dossier]').forEach(b=>b.onclick=()=>openDossier(date,b.dataset.cargo208Dossier));
+ try{
+   const rows=await workspaceRows(date);if(token!==cargoMyFlightPaint||!host?.isConnected)return true;
+   const pending=rows.filter(x=>!cargoStatus(x.mod).done),done=rows.filter(x=>cargoStatus(x.mod).done),show=cargoTab==='completed'?done:pending;
+   const next='<div class="v1199Tabs"><button class="v1199Tab '+(cargoTab==='pending'?'active':'')+'" onclick="sagsCargo208QueueTab(\'pending\')">ĐANG LÀM <span class="v1199Count">'+pending.length+'</span></button><button class="v1199Tab '+(cargoTab==='completed'?'active':'')+'" onclick="sagsCargo208QueueTab(\'completed\')">CHUYẾN ĐÃ HOÀN TẤT <span class="v1199Count">'+done.length+'</span></button></div><div class="v1199OwnerNote">'+esc(me())+' · '+esc(date)+' · '+rows.length+' chuyến khả dụng</div>'+(show.length?'<div class="v1199FlightGrid">'+show.map(x=>cargoSharedCard(date,x)).join('')+'</div>':'<div class="v1199Empty">'+(cargoTab==='completed'?'Chưa có chuyến FSAGS 208 đã hoàn tất.':'Không còn chuyến đang làm.')+'</div>');
+   if(host.innerHTML!==next)host.innerHTML=next;
+   const byFid=new Map(rows.map(x=>[S(x.fid),x]));
+   host.querySelectorAll('.sagsCargo208Card').forEach(card=>{
+     const x=byFid.get(S(card.dataset.cargo208Fid));if(!x)return;
+     card.querySelectorAll('.v1199DirectTask,.v1199TaskBtn').forEach(btn=>btn.onclick=async()=>{if(btn.disabled)return;btn.disabled=true;try{await takeoverOpen(date,x.fid)}finally{if(btn.isConnected)btn.disabled=false}});
+     const small=card.querySelector('.v1199FormTile small');if(small)small.textContent=cargoStatus(x.mod).label;
+   });
+   host.querySelectorAll('.sagsCargo208TakeBtn').forEach(btn=>btn.onclick=async()=>{if(btn.disabled)return;btn.disabled=true;try{await takeoverOpen(date,btn.dataset.cargo208Open)}finally{if(btn.isConnected)btn.disabled=false}});
+   host.querySelectorAll('.v1199DossierBtn').forEach(btn=>btn.onclick=()=>openDossier(S(btn.dataset.dossierDate)||date,btn.dataset.dossierFid));
+   host.querySelectorAll('.v1199DocChip').forEach(btn=>btn.onclick=async()=>{if(btn.disabled)return;btn.disabled=true;try{await openView(S(btn.dataset.docDate)||date,btn.dataset.docFid)}finally{if(btn.isConnected)btn.disabled=false}});
    filterCargoCards();
- }catch(e){if(token===cargoMyFlightPaint&&host)host.innerHTML='<div class="v1199Empty">Không tải được FSAGS 208: '+esc(e?.message||e)+'</div>'}
- ensureStableMyFlightBack();root.sagsOverlayLayout?.refresh();return true;
+   const status=document.getElementById('fwcStatus');if(status){status.textContent=rows.length?'':'Ngày này chưa có chuyến áp dụng FSAGS 208.';status.style.display=rows.length?'none':'block'}
+ }catch(e){if(token===cargoMyFlightPaint&&host)host.innerHTML='<div class="v1199Empty">Không tải được MY FLIGHT: '+esc(e?.message||e)+'</div>'}
+ removeDeprecatedBackControls();root.sagsOverlayLayout?.refresh();return true;
 }
 function installCargoMyFlight(){
  const currentOpen=root.sagsCargoOpenAllFlights;
- if(typeof currentOpen==='function'&&!currentOpen.__sagsCargoUnifiedV64117){
+ if(typeof currentOpen==='function'&&!currentOpen.__sagsCargoUnifiedV64127){
    cargoOpenBase=currentOpen;
    const open=function(date){if(cargoRole())return renderCargoMyFlight(S(date)||currentDate());return cargoOpenBase?.apply(this,arguments)};
-   open.__sagsCargoUnifiedV64117=true;open.__base=currentOpen;root.sagsCargoOpenAllFlights=open;
+   open.__sagsCargoUnifiedV64127=true;open.__base=currentOpen;root.sagsCargoOpenAllFlights=open;
  }
  const currentRefresh=root.sagsCargoRefreshAllFlights;
- if(typeof currentRefresh==='function'&&!currentRefresh.__sagsCargoUnifiedV64117){
+ if(typeof currentRefresh==='function'&&!currentRefresh.__sagsCargoUnifiedV64127){
    cargoRefreshBase=currentRefresh;
    const refresh=function(){if(cargoRole())return renderCargoMyFlight(S(document.getElementById('fwcDate')?.value)||currentDate());return cargoRefreshBase?.apply(this,arguments)};
-   refresh.__sagsCargoUnifiedV64117=true;refresh.__base=currentRefresh;root.sagsCargoRefreshAllFlights=refresh;
+   refresh.__sagsCargoUnifiedV64127=true;refresh.__base=currentRefresh;root.sagsCargoRefreshAllFlights=refresh;
  }
  if(!cargoRole())return;
- const menu=document.querySelector?.('.v157MenuItem[data-v157-key="myflight"]');if(menu){const labels=menu.querySelectorAll?.('span')||[];if(labels[1])labels[1].textContent='My Flight';const meta=menu.querySelector?.('.meta');if(meta)meta.textContent='FSAGS 208 · Công việc kho hàng'}
+ const menu=document.querySelector?.('.v157MenuItem[data-v157-key="myflight"]');if(menu){const mt=menu.querySelector?.('.title,.v157MenuTitle')||menu.querySelectorAll?.('span')?.[1];if(mt)mt.textContent='MY FLIGHT';const meta=menu.querySelector?.('.meta,.v157MenuMeta');if(meta)meta.textContent='Hồ sơ chuyến bay'}
+ removeDeprecatedBackControls();
 }
 let wrappedOpen=null;
 function wrapWorkspaceOpen(){const fn=root.flightWorkspaceOpenFlight;if(typeof fn!=='function'||fn===wrappedOpen||fn.__sags208Workspace)return;const w=function(fid){const date=S(document.getElementById('fwcDate')?.value)||currentDate();root.__sags208ActiveWorkspace={opDate:date,flightId:S(fid)};const r=fn.apply(this,arguments);Promise.resolve(r).finally(()=>setTimeout(()=>injectWorkspace(date,S(fid)),120));return r};w.__sags208Workspace=1;w.__base=fn;root.flightWorkspaceOpenFlight=w;wrappedOpen=w}
@@ -382,7 +367,7 @@ async function openDossier(date,fid){
 root.sagsV338OpenDossier=openDossier;
 root.sagsV338OpenCurrentDossier=function(){const b=bindingFor();if(b)return openDossier(b.opDate,b.flightId);const m=root.currentFlightSessionMeta?.()||{},active=root.__sags208ActiveWorkspace;const fid=S(m.rosterFlightId||m.flightId),date=S(m.opDate||m.rosterDate||m.date||currentDate());if(fid)return openDossier(date,fid);if(active?.flightId)return openDossier(active.opDate,active.flightId);return root.flightWorkspaceOpenList?.(currentDate());};
 function redirectLegacyManager(){const fn=root.openKH208Manager;if(typeof fn==='function'&&!fn.__sags208Unified){const w=function(){try{root.closeKH208Manager?.()}catch(_){}return root.flightWorkspaceOpenList?.(currentDate())};w.__sags208Unified=true;w.__base=fn;root.openKH208Manager=w;try{openKH208Manager=w}catch(_){}}}
-function install(){wrapRosterPublish();wrapWorkspaceOpen();redirectLegacyManager();wrapWorkspaceVisibility();ensureWorkspaceStyle();ensureManagerDate();installStableMyFlightBack();installCargoMyFlight()}
+function install(){wrapRosterPublish();wrapWorkspaceOpen();redirectLegacyManager();wrapWorkspaceVisibility();ensureWorkspaceStyle();ensureManagerDate();installCargoMyFlight();removeDeprecatedBackControls()}
 install();setTimeout(install,450);setTimeout(install,1400);setTimeout(install,3200);window.addEventListener('pageshow',()=>setTimeout(install,100),{passive:true});window.addEventListener('sags:airline-forms-changed',()=>{reconcileCompleted.clear();const active=root.__sags208ActiveWorkspace;const manager=document.getElementById('kh208ManagerModal');if(active&&document.querySelector('#fwcBody .fwcWorkspaceHead')){injectWorkspace(active.opDate,active.flightId).catch(e=>console.info('FSAGS208 policy refresh',e?.message||e));}else if(manager&&getComputedStyle(manager).display!=='none'){renderManager();}});
-root.__SAGS_FSAGS208_WORKSPACE={build:BUILD,reconcileDate,listRows:workspaceRows,takeoverOpen,openView,syncActiveDraft,published208,syncPublishedSummary,canReadFlight,renderCargoMyFlight,stableMyFlightBack};
+root.__SAGS_FSAGS208_WORKSPACE={build:BUILD,reconcileDate,listRows:workspaceRows,takeoverOpen,openView,syncActiveDraft,published208,syncPublishedSummary,canReadFlight,renderCargoMyFlight};
 })(window);
