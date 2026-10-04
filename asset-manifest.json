@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.127",
-  "build": "V6.4.127-20261004-RESTORE-FORM-DOCK-CONFIRM-01",
-  "strategy": "TEST atomic release + restore form dock + no CHUYẾN + confirm direct open + mandatory clean old shell",
+  "version": "V6.4.128",
+  "build": "V6.4.128-20261004-DESKTOP-LAYOUT-01",
+  "strategy": "TEST atomic release + dedicated desktop shell + restore form dock + no CHUYẾN + confirm direct open + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "4c4984bade1c84b88a6d6d42b91a14fb00d97c6252e628d4f077cd3e329f3280",
-      "bytes": 79562
+      "sha256": "e8bd766164ec85f25a10ac263bb9f0676448575931642047d577ee8c3a529247",
+      "bytes": 78903
     },
     "./service-worker.js": {
-      "sha256": "3f55f8ebf332f4a97f395e0f15623112f617dd0769b45cc659f77415d20567c5",
-      "bytes": 22055
+      "sha256": "09e7ff52ea86892697809ac7d3c4332580ee00fc007b41841666e8879b979783",
+      "bytes": 22062
     },
     "./version.json": {
-      "sha256": "f893e1b396379a174705151347b62230af9e52f4915b5ccb96b8bacddd76a3c0",
-      "bytes": 882
+      "sha256": "3758e1b37262356f4549e28f8e1a00bc16805995f231a3e6539ca969d369ec10",
+      "bytes": 786
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -572,6 +572,10 @@
     "./app/modules/update-ui-clean.v64125.js": {
       "sha256": "edd06a1f97c6c822e1562db1c8ddbb9d6985e7344c436fcfb1e8a3b86326836b",
       "bytes": 2573
+    },
+    "./app/styles/desktop-shell-v64128.css": {
+      "sha256": "f9663b1a89fe359a19a3797b7f8c7f39f1226f56d6d7b4e84de5e0109afb852f",
+      "bytes": 9985
     }
   }
 }
