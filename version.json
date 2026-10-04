@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.125",
-  "displayVersion": "V6.4.125",
-  "label": "V6.4.125 - CLEAN UPDATE + COMPACT MOBILE",
-  "build": "V6.4.125-20261004-CLEAN-UPDATE-MOBILE-01",
-  "releasedAt": "2026-10-04T21:05:00+07:00",
-  "type": "stability",
-  "base": "V6.4.124-20261004-MYFLIGHT-DIRECT-CLEAN-01",
+  "version": "V6.4.126",
+  "displayVersion": "V6.4.126",
+  "label": "V6.4.126 - REMOVE LEGACY TOOLBAR",
+  "build": "V6.4.126-20261004-REMOVE-LEGACY-TOOLBAR-01",
+  "releasedAt": "2026-10-04T21:20:00+07:00",
+  "type": "ui",
+  "base": "V6.4.125-20261004-CLEAN-UPDATE-MOBILE-01",
   "updatePolicy": "required",
-  "notes": "Every explicit app update routes through repair.html to unregister the old service worker and delete old app shell/meta caches before reopening the new build. Business localStorage, IndexedDB and drafts are preserved. Update popup and repair screen are compact and use short Vietnamese copy for phones. repair.html is mandatory in the release manifest.",
-  "message": "V6.4.125: cập nhật luôn làm sạch bản cũ nhưng giữ nguyên dữ liệu/nháp; popup và màn hình cập nhật gọn hơn trên điện thoại."
+  "notes": "Remove the obsolete compact-main-toolbar block from index.html so the old Quick Entry / Export / legacy action row can never reappear after reload. Keep the new Menu, My Flight and current operational controls. Preserve the V6.4.125 clean-update mechanism.",
+  "message": "V6.4.126: xóa hẳn thanh nút cũ khỏi source; reload không còn dựng lại hàng NHẬP NHANH / XUẤT PDF cũ."
 }
