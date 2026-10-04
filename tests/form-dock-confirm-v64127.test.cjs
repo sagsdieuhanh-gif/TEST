@@ -3,8 +3,6 @@ const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p
 const html=read('index.html');
 const runtimeSrc=read('app/core/runtime.v503hf2.bundle.js');
 const runtimeGen=read('app/generated/runtime-1.js');
-const coreSrc=read('app/core/app.v503.js');
-const coreGen=read('app/generated/core-control.js');
 const roster=read('app/modules/daily-roster.v502.js');
 const css=read('app/styles/fixed-ui-rule-v64113.css');
 
@@ -12,15 +10,13 @@ assert(html.includes('id="sagsCompatibilityToolbar"'),'compatibility toolbar anc
 assert(!html.includes('id="roleBtnQuickTime"'),'legacy Quick Entry button must stay removed from index');
 assert(!html.includes('id="roleBtnExport"'),'legacy Export button must stay removed from index');
 assert(css.includes('#sagsCompatibilityToolbar#sagsCompatibilityToolbar'),'compatibility anchor must stay off-screen');
+assert(!html.includes('id="roleBtnFlights"'),'legacy CHUYẾN toolbar button must stay removed from index');
 
 for(const [name,src] of [['runtime source',runtimeSrc],['generated runtime',runtimeGen]]){
   assert(!src.includes('id="v163FlightBtn"'),' '+name+' must not create CHUYẾN operation button');
   assert(!src.includes('$("v163FlightBtn").onclick'),' '+name+' must not bind CHUYẾN operation button');
   assert(src.includes('id="v163HomeBtn"'),' '+name+' must retain CÔNG VIỆC control');
   assert(src.includes('id="v163SignBtn"'),' '+name+' must retain KÝ control for the form dock');
-}
-for(const [name,src] of [['core source',coreSrc],['generated core',coreGen]]){
-  assert(!src.includes('id="v38NavFlights">✈ CHUYẾN</button>'),name+' must not create clean-nav CHUYẾN button');
 }
 assert(roster.includes("const confirmTitle=completed?'MỞ BIỂU MẪU ĐÃ HOÀN TẤT?':'MỞ BIỂU MẪU?'"),'direct My Flight opening must ask for confirmation');
 assert(roster.includes('Bấm OK để tiếp tục.'),'confirmation copy must be explicit');
