@@ -1,7 +1,7 @@
 /* E-REPORT SAGS V6.4.116 — shared Button Base and fixed UI runtime guard */
 (function(root){
 'use strict';
-const BUILD='V6.4.118-PERF-SCOPED-OBSERVER-01';
+const BUILD='V6.4.119-MENU-CARGO-FOCUS-01';
 if(root.__SAGS_FIXED_UI_RULE_V64113__===BUILD)return;
 root.__SAGS_FIXED_UI_RULE_V64113__=BUILD;
 const $=id=>document.getElementById(id);
@@ -90,6 +90,45 @@ function elementScope(node){
 function touchesDock(el){
   return !!el&&(el.id==='v324FormActions'||el.id==='v163SignBtn'||el.id==='v1134QuickTimeBtn'||el.id==='v324PdfBtn'||el.id==='v324HandoverBtn'||!!el.closest?.('#v324FormActions')||!!el.querySelector?.('#v324FormActions'));
 }
+function activeEditor(el){
+  return !!el&&el===document.activeElement&&!!el.matches?.('input:not([type="button"]):not([type="submit"]):not([type="reset"]),textarea,select,[contenteditable="true"]');
+}
+function retireBackNavigation(){
+  for(const id of ['sagsStableMyFlightBack','v644MyFlightBack','sagsContextBackRow'])$(id)?.remove();
+  const head=document.querySelector('#fwcModal .fwcHead');if(!head)return;
+  head.querySelectorAll('button').forEach(button=>{
+    const txt=norm(button.textContent),aria=norm(button.getAttribute('aria-label')),title=norm(button.getAttribute('title'));
+    if(/^(←|‹|QUAY LAI|← QUAY LAI)$/.test(txt)||aria.includes('QUAY LAI')||title.includes('QUAY LAI'))button.remove();
+  });
+}
+function goMainFromMenu(event){
+  try{event?.preventDefault?.();event?.stopPropagation?.();event?.stopImmediatePropagation?.()}catch(_){}
+  try{document.activeElement?.blur?.()}catch(_){}
+  document.body.classList.remove('v157-drawer-open','sags-menu-collapsed');
+  retireBackNavigation();
+  try{
+    if(typeof root.sagsGoStart==='function')root.sagsGoStart();
+    else{
+      root.sagsFlightDossierClose?.();root.flightWorkspaceClose?.();root.closeKH208Manager?.();
+      root.sagsUiClearBackStack?.();root.sagsV479GoHome?.();root.sagsOverlayLayout?.refresh?.();
+    }
+  }catch(e){console.info('MENU return',e?.message||e);}
+  return false;
+}
+function installMenuReturn(){
+  const menu=$('v163FlightBtn');
+  if(menu){
+    menu.setAttribute('aria-label','Về trang chính');
+    menu.removeAttribute('aria-controls');menu.removeAttribute('aria-expanded');
+    menu.title='Về trang chính';
+  }
+  if(root.__SAGS_MENU_RETURN_CAPTURE_V64119__)return;
+  root.__SAGS_MENU_RETURN_CAPTURE_V64119__=true;
+  document.addEventListener('click',event=>{
+    if(!event.target?.closest?.('#v163FlightBtn'))return;
+    goMainFromMenu(event);
+  },true);
+}
 function queueScope(node){
   const el=elementScope(node);if(!el)return;
   for(const x of pendingScopes)if(x===el||x.contains?.(el))return;
@@ -105,6 +144,7 @@ function apply(){
     const scopes=full?[document.body]:[...pendingScopes];pendingScopes.clear();
     if(full){tagLegacyButtons(document);stripDuplicateCopy(document.body);}
     else for(const scope of scopes){tagLegacyButtons(scope);stripDuplicateCopy(scope);}
+    retireBackNavigation();installMenuReturn();
     if(full||dockQueued)reconcileFormDock();
   }catch(e){console.info('Fixed UI rule',e?.message||e);}
   finally{dockQueued=false;}
@@ -115,7 +155,7 @@ function schedule(node=null,{full=false,dock=false}={}){
   if(dock)dockQueued=true;
   if(scheduled)return;scheduled=true;requestAnimationFrame(apply);
 }
-const initial=()=>schedule(document.body,{full:true,dock:true});
+const initial=()=>{installMenuReturn();retireBackNavigation();schedule(document.body,{full:true,dock:true});};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initial,{once:true});else initial();
 new MutationObserver(records=>{
   for(const r of records){
@@ -131,6 +171,6 @@ new MutationObserver(records=>{
   }
   if(pendingScopes.size||dockQueued)schedule();
 }).observe(document.documentElement,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['class','style']});
-root.addEventListener('pageshow',()=>schedule(document.body,{full:true,dock:true}),{passive:true});
+root.addEventListener('pageshow',()=>{installMenuReturn();retireBackNavigation();schedule(document.body,{full:true,dock:true});},{passive:true});
 root.addEventListener('resize',()=>schedule(null,{dock:true}),{passive:true});
 })(window);
