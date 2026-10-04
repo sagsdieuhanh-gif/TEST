@@ -686,3 +686,290 @@ html.new-ui-v1.new-ui-v1 body button.sags5494DirectHit.sagsUiButton{
   appearance:none!important;
   -webkit-appearance:none!important;
 }
+
+
+/* V6.4.144 · UNIFIED OPERATIONAL CONTROLS
+   One control = one surface. Buttons keep their existing UI; paper/form overlays are excluded. */
+html.new-ui-v1{
+  --sags-control-h:44px;
+  --sags-control-radius:10px;
+  --sags-control-bg:#ffffff;
+  --sags-control-bg-soft:#f7fafc;
+  --sags-control-border:#c7d4df;
+  --sags-control-text:#17324a;
+  --sags-control-muted:#73879a;
+  --sags-control-focus:#2b7da3;
+  --sags-control-ring:rgba(43,125,163,.14);
+}
+html.new-ui-v1 body.v157-authenticated :is(
+  .sagsAdminPanel,.flightSessionBox,.fwcPanel,.hf4Panel,.sagsDossierPanel,.sagsGovCard,
+  .fleetManagerPanel,.finalFormsPanel,.formMenuBox,.fs09qPanel,.quickTimePanel,
+  .v485PermBox,.v479ThreeUActionPanel,.v338Panel,.v339Box,.v1019Panel,.sgrUltraShell
+) :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not(.quickTimeInput):not(.ffInput):not(.v462TestControl),
+  select,
+  textarea:not(.ffTextarea)
+){
+  box-sizing:border-box!important;
+  min-height:var(--sags-control-h)!important;
+  border:1px solid var(--sags-control-border)!important;
+  border-radius:var(--sags-control-radius)!important;
+  background:var(--sags-control-bg)!important;
+  color:var(--sags-control-text)!important;
+  -webkit-text-fill-color:var(--sags-control-text)!important;
+  box-shadow:0 1px 2px rgba(15,35,58,.035)!important;
+  outline:0!important;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif!important;
+}
+html.new-ui-v1 body.v157-authenticated :is(
+  .sagsAdminPanel,.flightSessionBox,.fwcPanel,.hf4Panel,.sagsDossierPanel,.sagsGovCard,
+  .fleetManagerPanel,.finalFormsPanel,.formMenuBox,.fs09qPanel,.quickTimePanel,
+  .v485PermBox,.v479ThreeUActionPanel,.v338Panel,.v339Box,.v1019Panel,.sgrUltraShell
+) :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not(.quickTimeInput):not(.ffInput):not(.v462TestControl),
+  select,
+  textarea:not(.ffTextarea)
+):focus{
+  border-color:var(--sags-control-focus)!important;
+  background:#fff!important;
+  box-shadow:0 0 0 3px var(--sags-control-ring)!important;
+}
+html.new-ui-v1 body.v157-authenticated :is(
+  .sagsAdminPanel,.flightSessionBox,.fwcPanel,.hf4Panel,.sagsDossierPanel,.sagsGovCard,
+  .fleetManagerPanel,.finalFormsPanel,.formMenuBox,.fs09qPanel,.quickTimePanel,
+  .v485PermBox,.v479ThreeUActionPanel,.v338Panel,.v339Box,.v1019Panel,.sgrUltraShell
+) :is(input,textarea)::placeholder{
+  color:var(--sags-control-muted)!important;
+  opacity:1!important;
+}
+html.new-ui-v1 body.v157-authenticated :is(
+  .sagsAdminPanel,.flightSessionBox,.fwcPanel,.hf4Panel,.sagsDossierPanel,.sagsGovCard,
+  .fleetManagerPanel,.finalFormsPanel,.formMenuBox,.fs09qPanel,.quickTimePanel,
+  .v485PermBox,.v479ThreeUActionPanel,.v338Panel,.v339Box,.v1019Panel,.sgrUltraShell
+) select{
+  -webkit-appearance:auto!important;
+  appearance:auto!important;
+}
+html.new-ui-v1 body.v157-authenticated :is(
+  .sagsAdminPanel,.flightSessionBox,.fwcPanel,.hf4Panel,.sagsDossierPanel,.sagsGovCard,
+  .fleetManagerPanel,.finalFormsPanel,.formMenuBox,.fs09qPanel,.quickTimePanel,
+  .v485PermBox,.v479ThreeUActionPanel,.v338Panel,.v339Box,.v1019Panel,.sgrUltraShell
+) :is(input[type="checkbox"],input[type="radio"]){
+  accent-color:#20769d!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+
+/* Date pickers: one real field, no fake button layered inside it. */
+html.new-ui-v1 body #fwcModal#fwcModal#fwcModal .sagsWorkDateControl{
+  display:block!important;
+  height:auto!important;
+  min-height:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+html.new-ui-v1 body #fwcModal#fwcModal#fwcModal #sagsWorkDatePicker{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+html.new-ui-v1 body #fwcModal#fwcModal#fwcModal #fwcDate{
+  width:100%!important;
+  height:var(--sags-control-h)!important;
+  min-height:var(--sags-control-h)!important;
+  padding:0 12px!important;
+  border:1px solid var(--sags-control-border)!important;
+  border-radius:var(--sags-control-radius)!important;
+  background:var(--sags-control-bg)!important;
+  color:var(--sags-control-text)!important;
+  -webkit-text-fill-color:var(--sags-control-text)!important;
+  color-scheme:light!important;
+  box-shadow:none!important;
+  -webkit-appearance:auto!important;
+  appearance:auto!important;
+}
+html.new-ui-v1 body #fwcModal#fwcModal#fwcModal #fwcDate:focus{
+  border-color:var(--sags-control-focus)!important;
+  box-shadow:0 0 0 3px var(--sags-control-ring)!important;
+  outline:0!important;
+}
+html.new-ui-v1 body :is(#fwcDate,#m101DateInput,input[type="date"],input[type="time"],input[type="datetime-local"])::-webkit-calendar-picker-indicator{
+  width:18px!important;
+  height:18px!important;
+  margin:0!important;
+  padding:0!important;
+  opacity:.72!important;
+  cursor:pointer!important;
+  filter:none!important;
+}
+
+/* Pixel MY FLIGHT date: remove decorative icon/text layers and show the real native date control. */
+html.new-ui-v1 body #v64101MyFlight#v64101MyFlight .m101DateBox{
+  display:block!important;
+  position:relative!important;
+  min-height:var(--sags-control-h)!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+html.new-ui-v1 body #v64101MyFlight#v64101MyFlight :is(.m101Calendar,.m101Down,#m101DateText){
+  display:none!important;
+}
+html.new-ui-v1 body #v64101MyFlight#v64101MyFlight #m101DateInput{
+  position:static!important;
+  inset:auto!important;
+  display:block!important;
+  width:100%!important;
+  height:var(--sags-control-h)!important;
+  min-height:var(--sags-control-h)!important;
+  padding:0 12px!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+  border:1px solid var(--sags-control-border)!important;
+  border-radius:var(--sags-control-radius)!important;
+  background:var(--sags-control-bg)!important;
+  color:var(--sags-control-text)!important;
+  -webkit-text-fill-color:var(--sags-control-text)!important;
+  color-scheme:light!important;
+  box-shadow:none!important;
+  -webkit-appearance:auto!important;
+  appearance:auto!important;
+}
+
+/* Quick-time entry: one rounded cell with a flat integrated trailing action. No circle-inside-pill. */
+html.new-ui-v1 body #quickTimeModal#quickTimeModal :is(.quickTimeTimeCell,.quickTimeSingleCell){
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 42px!important;
+  min-height:44px!important;
+  height:44px!important;
+  overflow:hidden!important;
+  border:1px solid var(--sags-control-border)!important;
+  border-radius:var(--sags-control-radius)!important;
+  background:var(--sags-control-bg)!important;
+  box-shadow:0 1px 2px rgba(15,35,58,.035)!important;
+}
+html.new-ui-v1 body #quickTimeModal#quickTimeModal :is(.quickTimeTimeCell,.quickTimeSingleCell):focus-within{
+  border-color:var(--sags-control-focus)!important;
+  box-shadow:0 0 0 3px var(--sags-control-ring)!important;
+}
+html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeInput,
+html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeInput:focus,
+html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeInput.dirty:focus{
+  height:42px!important;
+  min-height:42px!important;
+  padding:0 10px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:var(--sags-control-text)!important;
+  -webkit-text-fill-color:var(--sags-control-text)!important;
+  caret-color:var(--sags-control-text)!important;
+  box-shadow:none!important;
+  outline:0!important;
+}
+html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeInput.dirty:not(:focus){
+  background:#fff8e8!important;
+  color:#6f5200!important;
+  -webkit-text-fill-color:#6f5200!important;
+}
+html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeNow{
+  position:static!important;
+  inset:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:42px!important;
+  min-width:42px!important;
+  max-width:42px!important;
+  height:42px!important;
+  min-height:42px!important;
+  max-height:42px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-left:1px solid var(--sags-control-border)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#256f92!important;
+  box-shadow:none!important;
+  transform:none!important;
+  font-size:0!important;
+}
+html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeNow::before{
+  content:"GIỜ"!important;
+  position:static!important;
+  inset:auto!important;
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  transform:none!important;
+  font:800 9px/1 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  letter-spacing:.04em!important;
+}
+html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeNow::after{
+  content:none!important;
+  display:none!important;
+}
+html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeNow:active{
+  background:#eef6fa!important;
+}
+
+/* Mobile keeps the same structure but uses a calm navy surface. */
+@media (max-width:899px){
+  html.new-ui-v1{
+    --sags-control-bg:#0b2b49;
+    --sags-control-bg-soft:#0e3152;
+    --sags-control-border:#416d8e;
+    --sags-control-text:#f5fbff;
+    --sags-control-muted:#9ab8cd;
+    --sags-control-focus:#69c7e8;
+    --sags-control-ring:rgba(105,199,232,.16);
+  }
+  html.new-ui-v1 body.v157-authenticated :is(
+    .sagsAdminPanel,.flightSessionBox,.fwcPanel,.hf4Panel,.sagsDossierPanel,.sagsGovCard,
+    .fleetManagerPanel,.finalFormsPanel,.formMenuBox,.fs09qPanel,.quickTimePanel,
+    .v485PermBox,.v479ThreeUActionPanel,.v338Panel,.v339Box,.v1019Panel,.sgrUltraShell
+  ) :is(
+    input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not(.quickTimeInput):not(.ffInput):not(.v462TestControl),
+    select,
+    textarea:not(.ffTextarea)
+  ):focus{
+    background:#0e3152!important;
+  }
+  html.new-ui-v1 body #fwcModal#fwcModal#fwcModal #fwcDate,
+  html.new-ui-v1 body #v64101MyFlight#v64101MyFlight #m101DateInput{
+    color-scheme:dark!important;
+  }
+  html.new-ui-v1 body :is(#fwcDate,#m101DateInput,input[type="date"],input[type="time"],input[type="datetime-local"])::-webkit-calendar-picker-indicator{
+    filter:invert(1) brightness(1.7)!important;
+    opacity:.82!important;
+  }
+  html.new-ui-v1 body #quickTimeModal#quickTimeModal :is(.quickTimeTimeCell,.quickTimeSingleCell){
+    background:#0e3152!important;
+    border-color:#416d8e!important;
+  }
+  html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeInput,
+  html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeInput:focus,
+  html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeInput.dirty:focus{
+    color:#f5fbff!important;
+    -webkit-text-fill-color:#f5fbff!important;
+    caret-color:#f5fbff!important;
+  }
+  html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeNow{
+    border-left-color:#416d8e!important;
+    color:#8fdcf5!important;
+  }
+  html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeNow:active{
+    background:#143b5d!important;
+  }
+}

@@ -1,12 +1,12 @@
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),write=(p,s)=>fs.writeFileSync(path.join(root,p),s),exists=p=>fs.existsSync(path.join(root,p));
-const VERSION='V6.4.143',BUILD='V6.4.143-20261005-MOBILE-UNLOCK-SAFE-01',LABEL='V6.4.143 - MOBILE UNLOCK SAFE',RELEASED='2026-10-05T00:49:00+07:00';
+const VERSION='V6.4.144',BUILD='V6.4.144-20261005-UNIFIED-CONTROLS-01',LABEL='V6.4.144 - UNIFIED CONTROLS',RELEASED='2026-10-05T00:52:00+07:00';
 const old=JSON.parse(read('version.json')),oldV=String(old.version||''),oldB=String(old.build||'');
 if(!oldV||!oldB)throw Error('Current version metadata missing');
 let index=read('index.html').split(oldB).join(BUILD).split(oldV).join(VERSION);
 assert(index.includes('name="sags-release-build" content="'+BUILD+'"'));assert(index.includes('name="sags-release-version" content="'+VERSION+'"'));
 write('index.html',index);
-const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'ui',base:'V6.4.141-20261005-FSAGS5494-OVERLAY-FIX-01',updatePolicy:'required',notes:'Mobile post-login unlock safety while retaining the FSAGS54/94 hitbox exclusion. Touch blockers are cleared before MENU enhancement, MENU insertion only uses a direct child anchor, and any navigation enhancement error is contained so it cannot leave an invisible layer blocking the phone screen. The 54/94 technical hitboxes remain excluded from the fixed UI theme.',message:VERSION+': giữ sửa field 54/94 và sửa mobile đăng nhập xong không thao tác được do lỗi DOM MENU làm gián đoạn touch unlock.'};
+const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'ui',base:'V6.4.143-20261005-MOBILE-UNLOCK-SAFE-01',updatePolicy:'required',notes:'Unified operational control UI while retaining the verified FSAGS54/94 technical-hit exclusion and mobile unlock safety. Date controls now use one real input surface without fake overlay buttons, Quick Time uses one rounded field with a flat GIỜ trailing action instead of a circle-inside-pill clock, and operational inputs/selects/textareas share one consistent control system across desktop and mobile. Large functional action buttons are unchanged. Paper/form overlay fields are explicitly excluded.',message:VERSION+': giữ sửa field 54/94; làm lại ô ngày, giờ và control thao tác theo một bề mặt hiện đại, không còn bo tròn lồng bo tròn.'};
 write('version.json',JSON.stringify(version,null,2)+'\n');
 let sw=read('service-worker.js').split(oldB).join(BUILD).split(oldV).join(VERSION);
 const cacheId=BUILD.toLowerCase().replace(/[^a-z0-9-]/g,'');
@@ -96,3 +96,5 @@ write(mp,JSON.stringify(m,null,2)+'\n');
 // fsags5494-hitbox-exclusion-v64142-baseline
 
 // mobile-unlock-safe-v64143
+
+// unified-controls-v64144
