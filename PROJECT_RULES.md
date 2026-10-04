@@ -70,3 +70,11 @@ Implementation authority for current release:
 - Trên màn hình 430px trở xuống, nhãn Nhập nhanh được rút gọn thành **Nhập** để giữ chữ 13px và icon 18px; tên trợ năng đầy đủ vẫn là Nhập nhanh.
 - `SAGSButtonBase.create/enhance` là API dùng chung cho nút mới/cũ. Các nút động kế thừa lớp `sagsUiButton`.
 - CSS layer `sags-fixed-ui` có quyền ưu tiên các thuộc tính UI chuẩn trước CSS lịch sử; không được ghi đè trạng thái ẩn theo quyền hoặc trạng thái hoàn tất.
+
+
+## My Flight navigation contract
+- Luồng quay lại phải có đích xác định, không được dựa vào một nút context bị MutationObserver gỡ/chèn liên tục.
+- Từ Hồ sơ chuyến: Quay lại phải trở về My Flight của ngày/chuyến đang thao tác.
+- Từ My Flight khi không có ngữ cảnh AD/Data Hub phía trước: Quay lại phải về Trang chủ; **không được mở lại chính My Flight**, không tạo vòng lặp focus và không yêu cầu refresh.
+- Nếu My Flight được mở từ AD Control hoặc Data Hub, Quay lại phải ưu tiên đúng ngữ cảnh đó.
+- KH/Cargo dùng cùng ngôn ngữ giao diện My Flight với ĐH/CBTT/PVHK: card chuyến + tile biểu mẫu; khác biệt chỉ nằm ở nghiệp vụ/quyền FSAGS 208, không tạo một shell UI riêng.
