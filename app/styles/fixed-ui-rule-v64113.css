@@ -580,8 +580,8 @@ html.new-ui-v1 body #fwcModal .fwcHead button[title="Mở menu hệ thống"]{
 */
 html.new-ui-v1 body #sagsCompatibilityToolbar#sagsCompatibilityToolbar{
   position:absolute!important;
-  left:-9999px!important;
-  top:-9999px!important;
+  left:-200vw!important;
+  top:-200vh!important;
   width:1px!important;
   height:1px!important;
   min-width:0!important;
