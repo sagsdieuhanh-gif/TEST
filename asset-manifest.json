@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.136",
-  "build": "V6.4.136-20261004-DESKTOP-WORKSPACE-01",
-  "strategy": "TEST atomic release + desktop workspace shell + stable previous-page back + MENU to authenticated Home + mobile form-open fast path + mandatory clean old shell",
+  "version": "V6.4.137",
+  "build": "V6.4.137-20261004-DESKTOP-GHOST-CLEANUP-01",
+  "strategy": "TEST atomic release + desktop ghost-control removal + stable previous-page back + MENU to authenticated Home + mobile form-open fast path + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "0754eac500fc6bff46f35d65eb0842f6ad58e2b416d367c55a0709ce12af4234",
-      "bytes": 81863
+      "sha256": "df15441dc6ceedad57a5d2d80a2df899ae942ca7718f9d06d40eb11329845e46",
+      "bytes": 82155
     },
     "./service-worker.js": {
-      "sha256": "f1f59b2c97ae1f3ee4ea919d6915c84b84018d0a546206dbb55a9dd4815bfeb5",
-      "bytes": 22339
+      "sha256": "30f8591336d50290e269690af11b17ec6615ed702bfd07cd2c721f708922384b",
+      "bytes": 22351
     },
     "./version.json": {
-      "sha256": "4f6fd1ec2359a73958d009b668567e3bcf5736a7d89c3d5633ec1ab69bb382d7",
-      "bytes": 927
+      "sha256": "207c71b89c81ecc42ebe0c31f93a1f229e184446420d73fbc14cd57d212a0f43",
+      "bytes": 832
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "2288c3ec7eb272835b9863e619387da485cd84b7f7d8ad278361e3e9b03b2073",
@@ -222,8 +222,8 @@
       "bytes": 3567
     },
     "./app/generated/core-archive.js": {
-      "sha256": "8c9e20707dc7a0d1510326a7b1f591e8db891054f471db336a5dafcf18d314f3",
-      "bytes": 71353
+      "sha256": "946c4f22780a915a368a6efc3202461de62d426a940af65c4805ac3e8f3fd127",
+      "bytes": 71444
     },
     "./app/generated/core-control.js": {
       "sha256": "d84c3e19653eea8a223f44535693e176f7b21a8b336cf4f00258e5ac95067783",
@@ -250,8 +250,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "102c8e552a508f5c9e062efcbd2a94c5c0770dbabef6e37c19857aa102e70bb9",
-      "bytes": 134837
+      "sha256": "799a7597d6476ff08f4a59766dc9783bab40886778d5037f32b1ac9eb3eb0301",
+      "bytes": 134905
     },
     "./app/modules/feature-loader.v1.js": {
       "sha256": "dcd4029fa8de624e597b695906ae4adc9d3d61d7dad013c52d5895bb4249a6fd",
@@ -574,8 +574,8 @@
       "bytes": 2573
     },
     "./app/styles/desktop-shell-v64128.css": {
-      "sha256": "30d7344d6feda6c2032d5a74d9f3e4dd0c8f36259849eadaf6312261e34b05a4",
-      "bytes": 12287
+      "sha256": "712e44e297cc19090db7a3396b35b76d00a270c47ab4d05234a969e630e57727",
+      "bytes": 12220
     }
   }
 }

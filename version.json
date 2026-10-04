@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.136",
-  "displayVersion": "V6.4.136",
-  "label": "V6.4.136 - DESKTOP WORKSPACE",
-  "build": "V6.4.136-20261004-DESKTOP-WORKSPACE-01",
-  "releasedAt": "2026-10-04T23:31:00+07:00",
+  "version": "V6.4.137",
+  "displayVersion": "V6.4.137",
+  "label": "V6.4.137 - DESKTOP GHOST CLEANUP",
+  "build": "V6.4.137-20261004-DESKTOP-GHOST-CLEANUP-01",
+  "releasedAt": "2026-10-04T23:53:00+07:00",
   "type": "ui",
-  "base": "V6.4.135-20261004-MOBILE-FORM-OPEN-01",
+  "base": "V6.4.136-20261004-DESKTOP-WORKSPACE-01",
   "updatePolicy": "required",
-  "notes": "Desktop workspace redesign. My Flight now fills the desktop workspace beside the fixed sidebar instead of behaving like an oversized centered modal, uses responsive auto-fit flight cards, compact desktop tools and a stable navigation pair: one fixed previous-page arrow plus MENU to the authenticated Home. The old CÔNG VIỆC reload action and back-button create/remove flicker are removed. Mobile layout and V6.4.135 form-open performance path remain unchanged.",
-  "message": "V6.4.136: thiết kế lại giao diện PC; mũi tên quay trang trước ổn định, MENU về menu chính, mobile giữ nguyên."
+  "notes": "Desktop My Flight ghost-control cleanup. The legacy close button is removed from the DOM instead of being visually hidden, and the global context-back injector is disabled for desktop My Flight so it cannot create an extra faded navigation control. Header navigation is now exactly the stable previous-page arrow plus MENU. Mobile behavior and the V6.4.135 form-open performance path are unchanged.",
+  "message": "V6.4.137: gỡ hẳn nút mờ/legacy trên MY FLIGHT PC; header chỉ còn mũi tên và MENU."
 }
