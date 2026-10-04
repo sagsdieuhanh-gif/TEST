@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "version": "V6.4.111",
-  "build": "V6.4.111-20261004-ROSTER-CONFIRM-01",
+  "version": "V6.4.112",
+  "build": "V6.4.112-20261004-ROSTER-LINEAGE-01",
   "strategy": "Ordered source bundles + unified mobile navy + targeted UI observers",
   "mutableMetadata": [
     "./forms/forms.registry.json",
@@ -50,8 +50,8 @@
       "bytes": 14942
     },
     "./app/modules/roster-lite.v5.js": {
-      "sha256": "59f7d18faf2c06fee9278a6f70fbcfab65200b3720b4e09556c7c014f015e479",
-      "bytes": 15193
+      "sha256": "d6a6dbc388385893a57fb0ccb3bc333cc902ca2cd9d51550fec44feb71acd4b3",
+      "bytes": 15342
     },
     "./app/modules/self-accept.v502.js": {
       "sha256": "6609b5a5202c53e6dd2460c51ff45c51afa2ec74e7005f93f6bc338ec3f399ae",
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "df4ec9bbd7d7aeb1904cd2e03fcd2c5475bc6648b41c9d80654e65ff81dc27cf",
+      "sha256": "493a16435443226edff4d16748d2f438acc88745fecef8a2191e49ca7b828e1f",
       "bytes": 78759
     },
     "./service-worker.js": {
-      "sha256": "ce5d0395cf49c984831c6524489a419c2e3ba29ba62598fee0036a522e7082aa",
+      "sha256": "476f4e7f2075379493dd48a907d9f9413e2ec688ee6ca9efc1472e13896e685c",
       "bytes": 20433
     },
     "./version.json": {
-      "sha256": "02c1ff3a6172160c6e9c812c835fe1c1b0fc74f321700e9d48f7ec6171199a21",
-      "bytes": 536
+      "sha256": "8df5cf4ff122f47515b4f6f752b2206f76242b8b86659c56e6e9bb43054b93a1",
+      "bytes": 684
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -334,8 +334,8 @@
       "bytes": 31645
     },
     "./app/generated/startup-bundle-4.js": {
-      "sha256": "5f280cbfc014779ce1514231842b9117b8ae2b37d36b62ea2ca11cfba8545973",
-      "bytes": 168657
+      "sha256": "ef5f6b659609e4968b10d9de3dc327afa35941f6d4f65e66b11f987b239c0b85",
+      "bytes": 178385
     },
     "./app/styles/mobile-navy-v64106.css": {
       "sha256": "e8abcc1ef135517585287c521ff6506d0d874c7b2f22c1feb31f3ebdc0a031e0",

@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.111",
-  "displayVersion": "V6.4.111",
-  "label": "V6.4.111 TEST - ROSTER CONFIRM",
-  "build": "V6.4.111-20261004-ROSTER-CONFIRM-01",
-  "releasedAt": "2026-10-04T07:55:00+07:00",
+  "version": "V6.4.112",
+  "displayVersion": "V6.4.112",
+  "label": "V6.4.112 TEST - ROSTER LINEAGE",
+  "build": "V6.4.112-20261004-ROSTER-LINEAGE-01",
+  "releasedAt": "2026-10-04T02:24:00.508Z",
   "type": "fix",
-  "base": "V6.4.110-20261004-ROSTER-MOBILE-01",
+  "base": "V6.4.111-20261004-ROSTER-CONFIRM-01",
   "updatePolicy": "optional",
-  "notes": "Daily Roster: luôn hiện nút XÁC NHẬN PUBLISH cho AD; chỉ bật khi preview hợp lệ; giữ lỗi đọc file; nút nằm cố định khi cuộn.",
-  "message": "V6.4.111: sửa nút xác nhận Daily Roster cho AD."
+  "notes": "DAILY ROSTER lineage fix: dấu / là chuỗi bàn giao theo thời gian; update giữ nguyên formInstanceId, dữ liệu và lịch sử; không gộp lại 42.1 + 55.1 thành 42.3; 42.3 có thể tiếp tục bàn giao và chỉ sinh thêm 55.1 khi phát sinh trách nhiệm LD mới.",
+  "message": "V6.4.112: sửa triệt để lineage DAILY ROSTER 42.1 / 42.3 / 55.1."
 }
