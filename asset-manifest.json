@@ -82,12 +82,12 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "a47d5d32d108a2a430588f45aad0da8256dd3cce20f815da772cbeb71227aca8",
-      "bytes": 81226
+      "sha256": "bdc2fa7ce2c23f50af60c4425228a5549204c2e6590eb981fa3dd23dede3a1ea",
+      "bytes": 81223
     },
     "./service-worker.js": {
-      "sha256": "d14321bf1c0d28fb221a85637c1f01f52abd4463f9e7d4f50ee8a5150aa77168",
-      "bytes": 21989
+      "sha256": "c7bd14729c5d398e1aa89a410b870efeb48bf150d33b3662b5ceb695dba99314",
+      "bytes": 21986
     },
     "./version.json": {
       "sha256": "328567bc93e935d687d182e2b4cd73834692e08ca79108bdbaa62a5976c0bd0e",
@@ -561,7 +561,7 @@
       "sha256": "03f61b9add33905fe1b1c4467a2f0895d58cb4eb11a81aa2f47a86e4af2ebfd4",
       "bytes": 25746
     },
-    "./app/boot/33-v64120-cargo-myflight-route.js": {
+    "./app/modules/cargo-myflight-ui.v64120.js": {
       "sha256": "991931b1cb88a74e23629c68420c0e87bebe8d05e80d0aa0061cd26804acbc73",
       "bytes": 4896
     }
