@@ -5,7 +5,7 @@ const css=[...h.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["'](\.\/[
 assert.equal(new Set(scripts).size,scripts.length,'startup must not execute same local script twice');
 const sizes=scripts.map(p=>({p,bytes:fs.statSync(path.join(root,p)).size})),bytes=sizes.reduce((n,x)=>n+x.bytes,0),max=sizes.reduce((a,b)=>a.bytes>b.bytes?a:b,{p:'',bytes:0});
 assert(scripts.length<=54,'startup local scripts <= 54 including compact update UI, got '+scripts.length);
-assert(css.length<=16,'startup stylesheets <= 16 (includes final FIXED UI override), got '+css.length);
+assert(css.length<=17,'startup stylesheets <= 17 (includes dedicated desktop shell + final FIXED UI override), got '+css.length);
 assert(bytes<2700000,'startup JS budget < 2.7MB, got '+bytes);
 assert(max.bytes<400000,'no executed startup JS asset may reach 400KB; largest '+max.p+' = '+max.bytes);
 assert(scripts.includes('./app/modules/flight-governance.v1.js'),'governance engine must load');
