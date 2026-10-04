@@ -21,7 +21,8 @@ const hash=p=>{const file=path.join(root,p);let b=fs.readFileSync(file);if(/\.(h
 const mp='asset-manifest.json',m=JSON.parse(read(mp));m.version=VERSION;m.build=BUILD;m.strategy='TEST atomic release + mandatory clean old shell + compact mobile update UI';m.bootstrapChanged=true;m.assets=m.assets||{};
 for(const k of Object.keys(m.assets)){const p=k.replace(/^\.\//,'');if(exists(p))m.assets[k]=hash(p);else delete m.assets[k]}
 for(const k of uniq([...bootstrap,'./asset-manifest.json','./repair.html','./app/modules/flight-governance.v1.js','./app/boot/05-legacy.js','./app/boot/25-v1154-update-detector-r2.js','./data/form-configuration.json','./form-configuration.json'])){const p=k.replace(/^\.\//,'');if(exists(p)&&k!=='./asset-manifest.json')m.assets[k]=hash(p)}
-assert(m.assets['./repair.html']?.sha256&&Number.isSafeInteger(Number(m.assets['./repair.html']?.bytes)),'repair page must be present in every verified release');\nwrite(mp,JSON.stringify(m,null,2)+'\n');
+assert(m.assets['./repair.html']?.sha256&&Number.isSafeInteger(Number(m.assets['./repair.html']?.bytes)),'repair page must be present in every verified release');
+write(mp,JSON.stringify(m,null,2)+'\n');
 // UI release finalizer intentionally does not assert carrier routing; airline policy has its own regression tests.\nconsole.log(JSON.stringify({version:VERSION,build:BUILD,bootstrapAssets:bootstrap.length,localScripts:scripts.length,stylesheets:styles.length},null,2));
 
 // standalone-gate-20261003-0732
