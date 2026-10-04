@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.133",
-  "build": "V6.4.133-20261004-MOBILE-MENU-STABLE-01",
-  "strategy": "TEST atomic release + stable real-touch mobile menu + one-shot login cleanup + deferred post-login verification + full performance batch + mandatory clean old shell",
+  "version": "V6.4.134",
+  "build": "V6.4.134-20261004-MOBILE-MENU-ENTRY-01",
+  "strategy": "TEST atomic release + guaranteed mobile MENU entry + stable real-touch drawer + one-shot login cleanup + full performance batch + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "7d988dfaf19c026d354f18e8b76ddc0a90b99c13cd280a8db223c3d9d444f814",
-      "bytes": 81936
+      "sha256": "b55b118a4888abe1fdfb4cf257e10ee06101379bc49f69ad2155c1b45f0a609e",
+      "bytes": 81863
     },
     "./service-worker.js": {
-      "sha256": "b92bccf8f2e98c9059f95b09d9c4f2c903d5341d77d6551e0067d0fa34a5e95b",
-      "bytes": 22342
+      "sha256": "d6a3da8748faa6a88cb1c9021a18392d4082e668dc52ac3abe31ed0a0a729fd2",
+      "bytes": 22339
     },
     "./version.json": {
-      "sha256": "21a7e4069912d8dfd1e4541840348cf2e71ab58cb78fc0b2445ab32ab9aba69a",
-      "bytes": 897
+      "sha256": "f0320f1db4bb95c41504f71070618a0a56f821928771d3b56a5cadbe6c899411",
+      "bytes": 817
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "2288c3ec7eb272835b9863e619387da485cd84b7f7d8ad278361e3e9b03b2073",
@@ -562,8 +562,8 @@
       "bytes": 25746
     },
     "./app/modules/post-login-unlock.v64123.js": {
-      "sha256": "f5e01985141011c381d3c97ccf41b8409fa51b0794f69aa23e4f55f6b5d0ca56",
-      "bytes": 11562
+      "sha256": "4da326a7a223b18d1d3501359caa431258114fb083acb46421e816823ef948d8",
+      "bytes": 13163
     },
     "./repair.html": {
       "sha256": "f0e77f347bb6aba7210d3f308137d5b33757ec2c7c0c45a26cd26fdc45beac81",

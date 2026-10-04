@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.133",
-  "displayVersion": "V6.4.133",
-  "label": "V6.4.133 - MOBILE MENU STABLE",
-  "build": "V6.4.133-20261004-MOBILE-MENU-STABLE-01",
-  "releasedAt": "2026-10-04T22:37:00+07:00",
+  "version": "V6.4.134",
+  "displayVersion": "V6.4.134",
+  "label": "V6.4.134 - MOBILE MENU ENTRY",
+  "build": "V6.4.134-20261004-MOBILE-MENU-ENTRY-01",
+  "releasedAt": "2026-10-04T22:41:00+07:00",
   "type": "performance",
-  "base": "V6.4.132-20261004-MOBILE-TOUCH-UNLOCK-01",
+  "base": "V6.4.133-20261004-MOBILE-MENU-STABLE-01",
   "updatePolicy": "required",
-  "notes": "Mobile menu stability fix on top of the V6.4.131 performance batch. Post-login cleanup now clears inherited drawer/overlay state only once; later safety passes preserve user-opened MENU and overlays. The active drawer restores normal backdrop CSS behavior. Mobile browser regression now performs a real MENU click and verifies it remains open beyond all post-login retry timers. Business workflow and visual layout remain unchanged.",
-  "message": "V6.4.133: sửa dứt điểm MENU mobile bị tự đóng sau login; test bấm thật và giữ menu mở ổn định."
+  "notes": "Guarantee a dedicated mobile MENU entry after authentication instead of depending on v163FlightBtn creation timing. The fallback calls the canonical v157OpenMenu drawer handler, remains stable through post-login safety retries, and hides the redundant Home button while already on Home. Retains the V6.4.131 performance batch and one-shot blocker cleanup.",
+  "message": "V6.4.134: mobile luôn có nút MENU thao tác thật sau đăng nhập; không còn phụ thuộc timing tạo nút cũ."
 }
