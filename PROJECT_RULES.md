@@ -46,3 +46,10 @@ Bắt buộc kiểm tra tối thiểu: **360, 375, 390, 412, 430px** và desktop
 Implementation authority for current release:
 - `app/styles/fixed-ui-rule-v64113.css` là lớp CSS override cuối cùng.
 - `app/boot/32-fixed-ui-rule-v64113.js` chỉ sắp xếp UI động/loại copy trùng, không được thay đổi nghiệp vụ.
+
+
+## Legacy UI normalization
+- Khi rà soát màn hình cũ, mọi `button`, `[role="button"]`, submit/reset control và action động phải được đưa về cùng hình học chuẩn: radius 12px, shadow phẳng, chiều cao gọn và trạng thái chỉ đổi màu/border.
+- Các nút đóng/quay lại/icon-only vẫn giữ chức năng riêng nhưng **không được biến thành nút tròn hoặc pill**; dùng hình chữ nhật bo góc cùng hệ.
+- Semantic danger/success/warning chỉ dùng màu accent; không được đổi sang một hình dáng button khác.
+- Lớp override cuối cùng có quyền chuẩn hóa legacy UI để tránh mỗi module tự tạo một phong cách nút riêng.
