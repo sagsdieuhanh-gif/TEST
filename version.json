@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.138",
-  "displayVersion": "V6.4.138",
-  "label": "V6.4.138 - DESKTOP GHOST MOBILE SAFE",
-  "build": "V6.4.138-20261005-DESKTOP-GHOST-MOBILE-SAFE-01",
-  "releasedAt": "2026-10-05T00:01:00+07:00",
+  "version": "V6.4.139",
+  "displayVersion": "V6.4.139",
+  "label": "V6.4.139 - DESKTOP FORM UI",
+  "build": "V6.4.139-20261005-DESKTOP-FORM-UI-01",
+  "releasedAt": "2026-10-05T00:19:00+07:00",
   "type": "ui",
-  "base": "V6.4.137-20261004-DESKTOP-GHOST-CLEANUP-01",
+  "base": "V6.4.138-20261005-DESKTOP-GHOST-MOBILE-SAFE-01",
   "updatePolicy": "required",
-  "notes": "Desktop-only ghost-control cleanup with mobile safety. The legacy My Flight close button is physically removed only on desktop; mobile retains the previous hidden node to avoid DOM observer insertBefore races. Desktop global context-back injection remains disabled for My Flight, leaving exactly the stable previous-page arrow plus MENU. No business workflow changes.",
-  "message": "V6.4.138: gỡ nút mờ riêng trên PC, giữ mobile ổn định không phát sinh race DOM."
+  "notes": "Desktop UI correction: My Flight is explicitly positioned beside the persistent sidebar; operational command controls return to the balanced two-row geometry used in V6.4.88 while retaining the new navy UI styling; operational paper fields, text inputs, selects, checkboxes and radios are forced back to readable light form styling so the dark glass shell cannot black them out. Mobile interaction behavior is unchanged.",
+  "message": "V6.4.139: sửa layout PC, cân lại hàng nút theo bố cục V6.4.88 nhưng giữ UI mới, khôi phục field biểu mẫu nền sáng."
 }

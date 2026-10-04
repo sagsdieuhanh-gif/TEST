@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.138",
-  "build": "V6.4.138-20261005-DESKTOP-GHOST-MOBILE-SAFE-01",
-  "strategy": "TEST atomic release + desktop-only ghost-control removal + mobile-safe hidden legacy node + stable previous-page back + MENU to authenticated Home + mandatory clean old shell",
+  "version": "V6.4.139",
+  "build": "V6.4.139-20261005-DESKTOP-FORM-UI-01",
+  "strategy": "TEST atomic release + explicit desktop workspace positioning + balanced V6.4.88 action-row geometry with new UI visuals + operational field safety + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "3274227f6f83220d8f64df87df36d20e2fd5e526acb93068a58bf85952c99095",
-      "bytes": 82447
+      "sha256": "6ec0d9182da9b3595bfe3e0fad306b51c461fb52ed8b99014db62cf0a13ad015",
+      "bytes": 81717
     },
     "./service-worker.js": {
-      "sha256": "f9e0190bb8b664047f5937be754f15a4b221b6d4ad433b9562633418752a8ab8",
-      "bytes": 22363
+      "sha256": "29e1ac0dd4280fbd857384d64aaf846f6dd5c21a1e0a91d5dde2a86fc5d18290",
+      "bytes": 22333
     },
     "./version.json": {
-      "sha256": "96ff29b6de34935eb074e56dd1fb3f7910fbe5691ca3df5d1e259bb71e91f3e7",
-      "bytes": 813
+      "sha256": "d557df397167103c2b0eabcda998fc350334e3e8d6374e5d8136c7bce8316c39",
+      "bytes": 895
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "2288c3ec7eb272835b9863e619387da485cd84b7f7d8ad278361e3e9b03b2073",
@@ -526,8 +526,8 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "9066150ff73445d61a5f10d75a1451d1d348f9977c334912ec5b19c22b04d1c5",
-      "bytes": 25467
+      "sha256": "d71239d9f80ea2ff49625fb451763e0cbca50d8cc6de50ff68df743e166cd38c",
+      "bytes": 26710
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
       "sha256": "48e2a29c35d2529f0d4003299e5897d3f71277866b09737af6096ec1450ca250",
@@ -574,8 +574,8 @@
       "bytes": 2573
     },
     "./app/styles/desktop-shell-v64128.css": {
-      "sha256": "712e44e297cc19090db7a3396b35b76d00a270c47ab4d05234a969e630e57727",
-      "bytes": 12220
+      "sha256": "0f8e38758fdb188d7b17e759b283280fba131219f744b653b3838cabaecb132d",
+      "bytes": 12918
     }
   }
 }
