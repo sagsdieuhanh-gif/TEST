@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.128",
-  "build": "V6.4.128-20261004-DESKTOP-LAYOUT-01",
-  "strategy": "TEST atomic release + dedicated desktop shell + restore form dock + no CHUYẾN + confirm direct open + mandatory clean old shell",
+  "version": "V6.4.129",
+  "build": "V6.4.129-20261004-MOBILE-UI-STABILITY-01",
+  "strategy": "TEST atomic release + mobile UI observer stabilization + dedicated desktop shell + restore form dock + no CHUYẾN + confirm direct open + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "e8bd766164ec85f25a10ac263bb9f0676448575931642047d577ee8c3a529247",
-      "bytes": 78903
+      "sha256": "f3ac040333485458d0d3a9ba126369bb5f819060bdd5e92472d5b3ae258e7ecc",
+      "bytes": 79268
     },
     "./service-worker.js": {
-      "sha256": "09e7ff52ea86892697809ac7d3c4332580ee00fc007b41841666e8879b979783",
-      "bytes": 22062
+      "sha256": "61aceab7ffd160de72982673ecd87e3e6ae0ffbee95e26073fa30d917874e2d4",
+      "bytes": 22077
     },
     "./version.json": {
-      "sha256": "3758e1b37262356f4549e28f8e1a00bc16805995f231a3e6539ca969d369ec10",
-      "bytes": 786
+      "sha256": "b595fff7b9958336cdd517037eb63782ff7ba52ed45b1c1d2fca7de327a75586",
+      "bytes": 715
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -282,8 +282,8 @@
       "bytes": 4878
     },
     "./app/generated/boot-group-6.js": {
-      "sha256": "f39581b3e7db8418682504f5293fb2bf0e947e09ed74023a2debcadb74f6974a",
-      "bytes": 4488
+      "sha256": "c4ce8a566f08c264d17cde3598b8d81ccefd5c4b815a428343a5c9c6c4747b0e",
+      "bytes": 4567
     },
     "./app/generated/legacy-05.min.js": {
       "sha256": "c04440b417c39c63f2106d2980cfaa46cf38dc8f527889ee9f688b93f13ab771",
@@ -530,8 +530,8 @@
       "bytes": 25467
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
-      "sha256": "2109a24ab29092ffe728bde74f70a3c77bb320bbfe8fa44f25c4f068b5064150",
-      "bytes": 7732
+      "sha256": "48e2a29c35d2529f0d4003299e5897d3f71277866b09737af6096ec1450ca250",
+      "bytes": 8346
     },
     "./app/boot/25-v1154-update-detector-r2.js": {
       "sha256": "68c7ed26f0f180b4193cd71554a0214bddded76fe3f731132ec83895c7ff18c9",

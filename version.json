@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.128",
-  "displayVersion": "V6.4.128",
-  "label": "V6.4.128 - DESKTOP LAYOUT",
-  "build": "V6.4.128-20261004-DESKTOP-LAYOUT-01",
-  "releasedAt": "2026-10-04T21:36:00+07:00",
+  "version": "V6.4.129",
+  "displayVersion": "V6.4.129",
+  "label": "V6.4.129 - MOBILE UI STABILITY",
+  "build": "V6.4.129-20261004-MOBILE-UI-STABILITY-01",
+  "releasedAt": "2026-10-04T22:00:00+07:00",
   "type": "ui",
-  "base": "V6.4.127-20261004-RESTORE-FORM-DOCK-CONFIRM-01",
+  "base": "V6.4.128-20261004-DESKTOP-LAYOUT-01",
   "updatePolicy": "required",
-  "notes": "Dedicated desktop UI instead of stretching the mobile layout: permanent left sidebar on desktop Home, centered max-width workspace, multi-column My Flight cards, desktop-sized dialogs and a compact top/right form command bar. Mobile layout and the V6.4.127 restored form dock / no-CHUYẾN / confirm-open behavior remain unchanged.",
-  "message": "V6.4.128: giao diện PC riêng, không kéo giãn giao diện mobile; giữ nguyên mobile và các sửa lỗi V6.4.127."
+  "notes": "Mobile UI stability release. Keep the approved mobile layout unchanged while scoping fixed-UI attribute observation to the form dock, gating text cleanup to relevant copy, and coalescing mobile visual tagging to one animation-frame job. Desktop V6.4.128 layout remains unchanged.",
+  "message": "V6.4.129: ổn định giao diện mobile, giảm quét DOM nền; không đổi bố cục đã chốt."
 }
