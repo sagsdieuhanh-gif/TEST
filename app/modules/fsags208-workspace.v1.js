@@ -29,7 +29,11 @@ function esc(v){return S(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'
 function hash(s){let h=2166136261>>>0;for(const ch of String(s)){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)>>>0}return h.toString(36).toUpperCase()}
 function flightName(rec){return S(rec?.flightName||rec?.flightRaw||[rec?.arrFlight,rec?.depFlight].filter(Boolean).join(' / ')||rec?.flightId||'CHUYẾN')}
 function flightNo(rec){return S(rec?.depFlight||rec?.arrFlight||rec?.flightRaw||rec?.flightName).split(/[\/\s]+/).filter(Boolean).pop()||flightName(rec)}
-function isHandlerRole(){return role()==='AD'||['KH','CARGO'].includes(role())||root.__SAGS_CARGO_ALL_FLIGHTS?.isCargo?.()===true}
+function cargoProfileRole(){
+ const s=session(),p=s.profile||profile()||{},r=U(s.role||p.role||root.currentRole),text=U([r,p.roleCode,p.groupCode,p.unit,p.workUnit,p.departmentCode,p.systemDepartment,p.systemDept,p.department,p.group,p.jobTitle].filter(Boolean).join(' '));
+ return r==='KH'||r==='CARGO'||U(p.groupCode)==='KH'||/KHO HÀNG|KHO HANG|CARGO/.test(text)||root.__SAGS_CARGO_ALL_FLIGHTS?.isCargo?.()===true;
+}
+function isHandlerRole(){return role()==='AD'||cargoProfileRole()}
 function canReadFlight(){const p=profile();return !!me()&&!!role()&&!['GUEST','ANONYMOUS'].includes(role())&&p.active!==false;}
 function published208(mod){if(mod?.published?.state&&Number(mod.published.revisionNo)>0)return clone(mod.published);if(mod?.status==='SENT'&&Number(mod.revisionNo)>0&&mod.state)return{state:clone(mod.state),revisionNo:Number(mod.revisionNo),sentAtMs:Number(mod.lastSentAtMs||0),sentBy:clone(mod.lastSentBy||{})};return null;}
 function publishedSummary(date,fid,rec,mod,pub=published208(mod)){if(!pub)return null;const revisionNo=Number(pub.revisionNo||mod?.revisionNo||0);if(!revisionNo)return null;return {code:'FSAGS208',label:'FSAGS 208',status:'AVAILABLE',revisionNo,sentAtMs:Number(pub.sentAtMs||mod?.lastSentAtMs||0),sentBy:clone(pub.sentBy||mod?.lastSentBy||{}),opDate:S(date),flightId:S(fid),flightName:flightName(rec),updatedAtMs:Date.now()}}
@@ -232,7 +236,7 @@ root.sags208RenderWorkspace=injectWorkspace;
 /* V6.4.117 — KH/CARGO uses the same MY FLIGHT card/tile language as other roles.
    The business path remains FSAGS 208 Flight Workspace; only the list/shell is unified. */
 let cargoMyFlightPaint=0,cargoOpenBase=null,cargoRefreshBase=null,cargoTab='pending';
-function cargoRole(){return role()!=='AD'&&isHandlerRole()&&(['KH','CARGO'].includes(role())||root.__SAGS_CARGO_ALL_FLIGHTS?.isCargo?.()===true)}
+function cargoRole(){return role()!=='AD'&&cargoProfileRole()}
 function ensureCargoQueueStyle(){
  if(document.getElementById('sagsCargo208UnifiedStyle'))return;
  const st=document.createElement('style');st.id='sagsCargo208UnifiedStyle';st.textContent=`
@@ -283,13 +287,13 @@ function filterCargoCards(){
 }
 root.sagsCargo208QueueTab=function(tab){cargoTab=tab==='completed'?'completed':'pending';return renderCargoMyFlight(S(document.getElementById('fwcDate')?.value)||currentDate())};
 async function renderCargoMyFlight(date=currentDate()){
- if(!cargoRole())return false;date=S(date)||today();ensureCargoQueueStyle();
+ if(!cargoRole())return false;date=S(date)||today();ensureCargoQueueStyle();document.body?.classList.add('sags-cargo-unified-myflight');
  let modal=document.getElementById('fwcModal');
  if(!modal&&typeof cargoOpenBase==='function'){try{await Promise.resolve(cargoOpenBase.call(root,date))}catch(e){console.info('Cargo base shell init',e?.message||e)}modal=document.getElementById('fwcModal')}
  if(!modal)return false;
  modal.hidden=false;modal.style.removeProperty('display');modal.removeAttribute('aria-hidden');modal.classList.add('show');
  const head=modal.querySelector('.fwcHead'),title=head?.querySelector('h3');if(title)title.textContent='✈ MY FLIGHT';
- let sub=head?.querySelector('.fwcSub');if(!sub&&title){sub=document.createElement('div');sub.className='fwcSub';title.insertAdjacentElement('afterend',sub)}if(sub)sub.textContent='Hồ sơ chuyến bay · Kho hàng';
+ let sub=head?.querySelector('.fwcSub');if(!sub&&title){sub=document.createElement('div');sub.className='fwcSub';title.insertAdjacentElement('afterend',sub)}if(sub)sub.textContent='Hồ sơ của tôi';
  removeDeprecatedBackControls();root.sagsOverlayLayout?.refresh();
  const body=document.getElementById('fwcBody');if(!body)return false;
  body.innerHTML='<div class="fwcTools"><input id="fwcDate" type="date" value="'+esc(date)+'"><label class="sagsFlightSearchBox"><span>TÌM CHUYẾN BAY</span><input id="sagsFlightSearch" type="search" placeholder="Ví dụ: VJ834, VN123" aria-label="Tìm số hiệu chuyến bay" autocomplete="off"></label><button class="fwcBtn" id="sagsCargo208Refresh" type="button">TẢI DANH SÁCH</button></div><div id="fwcStatus" class="fwcStatus">Đang tải hồ sơ chuyến…</div><div id="fwcList" class="v1199Queue sagsCargo208Queue"></div>';
@@ -302,7 +306,7 @@ async function renderCargoMyFlight(date=currentDate()){
  try{
    const rows=await workspaceRows(date);if(token!==cargoMyFlightPaint||!host?.isConnected)return true;
    const pending=rows.filter(x=>!cargoStatus(x.mod).done),done=rows.filter(x=>cargoStatus(x.mod).done),show=cargoTab==='completed'?done:pending;
-   const next='<div class="v1199Tabs"><button class="v1199Tab '+(cargoTab==='pending'?'active':'')+'" onclick="sagsCargo208QueueTab(\'pending\')">ĐANG LÀM <span class="v1199Count">'+pending.length+'</span></button><button class="v1199Tab '+(cargoTab==='completed'?'active':'')+'" onclick="sagsCargo208QueueTab(\'completed\')">ĐÃ GỬI FSAGS 208 <span class="v1199Count">'+done.length+'</span></button></div><div class="v1199OwnerNote">KHO HÀNG · '+esc(date)+' · '+rows.length+' chuyến FSAGS 208</div>'+(show.length?'<div class="v1199FlightGrid">'+show.map(x=>cargoSharedCard(date,x)).join('')+'</div>':'<div class="v1199Empty">'+(cargoTab==='completed'?'Chưa có FSAGS 208 đã gửi.':'Không còn chuyến đang chờ xử lý FSAGS 208.')+'</div>');
+   const next='<div class="v1199Tabs"><button class="v1199Tab '+(cargoTab==='pending'?'active':'')+'" onclick="sagsCargo208QueueTab(\'pending\')">ĐANG LÀM <span class="v1199Count">'+pending.length+'</span></button><button class="v1199Tab '+(cargoTab==='completed'?'active':'')+'" onclick="sagsCargo208QueueTab(\'completed\')">CHUYẾN ĐÃ HOÀN TẤT <span class="v1199Count">'+done.length+'</span></button></div><div class="v1199OwnerNote">'+esc(me())+' · '+esc(date)+' · '+rows.length+' chuyến khai thác</div>'+(show.length?'<div class="v1199FlightGrid">'+show.map(x=>cargoSharedCard(date,x)).join('')+'</div>':'<div class="v1199Empty">'+(cargoTab==='completed'?'Chưa có chuyến nào đã hoàn tất FSAGS 208.':'Không còn chuyến đang làm.')+'</div>');
    if(host.innerHTML!==next)host.innerHTML=next;
    const byFid=new Map(rows.map(x=>[S(x.fid),x]));
    host.querySelectorAll('.sagsCargo208Card').forEach(card=>{const x=byFid.get(S(card.dataset.cargo208Fid)),small=card.querySelector('.v1199FormTile small');if(x&&small)small.textContent=cargoStatus(x.mod).label});
@@ -327,8 +331,9 @@ function installCargoMyFlight(){
    const refresh=function(){if(cargoRole())return renderCargoMyFlight(S(document.getElementById('fwcDate')?.value)||currentDate());return cargoRefreshBase?.apply(this,arguments)};
    refresh.__sagsCargoUnifiedV64117=true;refresh.__base=currentRefresh;root.sagsCargoRefreshAllFlights=refresh;
  }
- if(!cargoRole())return;
- const menu=document.querySelector?.('.v157MenuItem[data-v157-key="myflight"]');if(menu){const labels=menu.querySelectorAll?.('span')||[];if(labels[1])labels[1].textContent='My Flight';const meta=menu.querySelector?.('.meta');if(meta)meta.textContent='FSAGS 208 · Công việc kho hàng'}
+ if(!cargoRole()){document.body?.classList.remove('sags-cargo-unified-myflight');return;}
+ document.body?.classList.add('sags-cargo-unified-myflight');
+ const menu=document.querySelector?.('.v157MenuItem[data-v157-key="myflight"]');if(menu){const labels=menu.querySelectorAll?.('span')||[];if(labels[1])labels[1].textContent='My Flight';const meta=menu.querySelector?.('.meta');if(meta)meta.textContent='Công việc của tôi'}
 }
 let wrappedOpen=null;
 function wrapWorkspaceOpen(){const fn=root.flightWorkspaceOpenFlight;if(typeof fn!=='function'||fn===wrappedOpen||fn.__sags208Workspace)return;const w=function(fid){const date=S(document.getElementById('fwcDate')?.value)||currentDate();root.__sags208ActiveWorkspace={opDate:date,flightId:S(fid)};const r=fn.apply(this,arguments);Promise.resolve(r).finally(()=>setTimeout(()=>injectWorkspace(date,S(fid)),120));return r};w.__sags208Workspace=1;w.__base=fn;root.flightWorkspaceOpenFlight=w;wrappedOpen=w}

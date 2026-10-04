@@ -30,4 +30,8 @@ assert(daily.includes("if(g==='LOADING208'||g==='FSAGS208')return 'FSAGS208'"),'
 assert(daily.includes("if(g==='FSAGS208')return '208'"),'common My Flight form label must render FSAGS 208 consistently');
 assert(daily.includes('/loading208|fsags208/'),'common department label must identify Cargo/Kho hàng');
 
-console.log('V6.4.119 MENU navigation + Cargo shared My Flight UI + focus-stability guard passed.');
+assert(src.includes('function cargoProfileRole()'),'Cargo role detection must include profile department/unit variants');
+assert(src.includes("sub.textContent='Hồ sơ của tôi'"),'Cargo subtitle must exactly match shared My Flight wording');
+assert(src.includes("CHUYẾN ĐÃ HOÀN TẤT"),'Cargo completed tab must use the same label as DH/CBTT My Flight');
+assert(src.includes("chuyến khai thác"),'Cargo keeps all-flight scope without a separate visual shell');
+console.log('V6.4.120 MENU navigation + exact Cargo shared My Flight UI + focus-stability guard passed.');
