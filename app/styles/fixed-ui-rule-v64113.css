@@ -572,3 +572,25 @@ html.new-ui-v1 body #fwcModal .fwcHead button[title="Mở menu hệ thống"]{
     scroll-padding-bottom:calc(var(--sags-form-dock-height,56px) + var(--sags-nav-bar-height,60px) + env(safe-area-inset-bottom) + 28px)!important;
   }
 }
+
+
+/* V6.4.127 COMPATIBILITY TOOLBAR ANCHOR
+   Keep the legacy toolbar DOM hook available for dependent runtime code
+   without rendering any legacy action button or occupying screen space.
+*/
+html.new-ui-v1 body #sagsCompatibilityToolbar#sagsCompatibilityToolbar{
+  position:absolute!important;
+  left:-9999px!important;
+  top:-9999px!important;
+  width:1px!important;
+  height:1px!important;
+  min-width:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  overflow:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  box-shadow:none!important;
+}
