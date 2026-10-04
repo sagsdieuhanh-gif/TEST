@@ -95,6 +95,11 @@ function activeEditor(el){
 }
 function retireBackNavigation(){
   for(const id of ['sagsStableMyFlightBack','v644MyFlightBack','sagsContextBackRow'])$(id)?.remove();
+  for(const id of ['v174DataHubClose','v181AdminClose']){
+    const button=$(id);if(!button)continue;
+    if(/QUAY LAI/.test(norm(button.textContent))||norm(button.textContent).startsWith('←'))button.textContent='ĐÓNG';
+    button.setAttribute('aria-label','Đóng');
+  }
   const head=document.querySelector('#fwcModal .fwcHead');if(!head)return;
   head.querySelectorAll('button').forEach(button=>{
     const txt=norm(button.textContent),aria=norm(button.getAttribute('aria-label')),title=norm(button.getAttribute('title'));
