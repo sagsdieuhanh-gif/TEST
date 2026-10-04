@@ -4,14 +4,6 @@
  const $=id=>document.getElementById(id);
  const retired=['v163MultiBtn','v38NavMulti','fwcMultitaskBtn','v38MyFlightToggle','v38MyFlightLabel','v310ShiftNav','v327ReassignNav','v1113QrScanDirect','v1113QrFormBtn','v340CreateFlightBtn','roleBtnNA','roleBtnNew','roleBtnFirebaseUsage','v181FirebaseCard','v476NetworkCard','sagsUiPrefsBtn','sagsUiPrefsModal','flightTypeEditModal','v310ShiftModal','fwcMultitaskModal','v340ManualFlightModal'];
  const visible=id=>{const e=$(id);return e&&getComputedStyle(e).display!=='none'&&getComputedStyle(e).visibility!=='hidden';};
- function removeBackNavigationControls(){
-  for(const id of ['sagsStableMyFlightBack','v644MyFlightBack','sagsContextBackRow'])$(id)?.remove();
-  const head=$('fwcModal')?.querySelector('.fwcHead');
-  if(head)head.querySelectorAll('button').forEach(b=>{
-   const txt=(b.textContent||'').trim(),aria=(b.getAttribute('aria-label')||'').trim(),title=(b.getAttribute('title')||'').trim();
-   if(/^([←‹]|←\s*QUAY LẠI|QUAY LẠI)$/i.test(txt)||/quay lại/i.test(aria)||/quay lại/i.test(title))b.remove();
-  });
- }
  function removeRetired(){
   for(const id of retired)$(id)?.remove();
   document.querySelectorAll('[data-retired-action],.fwcMultiBtn,.fwcMultiDone').forEach(e=>e.remove());
@@ -35,14 +27,6 @@
   root.sagsUiClearBackStack?.();root.sagsV479GoHome?.();root.sagsOverlayLayout?.refresh();
  }
  root.sagsGoStart=goStart;
- function menuReturn(e){
-  try{e?.preventDefault?.();e?.stopPropagation?.();}catch(_){}
-  document.body.classList.remove('v157-drawer-open','sags-menu-collapsed');
-  removeBackNavigationControls();
-  goStart();
-  return false;
- }
- root.sagsMenuReturn=menuReturn;
  function install(){
   if(matchMedia('(min-width:900px)').matches)document.body.classList.remove('v157-drawer-open');
   if(!$('sagsWelcome')){
@@ -62,15 +46,16 @@
    b.className='sagsAdminBtn secondary';b.onclick=()=>{document.body.classList.remove('v157-drawer-open');};head.prepend(b);
   }
   for(const id of ['v174DataHubClose','v181AdminClose']){
-   const b=$(id);if(!b||b.dataset.v6444Close)continue;b.dataset.v6444Close='1';
-   b.textContent='ĐÓNG';b.setAttribute('aria-label','Đóng');
+   const b=$(id);if(!b||b.dataset.v6444Back)continue;b.dataset.v6444Back='1';
+   const base=b.onclick;b.textContent='← QUAY LẠI';b.setAttribute('aria-label','Quay lại Công việc');
+   b.onclick=function(e){base?.call(this,e);if(!visible('fwcModal'))root.sagsV479GoHome?.();};
   }
   for(const id of ['v163FlightBtn','v163HomeBtn']){const b=$(id);if(b)b.textContent=id==='v163HomeBtn'?'← CÔNG VIỆC':'☰ MENU';}
-  const menu=$('v163FlightBtn');if(menu){menu.onclick=menuReturn;menu.removeAttribute('aria-expanded');menu.removeAttribute('aria-controls');menu.setAttribute('aria-label','Về trang chính');menu.title='Về trang chính';}
+  const menu=$('v163FlightBtn');if(menu){menu.onclick=()=>{if(matchMedia('(min-width:900px)').matches)document.body.classList.toggle('sags-menu-collapsed');else document.body.classList.toggle('v157-drawer-open');menu.setAttribute('aria-expanded',String(matchMedia('(min-width:900px)').matches?!document.body.classList.contains('sags-menu-collapsed'):document.body.classList.contains('v157-drawer-open')));};}
   if(!$('sagsNavigationHeader')){const nav=document.createElement('header');nav.id='sagsNavigationHeader';nav.setAttribute('aria-label','Điều hướng chính');nav.innerHTML='<div class="sagsNavBrand">✈ <strong>SAGS</strong><span>E-REPORT</span></div>';document.body.appendChild(nav);const st=document.createElement('style');st.textContent='#sagsNavigationHeader{display:none}body.v157-authenticated #sagsNavigationHeader{display:flex;position:fixed;top:0;left:244px;right:0;z-index:30000;min-height:64px;box-sizing:border-box;padding:calc(8px + env(safe-area-inset-top)) 16px 8px;align-items:center;gap:12px;background:#063047;color:white;border-bottom:1px solid #ffffff25}.sagsNavBrand{display:flex;align-items:center;gap:8px;flex:1;font:14px Arial;letter-spacing:1px}.sagsNavBrand span{font-size:11px;color:#a3cbd4}#sagsNavigationHeader button{position:static!important;display:block!important;min-height:44px;padding:10px 14px;border:1px solid #ffffff55;border-radius:9px;background:#ffffff0c;color:white;font:bold 13px Arial;box-shadow:none!important}#sagsNavigationHeader #v163FlightBtn{display:block!important}#sagsWelcome{padding-top:64px;box-sizing:border-box}.welcomeContent{min-height:calc(100dvh - 64px)}body.v157-authenticated #v163OperationNav #v163HomeBtn{display:none!important}@media(min-width:900px){body.v157-authenticated #v157Drawer#v157Drawer{display:flex!important;flex-direction:column!important;height:100dvh!important;width:280px!important;min-width:280px;max-width:280px;transform:none!important;visibility:visible!important;box-sizing:border-box;overflow:hidden}body.v157-authenticated #sagsNavigationHeader{left:280px}body.v157-authenticated #sagsWelcome{left:280px}body.v157-authenticated.sags-menu-collapsed #v157Drawer#v157Drawer{display:none!important;transform:translateX(-100%)!important;visibility:hidden!important;pointer-events:none}body.sags-menu-collapsed #sagsNavigationHeader,body.sags-menu-collapsed #sagsWelcome{left:0}#v6444MenuClose{display:none!important}.v157MenuItem{min-height:56px!important;flex-shrink:0!important;font-size:15px!important}.v157MenuItem strong,.v157MenuItem .v157MenuLabel{font-size:15px!important}#v157MenuBody{flex:1;min-height:0;overflow-y:auto!important}.v157DrawerHead,.v157DrawerFooter{flex-shrink:0!important}}@media(max-width:899px){body.v157-authenticated #sagsNavigationHeader{left:0;padding-left:12px;padding-right:12px}.sagsNavBrand span{display:none}#sagsNavigationHeader #v163FlightBtn{display:block!important}body.v157-authenticated #v157Drawer{position:fixed;left:0;top:0;bottom:0;width:min(320px,calc(100vw - 48px));max-width:calc(100vw - 48px);height:100dvh!important;max-height:100dvh;display:flex!important;transform:translateX(-105%)!important;visibility:hidden;overflow:hidden;padding-top:calc(64px + env(safe-area-inset-top));box-sizing:border-box;z-index:29999}body.v157-drawer-open #v157Drawer{transform:translateX(0)!important;visibility:visible}.v157DrawerHead,.v157DrawerFooter{flex-shrink:0}#v157MenuBody{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain}body.v157-drawer-open #v157DrawerBackdrop{z-index:29998!important;top:64px!important;pointer-events:auto!important}#sagsWelcome{left:0}.welcomeContent{padding-top:40px}}';document.head.appendChild(st);}
-  const nav=$('sagsNavigationHeader');if(nav&&!nav.__sagsMeasuredHeader){nav.__sagsMeasuredHeader=true;new ResizeObserver(()=>document.body.style.setProperty('--sags-navigation-height',Math.ceil(nav.getBoundingClientRect().height)+'px')).observe(nav);}if(menu&&menu.parentElement!==nav){menu.setAttribute('aria-label','Về trang chính');menu.removeAttribute('aria-controls');nav.prepend(menu);}const home=$('sagsGoStartBtn');if(home&&home.parentElement!==nav)nav.appendChild(home);
+  const nav=$('sagsNavigationHeader');if(nav&&!nav.__sagsMeasuredHeader){nav.__sagsMeasuredHeader=true;new ResizeObserver(()=>document.body.style.setProperty('--sags-navigation-height',Math.ceil(nav.getBoundingClientRect().height)+'px')).observe(nav);}if(menu&&menu.parentElement!==nav){menu.setAttribute('aria-label','Mở menu chức năng');menu.setAttribute('aria-controls','v157Drawer');nav.prepend(menu);}const home=$('sagsGoStartBtn');if(home&&home.parentElement!==nav)nav.appendChild(home);
   // One measured mobile dock replaces independent fixed bars and their guessed offsets.
-  removeBackNavigationControls();const self=$('hf4OpenBtn');if(self?.closest('#fwcModal'))self.remove();const date=$('fwcDate');if(date&&!$('sagsWorkDatePicker')){const box=document.createElement('div');box.className='sagsWorkDateControl';date.replaceWith(box);box.appendChild(date);date.setAttribute('aria-label','Ngày công việc');const picker=document.createElement('button');picker.id='sagsWorkDatePicker';picker.type='button';picker.setAttribute('aria-label','Chọn ngày công việc');picker.title='Mở lịch chọn ngày';picker.innerHTML='<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6M17 2v6M3 11h18M7 15h3M14 15h3"/></svg>';picker.onclick=()=>{try{if(typeof date.showPicker==='function')date.showPicker();else{date.focus();date.click();}}catch(_){date.focus();date.click();}};box.appendChild(picker);}
+  const exit=$('fwcModal')?.querySelector('.fwcHead>.fwcBtn.gray');if(exit)exit.remove();const back=$('sagsContextBackRow');if(back?.closest('#fwcModal'))back.remove();const self=$('hf4OpenBtn');if(self?.closest('#fwcModal'))self.remove();const date=$('fwcDate');if(date&&!$('sagsWorkDatePicker')){const box=document.createElement('div');box.className='sagsWorkDateControl';date.replaceWith(box);box.appendChild(date);date.setAttribute('aria-label','Ngày công việc');const picker=document.createElement('button');picker.id='sagsWorkDatePicker';picker.type='button';picker.setAttribute('aria-label','Chọn ngày công việc');picker.title='Mở lịch chọn ngày';picker.innerHTML='<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6M17 2v6M3 11h18M7 15h3M14 15h3"/></svg>';picker.onclick=()=>{try{if(typeof date.showPicker==='function')date.showPicker();else{date.focus();date.click();}}catch(_){date.focus();date.click();}};box.appendChild(picker);}
   const actions=$('v324FormActions'),operation=$('v163OperationNav');
   if(actions&&operation){let dock=$('sagsMobileFormDock');if(!dock){dock=document.createElement('div');dock.id='sagsMobileFormDock';dock.setAttribute('aria-label','Thao tác biểu mẫu');document.body.appendChild(dock);const measure=()=>{const h=Math.ceil(dock.getBoundingClientRect().height);document.body.style.setProperty('--sags-form-dock-height',h+'px');};new ResizeObserver(measure).observe(dock);window.addEventListener('resize',measure,{passive:true});}if(actions.parentElement!==dock)dock.appendChild(actions);if(operation.parentElement!==dock)dock.appendChild(operation);}
 
