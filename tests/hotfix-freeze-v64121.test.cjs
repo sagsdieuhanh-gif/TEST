@@ -1,0 +1,15 @@
+const fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const html=read('index.html');
+const sw=read('service-worker.js');
+const workspace=read('app/modules/fsags208-workspace.v1.js');
+const css=read('app/styles/fixed-ui-rule-v64113.css');
+assert(!html.includes('v64120-cargo-myflight-route'),'V6.4.121 must not load the duplicate Cargo route authority');
+assert(!html.includes('cargo-myflight-ui.v64120.js'),'duplicate Cargo route module must not execute');
+assert(!sw.includes('./app/modules/cargo-myflight-ui.v64120.js'),'duplicate Cargo route module must not be in PWA bootstrap');
+assert(workspace.includes('async function renderCargoMyFlight'),'Cargo My Flight must remain inside the existing FSAGS 208 workspace');
+assert(workspace.includes("sub.textContent='Hồ sơ của tôi'"),'Cargo subtitle must keep shared My Flight wording');
+assert(workspace.includes('CHUYẾN ĐÃ HOÀN TẤT'),'Cargo completed tab must keep shared My Flight label');
+assert(css.includes('V6.4.120 CARGO MY FLIGHT + QUICK INPUT COMPACT'),'compact shared UI styling must remain');
+assert(css.includes('body #quickTimeModal .quickTimePanel'),'compact Quick Input styling must remain');
+console.log('V6.4.121 freeze regression guard passed.');
