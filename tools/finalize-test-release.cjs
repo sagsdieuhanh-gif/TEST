@@ -1,12 +1,12 @@
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),write=(p,s)=>fs.writeFileSync(path.join(root,p),s),exists=p=>fs.existsSync(path.join(root,p));
-const VERSION='V6.4.116',BUILD='V6.4.116-20261004-FIXED-UI-AUDIT-02',LABEL='V6.4.116 - FIXED UI RULE',RELEASED='2026-10-04T14:05:24+07:00';
+const VERSION='V6.4.117',BUILD='V6.4.117-20261004-MYFLIGHT-CARGO-01',LABEL='V6.4.117 - MY FLIGHT BACK + CARGO UI',RELEASED='2026-10-04T15:00:00+07:00';
 const old=JSON.parse(read('version.json')),oldV=String(old.version||''),oldB=String(old.build||'');
 if(!oldV||!oldB)throw Error('Current version metadata missing');
 let index=read('index.html').split(oldB).join(BUILD).split(oldV).join(VERSION);
 assert(index.includes('name="sags-release-build" content="'+BUILD+'"'));assert(index.includes('name="sags-release-version" content="'+VERSION+'"'));
 write('index.html',index);
-const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'ui',base:oldB===BUILD?old.base:oldB,updatePolicy:'required',notes:'Shared Button Base with cascade-layer priority, compact 12px geometry, readable typography and isolated accent icons. Preserve signature and permission-hidden actions; fix A/C Limits overflow, mobile/tablet navigation clearance and print visibility. Add measured browser audit across required mobile sizes, tablet and desktop.',message:VERSION+': đồng bộ nút và toolbar theo FIXED UI RULE.'};
+const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'stability',base:oldB===BUILD?old.base:oldB,updatePolicy:'required',notes:'Fix repeated My Flight back navigation: dossier returns to My Flight and the next back returns home without focus/repaint loops. Unify KH/Cargo My Flight into the same v1199 flight-card and FSAGS task-tile interface used by operational roles, while keeping FSAGS 208 ownership, receive history and publish logic unchanged.',message:VERSION+': sửa nút quay lại My Flight và đồng bộ giao diện Kho hàng/FSAGS 208.'};
 write('version.json',JSON.stringify(version,null,2)+'\n');
 let sw=read('service-worker.js').split(oldB).join(BUILD).split(oldV).join(VERSION);
 const cacheId=BUILD.toLowerCase().replace(/[^a-z0-9-]/g,'');
@@ -29,3 +29,5 @@ write(mp,JSON.stringify(m,null,2)+'\n');
 // ui-audit-gate-retry-20261004-0630
 
 // mobile-release-sync-20261004
+
+// myflight-cargo-ui-v64117
