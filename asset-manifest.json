@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.118",
-  "build": "V6.4.118-20261004-PERFORMANCE-STABILITY-01",
-  "strategy": "TEST atomic release + build-unique PWA cache + mixed-build guard",
+  "version": "V6.4.119",
+  "build": "V6.4.119-20261004-MENU-CARGO-FOCUS-01",
+  "strategy": "TEST atomic release + MENU-only navigation + shared Cargo My Flight + focus stability",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "0b52be884d055557a7f3bae382b7e29da7a72dfa01d12e478da80da778d1be9c",
-      "bytes": 81434
+      "sha256": "05787d4d7be3c6edeecd5981ae52d77a8e49df5f698f139ceffc63154459f9ad",
+      "bytes": 81084
     },
     "./service-worker.js": {
-      "sha256": "a8e157e55b775896917102067646d15cb4cc6f94088643ebecdddf12fdab0d8c",
-      "bytes": 21957
+      "sha256": "9d007f855cb0199d264ee37defae631cc3b4e336f2991ab5db54b4245cbe2773",
+      "bytes": 21942
     },
     "./version.json": {
-      "sha256": "dff01e611680e7945a2098757b7a1f835ab45b543ccf435694c1a5989b698e40",
-      "bytes": 811
+      "sha256": "328567bc93e935d687d182e2b4cd73834692e08ca79108bdbaa62a5976c0bd0e",
+      "bytes": 992
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",

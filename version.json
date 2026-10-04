@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.118",
-  "displayVersion": "V6.4.118",
-  "label": "V6.4.118 - PERFORMANCE + STABILITY",
-  "build": "V6.4.118-20261004-PERFORMANCE-STABILITY-01",
-  "releasedAt": "2026-10-04T16:25:00+07:00",
-  "type": "performance",
-  "base": "V6.4.117-20261004-MYFLIGHT-CARGO-01",
+  "version": "V6.4.119",
+  "displayVersion": "V6.4.119",
+  "label": "V6.4.119 - MENU + CARGO + FOCUS STABILITY",
+  "build": "V6.4.119-20261004-MENU-CARGO-FOCUS-01",
+  "releasedAt": "2026-10-04T16:58:00+07:00",
+  "type": "stability",
+  "base": "V6.4.118-20261004-PERFORMANCE-STABILITY-01",
   "updatePolicy": "required",
-  "notes": "Reduce startup/update cost by loading runtime chunks independently, removing the unused Firebase Functions compat SDK, preconnecting the Firebase CDN, memoizing verified PWA manifest/checksum work, scoping dynamic UI normalization to changed DOM regions, and bounding/trimming roster Firebase status reads. Source monoliths remain build inputs only and are not executed by index.html.",
-  "message": "V6.4.118: tối ưu tải trang, PWA, render mobile và luồng đọc Firebase."
+  "notes": "Remove My Flight back-arrow controls and their mutation loop; MENU is now the universal return-to-main control. Protect focused input/textarea/select fields from UI normalization churn to stop visible field flicker. Cargo/Kho hàng now renders its all-flight FSAGS 208 queue through the exact shared My Flight card/tile renderer used by operational roles, while retaining all-flight visibility, flight-number search, dossier access and receive/open FSAGS 208 actions.",
+  "message": "V6.4.119: bỏ nút mũi tên quay lại, dùng MENU để trở về trang chính, ổn định field nhập và đồng bộ giao diện Kho hàng với My Flight chung."
 }
