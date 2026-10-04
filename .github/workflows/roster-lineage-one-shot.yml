@@ -9,12 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        with: {fetch-depth: 0}
       - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
+        with: {node-version: 24, cache: npm}
       - run: npm ci
       - name: Build UI bundle
         run: npm run build:ui
@@ -32,11 +29,12 @@ jobs:
         run: npm test
       - name: Install browser
         run: npx playwright install --with-deps chromium
-      - name: Browser regression
-        run: |
-          npm run test:browser
-          node tests/browser/roster-import.cjs
-          node tests/browser/mobile-navy.cjs
+      - name: Browser dossier regression
+        run: npm run test:browser
+      - name: Browser roster import regression
+        run: node tests/browser/roster-import.cjs
+      - name: Browser mobile regression
+        run: node tests/browser/mobile-navy.cjs
       - name: Commit verified generated TEST assets
         shell: bash
         run: |
