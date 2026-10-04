@@ -1,7 +1,7 @@
 const fs=require('fs'),path=require('path'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('index.html');
-const route=read('app/boot/33-v64120-cargo-myflight-route.js');
+const route=read('app/modules/cargo-myflight-ui.v64120.js');
 const css=read('app/styles/fixed-ui-rule-v64113.css');
 
 assert(html.includes('id="v64120-cargo-myflight-route"'),'late Cargo route authority must load from index');
