@@ -1,26 +1,33 @@
 const fs=require('fs'),path=require('path'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const src=read('app/modules/fsags208-workspace.v1.js');
+const ui=read('app/boot/32-fixed-ui-rule-v64113.js');
+const daily=read('app/modules/daily-roster.v502.js');
 
-assert(src.includes('function stableMyFlightBack(ev)'),'stable My Flight back handler missing');
-assert(src.includes("b.id='sagsStableMyFlightBack'"),'native My Flight back control missing');
-assert(src.includes("sessionStorage.getItem('sagsUiBackStackV183')"),'back handler must preserve admin/datahub return stack');
-assert(src.includes("else{try{root.sagsUiClearBackStack?.()}catch(_){}try{root.sagsV479GoHome?.()}catch(_){}}"),
-  'empty My Flight back stack must go HOME, not reopen My Flight');
-assert(src.includes("document.getElementById('sagsContextBackRow')?.remove()"),
-  'native back must replace the mutation-driven context back row');
-assert(src.includes('myFlightBackBusy'),'back action must be re-entry guarded');
-assert(src.includes('document.activeElement?.blur?.()'),'hidden focused button must release focus before close');
+assert(src.includes('function removeDeprecatedBackControls()'),'deprecated back cleanup missing');
+assert(!src.includes('function stableMyFlightBack('),'flashing My Flight back handler must be removed');
+assert(!src.includes("b.id='sagsStableMyFlightBack'"),'flashing arrow button must never be recreated');
+assert(!src.includes('myFlightBackObserver'),'back-button MutationObserver loop must be removed');
+assert(ui.includes('function retireBackNavigation()'),'global back-arrow cleanup missing');
+assert(ui.includes('function goMainFromMenu(event)'),'MENU return handler missing');
+assert(ui.includes('__SAGS_MENU_RETURN_CAPTURE_V64119__'),'MENU capture guard missing');
+assert(ui.includes("'sagsStableMyFlightBack','v644MyFlightBack','sagsContextBackRow'"),
+  'all known flashing back controls must be retired');
+assert(ui.includes("'v174DataHubClose','v181AdminClose'")&&ui.includes("button.textContent='ĐÓNG'"),
+  'legacy secondary back arrows must be normalized to close controls');
 
-assert(src.includes('async function workspaceRows('),'shared FSAGS 208 flight rows helper missing');
-assert(src.includes('function renderCargoMyFlight('),'Cargo unified My Flight renderer missing');
-assert(src.includes('class="v1199Card sagsCargo208Card"'),'Cargo flights must use the same v1199 card language');
-assert(src.includes('class="v1199TaskBtn '),'Cargo FSAGS 208 actions must use the same task-tile button language');
-assert(src.includes("title.textContent='✈ MY FLIGHT'"),'Cargo header must use the shared My Flight shell');
-assert(src.includes("sub.textContent='FSAGS 208 · Kho hàng'"),'Cargo role context must stay explicit');
-assert(src.includes('__sagsCargoUnifiedV64117'),'Cargo My Flight entry wrapper must be installed independently of login timing');
-assert(src.includes('if(cargoRole())return renderCargoMyFlight'),'Cargo My Flight entry must route KH/Cargo to the unified renderer');
-assert(src.includes("if(!modal&&typeof cargoOpenBase==='function')"),'Cargo renderer must initialize the shared Flight Workspace shell on first open');
-assert(src.includes('listRows:workspaceRows'),'shared FSAGS 208 rows must be exported for regression/diagnostics');
+assert(src.includes('async function workspaceRows('),'shared FSAGS 208 all-flight source missing');
+assert(src.includes('function cargoSharedCard('),'Cargo shared-card adapter missing');
+assert(src.includes('__SAGS_DAILY_ROSTER_FINAL_V1199'),'Cargo must reuse the common My Flight renderer');
+assert(src.includes('shared.cardHtml(group,date)'),'Cargo must render the exact shared flight-card markup');
+assert(src.includes('sagsCargo208QueueTab'),'Cargo queue must use shared My Flight tab geometry');
+assert(src.includes('sagsFlightSearch'),'Cargo queue must retain flight-number search');
+assert(src.includes("const rows=await workspaceRows(date)"),'Cargo must list all FSAGS 208 flight records, not personal roster only');
+assert(src.includes('sagsCargo208TakeBtn'),'Cargo shared card must retain its FSAGS 208 receive/open action');
+assert(src.includes("host.querySelectorAll('.v1199DossierBtn')"),'Cargo shared cards must retain common flight dossier action');
+assert(src.includes("host.querySelectorAll('.v1199DocChip')"),'Cargo shared cards must retain common document chips');
+assert(daily.includes("if(g==='LOADING208'||g==='FSAGS208')return 'FSAGS208'"),'common My Flight renderer must recognize FSAGS 208');
+assert(daily.includes("if(g==='FSAGS208')return '208'"),'common My Flight form label must render FSAGS 208 consistently');
+assert(daily.includes('/loading208|fsags208/'),'common department label must identify Cargo/Kho hàng');
 
-console.log('V6.4.117 My Flight back + Cargo unified UI guard passed.');
+console.log('V6.4.119 MENU navigation + Cargo shared My Flight UI + focus-stability guard passed.');

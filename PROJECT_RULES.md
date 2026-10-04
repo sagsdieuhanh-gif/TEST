@@ -73,11 +73,11 @@ Implementation authority for current release:
 
 
 ## My Flight navigation contract
-- Luồng quay lại phải có đích xác định, không được dựa vào một nút context bị MutationObserver gỡ/chèn liên tục.
-- Từ Hồ sơ chuyến: Quay lại phải trở về My Flight của ngày/chuyến đang thao tác.
-- Từ My Flight khi không có ngữ cảnh AD/Data Hub phía trước: Quay lại phải về Trang chủ; **không được mở lại chính My Flight**, không tạo vòng lặp focus và không yêu cầu refresh.
-- Nếu My Flight được mở từ AD Control hoặc Data Hub, Quay lại phải ưu tiên đúng ngữ cảnh đó.
-- KH/Cargo dùng cùng ngôn ngữ giao diện My Flight với ĐH/CBTT/PVHK: card chuyến + tile biểu mẫu; khác biệt chỉ nằm ở nghiệp vụ/quyền FSAGS 208, không tạo một shell UI riêng.
+- **Không dùng nút mũi tên Quay lại trong My Flight / Hồ sơ chuyến / màn hình biểu mẫu.** Các control kiểu `←`, `‹`, `sagsStableMyFlightBack`, `v644MyFlightBack`, `sagsContextBackRow` là retired UI và phải bị loại bỏ.
+- `☰ MENU` là nút thoát điều hướng duy nhất của luồng nghiệp vụ: khi đang ở form, hồ sơ chuyến, My Flight hoặc overlay nghiệp vụ, bấm MENU phải đóng trạng thái hiện tại an toàn và trở về trang chính/Công việc. Không được mở lại chính màn hình vừa đóng và không được yêu cầu refresh.
+- Không được tạo MutationObserver chỉ để gỡ/chèn lại nút quay lại. Mọi UI observer phải trở về trạng thái idle và không được làm input/textarea/select đang focus nhấp nháy hoặc mất focus.
+- KH/Cargo dùng **chính renderer/card/tile My Flight dùng chung của ĐH/CBTT/PVHK**, không được dựng một card shell riêng. Khác biệt chỉ ở nguồn dữ liệu và nghiệp vụ: KH thấy toàn bộ chuyến có FSAGS 208 của ngày, có tìm số hiệu chuyến bay, rồi tự chọn chuyến để nhận/tiếp tục FSAGS 208.
+- Mọi thay đổi renderer chung phải giữ search, hồ sơ chuyến, tài liệu đã gửi và quyền nghiệp vụ theo vai trò.
 
 
 ## Performance / scale contract

@@ -540,3 +540,22 @@ html.new-ui-v1 body .sagsUiButton[hidden]{display:none!important}
 }
 
 }
+
+
+/* ==========================================================
+   V6.4.119 MENU-ONLY NAVIGATION / FOCUS STABILITY
+   Retire all My Flight back-arrow variants. MENU is the only
+   navigation escape; focused editors must remain visually stable.
+   ========================================================== */
+html.new-ui-v1 body :is(#sagsStableMyFlightBack,#v644MyFlightBack,#sagsContextBackRow),
+html.new-ui-v1 body #fwcModal .fwcHead>.fwcBtn.gray{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+html.new-ui-v1 body :is(input,textarea,select,[contenteditable="true"]){
+  animation:none!important;
+}
+html.new-ui-v1 body :is(input,textarea,select,[contenteditable="true"]):focus{
+  animation:none!important;
+}
