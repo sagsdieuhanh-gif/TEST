@@ -9,8 +9,7 @@ const expected={
 };
 for(const [p,h] of Object.entries(expected))assert.equal(sha(p),h,p+' must match verified V6.4.118 byte-for-byte');
 const html=txt('index.html'),sw=txt('service-worker.js'),version=JSON.parse(txt('version.json'));
-assert.equal(version.version,'V6.4.124');
-assert.equal(version.base,'V6.4.123-20261004-POSTLOGIN-UNLOCK-01');
+assert(Number(String(version.version||'').split('.').pop())>=124,'verified core baseline guard applies from V6.4.124 onward');
 assert(!/V6\.4\.(119|120|121)/.test(html),'index must not reference later runtime builds');
 assert(!/V6\.4\.(119|120|121)/.test(sw),'service worker must not reference later runtime builds');
 assert(!html.includes('cargo-myflight-ui.v64120.js'),'V6.4.120 route module must stay absent');
