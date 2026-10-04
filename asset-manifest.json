@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.123",
-  "build": "V6.4.123-20261004-POSTLOGIN-UNLOCK-01",
-  "strategy": "TEST atomic release + post-login in-place unlock + restore watchdog",
+  "version": "V6.4.124",
+  "build": "V6.4.124-20261004-MYFLIGHT-DIRECT-CLEAN-01",
+  "strategy": "TEST atomic release + My Flight direct task + mobile bottom clearance + hidden draft badge",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "f90798cf4c827683edc90c10654a60ff62a9cb15dd8a6feba8622715934038e3",
-      "bytes": 83191
+      "sha256": "bcc2d5bafab40822569588f669bbee4f0015afc785c27390dfc0dd282858bb07",
+      "bytes": 83974
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "56e1a49866db2f25d282bab081e3bc929b548467640b0c32cd0eec0d2358e494",
-      "bytes": 81221
+      "sha256": "10e820ef0ab3acf890970fdb9675e0056c77ea93f083ac5ed35cef75807b5d19",
+      "bytes": 81576
     },
     "./service-worker.js": {
-      "sha256": "e966ee25617d4b67e50acdcc964574361d79f5e8f1f2769e171c3b34ca518ee9",
-      "bytes": 21986
+      "sha256": "a5a84839d5bd22eba325a8f15b6caacf0cfd8bdf34b5ea5af7ac8416ab61f83f",
+      "bytes": 22001
     },
     "./version.json": {
-      "sha256": "e5c693552d5bd34d7e29de750038ba6019d3df1fffa65bc19d4774b4947f552d",
-      "bytes": 818
+      "sha256": "794b0bf2f9bdf74089c7e5e02ca18303ae4a84f33825df24452504401853a061",
+      "bytes": 984
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -526,8 +526,8 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "bc4bc86956ac2947680ada536cf710b56cfcd6a5ecff69a4c3f0b09544ce3190",
-      "bytes": 23644
+      "sha256": "5b0092b1ae6558e7ccf1a3836386eaa0ed1ab16ae7a49359b40f1f559f79a832",
+      "bytes": 24842
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
       "sha256": "2109a24ab29092ffe728bde74f70a3c77bb320bbfe8fa44f25c4f068b5064150",
