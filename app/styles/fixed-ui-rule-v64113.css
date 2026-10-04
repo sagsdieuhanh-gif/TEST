@@ -594,3 +594,40 @@ html.new-ui-v1 body #sagsCompatibilityToolbar#sagsCompatibilityToolbar{
   pointer-events:none!important;
   box-shadow:none!important;
 }
+
+
+/* V6.4.139 · OPERATIONAL FORM FIELD SAFETY
+   UI chrome can be dark; paper/form-entry fields must remain readable and printable. */
+html.new-ui-v1 body.v163-operational :is(.sheet,.page,.paper,.form-page,.pdf-page) :is(
+  input:not([type="button"]):not([type="submit"]):not([type="reset"]),
+  textarea,
+  select
+){
+  background:#fff!important;
+  color:#111!important;
+  -webkit-text-fill-color:#111!important;
+  border-color:#8e9aa3!important;
+  box-shadow:none!important;
+  color-scheme:light!important;
+}
+html.new-ui-v1 body.v163-operational :is(.sheet,.page,.paper,.form-page,.pdf-page) :is(
+  input[type="checkbox"],
+  input[type="radio"]
+){
+  background:#fff!important;
+  color:#111!important;
+  accent-color:#123a72!important;
+  filter:none!important;
+  opacity:1!important;
+  color-scheme:light!important;
+}
+html.new-ui-v1 body.v163-operational :is(.sheet,.page,.paper,.form-page,.pdf-page) :is(input,textarea)::placeholder{
+  color:#6b747b!important;
+  opacity:1!important;
+}
+html.new-ui-v1 body.v163-operational :is(.sheet,.page,.paper,.form-page,.pdf-page) :is(input,textarea,select):focus{
+  outline:2px solid rgba(18,58,114,.28)!important;
+  outline-offset:1px!important;
+  background:#fff!important;
+  color:#111!important;
+}

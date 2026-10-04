@@ -42,3 +42,13 @@ assert(runtime.includes('modal.querySelector("#sagsContextBackRow")?.remove()'),
 assert(app.includes('layer.id==="fwcModal"&&matchMedia("(min-width:900px)").matches'),'global context-back must not inject into desktop My Flight');
 assert(!desktop.includes('#v477Close{display:none!important}'),'desktop shell must not rely on hiding the legacy close button');
 console.log('V6.4.137 ghost-control removal guard passed.');
+
+assert(desktop.includes('position:fixed!important;'),'desktop My Flight overlay must be explicitly positioned');
+assert(desktop.includes('left:var(--sags-desktop-sidebar)!important'),'desktop My Flight must start after the sidebar');
+assert(desktop.includes('V6.4.88 geometry, new-UI visual language'),'desktop form toolbar must use the balanced legacy geometry with new UI styling');
+assert(desktop.includes('grid-template-columns:repeat(4,minmax(0,1fr))'),'desktop operation nav must be a balanced four-column row');
+const fixed=fs.readFileSync(path.join(root,'app/styles/fixed-ui-rule-v64113.css'),'utf8');
+assert(fixed.includes('V6.4.139 · OPERATIONAL FORM FIELD SAFETY'),'form field safety layer missing');
+assert(fixed.includes('background:#fff!important;'),'operational paper fields must stay white');
+assert(fixed.includes('accent-color:#123a72!important;'),'checkbox/radio state must stay visible');
+console.log('V6.4.139 field readability + balanced desktop toolbar guard passed.');
