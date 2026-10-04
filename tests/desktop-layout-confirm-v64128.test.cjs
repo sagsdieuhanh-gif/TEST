@@ -1,0 +1,23 @@
+const fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const html=read('index.html');
+const desktop=read('app/styles/desktop-shell-v64128.css');
+const roster=read('app/modules/daily-roster.v502.js');
+const runtime=read('app/generated/runtime-1.js');
+const sw=read('service-worker.js');
+const version=JSON.parse(read('version.json'));
+
+assert(Number(String(version.version||'').split('.').pop())>=128,'desktop layout contract applies from V6.4.128 onward');
+assert(html.includes('desktop-shell-v64128.css'),'desktop shell stylesheet must load after fixed UI rules');
+assert(desktop.includes('@media (min-width:1024px)'),'desktop shell must be isolated from mobile/tablet');
+assert(desktop.includes('--sags-desktop-sidebar:284px'),'desktop home must use a dedicated sidebar');
+assert(desktop.includes('grid-template-columns:repeat(2,minmax(0,1fr))'),'desktop My Flight must use multi-column cards');
+assert(desktop.includes('top:66px!important;right:24px!important;left:auto!important;bottom:auto!important'),'desktop form actions must use a top/right command bar, not the mobile bottom dock');
+assert(html.includes('id="sagsCompatibilityToolbar"'),'empty compatibility anchor must remain so operational action generation still initializes');
+assert(!html.includes('id="roleBtnQuickTime"'),'legacy quick-entry toolbar button must remain removed');
+assert(!runtime.includes('v163FlightBtn'),'CHUYẾN operation button must not be generated');
+assert(!runtime.includes('✈ CHUYẾN'),'CHUYẾN operation button copy must not be generated');
+assert(roster.includes("host.querySelectorAll('.v1199DirectTask').forEach(btn=>btn.onclick=()=>openTask("),'direct My Flight cards must route through openTask');
+assert(roster.includes("if(exact){")&&roster.includes("MỞ BIỂU MẪU?"),'direct My Flight open must require confirmation');
+assert(sw.includes('./app/styles/desktop-shell-v64128.css'),'desktop shell must be part of verified PWA bootstrap');
+console.log('V6.4.128 desktop/form-open regression guard passed.');
