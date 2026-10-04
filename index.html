@@ -266,36 +266,6 @@
 
 <div id="buildMarker">V6.4.125</div>
 <div aria-live="polite" id="currentFerryFlag"><span class="dot"></span><span id="currentFerryFlagText">FERRY</span></div>
-<div class="toolbar compact-main-toolbar">
-<div class="badge">PĐH SAGS-CXR</div>
-<div class="roleAccountCluster" id="roleAccountCluster" style="display:none">
-<div class="roleStatusBadge" id="roleStatusBadge"></div>
-<button class="roleChangePassBtn" id="roleChangePasswordBtn" onclick="openChangePasswordModal()" style="display:none">Đổi MK</button>
-<button class="roleLogoutBtn" id="roleLogoutBtn" onclick="roleLogout()">Đăng xuất</button>
-</div>
-<div class="toolbar-row main-actions">
-<button id="roleBtnFlights" onclick="openFlightSessions()">Chuyến</button>
-<button id="roleBtnNotebook" type="button" onclick="window.sagsV6118OpenCarrierNotebook?window.sagsV6118OpenCarrierNotebook():alert('Sổ tay chưa tải xong. Vui lòng thử lại.')" aria-label="Mở Sổ tay hãng">📓 SỔ TAY HÃNG</button>
-<button id="roleBtnQuickTime" onclick="openQuickTimePanel()" style="display:none">⏱ NHẬP NHANH</button>
-<button class="fs09QuickBtn" id="fs09QuickBtn" onclick="openFS09SheetManager()">PVHK<span class="fs09NotifyBadge" id="fs09NotifyBadge" style="display:none">0</span></button>
-<button class="fs09QuickBtn" id="khQuickBtn" onclick="openKH208Manager()">KH<span class="fs09NotifyBadge" id="khNotifyBadge" style="display:none">0</span></button>
-<button id="roleBtnSignature" onclick="openTemplateMenu()">Chữ Kí</button>
-<button class="finalFormsQuickBtn" id="finalFormsQuickBtn" onclick="openFinalSheetManager()">FINAL</button>
-<button id="roleBtnExport" onclick="openExportChoiceMenu()">Xuất</button>
-<button id="roleBtnAccounts" onclick="openAccountManager()" style="display:none">Tài khoản</button>
-<button id="roleBtnAudit" onclick="openAuditManager()" style="display:none">Nhật ký</button>
-<button id="roleBtnActivity" onclick="openActivityMonitor()" style="display:none">TIẾN ĐỘ</button>
-<button id="roleBtnApprovalQueue" onclick="sagsV339OpenApprovalQueue()" style="display:none">✓ CHỜ DUYỆT <span id="v339ApprovalBadge" style="display:none"></span></button>
-
-<button id="roleBtnFleet" onclick="openFleetManager()" style="display:none" title="Quản lý Fleet tàu bay">FLEET TÀU BAY</button>
-
-
-</div>
-<div id="v377AdminFormToolsRow" class="v377AdminFormToolsRow" style="display:none">
-  <button id="v377CreateFormBtn" type="button" onclick="v377OpenCreateFormMenu()">➕ TẠO BIỂU MẪU</button>
-  <button id="v440FormManagerBtn" type="button" onclick="sagsV440OpenFormManager()">🧩 QUẢN LÝ / THÊM BIỂU MẪU</button>
-  </div>
-</div>
 <div id="v377CreateFormModal" class="v377CreateFormModal" style="display:none" role="dialog" aria-modal="true" aria-label="Tạo biểu mẫu">
   <div class="v377CreateFormCard">
     <div class="v377CreateFormHead"><div><b>➕ TẠO BIỂU MẪU</b><small>AD · chọn đúng tên biểu mẫu cần tạo/mở mới</small></div><button type="button" onclick="v377CloseCreateFormMenu()">×</button></div>
