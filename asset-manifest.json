@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "version": "V6.4.141",
-  "build": "V6.4.141-20261005-FSAGS5494-OVERLAY-FIX-01",
+  "version": "V6.4.142",
+  "build": "V6.4.142-20261005-FSAGS5494-HITBOX-EXCLUSION-01",
   "strategy": "TEST atomic release + overlay-manager desktop My Flight exception + runtime field light safety + balanced V6.4.88 action-row geometry with new UI visuals + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "7a863d590fdee3e70a186fee55f059cbbb2e2eb0bb53fc44aa2d784e24db48aa",
-      "bytes": 82155
+      "sha256": "e3d334388c4b3a69d6b25225034ace25eee75a73c1a9ba24757b8f4200704498",
+      "bytes": 82520
     },
     "./service-worker.js": {
-      "sha256": "e442cadd6a75210b5521c3db7bea9ce979b40e132dd33a88d6403cb2ff66d6ab",
-      "bytes": 22351
+      "sha256": "95b6a7df522ff94ab33db3fa277a3660aecaa3331ce086519a0976f53af87ef9",
+      "bytes": 22366
     },
     "./version.json": {
-      "sha256": "0dbb7a0159f8342d498497cf4961eec37c8968b860bab4eca7cfe089c786625e",
-      "bytes": 912
+      "sha256": "3c1210316f0e0446d2c3a9e9ed98c90c35d3aca2f2415d83177ecbedf613b5b5",
+      "bytes": 934
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "2288c3ec7eb272835b9863e619387da485cd84b7f7d8ad278361e3e9b03b2073",
@@ -526,12 +526,12 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "0afa5466017733938ecda0953f0f9055470b48b1bbe909bb1e9f436e741a5f14",
-      "bytes": 28077
+      "sha256": "af3febbdfb92c249b3055b1a26492bc7fc77c1cf3c9b0db3de3550fe768158d1",
+      "bytes": 28623
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
-      "sha256": "48e2a29c35d2529f0d4003299e5897d3f71277866b09737af6096ec1450ca250",
-      "bytes": 8346
+      "sha256": "13098140ce34a54fe9e6ee8325e2eba877d673546157a08a92b64ef60fdd0132",
+      "bytes": 9018
     },
     "./app/boot/25-v1154-update-detector-r2.js": {
       "sha256": "68c7ed26f0f180b4193cd71554a0214bddded76fe3f731132ec83895c7ff18c9",

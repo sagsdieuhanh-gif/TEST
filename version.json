@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.141",
-  "displayVersion": "V6.4.141",
-  "label": "V6.4.141 - FSAGS54/94 OVERLAY FIX",
-  "build": "V6.4.141-20261005-FSAGS5494-OVERLAY-FIX-01",
-  "releasedAt": "2026-10-05T00:39:00+07:00",
+  "version": "V6.4.142",
+  "displayVersion": "V6.4.142",
+  "label": "V6.4.142 - FSAGS54/94 HITBOX FIX",
+  "build": "V6.4.142-20261005-FSAGS5494-HITBOX-EXCLUSION-01",
+  "releasedAt": "2026-10-05T00:43:00+07:00",
   "type": "ui",
-  "base": "V6.4.140-20261005-DESKTOP-FIELD-SAFE-01",
+  "base": "V6.4.141-20261005-FSAGS5494-OVERLAY-FIX-01",
   "updatePolicy": "required",
-  "notes": "Root FSAGS54/94 field-overlay fix. The dark blocks were not form inputs: they were sags5494DirectHit button hitboxes inheriting the new global button skin because their transparent background was not important. Direct-hit overlays now explicitly remain transparent, borderless, shadowless and appearance-free in both source and generated startup bundle. Form data, hit geometry and direct-tap behavior are unchanged.",
-  "message": "V6.4.141: sửa đúng nguyên nhân field 54/94 bị bôi đen do button hitbox ăn theme UI mới; giữ nguyên dữ liệu và thao tác trực tiếp."
+  "notes": "Definitive FSAGS54/94 dark-field fix. Technical sags5494DirectHit buttons were being picked up by the global fixed-ui normalizer and tagged as sagsUiButton, whose high-specificity navy background overrode the intended transparent hitbox. Fixed-ui now excludes and repairs these technical controls, while a high-specificity CSS failsafe guarantees transparent, borderless, shadowless hitboxes. Direct field coordinates, tap handling, form data and PDF rendering are unchanged.",
+  "message": "V6.4.142: loại hẳn hitbox kỹ thuật 54/94 khỏi theme nút UI; dứt điểm các field bị bôi đen."
 }
