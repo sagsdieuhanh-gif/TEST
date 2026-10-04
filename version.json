@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.119",
-  "displayVersion": "V6.4.119",
-  "label": "V6.4.119 - MENU + CARGO + FOCUS STABILITY",
-  "build": "V6.4.119-20261004-MENU-CARGO-FOCUS-01",
-  "releasedAt": "2026-10-04T16:58:00+07:00",
-  "type": "stability",
-  "base": "V6.4.118-20261004-PERFORMANCE-STABILITY-01",
+  "version": "V6.4.120",
+  "displayVersion": "V6.4.120",
+  "label": "V6.4.120 - SHARED MY FLIGHT + COMPACT QUICK INPUT",
+  "build": "V6.4.120-20261004-CARGO-MYFLIGHT-QUICK-01",
+  "releasedAt": "2026-10-04T18:45:00+07:00",
+  "type": "ui",
+  "base": "V6.4.119-20261004-MENU-CARGO-FOCUS-01",
   "updatePolicy": "required",
-  "notes": "Remove My Flight back-arrow controls and their mutation loop; MENU is now the universal return-to-main control. Protect focused input/textarea/select fields from UI normalization churn to stop visible field flicker. Cargo/Kho hàng now renders its all-flight FSAGS 208 queue through the exact shared My Flight card/tile renderer used by operational roles, while retaining all-flight visibility, flight-number search, dossier access and receive/open FSAGS 208 actions.",
-  "message": "V6.4.119: bỏ nút mũi tên quay lại, dùng MENU để trở về trang chính, ổn định field nhập và đồng bộ giao diện Kho hàng với My Flight chung."
+  "notes": "Force Kho hàng/Cargo through the exact shared MY FLIGHT shell used by operational roles, including the same title, tabs, flight cards, dossier actions and bottom navigation while preserving all-flight FSAGS 208 visibility/search/receive behavior. Compact NHẬP NHANH into the same navy FIXED UI system with smaller rows, 40px actions, compact time fields and no redundant back arrow.",
+  "message": "V6.4.120: đồng bộ My Flight Kho hàng với ĐH/CBTT và thu gọn giao diện NHẬP NHANH theo FIXED UI."
 }
