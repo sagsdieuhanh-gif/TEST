@@ -242,8 +242,8 @@ function ensureCargoQueueStyle(){
 }
 function removeDeprecatedBackControls(){
  for(const id of ['sagsStableMyFlightBack','v644MyFlightBack','sagsContextBackRow'])document.getElementById(id)?.remove();
- const head=document.querySelector('#fwcModal .fwcHead');if(!head)return;
- head.querySelectorAll('button').forEach(b=>{
+ const head=document.querySelector?.('#fwcModal .fwcHead')||document.getElementById?.('fwcModal')?.querySelector?.('.fwcHead');if(!head)return;
+ (head.querySelectorAll?.('button')||[]).forEach(b=>{
    const txt=S(b.textContent),aria=S(b.getAttribute('aria-label')),title=S(b.getAttribute('title'));
    if(/^([←‹]|←\s*QUAY LẠI|QUAY LẠI)$/i.test(txt)||/quay lại/i.test(aria)||/quay lại/i.test(title))b.remove();
  });
