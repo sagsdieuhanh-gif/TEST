@@ -24,6 +24,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node tools/optimize-test-startup.cjs
+      - run: npm run build:ui
+      - run: node tools/refresh-release-assets.cjs
+      - run: npm run check:ui
+      - run: npm test
       - name: Commit optimized runtime
         shell: bash
         run: |
