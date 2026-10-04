@@ -540,3 +540,14 @@ html.new-ui-v1 body .sagsUiButton[hidden]{display:none!important}
 }
 
 }
+
+
+/* V6.4.124 HIDE LOCAL DRAFT STATUS
+   Local draft autosave remains active; only the tappable status badge is hidden
+   because the fixed mobile action dock can overlap it and cause accidental taps.
+*/
+html.new-ui-v1 body #sagsV61DraftStatus#sagsV61DraftStatus{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
