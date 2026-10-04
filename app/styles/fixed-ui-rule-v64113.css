@@ -551,3 +551,24 @@ html.new-ui-v1 body #sagsV61DraftStatus#sagsV61DraftStatus{
   visibility:hidden!important;
   pointer-events:none!important;
 }
+
+
+/* V6.4.124 MY FLIGHT CLEAN + MOBILE BOTTOM CLEARANCE */
+html.new-ui-v1 body #fwcModal .fwcHead .fwcSub{
+  display:none!important;
+  visibility:hidden!important;
+}
+html.new-ui-v1 body #fwcModal .fwcHead #v477Close,
+html.new-ui-v1 body #fwcModal .fwcHead button[title="Mở menu hệ thống"]{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+@media (max-width:899px){
+  html.new-ui-v1 body.v163-operational:not(.v157-home) .sheet:not(.hide){
+    margin-bottom:calc(var(--sags-form-dock-height,56px) + var(--sags-nav-bar-height,60px) + env(safe-area-inset-bottom) + 28px)!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home){
+    scroll-padding-bottom:calc(var(--sags-form-dock-height,56px) + var(--sags-nav-bar-height,60px) + env(safe-area-inset-bottom) + 28px)!important;
+  }
+}
