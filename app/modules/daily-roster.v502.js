@@ -517,6 +517,10 @@ async function openTask(aid,fid,completed,cardDate='',exact=false,button=null){
       alert(`Phân công ngày ${date} đã thay đổi. Danh sách sẽ được tải lại.`);
       return void renderPersonal(date);
     }
+    if(exact){
+      const confirmTitle=completed?'MỞ BIỂU MẪU ĐÃ HOÀN TẤT?':'MỞ BIỂU MẪU?';
+      if(!confirm(`${confirmTitle}\n\n${flightLabel(item)} · ${formLabel(item)}\n\nBấm OK để tiếp tục.`))return;
+    }
     if(!completed){await root.sagsAirlineFormPolicy?.ready(true);if(root.sagsAirlineFormPolicy?.allowed(item,item.formGroup)===false)throw new Error("Biểu mẫu này chưa được AD bật cho hãng hoặc loại tàu của chuyến.");}
     const realFid=S(item.flightId||fid);
     // Completed forms also go through the same exact-assignment NHẬN handler.
