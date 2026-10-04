@@ -11,10 +11,10 @@ const expected={
 };
 for(const [p,h] of Object.entries(expected))assert.equal(sha(p),h,p+' must match verified V6.4.118 byte-for-byte');
 const html=txt('index.html'),sw=txt('service-worker.js'),version=JSON.parse(txt('version.json'));
-assert.equal(version.version,'V6.4.122');
-assert.equal(version.base,'V6.4.118-20261004-PERFORMANCE-STABILITY-01');
+assert.equal(version.version,'V6.4.123');
+assert.equal(version.base,'V6.4.122-20261004-ROLLBACK118-01');
 assert(!/V6\.4\.(119|120|121)/.test(html),'index must not reference later runtime builds');
 assert(!/V6\.4\.(119|120|121)/.test(sw),'service worker must not reference later runtime builds');
 assert(!html.includes('cargo-myflight-ui.v64120.js'),'V6.4.120 route module must stay absent');
 assert(!sw.includes('cargo-myflight-ui.v64120.js'),'V6.4.120 route module must stay absent from PWA bootstrap');
-console.log('V6.4.122 verified V6.4.118 runtime rollback guard passed.');
+console.log('V6.4.123 retains verified V6.4.118 operational runtime baseline.');
