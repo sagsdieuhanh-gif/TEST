@@ -1,0 +1,49 @@
+name: Roster lineage one-shot build
+on:
+  push:
+    branches: ["fix/roster-lineage-v64112"]
+permissions:
+  contents: write
+jobs:
+  build-test-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Build UI bundle
+        run: npm run build:ui
+      - name: Regenerate runtime
+        run: node tools/build-runtime.cjs
+      - name: Refresh release/PWA assets
+        run: node tools/refresh-release-assets.cjs
+      - name: Verify generated assets
+        run: |
+          npm run check:ui
+          node tools/build-runtime.cjs --check
+      - name: Roster A-T regression
+        run: node tests/roster-responsibility.test.cjs
+      - name: Full Node regression
+        run: npm test
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+      - name: Browser regression
+        run: |
+          npm run test:browser
+          node tests/browser/roster-import.cjs
+          node tests/browser/mobile-navy.cjs
+      - name: Commit verified generated TEST assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/roster-lineage-one-shot.yml
+          git add -A
+          git commit -m "build: verify and generate V6.4.112 TEST assets"
+          git push origin HEAD:fix/roster-lineage-v64112
