@@ -7,6 +7,6 @@
   "type": "stability",
   "base": "V6.4.120-20261004-CARGO-MYFLIGHT-QUICK-01",
   "updatePolicy": "required",
-  "notes": "Hotfix V6.4.120 freeze: remove the duplicate late Cargo/My Flight route authority and all focus/pageshow/visibility rewiring. Keep the shared Cargo My Flight UI inside the existing FSAGS 208 workspace module and keep the compact Quick Input CSS. Rebuild PWA cache/version so devices on V6.4.120 receive a clean forward update.",
-  "message": "V6.4.121: sửa lỗi đơ V6.4.120, bỏ lớp route My Flight trùng lặp và giữ giao diện My Flight/NHẬP NHANH đã cập nhật."
+  "notes": "Remove the duplicate Cargo/My Flight route authority and its focus/pageshow/visibility rewiring. Keep shared Cargo My Flight rendering in the existing FSAGS 208 workspace module and keep compact Quick Input styling. Rebuild release cache so V6.4.120 clients update forward cleanly.",
+  "message": "V6.4.121: sửa lỗi đơ V6.4.120, chỉ giữ một luồng My Flight và đồng bộ lại PWA cache."
 }
