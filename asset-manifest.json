@@ -2,7 +2,7 @@
   "schema": 2,
   "version": "V6.4.117",
   "build": "V6.4.117-20261004-MYFLIGHT-CARGO-01",
-  "strategy": "TEST atomic release + build-unique PWA cache + mixed-build guard",
+  "strategy": "Runtime chunk cache reuse + verified PWA memo + scoped mobile UI + bounded Firebase reads",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "ba789a41bbfe0d93f4441961f4c21ecbb08476e27ae1da957bf65e4478c07e2f",
-      "bytes": 82472
+      "sha256": "f90798cf4c827683edc90c10654a60ff62a9cb15dd8a6feba8622715934038e3",
+      "bytes": 83191
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
@@ -82,12 +82,12 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "bd5f4bbc1a169c95092446b31303d3658c601247c7fabd98f11239adacd9de31",
-      "bytes": 80656
+      "sha256": "15dbf505eb6a025808660f244c92d0f6e4b67a62e6fc74e4e4d10a13157ed3fb",
+      "bytes": 80944
     },
     "./service-worker.js": {
-      "sha256": "e7aac723acca2f88f111cf1798cd25ae93f9ec58f9069a5c8af2ee84a53d098a",
-      "bytes": 20751
+      "sha256": "a40fb1a08d438bc9fc9b5a5e44a98c27f05f305cc62964a4b73d9eb1d895937e",
+      "bytes": 21936
     },
     "./version.json": {
       "sha256": "6c57aaabb8d39a90552e7125eac2df8e4ae1a74415be912b9004a93ab5bd5ef8",
@@ -321,10 +321,6 @@
       "sha256": "7bc8db230fef068bad856718dc70100648ed854c437af6d26c2f5f1408b1d045",
       "bytes": 59099
     },
-    "./app/generated/startup-bundle-1.js": {
-      "sha256": "a6c5097efd367b2593c2b9bd281b8f9e3c3e987bca6548eaa74b32cbecb1847e",
-      "bytes": 366557
-    },
     "./app/generated/startup-bundle-2.js": {
       "sha256": "5b4f365b9257e60f63a0a4add6bda1d27004d85e1d7e6e4ce0e440943c4aefe0",
       "bytes": 36077
@@ -534,8 +530,8 @@
       "bytes": 23644
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
-      "sha256": "36564141120f83dd04902346555e415c1e83ad09f292924fbd4c155db25c8a0a",
-      "bytes": 5714
+      "sha256": "2109a24ab29092ffe728bde74f70a3c77bb320bbfe8fa44f25c4f068b5064150",
+      "bytes": 7732
     },
     "./app/boot/25-v1154-update-detector-r2.js": {
       "sha256": "68c7ed26f0f180b4193cd71554a0214bddded76fe3f731132ec83895c7ff18c9",
@@ -548,6 +544,22 @@
     "./form-configuration.json": {
       "sha256": "5e4b1ee52eafc97cb0bee38caed4280656409dd492e341f621b68bf943dfc609",
       "bytes": 6533
+    },
+    "./app/generated/runtime-2.js": {
+      "sha256": "70c3afc263d84a028c0acef1c1ced1eee9a5ef162c530f0b5a40325b7c150fa0",
+      "bytes": 114333
+    },
+    "./app/generated/runtime-3.js": {
+      "sha256": "27af2b0c87d29d642691d6a6aa853228c1f4ff6fdb8c4b80903e975e6a581797",
+      "bytes": 46305
+    },
+    "./app/generated/runtime-4.js": {
+      "sha256": "b96663af6a3ad6d6c3e6804e77d5767ec1f5e20a32c332f4740a351444ad2cc7",
+      "bytes": 180223
+    },
+    "./app/generated/runtime-5.js": {
+      "sha256": "03f61b9add33905fe1b1c4467a2f0895d58cb4eb11a81aa2f47a86e4af2ebfd4",
+      "bytes": 25746
     }
   }
 }
