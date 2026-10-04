@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.137",
-  "displayVersion": "V6.4.137",
-  "label": "V6.4.137 - DESKTOP GHOST CLEANUP",
-  "build": "V6.4.137-20261004-DESKTOP-GHOST-CLEANUP-01",
-  "releasedAt": "2026-10-04T23:53:00+07:00",
+  "version": "V6.4.138",
+  "displayVersion": "V6.4.138",
+  "label": "V6.4.138 - DESKTOP GHOST MOBILE SAFE",
+  "build": "V6.4.138-20261005-DESKTOP-GHOST-MOBILE-SAFE-01",
+  "releasedAt": "2026-10-05T00:01:00+07:00",
   "type": "ui",
-  "base": "V6.4.136-20261004-DESKTOP-WORKSPACE-01",
+  "base": "V6.4.137-20261004-DESKTOP-GHOST-CLEANUP-01",
   "updatePolicy": "required",
-  "notes": "Desktop My Flight ghost-control cleanup. The legacy close button is removed from the DOM instead of being visually hidden, and the global context-back injector is disabled for desktop My Flight so it cannot create an extra faded navigation control. Header navigation is now exactly the stable previous-page arrow plus MENU. Mobile behavior and the V6.4.135 form-open performance path are unchanged.",
-  "message": "V6.4.137: gỡ hẳn nút mờ/legacy trên MY FLIGHT PC; header chỉ còn mũi tên và MENU."
+  "notes": "Desktop-only ghost-control cleanup with mobile safety. The legacy My Flight close button is physically removed only on desktop; mobile retains the previous hidden node to avoid DOM observer insertBefore races. Desktop global context-back injection remains disabled for My Flight, leaving exactly the stable previous-page arrow plus MENU. No business workflow changes.",
+  "message": "V6.4.138: gỡ nút mờ riêng trên PC, giữ mobile ổn định không phát sinh race DOM."
 }

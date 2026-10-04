@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.137",
-  "build": "V6.4.137-20261004-DESKTOP-GHOST-CLEANUP-01",
-  "strategy": "TEST atomic release + desktop ghost-control removal + stable previous-page back + MENU to authenticated Home + mobile form-open fast path + mandatory clean old shell",
+  "version": "V6.4.138",
+  "build": "V6.4.138-20261005-DESKTOP-GHOST-MOBILE-SAFE-01",
+  "strategy": "TEST atomic release + desktop-only ghost-control removal + mobile-safe hidden legacy node + stable previous-page back + MENU to authenticated Home + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "df15441dc6ceedad57a5d2d80a2df899ae942ca7718f9d06d40eb11329845e46",
-      "bytes": 82155
+      "sha256": "3274227f6f83220d8f64df87df36d20e2fd5e526acb93068a58bf85952c99095",
+      "bytes": 82447
     },
     "./service-worker.js": {
-      "sha256": "30f8591336d50290e269690af11b17ec6615ed702bfd07cd2c721f708922384b",
-      "bytes": 22351
+      "sha256": "f9e0190bb8b664047f5937be754f15a4b221b6d4ad433b9562633418752a8ab8",
+      "bytes": 22363
     },
     "./version.json": {
-      "sha256": "207c71b89c81ecc42ebe0c31f93a1f229e184446420d73fbc14cd57d212a0f43",
-      "bytes": 832
+      "sha256": "96ff29b6de34935eb074e56dd1fb3f7910fbe5691ca3df5d1e259bb71e91f3e7",
+      "bytes": 813
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "2288c3ec7eb272835b9863e619387da485cd84b7f7d8ad278361e3e9b03b2073",
@@ -250,8 +250,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "799a7597d6476ff08f4a59766dc9783bab40886778d5037f32b1ac9eb3eb0301",
-      "bytes": 134905
+      "sha256": "ea46e3f9bb8534006034c6797cdfde5bc1e7da8353021260ef923c0d5d71f76b",
+      "bytes": 134987
     },
     "./app/modules/feature-loader.v1.js": {
       "sha256": "dcd4029fa8de624e597b695906ae4adc9d3d61d7dad013c52d5895bb4249a6fd",
