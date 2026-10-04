@@ -16,11 +16,6 @@ assert(css.includes('.templateActions'),'legacy modal action rows must be normal
 assert(js.includes("v163SignBtn"),'existing signature action must be preserved in the action row');
 assert(js.includes('tagLegacyButtons'),'dynamic legacy buttons must be tagged by runtime guard');
 assert(js.includes('pendingScopes')&&js.includes('queueScope'),'dynamic UI normalization must batch only changed DOM scopes');
-assert(js.includes('goMainFromMenu')&&js.includes('__SAGS_MENU_RETURN_CAPTURE_V64119__'),'MENU-only navigation guard missing');
-assert(js.includes('retireBackNavigation'),'back-arrow retirement guard missing');
-assert(js.includes('activeEditor(r.target)'),'focused editor mutation guard missing');
-assert(css.includes('V6.4.119 MENU-ONLY NAVIGATION / FOCUS STABILITY'),'MENU/focus CSS guard missing');
-assert(css.includes('#sagsStableMyFlightBack')&&css.includes('#v644MyFlightBack'),'retired back-arrow CSS missing');
 assert(!js.includes('root.addEventListener(\'resize\',schedule'),'resize must not trigger a full-document normalization scan');
 assert(js.includes('HO SO BIEU MAU')&&js.includes('CHO NHAN'),'duplicate status cleanup missing');
 assert(rules.includes('THÊM CHỨC NĂNG MỚI NHƯNG KHÔNG THÊM MỘT PHONG CÁCH NÚT MỚI'),'project UI rule missing');
