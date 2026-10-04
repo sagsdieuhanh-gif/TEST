@@ -5,7 +5,7 @@
  */
 (function(root){
 'use strict';
-const BUILD='V6.4.132-20261004-MOBILE-TOUCH-UNLOCK-01';
+const BUILD='V6.4.133-20261004-MOBILE-MENU-STABLE-01';
 const S=v=>String(v??'').trim();
 
 function modal(){
@@ -28,12 +28,12 @@ function resetBlockingUi(){
 function mobileLike(){
   try{return root.matchMedia?.('(max-width:899px)')?.matches||/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)}catch(_){return false}
 }
-function unlockTouchSurface(){
+function unlockTouchSurface({resetState=false}={}){
   if(!document.body?.classList.contains('v157-authenticated'))return false;
   const body=document.body;
-  // A restored mobile session may inherit navigation/overlay classes from the
-  // previous screen. Home must always start from a clean, touchable state.
-  if(body.classList.contains('v157-home')){
+  // Clear inherited blockers exactly once. Later safety passes must never
+  // close a drawer/modal that the user has intentionally opened.
+  if(resetState&&body.classList.contains('v157-home')){
     body.classList.remove('v157-drawer-open','sags-overlay-open','v166-overlay-open','sags-quicktime-open','v163-operational');
   }
   const login=modal();
@@ -49,6 +49,10 @@ function unlockTouchSurface(){
     backdrop.style.setProperty('visibility','hidden','important');
     backdrop.style.setProperty('opacity','0','important');
     backdrop.style.setProperty('pointer-events','none','important');
+  }else if(backdrop&&body.classList.contains('v157-drawer-open')){
+    // Remove stale inline overrides left by the closed state so CSS can make
+    // the active drawer/backdrop interactive normally.
+    for(const p of ['display','visibility','opacity','pointer-events'])backdrop.style.removeProperty(p);
   }
   for(const id of ['v157HomeDashboard','sagsNavigationHeader','v157BottomBar']){
     const e=document.getElementById(id);if(!e)continue;
@@ -58,9 +62,13 @@ function unlockTouchSurface(){
   }
   return true;
 }
+let touchUnlockEpoch=0;
 function armTouchUnlock(){
-  const run=()=>{try{unlockTouchSurface()}catch(e){console.warn('V6.4.132 touch unlock',e?.message||e)}};
-  run();requestAnimationFrame(run);[80,260,900,1800].forEach(ms=>setTimeout(run,ms));
+  const epoch=++touchUnlockEpoch;
+  const safeRun=()=>{if(epoch!==touchUnlockEpoch)return;try{unlockTouchSurface({resetState:false})}catch(e){console.warn('V6.4.133 touch unlock',e?.message||e)}};
+  try{unlockTouchSurface({resetState:true})}catch(e){console.warn('V6.4.133 initial touch unlock',e?.message||e)}
+  requestAnimationFrame(safeRun);
+  [80,260,900,1800].forEach(ms=>setTimeout(safeRun,ms));
 }
 function scheduleBackgroundVerify(){
   if(!currentUserProfile?.firebaseUid)return;

@@ -12,10 +12,15 @@ assert(!hotfix.includes('location.reload'),'post-login hotfix must never force a
 assert(hotfix.includes('testTransition'),'browser regression hook must exercise the actual unlock transition');
 console.log('V6.4.123 post-login unlock regression guard passed.');
 
-assert(hotfix.includes('function unlockTouchSurface()'),'mobile touch surface unlock must exist');
-assert(hotfix.includes("body.classList.remove('v157-drawer-open','sags-overlay-open','v166-overlay-open','sags-quicktime-open','v163-operational')"),'home unlock must clear stale blocking classes');
+assert(hotfix.includes('function unlockTouchSurface({resetState=false}={})'),'mobile touch surface unlock must exist');
+assert(hotfix.includes("if(resetState&&body.classList.contains('v157-home'))"),'stale blocking classes may only be cleared in the initial reset pass');
+assert(hotfix.includes("body.classList.remove('v157-drawer-open','sags-overlay-open','v166-overlay-open','sags-quicktime-open','v163-operational')"),'initial home unlock must clear stale blocking classes');
 assert(hotfix.includes("backdrop.style.setProperty('pointer-events','none','important')"),'closed drawer backdrop must never intercept mobile touch');
 assert(hotfix.includes("e.style.setProperty('pointer-events','auto','important')"),'home navigation surfaces must be re-enabled');
 assert(hotfix.includes('scheduleBackgroundVerify()'),'post-login verification must be deferred');
 assert(!hotfix.includes('verifyPersonalSession(true)}catch(_){}},500'),'forced 500ms verification must stay removed');
 console.log('V6.4.132 mobile touch surface guard passed.');
+
+assert(hotfix.includes("unlockTouchSurface({resetState:false})"),'later safety passes must preserve user state');
+assert(hotfix.includes("backdrop&&body.classList.contains('v157-drawer-open')"),'active drawer must restore normal backdrop behavior');
+console.log('V6.4.133 user-opened drawer preservation guard passed.');
