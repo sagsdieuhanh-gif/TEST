@@ -1,0 +1,12 @@
+const fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const html=read('index.html');
+const sw=read('service-worker.js');
+const workspace=read('app/modules/fsags208-workspace.v1.js');
+const css=read('app/styles/fixed-ui-rule-v64113.css');
+assert(!html.includes('cargo-myflight-ui.v64120.js'),'duplicate V6.4.120 Cargo route must remain removed');
+assert(!sw.includes('./app/modules/cargo-myflight-ui.v64120.js'),'duplicate V6.4.120 Cargo route must not be cached');
+assert(!css.includes('V6.4.120 CARGO MY FLIGHT + QUICK INPUT COMPACT'),'V6.4.120 CSS regression block must be rolled back');
+assert(!workspace.includes('function cargoProfileRole()'),'V6.4.120 Cargo runtime change must be rolled back');
+assert(workspace.includes("function isHandlerRole(){return role()==='AD'||['KH','CARGO'].includes(role())"),'verified V6.4.119 FSAGS208 handler path must be restored');
+console.log('V6.4.122 verified V6.4.119 runtime rollback guard passed.');
