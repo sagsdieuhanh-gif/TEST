@@ -53,3 +53,12 @@ Implementation authority for current release:
 - Các nút đóng/quay lại/icon-only vẫn giữ chức năng riêng nhưng **không được biến thành nút tròn hoặc pill**; dùng hình chữ nhật bo góc cùng hệ.
 - Semantic danger/success/warning chỉ dùng màu accent; không được đổi sang một hình dáng button khác.
 - Lớp override cuối cùng có quyền chuẩn hóa legacy UI để tránh mỗi module tự tạo một phong cách nút riêng.
+
+
+## PWA / release identity
+- Mỗi build phát hành **bắt buộc có CacheStorage riêng**, tên cache phải được suy ra từ chính `build`; cấm tái sử dụng tên cache của build cũ.
+- Không được coi một bản cập nhật là hoàn tất chỉ vì số version trên giao diện đã đổi. `index.html`, `version.json`, `asset-manifest.json`, service worker đang điều khiển và các UI asset phải cùng **một build**.
+- Nếu `index.html` đang chạy build mới nhưng service worker/controller còn build cũ, ứng dụng phải tự chuyển sang luồng repair trước khi tiếp tục sử dụng.
+- Cache hit của executable/CSS phải được đối chiếu checksum của manifest hiện hành; cache sai checksum phải bị loại bỏ và tải lại.
+- Service worker sau khi activate và vượt qua xác minh release phải claim client để tránh tình trạng “version mới nhưng giao diện/nội dung bên trong vẫn là bản cũ”.
+- Mọi thay đổi UI/PWA release phải có regression guard cho cache identity và mixed-build protection.
