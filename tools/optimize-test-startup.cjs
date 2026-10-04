@@ -93,7 +93,7 @@ function injectRuntimePerformance(h){
     'function patchRoster(){const e=window.__SAGS_DAILY_ROSTER_FINAL_V1199,base=e?.renderPersonal;if(typeof base!=="function"||base.__sagsPerfV64131)return false;let job=null,key="";const w=function(d){const k=String(d||"");if(job&&k===key)return job;key=k;job=Promise.resolve(base.apply(this,arguments)).finally(()=>{job=null});return job};w.__sagsPerfV64131=true;w.__sagsPerfBase=base;e.renderPersonal=w;return true}',
     'let tries=0;function install(){patchLayout();patchRoster();if(++tries<8)setTimeout(install,tries<3?80:350)}patchRoster();setTimeout(install,0);window.addEventListener("pageshow",()=>setTimeout(install,40),{passive:true});',
     '})();',
-    '</script>\\n'
+    '</script>\n'
   ].join('');
   return h.slice(0,i)+js+h.slice(i);
 }
@@ -101,7 +101,7 @@ function optimizeServiceWorker(){
   let s=read('service-worker.js'),changed=0;
   if(!s.includes('function sagsFormRegistryFetch(')){
     const marker="self.addEventListener('fetch',event=>{";
-    const helper="let sagsFormRegistryJob=null;function sagsFormRegistryFetch(req){if(sagsFormRegistryJob)return sagsFormRegistryJob.then(r=>r.clone());sagsFormRegistryJob=fetch(req,{cache:'no-store'}).then(r=>r.ok?r:new Response('FORM REGISTRY UNAVAILABLE',{status:r.status})).catch(()=>new Response('FORM REGISTRY UNAVAILABLE',{status:503})).finally(()=>{sagsFormRegistryJob=null});return sagsFormRegistryJob.then(r=>r.clone())}\\n";
+    const helper="let sagsFormRegistryJob=null;function sagsFormRegistryFetch(req){if(sagsFormRegistryJob)return sagsFormRegistryJob.then(r=>r.clone());sagsFormRegistryJob=fetch(req,{cache:'no-store'}).then(r=>r.ok?r:new Response('FORM REGISTRY UNAVAILABLE',{status:r.status})).catch(()=>new Response('FORM REGISTRY UNAVAILABLE',{status:503})).finally(()=>{sagsFormRegistryJob=null});return sagsFormRegistryJob.then(r=>r.clone())}\n";
     if(!s.includes(marker))throw Error('service worker fetch marker missing');s=s.replace(marker,helper+marker);changed++;
   }
   const old="if(path==='./forms/forms.registry.json'){event.respondWith(fetch(req,{cache:'no-store'}).then(r=>r.ok?r:new Response('FORM REGISTRY UNAVAILABLE',{status:r.status})).catch(()=>new Response('FORM REGISTRY UNAVAILABLE',{status:503})));return}";
