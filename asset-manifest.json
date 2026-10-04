@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.142",
-  "build": "V6.4.142-20261005-FSAGS5494-HITBOX-EXCLUSION-01",
-  "strategy": "TEST atomic release + overlay-manager desktop My Flight exception + runtime field light safety + balanced V6.4.88 action-row geometry with new UI visuals + mandatory clean old shell",
+  "version": "V6.4.143",
+  "build": "V6.4.143-20261005-MOBILE-UNLOCK-SAFE-01",
+  "strategy": "TEST atomic release + mobile post-login unlock fail-safe + FSAGS54/94 hitbox exclusion + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "e3d334388c4b3a69d6b25225034ace25eee75a73c1a9ba24757b8f4200704498",
-      "bytes": 82520
+      "sha256": "315e9768f79041af658c469018315da0fc586cf963287c948bcc6ff32f4815b2",
+      "bytes": 81936
     },
     "./service-worker.js": {
-      "sha256": "95b6a7df522ff94ab33db3fa277a3660aecaa3331ce086519a0976f53af87ef9",
-      "bytes": 22366
+      "sha256": "0471b49512f278360335165ef8a2c30bbeb4c5a6b3f9cbeeb7832bf90ba258cc",
+      "bytes": 22342
     },
     "./version.json": {
-      "sha256": "3c1210316f0e0446d2c3a9e9ed98c90c35d3aca2f2415d83177ecbedf613b5b5",
-      "bytes": 934
+      "sha256": "ffdd5f40f8a67872b4780e343e74a10615a8811667d5b93634eca47d4618818f",
+      "bytes": 848
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "2288c3ec7eb272835b9863e619387da485cd84b7f7d8ad278361e3e9b03b2073",
@@ -562,8 +562,8 @@
       "bytes": 25746
     },
     "./app/modules/post-login-unlock.v64123.js": {
-      "sha256": "4da326a7a223b18d1d3501359caa431258114fb083acb46421e816823ef948d8",
-      "bytes": 13163
+      "sha256": "350017046f4f7573bf696d4f3cb5318488c4eb74ff5445046b810626a57c5698",
+      "bytes": 13433
     },
     "./repair.html": {
       "sha256": "f0e77f347bb6aba7210d3f308137d5b33757ec2c7c0c45a26cd26fdc45beac81",
