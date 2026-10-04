@@ -3,18 +3,16 @@ const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p
 const html=read('index.html'),sw=read('service-worker.js'),roster=read('app/modules/daily-roster.v502.js'),ui=read('app/boot/32-fixed-ui-rule-v64113.js');
 
 assert(html.includes('rel="preconnect" href="https://www.gstatic.com"'),'Firebase CDN preconnect missing');
-assert(!html.includes('firebase-functions-compat.js'),'unused Firebase Functions compat SDK must not block startup');
+assert(!html.includes('firebase-functions-compat.js'),'Firebase Functions compat SDK must not block startup; AD reset loads it on demand');
 for(const sdk of ['firebase-app-compat.js','firebase-auth-compat.js','firebase-database-compat.js','firebase-firestore-compat.js'])
   assert(html.includes(sdk),'required Firebase SDK missing: '+sdk);
 
-const appJs=[];
-(function walk(dir){for(const ent of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,ent.name);if(ent.isDirectory())walk(p);else if(ent.isFile()&&p.endsWith('.js'))appJs.push(p)}})(path.join(root,'app'));
-for(const p of appJs){
- const s=fs.readFileSync(p,'utf8');
- assert(!/firebase\s*\.\s*functions\s*\(/.test(s),'firebase.functions still used in '+path.relative(root,p));
- assert(!/firebase\s*\.\s*app\s*\(\s*\)\s*\.\s*functions\s*\(/.test(s),'firebase app functions still used in '+path.relative(root,p));
- assert(!/httpsCallable\s*\(/.test(s),'httpsCallable still used in '+path.relative(root,p));
-}
+const adminReset=read('app/boot/28-legacy.js'),bootGroup5=read('app/generated/boot-group-5.js');
+assert(adminReset.includes('sagsEnsureFirebaseFunctionsSdk'),'AD password reset must have a lazy Firebase Functions loader');
+assert(adminReset.includes('firebase-functions-compat.js'),'lazy Firebase Functions CDN source missing');
+assert(adminReset.includes('await window.sagsEnsureFirebaseFunctionsSdk();'),'AD reset must await lazy Functions SDK before httpsCallable');
+assert(adminReset.includes('httpsCallable("adminResetAuthPassword")'),'AD reset Cloud Function must remain intact');
+assert(bootGroup5.includes('sagsEnsureFirebaseFunctionsSdk')&&bootGroup5.includes('adminResetAuthPassword'),'generated boot group must include lazy Functions path and AD reset');
 
 assert(sw.includes('sagsManifestMemo'),'service worker manifest memo missing');
 assert(sw.includes('sagsVerifiedAssetKeys'),'service worker verified-byte memo missing');
