@@ -1,12 +1,12 @@
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),write=(p,s)=>fs.writeFileSync(path.join(root,p),s),exists=p=>fs.existsSync(path.join(root,p));
-const VERSION='V6.4.141',BUILD='V6.4.141-20261005-FSAGS5494-OVERLAY-FIX-01',LABEL='V6.4.141 - FSAGS54/94 OVERLAY FIX',RELEASED='2026-10-05T00:39:00+07:00';
+const VERSION='V6.4.142',BUILD='V6.4.142-20261005-FSAGS5494-HITBOX-EXCLUSION-01',LABEL='V6.4.142 - FSAGS54/94 HITBOX FIX',RELEASED='2026-10-05T00:43:00+07:00';
 const old=JSON.parse(read('version.json')),oldV=String(old.version||''),oldB=String(old.build||'');
 if(!oldV||!oldB)throw Error('Current version metadata missing');
 let index=read('index.html').split(oldB).join(BUILD).split(oldV).join(VERSION);
 assert(index.includes('name="sags-release-build" content="'+BUILD+'"'));assert(index.includes('name="sags-release-version" content="'+VERSION+'"'));
 write('index.html',index);
-const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'ui',base:'V6.4.140-20261005-DESKTOP-FIELD-SAFE-01',updatePolicy:'required',notes:'Root FSAGS54/94 field-overlay fix. The dark blocks were not form inputs: they were sags5494DirectHit button hitboxes inheriting the new global button skin because their transparent background was not important. Direct-hit overlays now explicitly remain transparent, borderless, shadowless and appearance-free in both source and generated startup bundle. Form data, hit geometry and direct-tap behavior are unchanged.',message:VERSION+': sửa đúng nguyên nhân field 54/94 bị bôi đen do button hitbox ăn theme UI mới; giữ nguyên dữ liệu và thao tác trực tiếp.'};
+const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'ui',base:'V6.4.141-20261005-FSAGS5494-OVERLAY-FIX-01',updatePolicy:'required',notes:'Definitive FSAGS54/94 dark-field fix. Technical sags5494DirectHit buttons were being picked up by the global fixed-ui normalizer and tagged as sagsUiButton, whose high-specificity navy background overrode the intended transparent hitbox. Fixed-ui now excludes and repairs these technical controls, while a high-specificity CSS failsafe guarantees transparent, borderless, shadowless hitboxes. Direct field coordinates, tap handling, form data and PDF rendering are unchanged.',message:VERSION+': loại hẳn hitbox kỹ thuật 54/94 khỏi theme nút UI; dứt điểm các field bị bôi đen.'};
 write('version.json',JSON.stringify(version,null,2)+'\n');
 let sw=read('service-worker.js').split(oldB).join(BUILD).split(oldV).join(VERSION);
 const cacheId=BUILD.toLowerCase().replace(/[^a-z0-9-]/g,'');
@@ -88,3 +88,5 @@ write(mp,JSON.stringify(m,null,2)+'\n');
 // desktop-field-safe-v64140
 
 // fsags5494-overlay-fix-v64141
+
+// fsags5494-hitbox-exclusion-v64142

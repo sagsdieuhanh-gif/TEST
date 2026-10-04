@@ -1,13 +1,20 @@
 /* E-REPORT SAGS V6.4.116 — shared Button Base and fixed UI runtime guard */
 (function(root){
 'use strict';
-const BUILD='V6.4.129-MOBILE-UI-STABILITY-01';
+const BUILD='V6.4.142-FSAGS5494-HITBOX-EXCLUSION-01';
 if(root.__SAGS_FIXED_UI_RULE_V64113__===BUILD)return;
 root.__SAGS_FIXED_UI_RULE_V64113__=BUILD;
 const $=id=>document.getElementById(id);
 function norm(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/Đ/g,'D').toUpperCase().replace(/\s+/g,' ').trim();}
 function visible(el){if(!el||!el.isConnected)return false;const s=getComputedStyle(el);return s.display!=='none'&&s.visibility!=='hidden'&&s.opacity!=='0';}
+function isTechnicalFormHit(el){return !!el?.classList?.contains('sags5494DirectHit')}
 function enhanceButton(el){
+  if(isTechnicalFormHit(el)){
+    el.classList.remove('sagsUiButton','sagsAppButton');
+    delete el.dataset.sagsUiNormalized;
+    el.dataset.sagsUiSkip='form-hit';
+    return el;
+  }
   if(el.dataset.sagsUiNormalized==='1')return el;
   el.dataset.sagsUiNormalized='1';el.classList.add('sagsUiButton');return el;
 }
@@ -53,7 +60,15 @@ function reconcileFormDock(){
 }
 function tagLegacyButtons(scope=document){
   if(!scope)return;
-  const selector='button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"]',controls=[];
+  const leaked=[];
+  if(scope.matches?.('.sags5494DirectHit.sagsUiButton'))leaked.push(scope);
+  leaked.push(...(scope.querySelectorAll?.('.sags5494DirectHit.sagsUiButton')||[]));
+  for(const el of leaked){
+    el.classList.remove('sagsUiButton','sagsAppButton');
+    delete el.dataset.sagsUiNormalized;
+    el.dataset.sagsUiSkip='form-hit';
+  }
+  const selector='button:not(.sags5494DirectHit),[role="button"]:not(.sags5494DirectHit),input[type="button"],input[type="submit"],input[type="reset"]',controls=[];
   if(scope.matches?.(selector))controls.push(scope);
   controls.push(...(scope.querySelectorAll?.(selector)||[]));
   for(const el of controls)enhanceButton(el);

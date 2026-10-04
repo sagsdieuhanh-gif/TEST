@@ -670,3 +670,19 @@ html.new-ui-v1 body.v157-authenticated .v462TestCheck{
   background:#fff!important;
   accent-color:#123a72!important;
 }
+
+
+/* FSAGS54/94 TECHNICAL HITBOX GUARD · V6.4.142
+   These buttons are invisible coordinate hit targets, never UI controls. */
+html.new-ui-v1.new-ui-v1 body button.sags5494DirectHit,
+html.new-ui-v1.new-ui-v1 body button.sags5494DirectHit.sagsUiButton{
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:transparent!important;
+  text-shadow:none!important;
+  appearance:none!important;
+  -webkit-appearance:none!important;
+}
