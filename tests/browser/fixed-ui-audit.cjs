@@ -84,6 +84,18 @@ const {chromium}=require('playwright'),root=path.resolve(__dirname,'../..');
    assert((await page.evaluate(()=>window.auditMutations))<5,'toolbar observer must become idle');
    await page.evaluate(()=>window.auditObserver.disconnect());
    if(width===390){
+    await page.evaluate(()=>{
+      window.auditMenuHome=0;window.sagsGoStart=()=>window.auditMenuHome++;
+      const input=document.createElement('input');input.id='auditFocusInput';input.value='ABC';document.querySelector('main').prepend(input);input.focus();
+      const modal=document.createElement('div');modal.id='fwcModal';modal.innerHTML='<div class="fwcHead"><button id="sagsStableMyFlightBack" class="fwcBtn gray" aria-label="Quay lại">←</button></div>';document.querySelector('main').prepend(modal);
+      let n=0;window.auditFocusTimer=setInterval(()=>{input.classList.toggle('auditPulse');input.style.borderWidth=(n++%2?1:2)+'px';if(n>=12)clearInterval(window.auditFocusTimer)},12);
+    });
+    await page.waitForTimeout(260);
+    assert.equal(await page.evaluate(()=>document.activeElement?.id),'auditFocusInput','focused editor must not lose focus during UI mutation churn');
+    assert.equal(await page.locator('#sagsStableMyFlightBack').count(),0,'retired My Flight arrow must be removed and stay removed');
+    await page.locator('#v163FlightBtn').click();
+    assert.equal(await page.evaluate(()=>window.auditMenuHome),1,'MENU must route through the universal return handler');
+    await page.evaluate(()=>document.getElementById('auditFocusInput')?.remove());
     await page.evaluate(()=>{window.auditClicks=0;const b=SAGSButtonBase.create({label:'Nút kiểm tra',icon:'✓',onClick:()=>window.auditClicks++});b.id='auditButtonBase';document.querySelector('main').prepend(b);});
     const base=page.locator('#auditButtonBase'),geometry=()=>base.evaluate(e=>{const s=getComputedStyle(e);return {height:e.getBoundingClientRect().height,radius:s.borderRadius,font:s.fontSize}});
     const normal=await geometry(),normalColor=await base.evaluate(e=>getComputedStyle(e).backgroundColor);
