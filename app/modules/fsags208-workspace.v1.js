@@ -231,7 +231,7 @@ root.sags208RenderWorkspace=injectWorkspace;
 
 /* V6.4.117 — KH/CARGO uses the same MY FLIGHT card/tile language as other roles.
    The business path remains FSAGS 208 Flight Workspace; only the list/shell is unified. */
-let cargoMyFlightPaint=0,myFlightBackBusy=false,myFlightBackObserver=null;
+let cargoMyFlightPaint=0,myFlightBackBusy=false,myFlightBackObserver=null,myFlightBackRootObserver=null,cargoOpenBase=null,cargoRefreshBase=null;
 function cargoRole(){return role()!=='AD'&&isHandlerRole()&&(['KH','CARGO'].includes(role())||root.__SAGS_CARGO_ALL_FLIGHTS?.isCargo?.()===true)}
 function ensureCargoQueueStyle(){
  if(document.getElementById('sagsCargo208UnifiedStyle'))return;
@@ -276,10 +276,22 @@ function ensureStableMyFlightBack(){
 }
 function installStableMyFlightBack(){
  ensureStableMyFlightBack();
- if(myFlightBackObserver)return;
- const modal=document.getElementById('fwcModal');if(!modal)return;
- myFlightBackObserver=new MutationObserver(()=>ensureStableMyFlightBack());
- myFlightBackObserver.observe(modal,{subtree:true,childList:true,attributes:true,attributeFilter:['class','hidden','style']});
+ if(typeof MutationObserver!=='function')return;
+ const modal=document.getElementById('fwcModal');
+ if(modal&&!myFlightBackObserver){
+   myFlightBackObserver=new MutationObserver(()=>ensureStableMyFlightBack());
+   myFlightBackObserver.observe(modal,{subtree:true,childList:true,attributes:true,attributeFilter:['class','hidden','style']});
+   try{myFlightBackRootObserver?.disconnect?.()}catch(_){}myFlightBackRootObserver=null;
+   return;
+ }
+ if(modal||myFlightBackObserver||myFlightBackRootObserver)return;
+ const host=document.body||document.documentElement;if(!host)return;
+ myFlightBackRootObserver=new MutationObserver(()=>{
+   if(!document.getElementById('fwcModal'))return;
+   try{myFlightBackRootObserver?.disconnect?.()}catch(_){}myFlightBackRootObserver=null;
+   installStableMyFlightBack();
+ });
+ myFlightBackRootObserver.observe(host,{subtree:true,childList:true});
 }
 function cargoStatus(mod){
  const cur=mod?.currentHandler||{},mine=norm(cur.username)===me(),rev=Number(mod?.revisionNo||0);
@@ -299,7 +311,9 @@ function filterCargoCards(){
 }
 async function renderCargoMyFlight(date=currentDate()){
  if(!cargoRole())return false;date=S(date)||today();ensureCargoQueueStyle();
- const modal=document.getElementById('fwcModal');if(!modal)return false;
+ let modal=document.getElementById('fwcModal');
+ if(!modal&&typeof cargoOpenBase==='function'){try{await Promise.resolve(cargoOpenBase.call(root,date))}catch(e){console.info('Cargo base shell init',e?.message||e)}modal=document.getElementById('fwcModal')}
+ if(!modal)return false;
  modal.hidden=false;modal.style.removeProperty('display');modal.removeAttribute('aria-hidden');modal.classList.add('show');
  const head=modal.querySelector('.fwcHead'),title=head?.querySelector('h3');if(title)title.textContent='✈ MY FLIGHT';
  let sub=head?.querySelector('.fwcSub');if(!sub&&title){sub=document.createElement('div');sub.className='fwcSub';title.insertAdjacentElement('afterend',sub)}if(sub)sub.textContent='FSAGS 208 · Kho hàng';
@@ -323,9 +337,19 @@ async function renderCargoMyFlight(date=currentDate()){
  ensureStableMyFlightBack();root.sagsOverlayLayout?.refresh();return true;
 }
 function installCargoMyFlight(){
+ const currentOpen=root.sagsCargoOpenAllFlights;
+ if(typeof currentOpen==='function'&&!currentOpen.__sagsCargoUnifiedV64117){
+   cargoOpenBase=currentOpen;
+   const open=function(date){if(cargoRole())return renderCargoMyFlight(S(date)||currentDate());return cargoOpenBase?.apply(this,arguments)};
+   open.__sagsCargoUnifiedV64117=true;open.__base=currentOpen;root.sagsCargoOpenAllFlights=open;
+ }
+ const currentRefresh=root.sagsCargoRefreshAllFlights;
+ if(typeof currentRefresh==='function'&&!currentRefresh.__sagsCargoUnifiedV64117){
+   cargoRefreshBase=currentRefresh;
+   const refresh=function(){if(cargoRole())return renderCargoMyFlight(S(document.getElementById('fwcDate')?.value)||currentDate());return cargoRefreshBase?.apply(this,arguments)};
+   refresh.__sagsCargoUnifiedV64117=true;refresh.__base=currentRefresh;root.sagsCargoRefreshAllFlights=refresh;
+ }
  if(!cargoRole())return;
- root.sagsCargoOpenAllFlights=function(date){return renderCargoMyFlight(S(date)||currentDate())};
- root.sagsCargoRefreshAllFlights=function(){return renderCargoMyFlight(S(document.getElementById('fwcDate')?.value)||currentDate())};
  const menu=document.querySelector?.('.v157MenuItem[data-v157-key="myflight"]');if(menu){const labels=menu.querySelectorAll?.('span')||[];if(labels[1])labels[1].textContent='My Flight';const meta=menu.querySelector?.('.meta');if(meta)meta.textContent='FSAGS 208 · Công việc kho hàng'}
 }
 let wrappedOpen=null;
