@@ -1,7 +1,7 @@
-/* E-REPORT SAGS V6.4.113 — fixed UI runtime guard */
+/* E-REPORT SAGS V6.4.114 — fixed UI runtime guard */
 (function(root){
 'use strict';
-const BUILD='V6.4.113-20261004-FIXED-UI-RULE-01';
+const BUILD='V6.4.114-20261004-FIXED-UI-AUDIT-01';
 if(root.__SAGS_FIXED_UI_RULE_V64113__===BUILD)return;
 root.__SAGS_FIXED_UI_RULE_V64113__=BUILD;
 const $=id=>document.getElementById(id);
@@ -24,6 +24,15 @@ function reconcileFormDock(){
   const count=Math.max(1,Math.min(4,buttons.length||1));
   row.style.setProperty('--sags-action-count',String(count));
   if(buttons.length)row.classList.add('show');
+}
+function tagLegacyButtons(scope=document){
+  if(!scope)return;
+  const controls=scope.querySelectorAll?.('button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"]')||[];
+  for(const el of controls){
+    if(el.dataset.sagsUiNormalized==='1')continue;
+    el.dataset.sagsUiNormalized='1';
+    el.classList.add('sagsUiButton');
+  }
 }
 function stripDuplicateCopy(scope=document.body){
   if(!scope)return;
@@ -49,7 +58,7 @@ function stripDuplicateCopy(scope=document.body){
 let scheduled=false;
 function apply(){
   scheduled=false;
-  try{reconcileFormDock();stripDuplicateCopy(document.body);}catch(e){console.info('Fixed UI rule',e?.message||e);}
+  try{reconcileFormDock();tagLegacyButtons(document);stripDuplicateCopy(document.body);}catch(e){console.info('Fixed UI rule',e?.message||e);}
 }
 function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(apply);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
