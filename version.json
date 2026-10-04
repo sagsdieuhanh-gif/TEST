@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.113",
-  "displayVersion": "V6.4.113",
-  "label": "V6.4.113 TEST - FIXED UI RULE",
-  "build": "V6.4.113-20261004-FIXED-UI-RULE-01",
-  "releasedAt": "2026-10-04T13:20:00+07:00",
+  "version": "V6.4.114",
+  "displayVersion": "V6.4.114",
+  "label": "V6.4.114 - FIXED UI AUDIT",
+  "build": "V6.4.114-20261004-FIXED-UI-AUDIT-01",
+  "releasedAt": "2026-10-04T13:35:00+07:00",
   "type": "ui",
-  "base": "V6.4.112-20261004-ROSTER-LINEAGE-01",
+  "base": "V6.4.113-20261004-FIXED-UI-RULE-01",
   "updatePolicy": "optional",
-  "notes": "Chuẩn hóa toàn bộ button theo FIXED UI RULE; form toolbar mobile gọn 2 tầng, dock không đè nội dung, giữ KÝ trong hàng action, Menu/Trang chủ ở hàng điều hướng; loại copy trạng thái F54/F94 bị trùng.",
-  "message": "V6.4.113: áp dụng FIXED UI RULE toàn dự án."
+  "notes": "Project-wide FIXED UI audit: normalize legacy and dynamically rendered buttons to the approved compact rectangular 12px-radius system; preserve semantic accent colors and business logic; keep form actions on one compact row with Menu/Home on the second row; retain safe-area and non-overlap behavior; remove duplicate form-status copy.",
+  "message": "V6.4.114: project-wide FIXED UI audit."
 }

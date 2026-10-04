@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.113",
-  "build": "V6.4.113-20261004-FIXED-UI-RULE-01",
-  "strategy": "Ordered source bundles + unified mobile navy + targeted UI observers",
+  "version": "V6.4.114",
+  "build": "V6.4.114-20261004-FIXED-UI-AUDIT-01",
+  "strategy": "TEST atomic release + project-wide FIXED UI audit",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "b3f709706aceda2b3912224d537fa6af173a6aff11f402df2c2b5492c96e2845",
-      "bytes": 78959
+      "sha256": "e4afd81b1682cac3298575f94f5d0f98e88595f040fed018ff8b77deb02c6bac",
+      "bytes": 79026
     },
     "./service-worker.js": {
-      "sha256": "6af068818a572fed295d9fd90f98c6b2c25fe601e6109310e7ea0cc25eeb480d",
-      "bytes": 20510
+      "sha256": "c6c086ecc8eeca6b5e36236baf99c04d714b96df1c7623b58ae8d65972fdc040",
+      "bytes": 20422
     },
     "./version.json": {
-      "sha256": "e6d0741935d81dd79c96802b9d773240d57f7881748d64c50bd949b6c39fa84b",
-      "bytes": 612
+      "sha256": "bb2eff0e8facc7e2924aa25c029ecec97637c0c6bc517e32fb6088669faa4883",
+      "bytes": 694
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -530,12 +530,24 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "4d7812a548dea3a1bfc5ce05be380312e846e0d0f2cbfbf5713e8ef635ecc0ef",
-      "bytes": 9857
+      "sha256": "b86cd904f28cd3b08422e854919f64630ccb339b90a3a361de818df292825efa",
+      "bytes": 13899
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
-      "sha256": "c91a794deb90776f78aaaf2daaa3deea00194c2386383c6070f91baf1d445852",
-      "bytes": 3247
+      "sha256": "64253edb45c85cff7b7ade88b4cad91b89db4444a69fd6800276dfe42a1031e3",
+      "bytes": 3634
+    },
+    "./app/boot/25-v1154-update-detector-r2.js": {
+      "sha256": "68c7ed26f0f180b4193cd71554a0214bddded76fe3f731132ec83895c7ff18c9",
+      "bytes": 7297
+    },
+    "./data/form-configuration.json": {
+      "sha256": "5e4b1ee52eafc97cb0bee38caed4280656409dd492e341f621b68bf943dfc609",
+      "bytes": 6533
+    },
+    "./form-configuration.json": {
+      "sha256": "5e4b1ee52eafc97cb0bee38caed4280656409dd492e341f621b68bf943dfc609",
+      "bytes": 6533
     }
   }
 }
