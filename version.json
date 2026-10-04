@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.112",
-  "displayVersion": "V6.4.112",
-  "label": "V6.4.112 TEST - ROSTER LINEAGE",
-  "build": "V6.4.112-20261004-ROSTER-LINEAGE-01",
-  "releasedAt": "2026-10-04T02:24:00.508Z",
+  "version": "V6.4.113",
+  "displayVersion": "V6.4.113",
+  "label": "V6.4.113 TEST - ROSTER STALE PARSER GATE",
+  "build": "V6.4.113-20261004-ROSTER-STALE-GATE-01",
+  "releasedAt": "2026-10-04T05:39:31.711Z",
   "type": "fix",
-  "base": "V6.4.111-20261004-ROSTER-CONFIRM-01",
-  "updatePolicy": "optional",
-  "notes": "DAILY ROSTER lineage fix: dấu / là chuỗi bàn giao theo thời gian; update giữ nguyên formInstanceId, dữ liệu và lịch sử; không gộp lại 42.1 + 55.1 thành 42.3; 42.3 có thể tiếp tục bàn giao và chỉ sinh thêm 55.1 khi phát sinh trách nhiệm LD mới.",
-  "message": "V6.4.112: sửa triệt để lineage DAILY ROSTER 42.1 / 42.3 / 55.1."
+  "base": "V6.4.112-20261004-ROSTER-LINEAGE-01",
+  "updatePolicy": "required",
+  "notes": "DAILY ROSTER hotfix: dấu / chỉ là chuỗi bàn giao theo thời gian; chấp nhận timeline ngay ở lần import đầu, giữ originalOwner và assignmentTimeline; TW1 với Grnd_Cor KIENNT và Grnd_Ld PHUONGDD / HUYNDL không còn bị hiểu thành leg. Trước khi đọc roster, runtime tự kiểm tra build và parser; nếu còn cache/parser cũ sẽ chuyển qua repair để nạp bản mới.",
+  "message": "V6.4.113: khóa parser roster cũ và sửa first-import handover timeline."
 }
