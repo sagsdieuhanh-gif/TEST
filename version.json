@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.120",
-  "displayVersion": "V6.4.120",
-  "label": "V6.4.120 - SHARED MY FLIGHT + COMPACT QUICK INPUT",
-  "build": "V6.4.120-20261004-CARGO-MYFLIGHT-QUICK-01",
-  "releasedAt": "2026-10-04T18:45:00+07:00",
-  "type": "ui",
-  "base": "V6.4.119-20261004-MENU-CARGO-FOCUS-01",
+  "version": "V6.4.121",
+  "displayVersion": "V6.4.121",
+  "label": "V6.4.121 - HOTFIX FREEZE + STABLE MY FLIGHT",
+  "build": "V6.4.121-20261004-HOTFIX-FREEZE-01",
+  "releasedAt": "2026-10-04T19:05:00+07:00",
+  "type": "stability",
+  "base": "V6.4.120-20261004-CARGO-MYFLIGHT-QUICK-01",
   "updatePolicy": "required",
-  "notes": "Force Kho hàng/Cargo through the exact shared MY FLIGHT shell used by operational roles, including the same title, tabs, flight cards, dossier actions and bottom navigation while preserving all-flight FSAGS 208 visibility/search/receive behavior. Compact NHẬP NHANH into the same navy FIXED UI system with smaller rows, 40px actions, compact time fields and no redundant back arrow.",
-  "message": "V6.4.120: đồng bộ My Flight Kho hàng với ĐH/CBTT và thu gọn giao diện NHẬP NHANH theo FIXED UI."
+  "notes": "Hotfix V6.4.120 freeze: remove the duplicate late Cargo/My Flight route authority and all focus/pageshow/visibility rewiring. Keep the shared Cargo My Flight UI inside the existing FSAGS 208 workspace module and keep the compact Quick Input CSS. Rebuild PWA cache/version so devices on V6.4.120 receive a clean forward update.",
+  "message": "V6.4.121: sửa lỗi đơ V6.4.120, bỏ lớp route My Flight trùng lặp và giữ giao diện My Flight/NHẬP NHANH đã cập nhật."
 }
