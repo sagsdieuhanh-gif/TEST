@@ -1,4 +1,4 @@
-/* E-REPORT SAGS V6.4.113 — FIXED UI RULE
+/* E-REPORT SAGS V6.4.114 — FIXED UI RULE
    Mandatory final override. New function != new button style.
 */
 html.new-ui-v1{
@@ -228,4 +228,185 @@ html.new-ui-v1 body :is(.formMenuGrid button,.exportChoiceGrid button,.v377Creat
   html.new-ui-v1 body #sagsMobileFormDock,
   html.new-ui-v1 body #sagsNavigationHeader{display:none!important}
   html.new-ui-v1 body.v163-operational{padding-bottom:0!important}
+}
+
+
+/* ==========================================================
+   V6.4.114 PROJECT-WIDE BUTTON AUDIT
+   Final geometry guard for legacy screens and dynamically
+   rendered controls. Business logic and semantic state stay intact.
+   ========================================================== */
+html.new-ui-v1 body :is(
+  button,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"]
+){
+  border-radius:var(--sags-button-radius)!important;
+  box-shadow:none!important;
+  transform:none;
+}
+html.new-ui-v1 body :is(
+  button,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"]
+):focus-visible{
+  outline:2px solid #69baff!important;
+  outline-offset:2px!important;
+}
+html.new-ui-v1 body :is(
+  button,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"]
+):active{
+  transform:none!important;
+}
+html.new-ui-v1 body :is(
+  .roleLoginCard,
+  .sagsAdminPanel,
+  .flightSessionBox,
+  .fwcPanel,
+  .hf4Panel,
+  .sagsDossierPanel,
+  .fleetManagerPanel,
+  .finalFormsPanel,
+  .formMenuBox,
+  .fs09qPanel,
+  .quickTimePanel,
+  .v485PermBox,
+  .v479ThreeUActionPanel,
+  .templateBox,
+  #signModal .panel,
+  #signatureSampleModal>div,
+  #timeSkipModal>div
+) button{
+  min-height:40px!important;
+  padding:6px 10px!important;
+  border-radius:var(--sags-button-radius)!important;
+  box-shadow:none!important;
+  font-weight:700!important;
+  line-height:1.15!important;
+}
+html.new-ui-v1 body :is(
+  .templateActions,
+  .quickTimeFooterActions,
+  .fs09qFooter,
+  .v485PermActions,
+  .v479ThreeUActions,
+  .opsComposerBottomActions,
+  #signModal .actions,
+  #signatureSampleModal,
+  #timeSkipModal
+) button{
+  border:1px solid var(--sags-button-border)!important;
+  background:var(--sags-button-bg)!important;
+  color:var(--sags-button-text)!important;
+}
+html.new-ui-v1 body :is(
+  button.danger,
+  button.delete,
+  button.del,
+  .logout,
+  .v485Reset
+){
+  border-color:#a95a67!important;
+}
+html.new-ui-v1 body :is(
+  button.save,
+  button.success,
+  .v485Save,
+  .quickTimeSave,
+  .fs09qSave
+){
+  border-color:#3f9b7a!important;
+}
+html.new-ui-v1 body :is(
+  button.cancel,
+  button.secondary,
+  .opsComposerClose
+){
+  border-color:#647f98!important;
+}
+html.new-ui-v1 body :is(
+  .v157MenuItem,
+  .m6497Card,
+  .v157BottomBtn,
+  .m6497NavBtn,
+  .m6497FooterBtn,
+  .sagsAdminBtn,
+  .fleetMiniBtn,
+  .flightOpsBtn,
+  .rsBtn,
+  .v488Btn,
+  .fwcBtn,
+  .v1199Action,
+  .v1199TaskBtn,
+  .v1199Tab,
+  .v324FormAction,
+  .formMenuGrid button,
+  .exportChoiceGrid button,
+  .v377CreateFormGrid button,
+  .sagsUiThemeGrid button,
+  .toolbar-row.main-actions>button
+){
+  border-radius:var(--sags-button-radius)!important;
+  box-shadow:none!important;
+}
+@media (max-width:767px){
+  html.new-ui-v1 body :is(
+    button,
+    [role="button"],
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"]
+  ){
+    min-height:40px;
+  }
+  html.new-ui-v1 body :is(
+    .sagsAdminPanel,
+    .flightSessionBox,
+    .fwcPanel,
+    .hf4Panel,
+    .sagsDossierPanel,
+    .fleetManagerPanel,
+    .finalFormsPanel,
+    .formMenuBox,
+    .fs09qPanel,
+    .quickTimePanel,
+    .v485PermBox,
+    .v479ThreeUActionPanel
+  ) button{
+    max-width:100%!important;
+    white-space:normal;
+  }
+  html.new-ui-v1 body :is(
+    .formMenuGrid,
+    .exportChoiceGrid,
+    .v377CreateFormGrid,
+    .sagsUiThemeGrid
+  ){
+    gap:8px!important;
+  }
+  html.new-ui-v1 body :is(
+    .formMenuGrid button,
+    .exportChoiceGrid button,
+    .v377CreateFormGrid button,
+    .sagsUiThemeGrid button
+  ){
+    min-height:44px!important;
+    padding:7px 10px!important;
+    font-size:13px!important;
+  }
+  /* Fixed action/nav rows remain the canonical approved two-row pattern. */
+  html.new-ui-v1 body #sagsMobileFormDock #v324FormActions.show{
+    grid-template-columns:repeat(var(--sags-action-count,4),minmax(0,1fr))!important;
+  }
+  html.new-ui-v1 body.v157-authenticated #sagsNavigationHeader#sagsNavigationHeader{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
 }
