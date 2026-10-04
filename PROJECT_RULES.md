@@ -78,3 +78,13 @@ Implementation authority for current release:
 - Từ My Flight khi không có ngữ cảnh AD/Data Hub phía trước: Quay lại phải về Trang chủ; **không được mở lại chính My Flight**, không tạo vòng lặp focus và không yêu cầu refresh.
 - Nếu My Flight được mở từ AD Control hoặc Data Hub, Quay lại phải ưu tiên đúng ngữ cảnh đó.
 - KH/Cargo dùng cùng ngôn ngữ giao diện My Flight với ĐH/CBTT/PVHK: card chuyến + tile biểu mẫu; khác biệt chỉ nằm ở nghiệp vụ/quyền FSAGS 208, không tạo một shell UI riêng.
+
+
+## Performance / scale contract
+- `app/core/app.v503.js` và `app/core/runtime.v503hf2.bundle.js` là **source/build input**, không được nạp trực tiếp ở `index.html` hoặc đưa lại vào executable bootstrap.
+- Runtime lớn phải giữ theo chunk độc lập để khi chỉ một phần thay đổi, PWA chỉ tải lại phần thay đổi thay vì tải lại một bundle lớn.
+- Không thêm Firebase SDK vào startup nếu code không thực sự sử dụng. Auth, RTDB và Firestore hiện là SDK cần thiết; Functions compat không được nạp khi không có `firebase.functions/httpsCallable`.
+- Service worker phải giữ build-unique cache + checksum contract, nhưng không được băm lại cùng một asset đã xác minh ở mọi request trong cùng worker lifetime.
+- MutationObserver/UI patch không được quét lại toàn bộ DOM cho mỗi mutation. Chỉ xử lý vùng DOM thay đổi; full scan chỉ dùng ở initial/pageshow hoặc fallback có giới hạn.
+- Danh sách My Flight/Daily Roster không được phát sinh hàng loạt Firebase reads không giới hạn. Chỉ đọc field thực sự dùng và phải có concurrency cap cho status leaves.
+- Mọi tối ưu hiệu năng phải có regression guard, không được đánh đổi tính đúng của roster, form state, chữ ký, PDF, quyền truy cập hoặc release/PWA consistency.
