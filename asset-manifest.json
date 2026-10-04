@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "version": "V6.4.112",
-  "build": "V6.4.112-20261004-ROSTER-LINEAGE-01",
+  "version": "V6.4.113",
+  "build": "V6.4.113-20261004-ROSTER-STALE-GATE-01",
   "strategy": "Ordered source bundles + unified mobile navy + targeted UI observers",
   "mutableMetadata": [
     "./forms/forms.registry.json",
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "493a16435443226edff4d16748d2f438acc88745fecef8a2191e49ca7b828e1f",
-      "bytes": 78759
+      "sha256": "dca6e425cd03a9b9456b2d44fb27f92c20b59d69acfbaf151d09b1991c5e2a91",
+      "bytes": 78954
     },
     "./service-worker.js": {
-      "sha256": "476f4e7f2075379493dd48a907d9f9413e2ec688ee6ca9efc1472e13896e685c",
-      "bytes": 20433
+      "sha256": "ce3f08ad611dc0e609a3cc52690f20b4a8e0e573b8bce9a86ce97e503f5c4b9e",
+      "bytes": 20442
     },
     "./version.json": {
-      "sha256": "8df5cf4ff122f47515b4f6f752b2206f76242b8b86659c56e6e9bb43054b93a1",
-      "bytes": 684
+      "sha256": "e493ad7aad5ac7382d9ec106095fdb0182cf8680016f545855fc0950c5e2721e",
+      "bytes": 826
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -230,8 +230,8 @@
       "bytes": 86176
     },
     "./app/generated/core-flight.js": {
-      "sha256": "683a957d818ab7bb075f29b570f002685a375027246fc0af0b212a78c7519490",
-      "bytes": 200943
+      "sha256": "e0dabdc38978f50750f65ee151e135ac60481455a4a62a498ad7a9e5b4e3c2f2",
+      "bytes": 201924
     },
     "./app/generated/core-performance.js": {
       "sha256": "005c80dc9ce412f9e1c8b74d24b48e68b27ddaa05d5de203cb2029e7f93364d8",
@@ -334,8 +334,8 @@
       "bytes": 31645
     },
     "./app/generated/startup-bundle-4.js": {
-      "sha256": "ef5f6b659609e4968b10d9de3dc327afa35941f6d4f65e66b11f987b239c0b85",
-      "bytes": 178385
+      "sha256": "5762761c0e6772af65802eadf51c224e24dbf82452b57eaae0ae19b69d2297c3",
+      "bytes": 178838
     },
     "./app/styles/mobile-navy-v64106.css": {
       "sha256": "e8abcc1ef135517585287c521ff6506d0d874c7b2f22c1feb31f3ebdc0a031e0",
