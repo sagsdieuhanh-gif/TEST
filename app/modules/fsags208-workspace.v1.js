@@ -270,8 +270,8 @@ function ensureStableMyFlightBack(){
  const modal=document.getElementById('fwcModal'),head=modal?.querySelector('.fwcHead');if(!head)return;
  let b=head.querySelector('#sagsStableMyFlightBack');
  if(!b){b=document.createElement('button');b.id='sagsStableMyFlightBack';b.type='button';b.className='fwcBtn gray';b.textContent='←';b.title='Quay lại';b.setAttribute('aria-label','Quay lại');b.addEventListener('click',stableMyFlightBack);const first=head.querySelector('button');head.insertBefore(b,first||null)}
- const runtimeBack=head.querySelector('#v644MyFlightBack'),hasReturn=uiReturnStack().length>0;
- b.hidden=hasReturn&&!!runtimeBack&&!runtimeBack.hidden;
+ const runtimeBack=head.querySelector('#v644MyFlightBack'),hasReturn=uiReturnStack().length>0,hideStable=hasReturn&&!!runtimeBack&&!runtimeBack.hidden;
+ if(b.hidden!==hideStable)b.hidden=hideStable;
  if(workspaceShown()&&!dossierShown())document.getElementById('sagsContextBackRow')?.remove();
 }
 function installStableMyFlightBack(){
