@@ -25,3 +25,5 @@ assert(repair.includes('Dữ liệu và bản nháp vẫn được giữ nguyên
 assert(finalizer.includes("'./repair.html'"),'every release must package repair.html');
 assert(finalizer.includes('repair page must be present in every verified release'),'finalizer must hard-fail if repair.html is missing');
 console.log('V6.4.125 clean-update/mobile UI guard passed.');
+
+// verified-release-recheck-v64125
