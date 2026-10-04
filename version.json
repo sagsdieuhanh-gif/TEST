@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.130",
-  "displayVersion": "V6.4.130",
-  "label": "V6.4.130 - RECEIVE FAST PATH",
-  "build": "V6.4.130-20261004-RECEIVE-FAST-PATH-01",
-  "releasedAt": "2026-10-04T22:07:00+07:00",
-  "type": "ui",
-  "base": "V6.4.129-20261004-MOBILE-UI-STABILITY-01",
+  "version": "V6.4.131",
+  "displayVersion": "V6.4.131",
+  "label": "V6.4.131 - FULL PERFORMANCE",
+  "build": "V6.4.131-20261004-FULL-PERFORMANCE-01",
+  "releasedAt": "2026-10-04T22:21:00+07:00",
+  "type": "performance",
+  "base": "V6.4.130-20261004-RECEIVE-FAST-PATH-01",
   "updatePolicy": "required",
-  "notes": "Canonical roster responsibility assignments now open directly through SAGSRosterResponsibility instead of traversing the legacy receive wrapper chain first. Legacy/non-canonical forms keep the existing receive path. Retains V6.4.129 mobile observer stabilization and V6.4.128 desktop layout.",
-  "message": "V6.4.130: giảm lag khi NHẬN biểu mẫu; assignment mới đi thẳng vào cơ chế responsibility, giữ nguyên luồng legacy."
+  "notes": "Full performance batch: retain canonical receive fast path; compact forms registry by about 38 percent; lazy-load form background images; coalesce duplicate registry network/layout work; scope Form Registry UI observers; move PDF prewarm off the critical render path; reduce non-critical legacy UI polling; and coalesce registry requests in the service worker while preserving strict no-store update checks. UI and business workflow remain unchanged.",
+  "message": "V6.4.131: tối ưu toàn bộ tốc độ/trải nghiệm mobile và startup, giữ nguyên giao diện/nghiệp vụ và cơ chế cập nhật bắt buộc."
 }

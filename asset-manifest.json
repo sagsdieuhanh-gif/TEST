@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.130",
-  "build": "V6.4.130-20261004-RECEIVE-FAST-PATH-01",
-  "strategy": "Ordered source bundles + unified mobile navy + targeted UI observers",
+  "version": "V6.4.131",
+  "build": "V6.4.131-20261004-FULL-PERFORMANCE-01",
+  "strategy": "TEST atomic release + full performance batch + canonical receive fast path + registry coalescing + lazy form media + scoped UI observers + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "b2201c2b2baa3f3ea1a4279b28d56678744dc31069766836660dc05fc0d6a23b",
-      "bytes": 81863
+      "sha256": "b9793d1a2ee62e7cb6bf23f20998769574add30e5beae02dc7265ec0f7327952",
+      "bytes": 81790
     },
     "./service-worker.js": {
-      "sha256": "dbcbdd130ef025de5407406f1892da5ba8c0b3f15aaf12a7d33a1e769d6e080d",
-      "bytes": 22339
+      "sha256": "0401c79ab7a475a058fc208b93dc116296ebeee29ca5a3280b4b2dd9d6774765",
+      "bytes": 22336
     },
     "./version.json": {
-      "sha256": "09893da056ad325021bf9b88f9f78a1dd8297d65c3e0b9c74702a2b34b35dd82",
-      "bytes": 759
+      "sha256": "b583501108fa5ecf847aafbb4762b2831b7140afdc2ce2ef809a4bf7755df847",
+      "bytes": 947
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "2288c3ec7eb272835b9863e619387da485cd84b7f7d8ad278361e3e9b03b2073",
