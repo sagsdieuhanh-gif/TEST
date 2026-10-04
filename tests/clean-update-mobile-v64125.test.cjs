@@ -7,7 +7,7 @@ const finalizer=read('tools/finalize-test-release.cjs');
 const ui=read('app/modules/update-ui-clean.v64125.js');
 const version=JSON.parse(read('version.json'));
 
-assert.equal(version.version,'V6.4.125');
+assert(Number(String(version.version||'').split('.').pop())>=125,'clean-update contract must remain active from V6.4.125 onward');
 assert(index.includes('update-ui-clean.v64125.js'),'compact update UI must load');
 assert(index.includes('Cập nhật để dùng phiên bản mới nhất. Dữ liệu và bản nháp vẫn được giữ nguyên.'),'update popup copy must stay concise');
 assert(ui.includes("later.textContent='ĐỂ SAU'"),'mobile update popup needs short later action');
