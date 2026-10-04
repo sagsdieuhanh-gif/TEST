@@ -313,16 +313,28 @@ async function clearStaleClaimIfNeeded(item){
 }
 function timeScore(x){const raw=S(x?.std||x?.sta),plus=/\+\s*$/.test(raw),s=raw.replace(/\D/g,'');if(s.length<3)return 99999;return (plus?1440:0)+Number(s.slice(0,-2))*60+Number(s.slice(-2))}
 async function readManifest(date){if(role()!=='AD'){if(typeof root.sagsV477ManifestForWorker!=='function')throw new Error('Hộp phân công đang khởi tạo; vui lòng đợi hoặc bấm UPDATE.');return await root.sagsV477ManifestForWorker(date)}return (await db(`roster_manifests/${safe(date)}`).once('value')).val()||{}}
-const QUEUE_STATUS_FIELDS=['assignmentCompletion','claimStatus','workPartStatus','taskStatusV333','taskStatus','ownerUser','claimedBy','claimedAtMs','reassignedAtMs','skippedNoEform','autoSkippedByNextUser','pushbackEditReopened','pushbackEditMode','completedPushback','flightCloseoutV6445','flightCloseoutAtMs','flightCloseoutBy','flightCloseoutDate','flightCloseoutFlightKey','flightCloseoutUnit'];
-const queueStatusCache=new Map();
+// Queue cards need only fields consumed by itemCompleted/itemWorking/closeoutTime.
+const QUEUE_STATUS_FIELDS=['assignmentCompletion','claimStatus','workPartStatus','taskStatusV333','taskStatus','ownerUser','claimedBy','claimedAtMs','reassignedAtMs','skippedNoEform','autoSkippedByNextUser','pushbackEditReopened','pushbackEditMode','completedPushback','flightCloseoutV6445','flightCloseoutAtMs'];
+const queueStatusCache=new Map(),statusReadQueue=[];let statusReadActive=0;
+const MAX_STATUS_READS=16;
+function pumpStatusReads(){
+  while(statusReadActive<MAX_STATUS_READS&&statusReadQueue.length){
+    const job=statusReadQueue.shift();statusReadActive++;
+    Promise.resolve().then(job.run).then(job.resolve,job.reject).finally(()=>{statusReadActive--;pumpStatusReads()});
+  }
+}
+function statusLeaf(path){
+  return new Promise((resolve,reject)=>{statusReadQueue.push({run:()=>db(path).once('value'),resolve,reject});pumpStatusReads()});
+}
 root.sagsV477InvalidateQueueStatus=function(){queueStatusCache.clear()};
+root.sagsRosterReadDiagnostics=()=>({active:statusReadActive,queued:statusReadQueue.length,max:MAX_STATUS_READS,fields:QUEUE_STATUS_FIELDS.length,cachedAssignments:queueStatusCache.size});
 async function readState(aid,force=false){
-  // Only status leaves, never the entire session/envelope/signatures.
+  // Read only compact status leaves; cap concurrency so a long roster does not flood mobile/Firebase.
   aid=S(aid);if(!aid)return {};
   const k=me()+'|'+aid,old=queueStatusCache.get(k);
   if(!force&&old&&Date.now()-old.at<30000)return old.promise;
   const promise=(async()=>{const out={};await Promise.all(QUEUE_STATUS_FIELDS.map(async field=>{
-    try{const val=(await db(`roster_sessions/${safe(aid)}/${field}`).once('value')).val();if(val!==null&&val!==undefined)out[field]=val}catch(_){}
+    try{const val=(await statusLeaf(`roster_sessions/${safe(aid)}/${field}`)).val();if(val!==null&&val!==undefined)out[field]=val}catch(_){}
   }));return out})();queueStatusCache.set(k,{at:Date.now(),promise});
   try{return await promise}catch(e){queueStatusCache.delete(k);throw e}
 }
