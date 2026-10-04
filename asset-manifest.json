@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.139",
-  "build": "V6.4.139-20261005-DESKTOP-FORM-UI-01",
-  "strategy": "TEST atomic release + explicit desktop workspace positioning + balanced V6.4.88 action-row geometry with new UI visuals + operational field safety + mandatory clean old shell",
+  "version": "V6.4.140",
+  "build": "V6.4.140-20261005-DESKTOP-FIELD-SAFE-01",
+  "strategy": "TEST atomic release + overlay-manager desktop My Flight exception + runtime field light safety + balanced V6.4.88 action-row geometry with new UI visuals + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "6ec0d9182da9b3595bfe3e0fad306b51c461fb52ed8b99014db62cf0a13ad015",
-      "bytes": 81717
+      "sha256": "23d1dabf592f9eacc0df7088ee11d2475dbfebdea2d57d29752400d6a9c04318",
+      "bytes": 81936
     },
     "./service-worker.js": {
-      "sha256": "29e1ac0dd4280fbd857384d64aaf846f6dd5c21a1e0a91d5dde2a86fc5d18290",
-      "bytes": 22333
+      "sha256": "f418dc821327df6b035f4b89dec68e6d6567a1ca23b18e4d2e2638b3e45d8d6d",
+      "bytes": 22342
     },
     "./version.json": {
-      "sha256": "d557df397167103c2b0eabcda998fc350334e3e8d6374e5d8136c7bce8316c39",
-      "bytes": 895
+      "sha256": "34ecba3f03e9cafec6c3e54ac6a6a3d149f75233ce1d2812e428780a80d8a9b6",
+      "bytes": 956
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "2288c3ec7eb272835b9863e619387da485cd84b7f7d8ad278361e3e9b03b2073",
@@ -206,8 +206,8 @@
       "bytes": 1870
     },
     "./app/modules/workflow-cleanup.v6444.js": {
-      "sha256": "9d902a312c675e2681a207001c7ddf3b9168cab89b5b114f884054d8495948a4",
-      "bytes": 22560
+      "sha256": "14f7a922e8f876dd9366f11241e83cc7aef66dd2c3e33ca021a6c1851367a01a",
+      "bytes": 23301
     },
     "./app/modules/airline-form-policy.v1.js": {
       "sha256": "d92ca37647a4697299f767983b1435f7df6cf88ee6718073bf383ab6fde2a653",
@@ -330,8 +330,8 @@
       "bytes": 31645
     },
     "./app/generated/startup-bundle-4.js": {
-      "sha256": "c4f487157d7369e8ccb0047dac8911cbed9ec6c7b3e7966915296fcad63ab46a",
-      "bytes": 180104
+      "sha256": "80d85d7b7d3b8de04c498adf6d1ef78fee6931f01a61d846d8fb4fc78bf2dcb9",
+      "bytes": 180801
     },
     "./app/styles/mobile-navy-v64106.css": {
       "sha256": "e8abcc1ef135517585287c521ff6506d0d874c7b2f22c1feb31f3ebdc0a031e0",
@@ -526,8 +526,8 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "d71239d9f80ea2ff49625fb451763e0cbca50d8cc6de50ff68df743e166cd38c",
-      "bytes": 26710
+      "sha256": "0afa5466017733938ecda0953f0f9055470b48b1bbe909bb1e9f436e741a5f14",
+      "bytes": 28077
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
       "sha256": "48e2a29c35d2529f0d4003299e5897d3f71277866b09737af6096ec1450ca250",
