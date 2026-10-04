@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.112",
-  "displayVersion": "V6.4.112",
-  "label": "V6.4.112 TEST - ROSTER LINEAGE",
-  "build": "V6.4.112-20261004-ROSTER-LINEAGE-01",
-  "releasedAt": "2026-10-04T02:24:00.508Z",
-  "type": "fix",
-  "base": "V6.4.111-20261004-ROSTER-CONFIRM-01",
+  "version": "V6.4.113",
+  "displayVersion": "V6.4.113",
+  "label": "V6.4.113 TEST - FIXED UI RULE",
+  "build": "V6.4.113-20261004-FIXED-UI-RULE-01",
+  "releasedAt": "2026-10-04T13:20:00+07:00",
+  "type": "ui",
+  "base": "V6.4.112-20261004-ROSTER-LINEAGE-01",
   "updatePolicy": "optional",
-  "notes": "DAILY ROSTER lineage fix: dấu / là chuỗi bàn giao theo thời gian; update giữ nguyên formInstanceId, dữ liệu và lịch sử; không gộp lại 42.1 + 55.1 thành 42.3; 42.3 có thể tiếp tục bàn giao và chỉ sinh thêm 55.1 khi phát sinh trách nhiệm LD mới.",
-  "message": "V6.4.112: sửa triệt để lineage DAILY ROSTER 42.1 / 42.3 / 55.1."
+  "notes": "Chuẩn hóa toàn bộ button theo FIXED UI RULE; form toolbar mobile gọn 2 tầng, dock không đè nội dung, giữ KÝ trong hàng action, Menu/Trang chủ ở hàng điều hướng; loại copy trạng thái F54/F94 bị trùng.",
+  "message": "V6.4.113: áp dụng FIXED UI RULE toàn dự án."
 }
