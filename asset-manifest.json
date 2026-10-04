@@ -2,7 +2,7 @@
   "schema": 2,
   "version": "V6.4.116",
   "build": "V6.4.116-20261004-FIXED-UI-AUDIT-02",
-  "strategy": "Ordered source bundles + unified mobile navy + targeted UI observers",
+  "strategy": "TEST atomic release + build-unique PWA cache + mixed-build guard",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "b2cb8280d9684f1555b99a829284cb024570bd895fdd707e0f50f3e0cabcd248",
-      "bytes": 81654
+      "sha256": "30e0ecf62dd4a464e5f5d80fda6b7b4ca0a878c84ed88d5e37bccd4367c223ae",
+      "bytes": 80656
     },
     "./service-worker.js": {
       "sha256": "0de292bf9b2f511d79f6e932bc84262143d06264c7683ec2bad0974b7d755978",
       "bytes": 20751
     },
     "./version.json": {
-      "sha256": "05784da7615eedc712814cd27ee9638a4cac86996d47e6bec93486b0b341c193",
-      "bytes": 723
+      "sha256": "572ceff00319c90addfc531b13b386d7cbeda4769e650b0edbee34de03a51832",
+      "bytes": 711
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -206,8 +206,8 @@
       "bytes": 1870
     },
     "./app/modules/workflow-cleanup.v6444.js": {
-      "sha256": "1b68e0f03773bbb7779b82b71a1aa100cc6c0b3b464ae75853aa5b0c36708072",
-      "bytes": 22686
+      "sha256": "9d902a312c675e2681a207001c7ddf3b9168cab89b5b114f884054d8495948a4",
+      "bytes": 22560
     },
     "./app/modules/airline-form-policy.v1.js": {
       "sha256": "d92ca37647a4697299f767983b1435f7df6cf88ee6718073bf383ab6fde2a653",
@@ -530,12 +530,12 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "db31046d57e2270fe1218c4c76fc06f3cf0d39732d8ca40a433bcf30a47349fb",
-      "bytes": 24186
+      "sha256": "bc4bc86956ac2947680ada536cf710b56cfcd6a5ecff69a4c3f0b09544ce3190",
+      "bytes": 23644
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
-      "sha256": "84ca4908b71faf7ed43dcab6efde747b63cd08da7c05e02afa6a7564f11be7ac",
-      "bytes": 5809
+      "sha256": "36564141120f83dd04902346555e415c1e83ad09f292924fbd4c155db25c8a0a",
+      "bytes": 5714
     },
     "./app/boot/25-v1154-update-detector-r2.js": {
       "sha256": "68c7ed26f0f180b4193cd71554a0214bddded76fe3f731132ec83895c7ff18c9",
