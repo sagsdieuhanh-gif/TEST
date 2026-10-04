@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.131",
-  "displayVersion": "V6.4.131",
-  "label": "V6.4.131 - FULL PERFORMANCE",
-  "build": "V6.4.131-20261004-FULL-PERFORMANCE-01",
-  "releasedAt": "2026-10-04T22:21:00+07:00",
+  "version": "V6.4.132",
+  "displayVersion": "V6.4.132",
+  "label": "V6.4.132 - MOBILE TOUCH UNLOCK",
+  "build": "V6.4.132-20261004-MOBILE-TOUCH-UNLOCK-01",
+  "releasedAt": "2026-10-04T22:33:00+07:00",
   "type": "performance",
-  "base": "V6.4.130-20261004-RECEIVE-FAST-PATH-01",
+  "base": "V6.4.131-20261004-FULL-PERFORMANCE-01",
   "updatePolicy": "required",
-  "notes": "Full performance batch: retain canonical receive fast path; compact forms registry by about 38 percent; lazy-load form background images; coalesce duplicate registry network/layout work; scope Form Registry UI observers; move PDF prewarm off the critical render path; reduce non-critical legacy UI polling; and coalesce registry requests in the service worker while preserving strict no-store update checks. UI and business workflow remain unchanged.",
-  "message": "V6.4.131: tối ưu toàn bộ tốc độ/trải nghiệm mobile và startup, giữ nguyên giao diện/nghiệp vụ và cơ chế cập nhật bắt buộc."
+  "notes": "Mobile-first interaction hotfix on top of the V6.4.131 performance batch. Clear stale drawer/overlay/operational classes on authenticated Home, disable the closed drawer backdrop as a touch interceptor, explicitly restore pointer events on Home/navigation surfaces, cover cached Firebase restore, and move redundant immediate session verification off the post-login critical path. Business workflow and visual layout remain unchanged.",
+  "message": "V6.4.132: sửa mobile đăng nhập xong không bấm được; ưu tiên touch phản hồi ngay, giữ nguyên tối ưu V6.4.131."
 }
