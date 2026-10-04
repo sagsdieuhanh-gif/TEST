@@ -8,6 +8,17 @@ const legacy=block.indexOf("root.v324ReceiveOrOpen(realFid,S(item.assignmentId),
 assert(fast>=0,'canonical responsibility fast path missing');
 assert(stale>fast,'canonical fast path must bypass stale legacy claim cleanup');
 assert(legacy>stale,'legacy receive handler must remain fallback only');
-assert(block.includes('await responsibility.open(S(item.assignmentId));'),'canonical assignment must open through responsibility service');
+assert(block.includes('await responsibility.open(S(item.assignmentId),item);'),'canonical assignment must reuse the live mailbox item when opening');
 assert(block.includes('// Legacy/non-canonical assignments keep the proven compatibility receive path.'),'legacy compatibility path must remain explicit');
 console.log('V6.4.130 canonical receive fast-path guard passed.');
+
+const responsibility=fs.readFileSync(path.join(root,'app/modules/roster-responsibility.v1.js'),'utf8');
+assert(block.includes('await root.sagsAirlineFormPolicy?.ready(false)'),'opening a form must not force-refresh static policy on every tap');
+const canonical=block.slice(fast,stale);
+assert(!canonical.includes('sagsFlightDossierClose'),'canonical receive must keep dossier visible while network/edit-lock work is pending');
+assert(responsibility.includes('async function acquire(aid,itemHint=null){const item=itemHint||await itemFor(aid);'),'canonical acquire must not reread an assignment already validated by the live mailbox path');
+assert(responsibility.includes('async function open(aid,itemHint=null){'),'responsibility open must accept the already loaded assignment');
+const rrOpen=responsibility.slice(responsibility.indexOf('async function open(aid,itemHint=null){'),responsibility.indexOf('async function reassign',responsibility.indexOf('async function open(aid,itemHint=null){')));
+assert(rrOpen.indexOf('await local.switch(meta.id)')<rrOpen.indexOf('root.sagsFlightDossierClose?.()'),'dossier must close only after the local form switch succeeds');
+assert(rrOpen.indexOf('await local.switch(meta.id)')<rrOpen.indexOf('root.flightWorkspaceClose?.()'),'My Flight must close only after the local form switch succeeds');
+console.log('V6.4.135 mobile form-open critical path guard passed.');

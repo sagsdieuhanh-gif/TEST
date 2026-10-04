@@ -507,9 +507,10 @@ async function renderPersonal(date=opDate()){
 async function reopenPushback(item,date){const aid=S(item?.assignmentId),fid=S(item?.flightId);if(!aid)throw new Error('Thiếu assignmentId.');if(!confirm(`MỞ LẠI CÔNG VIỆC\n\n${flightLabel(item)} · ${formLabel(item)}\n\nXác nhận mở lại?`))return false;const t=Date.now(),u=me(),patch={};patch[`roster_sessions/${safe(aid)}/pushbackEditReopened`]=true;patch[`roster_sessions/${safe(aid)}/pushbackEditReopenedAtMs`]=t;patch[`roster_sessions/${safe(aid)}/completedPushback`]=null;patch[`roster_sessions/${safe(aid)}/claimStatus`]='CLAIMED';patch[`roster_sessions/${safe(aid)}/workPartStatus`]='IN_PROGRESS';patch[`roster_sessions/${safe(aid)}/taskStatusV333`]='IN_PROGRESS';patch[`roster_sessions/${safe(aid)}/completedAtMs`]=null;patch[`roster_sessions/${safe(aid)}/completedBy`]=null;patch[`roster_sessions/${safe(aid)}/updatedAtMs`]=t;if(fid){patch[`flight_records/${safe(date)}/${safe(fid)}/taskClaims/${safe(u)}/${safe(aid)}/status`]='CLAIMED';patch[`flight_records/${safe(date)}/${safe(fid)}/taskClaims/${safe(u)}/${safe(aid)}/taskStatus`]='IN_PROGRESS';patch[`flight_records/${safe(date)}/${safe(fid)}/taskClaims/${safe(u)}/${safe(aid)}/reopenedAtMs`]=t}await db('').update(patch);setTimeout(()=>renderPersonal(date),60);await root.v324ReceiveOrOpen?.(fid,aid,date);return true}
 const openingTasks=new Set();
 async function openTask(aid,fid,completed,cardDate='',exact=false,button=null){
-  const date=syncQueueDate(queueDate(cardDate)),key=date+'|'+S(aid||fid);
+  const date=syncQueueDate(queueDate(cardDate)),key=date+'|'+S(aid||fid),buttonHtml=button?.innerHTML??null;
   if(openingTasks.has(key))return;
-  openingTasks.add(key);queueStatusCache.delete(me()+'|'+S(aid));if(button)button.disabled=true;
+  openingTasks.add(key);queueStatusCache.delete(me()+'|'+S(aid));
+  if(button){button.disabled=true;button.setAttribute('aria-busy','true');button.textContent='ĐANG MỞ…';}
   try{
     const man=await readManifest(date);
     const item=exact?(man?.items?.[aid]||null):resolveOwnedItem(man,aid,fid,completed);
@@ -522,15 +523,14 @@ async function openTask(aid,fid,completed,cardDate='',exact=false,button=null){
       const ask=typeof root.confirm==='function'?root.confirm.bind(root):(typeof confirm==='function'?confirm:()=>true);
       if(!ask(`${confirmTitle}\n\n${flightLabel(item)} · ${formLabel(item)}\n\nBấm OK để tiếp tục.`))return;
     }
-    if(!completed){await root.sagsAirlineFormPolicy?.ready(true);if(root.sagsAirlineFormPolicy?.allowed(item,item.formGroup)===false)throw new Error("Biểu mẫu này chưa được AD bật cho hãng hoặc loại tàu của chuyến.");}
+    if(!completed){await root.sagsAirlineFormPolicy?.ready(false);if(root.sagsAirlineFormPolicy?.allowed(item,item.formGroup)===false)throw new Error("Biểu mẫu này chưa được AD bật cho hãng hoặc loại tàu của chuyến.");}
     const realFid=S(item.flightId||fid);
     // Canonical responsibility assignments already own their form lineage and edit lock.
-    // Open them directly so one tap does not traverse the legacy receive wrapper chain
-    // (workspace hydration, storage recovery, ARR/DEP compatibility and IT sync) first.
+    // Keep the current dossier/workspace visible while Firebase validates the edit lock;
+    // only transition away after the local form has actually switched successfully.
     if(!completed&&item.formInstanceId&&root.SAGSRosterResponsibility?.instance){
-      root.sagsFlightDossierClose?.();
       const responsibility=root.SAGSRosterResponsibility.instance();
-      await responsibility.open(S(item.assignmentId));
+      await responsibility.open(S(item.assignmentId),item);
       return;
     }
     // Legacy/non-canonical assignments keep the proven compatibility receive path.
@@ -541,7 +541,7 @@ async function openTask(aid,fid,completed,cardDate='',exact=false,button=null){
     if(typeof root.v324ReceiveOrOpen!=='function')throw new Error('Bộ nhận chuyến chưa tải xong. Bấm UPDATE rồi mở lại.');
     root.sagsFlightDossierClose?.();await root.v324ReceiveOrOpen(realFid,S(item.assignmentId),date);
   }catch(e){console.error('Mở công việc roster thất bại',e);alert('Không mở được công việc '+date+': '+S(e?.message||e));}
-  finally{openingTasks.delete(key);if(button?.isConnected)button.disabled=false;}
+  finally{openingTasks.delete(key);if(button?.isConnected){button.disabled=false;button.removeAttribute('aria-busy');if(buttonHtml!==null)button.innerHTML=buttonHtml;}}
 }
 root.v1199QueueTab=function(tab){activeTab=tab==='completed'?'completed':'pending';void renderPersonal(queueDate(currentQueueDate))};
 
