@@ -1,0 +1,13 @@
+const fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const root=path.resolve(__dirname,'..'),src=fs.readFileSync(path.join(root,'app/modules/daily-roster.v502.js'),'utf8');
+const start=src.indexOf('async function openTask('),end=src.indexOf('root.v1199QueueTab=',start),block=src.slice(start,end);
+assert(start>=0&&end>start,'openTask must exist');
+const fast=block.indexOf('if(!completed&&item.formInstanceId&&root.SAGSRosterResponsibility?.instance)');
+const stale=block.indexOf('clearStaleClaimIfNeeded(item)');
+const legacy=block.indexOf("root.v324ReceiveOrOpen(realFid,S(item.assignmentId),date)");
+assert(fast>=0,'canonical responsibility fast path missing');
+assert(stale>fast,'canonical fast path must bypass stale legacy claim cleanup');
+assert(legacy>stale,'legacy receive handler must remain fallback only');
+assert(block.includes('await responsibility.open(S(item.assignmentId));'),'canonical assignment must open through responsibility service');
+assert(block.includes('// Legacy/non-canonical assignments keep the proven compatibility receive path.'),'legacy compatibility path must remain explicit');
+console.log('V6.4.130 canonical receive fast-path guard passed.');

@@ -524,14 +524,22 @@ async function openTask(aid,fid,completed,cardDate='',exact=false,button=null){
     }
     if(!completed){await root.sagsAirlineFormPolicy?.ready(true);if(root.sagsAirlineFormPolicy?.allowed(item,item.formGroup)===false)throw new Error("Biểu mẫu này chưa được AD bật cho hãng hoặc loại tàu của chuyến.");}
     const realFid=S(item.flightId||fid);
-    // Completed forms also go through the same exact-assignment NHẬN handler.
+    // Canonical responsibility assignments already own their form lineage and edit lock.
+    // Open them directly so one tap does not traverse the legacy receive wrapper chain
+    // (workspace hydration, storage recovery, ARR/DEP compatibility and IT sync) first.
+    if(!completed&&item.formInstanceId&&root.SAGSRosterResponsibility?.instance){
+      root.sagsFlightDossierClose?.();
+      const responsibility=root.SAGSRosterResponsibility.instance();
+      await responsibility.open(S(item.assignmentId));
+      return;
+    }
+    // Legacy/non-canonical assignments keep the proven compatibility receive path.
     if(!completed)try{await clearStaleClaimIfNeeded(item)}catch(e){
       console.warn('Không xác minh được claim cũ',e);
       throw new Error('Chưa kiểm tra được trạng thái phân công sau khi đổi người. Vui lòng thử lại khi có mạng; không ghi đè dữ liệu cũ.');
     }
     if(typeof root.v324ReceiveOrOpen!=='function')throw new Error('Bộ nhận chuyến chưa tải xong. Bấm UPDATE rồi mở lại.');
-    root.sagsFlightDossierClose?.();const opened=await root.v324ReceiveOrOpen(realFid,S(item.assignmentId),date);
-    // Opening a task no longer triggers a device pin or a second mailbox read.
+    root.sagsFlightDossierClose?.();await root.v324ReceiveOrOpen(realFid,S(item.assignmentId),date);
   }catch(e){console.error('Mở công việc roster thất bại',e);alert('Không mở được công việc '+date+': '+S(e?.message||e));}
   finally{openingTasks.delete(key);if(button?.isConnected)button.disabled=false;}
 }
