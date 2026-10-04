@@ -11,3 +11,11 @@ assert(hotfix.includes('Khôi phục phiên đăng nhập mất quá lâu'),'wat
 assert(!hotfix.includes('location.reload'),'post-login hotfix must never force a second page reload');
 assert(hotfix.includes('testTransition'),'browser regression hook must exercise the actual unlock transition');
 console.log('V6.4.123 post-login unlock regression guard passed.');
+
+assert(hotfix.includes('function unlockTouchSurface()'),'mobile touch surface unlock must exist');
+assert(hotfix.includes("body.classList.remove('v157-drawer-open','sags-overlay-open','v166-overlay-open','sags-quicktime-open','v163-operational')"),'home unlock must clear stale blocking classes');
+assert(hotfix.includes("backdrop.style.setProperty('pointer-events','none','important')"),'closed drawer backdrop must never intercept mobile touch');
+assert(hotfix.includes("e.style.setProperty('pointer-events','auto','important')"),'home navigation surfaces must be re-enabled');
+assert(hotfix.includes('scheduleBackgroundVerify()'),'post-login verification must be deferred');
+assert(!hotfix.includes('verifyPersonalSession(true)}catch(_){}},500'),'forced 500ms verification must stay removed');
+console.log('V6.4.132 mobile touch surface guard passed.');

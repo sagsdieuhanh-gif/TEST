@@ -5,7 +5,7 @@
  */
 (function(root){
 'use strict';
-const BUILD='V6.4.123-20261004-POSTLOGIN-UNLOCK-01';
+const BUILD='V6.4.132-20261004-MOBILE-TOUCH-UNLOCK-01';
 const S=v=>String(v??'').trim();
 
 function modal(){
@@ -24,6 +24,49 @@ function resetBlockingUi(){
     e.style.setProperty('display','none','important');
     e.style.setProperty('pointer-events','none','important');
   }
+}
+function mobileLike(){
+  try{return root.matchMedia?.('(max-width:899px)')?.matches||/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)}catch(_){return false}
+}
+function unlockTouchSurface(){
+  if(!document.body?.classList.contains('v157-authenticated'))return false;
+  const body=document.body;
+  // A restored mobile session may inherit navigation/overlay classes from the
+  // previous screen. Home must always start from a clean, touchable state.
+  if(body.classList.contains('v157-home')){
+    body.classList.remove('v157-drawer-open','sags-overlay-open','v166-overlay-open','sags-quicktime-open','v163-operational');
+  }
+  const login=modal();
+  if(login){
+    login.hidden=true;login.setAttribute('aria-hidden','true');
+    login.style.setProperty('display','none','important');
+    login.style.setProperty('visibility','hidden','important');
+    login.style.setProperty('pointer-events','none','important');
+  }
+  const backdrop=document.getElementById('v157DrawerBackdrop');
+  if(backdrop&&!body.classList.contains('v157-drawer-open')){
+    backdrop.style.setProperty('display','none','important');
+    backdrop.style.setProperty('visibility','hidden','important');
+    backdrop.style.setProperty('opacity','0','important');
+    backdrop.style.setProperty('pointer-events','none','important');
+  }
+  for(const id of ['v157HomeDashboard','sagsNavigationHeader','v157BottomBar']){
+    const e=document.getElementById(id);if(!e)continue;
+    e.removeAttribute('inert');
+    e.style.setProperty('pointer-events','auto','important');
+    e.style.removeProperty('visibility');
+  }
+  return true;
+}
+function armTouchUnlock(){
+  const run=()=>{try{unlockTouchSurface()}catch(e){console.warn('V6.4.132 touch unlock',e?.message||e)}};
+  run();requestAnimationFrame(run);[80,260,900,1800].forEach(ms=>setTimeout(run,ms));
+}
+function scheduleBackgroundVerify(){
+  if(!currentUserProfile?.firebaseUid)return;
+  const run=()=>{try{verifyPersonalSession(false)}catch(_){}};
+  if(mobileLike()&&typeof root.requestIdleCallback==='function')root.requestIdleCallback(run,{timeout:6000});
+  else setTimeout(run,mobileLike()?3500:900);
 }
 function closeLoginOverlay(){
   const m=modal(),card=loginCard();
@@ -83,7 +126,7 @@ function finishLogin(profile,{test=false}={}){
   if(!test&&profile.mustChangePassword)setTimeout(()=>{
     try{openChangePasswordModal(true);setChangePasswordStatus('Mật khẩu đang là mật khẩu khởi tạo. Hãy đổi mật khẩu Firebase trước khi tiếp tục.')}catch(_){}
   },180);
-  if(!test)setTimeout(()=>{try{verifyPersonalSession(true)}catch(_){}},500);
+  if(!test)scheduleBackgroundVerify();
   return true;
 }
 function loginErrorMessage(e,rawUser=''){
@@ -151,7 +194,16 @@ function restoreWatchdog(){
 function armWatchdog(){
   [3500,7000,12000].forEach(ms=>setTimeout(restoreWatchdog,ms));
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',armWatchdog,{once:true});else armWatchdog();
-root.addEventListener('pageshow',()=>setTimeout(restoreWatchdog,1800),{passive:true});
-root.__SAGS_POST_LOGIN_UNLOCK_V64123={build:BUILD,finishLogin,restoreWatchdog,closeLoginOverlay,reopenLoginOverlay,testTransition:profile=>finishLogin(profile,{test:true})};
+function bootUnlock(){
+  armWatchdog();
+  // Covers cached Firebase restore, which can complete before this late hotfix loads.
+  if(currentUserProfile&&S(currentRole||currentUserProfile.role)){
+    document.body?.classList.add('v157-authenticated','v157-home');
+    armTouchUnlock();
+  }
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bootUnlock,{once:true});else bootUnlock();
+root.addEventListener('pageshow',()=>setTimeout(()=>{restoreWatchdog();if(currentUserProfile)armTouchUnlock()},600),{passive:true});
+root.addEventListener('sags:login',()=>armTouchUnlock(),{passive:true});
+root.__SAGS_POST_LOGIN_UNLOCK_V64123={build:BUILD,finishLogin,restoreWatchdog,closeLoginOverlay,reopenLoginOverlay,unlockTouchSurface,armTouchUnlock,testTransition:profile=>finishLogin(profile,{test:true})};
 })(window);
