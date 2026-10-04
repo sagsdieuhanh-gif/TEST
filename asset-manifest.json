@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.120",
-  "build": "V6.4.120-20261004-CARGO-MYFLIGHT-QUICK-01",
-  "strategy": "TEST atomic release + exact cross-role My Flight UI + compact Quick Input",
+  "version": "V6.4.121",
+  "build": "V6.4.121-20261004-HOTFIX-FREEZE-01",
+  "strategy": "TEST atomic release + V6.4.121 freeze hotfix + single My Flight route",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "963579a5451d804f162ef1735057410a1f121fbeb287942d6a6466ec687d7629",
-      "bytes": 81507
+      "sha256": "fbedf6197b74e94ead08fe86786e01e83b3db7fb205f535b7b1f424c3ca9fe2f",
+      "bytes": 80874
     },
     "./service-worker.js": {
-      "sha256": "7d7ccd083f96ab03fa8c291379c776e37a45a57827b6aa4ef7e4322eeb947507",
-      "bytes": 21998
+      "sha256": "f56e665ef54ed1e63c50c4f4fb47b9ef46122680c2407e177b0e5ba02cbea18b",
+      "bytes": 21933
     },
     "./version.json": {
-      "sha256": "ccf873c7c08543f52428eb7b302b3a299f253ad01c74926c109f5e013cfc77d3",
-      "bytes": 850
+      "sha256": "a343784ea544efdf7c907d07e8633ed7def757af999696ede494741898eec6a6",
+      "bytes": 818
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -560,10 +560,6 @@
     "./app/generated/runtime-5.js": {
       "sha256": "03f61b9add33905fe1b1c4467a2f0895d58cb4eb11a81aa2f47a86e4af2ebfd4",
       "bytes": 25746
-    },
-    "./app/modules/cargo-myflight-ui.v64120.js": {
-      "sha256": "991931b1cb88a74e23629c68420c0e87bebe8d05e80d0aa0061cd26804acbc73",
-      "bytes": 4896
     }
   }
 }
