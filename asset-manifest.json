@@ -82,12 +82,12 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "e4afd81b1682cac3298575f94f5d0f98e88595f040fed018ff8b77deb02c6bac",
-      "bytes": 79026
+      "sha256": "14727c1af2097a47d1ef08f27b489eaeb54b05911fe4cfe804258722e578bdb5",
+      "bytes": 80656
     },
     "./service-worker.js": {
-      "sha256": "c6c086ecc8eeca6b5e36236baf99c04d714b96df1c7623b58ae8d65972fdc040",
-      "bytes": 20422
+      "sha256": "4e6bf388967707223b9093a211f2cc38358b318cc43159cba924f2e95f8e24de",
+      "bytes": 20668
     },
     "./version.json": {
       "sha256": "bb2eff0e8facc7e2924aa25c029ecec97637c0c6bc517e32fb6088669faa4883",

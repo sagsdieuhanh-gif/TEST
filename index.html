@@ -7,6 +7,25 @@
 <meta name="sags-release-build" content="V6.4.114-20261004-FIXED-UI-AUDIT-01">
 <meta name="sags-release-version" content="V6.4.114">
 <meta name="sags-release-date" content="04/10/26">
+<script id="sags-release-controller-guard">
+(()=>{"use strict";
+ const expected=String(document.querySelector('meta[name="sags-release-build"]')?.content||"").trim();
+ if(!expected||!("serviceWorker" in navigator)||!navigator.serviceWorker.controller)return;
+ const controller=navigator.serviceWorker.controller,ch=new MessageChannel();
+ let settled=false,timer=0;
+ const finish=()=>{if(settled)return;settled=true;clearTimeout(timer);try{ch.port1.close()}catch(_){}};
+ const repair=(reason,got="")=>{if(settled)return;settled=true;clearTimeout(timer);try{ch.port1.close()}catch(_){}
+  const once="sags-controller-repair:"+expected;
+  try{if(sessionStorage.getItem(once)==="1")return;sessionStorage.setItem(once,"1");localStorage.setItem("sags-repair-target",expected)}catch(_){}
+  const u=new URL("./repair.html",location.href);u.searchParams.set("stage","1");u.searchParams.set("auto","1");u.searchParams.set("target",expected);u.searchParams.set("from","controller-mismatch");u.searchParams.set("reason",reason);if(got)u.searchParams.set("controller",got);u.searchParams.set("_",Date.now());location.replace(u.href);
+ };
+ ch.port1.onmessage=e=>{const got=String(e?.data?.build||"").trim();if(got&&got!==expected)repair("build-mismatch",got);else finish()};
+ timer=setTimeout(()=>{let applying="",ready="";try{applying=localStorage.getItem("pdh-update-applying")||"";ready=localStorage.getItem("sags-repair-ready")||""}catch(_){}
+  if(applying===expected||ready===expected)repair("controller-timeout");else finish();
+ },1400);
+ try{controller.postMessage({type:"SAGS_QUERY_BUILD"},[ch.port2])}catch(_){finish()}
+})();
+</script>
 <link href="./manifest.webmanifest?v=V6.4.114-20261004-FIXED-UI-AUDIT-01" rel="manifest"/>
 <link href="./assets/icons/favicon-16.png?v=486" rel="icon" sizes="16x16" type="image/png"/>
 <link href="./assets/icons/favicon-32.png?v=486" rel="icon" sizes="32x32" type="image/png"/>

@@ -4,8 +4,8 @@
 'use strict';
 const BUILD='V6.4.114-20261004-FIXED-UI-AUDIT-01';
 const DISPLAY_VERSION='V6.4.114';
-const CACHE_NAME='sags-app-shell-v685-test-myflight-cleanup-01';
-const META_CACHE_NAME='sags-app-meta-v685-test-myflight-cleanup-01';
+const CACHE_NAME='sags-app-shell-v64114-20261004-fixed-ui-audit-01';
+const META_CACHE_NAME='sags-app-meta-v64114-20261004-fixed-ui-audit-01';
 const ASSET_MANIFEST_URL='./asset-manifest.json';
 const MUTABLE_METADATA=new Set(['./forms/forms.registry.json','./data/form-configuration.json']);
 const SAGS_BOOTSTRAP=["./index.html","./app/boot/01-sags-v620-unified-form-migration.js","./app/boot/02-sags-v611-update-alert-position.js","./app/generated/boot-group-1.js","./app/generated/legacy-05.min.js","./app/generated/legacy-06.min.js","./app/generated/legacy-07.min.js","./app/boot/08-v412-kh208-script.js","./app/boot/09-v454AccountProfileOverrides.js","./app/boot/10-v470-hybrid-core.js","./app/boot/11-v476-core.js","./app/boot/12-v484SystemDepartmentRoles.js","./app/boot/13-v485FeaturePermissions.js","./app/boot/14-v18CanonicalAccountHierarchy.js","./app/boot/15-v116-account-name-search.js","./app/modules/feature-loader.v1.js","./app/generated/core-shared.js","./app/generated/core-archive.js","./app/generated/boot-group-2.js","./app/generated/core-tools.js","./app/boot/18-v173-quick-time.js","./app/boot/19-v183-fs09-quick.js","./app/generated/boot-group-3.js","./app/boot/22-v1121-ios-time-footer-script.js","./app/boot/23-v1122-roster-sign-script.js","./app/generated/boot-group-6.js","./app/generated/boot-group-4.js","./app/generated/core-flight.js","./app/generated/core-control.js","./app/generated/core-postcontrol.js","./app/modules/admin-reset.v503hf2.js","./app/generated/core-performance.js","./app/modules/firebase-read-coalescer.v1.js","./app/modules/flight-governance.v1.js","./app/modules/daily-roster.v502.js","./app/modules/self-accept.v502.js","./app/boot/26-v644SafeStorageCleanup.js","./app/generated/runtime-1.js","./app/generated/startup-bundle-1.js","./app/generated/boot-group-5.js","./app/generated/startup-bundle-2.js","./app/modules/stability.v6.js","./app/modules/cross-browser-entry.v1.js","./app/modules/roster-lite.v5.js","./app/boot/30-sags-v6120-all-form-render-standard.js","./app/generated/startup-bundle-3.js","./app/boot/31-sags-grnd-ls-v621.js","./app/generated/startup-bundle-4.js","./app/modules/fsags208-workspace.v1.js","./app/boot/32-fixed-ui-rule-v64113.js","./app/generated/legacy-ui-bundle-1.css","./app/generated/base-ui.min.css","./app/generated/legacy-ui-bundle-2.css","./app/generated/design-ui.min.css","./app/generated/legacy-ui-bundle-3.css","./app/generated/legacy-ui-bundle-4.css","./app/styles/boot-27-v484-system-dept-style.css","./app/styles/boot-28-v485-feature-permission-style.css","./app/styles/boot-29-v18-account-hierarchy-style.css","./app/generated/legacy-ui-bundle-5.css","./app/styles/boot-32-v161-progress-v2-style.css","./app/styles/boot-33-v1121-ios-time-footer-style.css","./app/styles/boot-34-v1122-roster-sign-style.css","./app/generated/legacy-ui-bundle-6.css","./app/styles/mobile-navy-v64106.css","./app/styles/fixed-ui-rule-v64113.css","./service-worker.js","./version.json","./data/airline-form-catalog.json","./app/modules/stability.v6-core.js","./app/modules/mobile-draft-recovery.v1.js","./app/modules/indexeddb-flight-store.v1.js"];
@@ -139,9 +139,13 @@ async function stageRelease(){
 async function reportNetworkRx(id,url,r){try{if(!id||!r?.ok)return;let n=Number(r.headers.get('content-length'))||0;if(!n)n=(await r.clone().blob()).size||0;const c=await self.clients.get(id);if(c&&n)c.postMessage({type:'SAGS_NET_RX',bytes:n,url:String(url||''),atMs:Date.now()})}catch(_){}}
 async function verifiedAsset(request,event,path,key){
  const c=await caches.open(CACHE_NAME),hit=await c.match(key);
- if(hit)return hit;
  try{
   const m=await readManifest();if(!m||m.build!==BUILD)throw new Error('No verified release manifest');
+  if(hit){
+   if(!m.assets[path])return hit;
+   try{await checksum(hit,m.assets[path],path);return hit}
+   catch(e){console.warn('Discarding stale current-cache asset',path,e?.message||e);try{await c.delete(key)}catch(_){}}
+  }
   // Covers all other unchanged manifest assets too (e.g. PDF backgrounds).
   // Return verified old bytes directly instead of duplicating them on the phone.
   if(m.assets[path]){
@@ -187,8 +191,9 @@ self.addEventListener('install',event=>event.waitUntil((async()=>{
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
  const m=await readManifest();if(!m||m.build!==BUILD)throw new Error('Missing verified V5 release');
  await ensureBootstrapVerified(m);
- // Do not delete older build caches or claim other tabs. They can finish their work.
- // Activation happens only after a user explicitly selects "Cập nhật ngay".
+ // A newly activated, fully verified worker must own the next UI immediately.
+ // This prevents a new index/version badge from being paired with old cached UI assets.
+ await self.clients.claim();
 })()));
 async function safeCleanupOldReleaseCaches(){
  // Never touch localStorage, IndexedDB, drafts, flight data or mutable form registry.
