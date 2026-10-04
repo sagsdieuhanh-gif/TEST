@@ -326,7 +326,7 @@ function installCargoMyFlight(){
  if(!cargoRole())return;
  root.sagsCargoOpenAllFlights=function(date){return renderCargoMyFlight(S(date)||currentDate())};
  root.sagsCargoRefreshAllFlights=function(){return renderCargoMyFlight(S(document.getElementById('fwcDate')?.value)||currentDate())};
- const menu=document.querySelector('.v157MenuItem[data-v157-key="myflight"]');if(menu){const labels=menu.querySelectorAll('span');if(labels[1])labels[1].textContent='My Flight';const meta=menu.querySelector('.meta');if(meta)meta.textContent='FSAGS 208 · Công việc kho hàng'}
+ const menu=document.querySelector?.('.v157MenuItem[data-v157-key="myflight"]');if(menu){const labels=menu.querySelectorAll?.('span')||[];if(labels[1])labels[1].textContent='My Flight';const meta=menu.querySelector?.('.meta');if(meta)meta.textContent='FSAGS 208 · Công việc kho hàng'}
 }
 let wrappedOpen=null;
 function wrapWorkspaceOpen(){const fn=root.flightWorkspaceOpenFlight;if(typeof fn!=='function'||fn===wrappedOpen||fn.__sags208Workspace)return;const w=function(fid){const date=S(document.getElementById('fwcDate')?.value)||currentDate();root.__sags208ActiveWorkspace={opDate:date,flightId:S(fid)};const r=fn.apply(this,arguments);Promise.resolve(r).finally(()=>setTimeout(()=>injectWorkspace(date,S(fid)),120));return r};w.__sags208Workspace=1;w.__base=fn;root.flightWorkspaceOpenFlight=w;wrappedOpen=w}
