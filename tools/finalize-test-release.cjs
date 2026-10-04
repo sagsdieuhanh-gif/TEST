@@ -1,12 +1,12 @@
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),write=(p,s)=>fs.writeFileSync(path.join(root,p),s),exists=p=>fs.existsSync(path.join(root,p));
-const VERSION='V6.4.140',BUILD='V6.4.140-20261005-DESKTOP-FIELD-SAFE-01',LABEL='V6.4.140 - DESKTOP FIELD SAFE',RELEASED='2026-10-05T00:26:00+07:00';
+const VERSION='V6.4.141',BUILD='V6.4.141-20261005-FSAGS5494-OVERLAY-FIX-01',LABEL='V6.4.141 - FSAGS54/94 OVERLAY FIX',RELEASED='2026-10-05T00:39:00+07:00';
 const old=JSON.parse(read('version.json')),oldV=String(old.version||''),oldB=String(old.build||'');
 if(!oldV||!oldB)throw Error('Current version metadata missing');
 let index=read('index.html').split(oldB).join(BUILD).split(oldV).join(VERSION);
 assert(index.includes('name="sags-release-build" content="'+BUILD+'"'));assert(index.includes('name="sags-release-version" content="'+VERSION+'"'));
 write('index.html',index);
-const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'ui',base:'V6.4.139-20261005-DESKTOP-FORM-UI-01',updatePolicy:'required',notes:'Root desktop/form-field fix. The global overlay normalizer now special-cases desktop My Flight so it no longer overwrites the sidebar workspace position with inline full-screen styles. Generic runtime form fields and bound inputs/check controls are explicitly protected from dark shell styling while preserving transparent paper overlays and readable black text. Retains balanced V6.4.88-style two-row desktop action geometry with the new UI visual language.',message:VERSION+': sửa gốc My Flight PC bị overlay ép full-screen và field biểu mẫu bị bôi đen; giữ bố cục nút cân đối kiểu V6.4.88 với UI mới.'};
+const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'ui',base:'V6.4.140-20261005-DESKTOP-FIELD-SAFE-01',updatePolicy:'required',notes:'Root FSAGS54/94 field-overlay fix. The dark blocks were not form inputs: they were sags5494DirectHit button hitboxes inheriting the new global button skin because their transparent background was not important. Direct-hit overlays now explicitly remain transparent, borderless, shadowless and appearance-free in both source and generated startup bundle. Form data, hit geometry and direct-tap behavior are unchanged.',message:VERSION+': sửa đúng nguyên nhân field 54/94 bị bôi đen do button hitbox ăn theme UI mới; giữ nguyên dữ liệu và thao tác trực tiếp.'};
 write('version.json',JSON.stringify(version,null,2)+'\n');
 let sw=read('service-worker.js').split(oldB).join(BUILD).split(oldV).join(VERSION);
 const cacheId=BUILD.toLowerCase().replace(/[^a-z0-9-]/g,'');
@@ -86,3 +86,5 @@ write(mp,JSON.stringify(m,null,2)+'\n');
 // desktop-form-ui-v64139-retry
 
 // desktop-field-safe-v64140
+
+// fsags5494-overlay-fix-v64141
