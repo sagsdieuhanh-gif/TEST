@@ -572,3 +572,132 @@ html.new-ui-v1 body #fwcModal .fwcHead button[title="Mở menu hệ thống"]{
     scroll-padding-bottom:calc(var(--sags-form-dock-height,56px) + var(--sags-nav-bar-height,60px) + env(safe-area-inset-bottom) + 28px)!important;
   }
 }
+
+
+/* ==========================================================
+   V6.4.126 COMPACT QUICK INPUT
+   NHẬP NHANH follows the same compact navy button system as the
+   outer operational UI. Keep touch targets usable without oversized cards.
+   ========================================================== */
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimePanel{
+  border-radius:12px!important;
+  padding:8px!important;
+  gap:6px!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeHead{
+  padding:0!important;
+  margin:0!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeHeadTop{
+  min-height:40px!important;
+  gap:6px!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal :is(.quickTimeBack,.quickTimeCloseIcon){
+  width:36px!important;
+  min-width:36px!important;
+  height:36px!important;
+  min-height:36px!important;
+  max-height:36px!important;
+  padding:0!important;
+  border-radius:10px!important;
+  font-size:18px!important;
+  line-height:1!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeTitle{
+  font-size:14px!important;
+  line-height:1.15!important;
+  font-weight:800!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeFlight,
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeSub{
+  font-size:11px!important;
+  line-height:1.2!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeTabs{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:6px!important;
+  margin:6px 0!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeTab{
+  height:36px!important;
+  min-height:36px!important;
+  max-height:36px!important;
+  padding:4px 6px!important;
+  border-radius:10px!important;
+  font-size:12px!important;
+  line-height:1!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeBody{
+  padding:4px 0!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeRow{
+  gap:6px!important;
+  padding:5px 6px!important;
+  min-height:42px!important;
+  border-radius:10px!important;
+  margin:0 0 5px!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeLabel{
+  font-size:11px!important;
+  line-height:1.2!important;
+  font-weight:700!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal :is(.quickTimeTimeCell,.quickTimeSingleCell){
+  gap:4px!important;
+  min-width:0!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeInput{
+  height:36px!important;
+  min-height:36px!important;
+  max-height:36px!important;
+  padding:4px 6px!important;
+  border-radius:10px!important;
+  font-size:15px!important;
+  line-height:1!important;
+  text-align:center!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeNow{
+  width:34px!important;
+  min-width:34px!important;
+  max-width:34px!important;
+  height:34px!important;
+  min-height:34px!important;
+  max-height:34px!important;
+  padding:0!important;
+  border-radius:10px!important;
+  font-size:16px!important;
+  line-height:1!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeFooter{
+  padding:6px 0 0!important;
+  margin:0!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeFooterActions{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:6px!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeFooterActions button{
+  height:38px!important;
+  min-height:38px!important;
+  max-height:38px!important;
+  padding:5px 6px!important;
+  border-radius:10px!important;
+  font-size:11px!important;
+  line-height:1.05!important;
+  white-space:normal!important;
+}
+html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeSaveStatus{
+  min-height:14px!important;
+  margin-top:4px!important;
+  font-size:10px!important;
+  line-height:1.2!important;
+}
+@media(max-width:390px){
+  html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimePanel{padding:6px!important}
+  html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeRow{padding:4px!important;gap:4px!important}
+  html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeLabel{font-size:10.5px!important}
+  html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeFooterActions{gap:4px!important}
+  html.new-ui-v1.new-ui-v1 body #quickTimeModal .quickTimeFooterActions button{font-size:10.5px!important;padding-inline:3px!important}
+}
