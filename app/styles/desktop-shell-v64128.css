@@ -137,7 +137,6 @@
     padding:0 14px!important;border-radius:10px!important;font-size:13px!important;
     background:#123a72!important;color:#fff!important;
   }
-  html.new-ui-v1 body #fwcModal #v477Close{display:none!important}
   html.new-ui-v1 body #fwcModal .fwcTools{
     display:flex!important;align-items:center!important;gap:10px!important;
     margin:14px 0 10px!important;padding:10px!important;

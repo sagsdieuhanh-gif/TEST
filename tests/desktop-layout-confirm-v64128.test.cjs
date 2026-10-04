@@ -35,3 +35,9 @@ assert(runtime.includes('else pushUiBack("home")'),'My Flight must remember Home
 assert(runtime.includes('setTimeout(()=>goHome(),20)'),'back-stack fallback must return to main Home instead of reopening My Flight');
 assert(!runtime.includes('if(canReturn){if(!back){back=document.createElement("button")'),'back arrow must not be repeatedly created/removed from back-stack changes');
 console.log('V6.4.136 desktop workspace/navigation guard passed.');
+
+assert(runtime.includes('if(close&&close!==home)close.remove()'),'legacy faded close button must be removed from the My Flight DOM');
+assert(runtime.includes('modal.querySelector("#sagsContextBackRow")?.remove()'),'desktop My Flight must clear stale injected context-back rows');
+assert(app.includes('layer.id==="fwcModal"&&matchMedia("(min-width:900px)").matches'),'global context-back must not inject into desktop My Flight');
+assert(!desktop.includes('#v477Close{display:none!important}'),'desktop shell must not rely on hiding the legacy close button');
+console.log('V6.4.137 ghost-control removal guard passed.');
