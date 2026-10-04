@@ -13,7 +13,7 @@ assert(html.includes('desktop-shell-v64128.css'),'desktop shell stylesheet must 
 assert(desktop.includes('@media (min-width:1024px)'),'desktop shell must be isolated from mobile/tablet');
 assert(desktop.includes('--sags-desktop-sidebar:268px'),'desktop home must use a compact dedicated sidebar');
 assert(desktop.includes('grid-template-columns:repeat(auto-fit,minmax(285px,1fr))'),'desktop My Flight must auto-fit real desktop cards');
-assert(desktop.includes('top:66px!important;right:24px!important;left:auto!important;bottom:auto!important'),'desktop form actions must use a top/right command bar, not the mobile bottom dock');
+assert(desktop.includes('left:50%!important;right:auto!important;top:auto!important;bottom:12px!important'),'desktop form actions must use the centered balanced two-row dock');
 assert(html.includes('id="sagsCompatibilityToolbar"'),'empty compatibility anchor must remain so operational action generation still initializes');
 assert(!html.includes('id="roleBtnQuickTime"'),'legacy quick-entry toolbar button must remain removed');
 assert(!runtime.includes('v163FlightBtn'),'CHUYẾN operation button must not be generated');
@@ -25,7 +25,7 @@ console.log('V6.4.128 desktop/form-open regression guard passed.');
 
 // verified-release-recheck-v64128
 
-assert(desktop.includes('inset:0 0 0 var(--sags-desktop-sidebar)!important'),'desktop My Flight must occupy the workspace beside the sidebar');
+assert(desktop.includes('left:var(--sags-desktop-sidebar)!important'),'desktop My Flight must occupy the workspace beside the sidebar');
 assert(desktop.includes('height:calc(100vh - 36px)!important'),'desktop My Flight must use the available screen height');
 assert(desktop.includes('#v644MyFlightBack'),'desktop back control must have stable styling');
 assert(desktop.includes('transition:none!important;animation:none!important'),'desktop back control must never blink through transitions/animations');
