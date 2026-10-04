@@ -1,26 +1,27 @@
 const fs=require('fs'),path=require('path'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const src=read('app/modules/fsags208-workspace.v1.js');
+const runtime=read('app/generated/runtime-1.js');
+const cargo=read('app/modules/cargo-all-flights.v1.js');
+const control=read('app/generated/core-control.js');
 
-assert(src.includes('function stableMyFlightBack(ev)'),'stable My Flight back handler missing');
-assert(src.includes("b.id='sagsStableMyFlightBack'"),'native My Flight back control missing');
-assert(src.includes("sessionStorage.getItem('sagsUiBackStackV183')"),'back handler must preserve admin/datahub return stack');
-assert(src.includes("else{try{root.sagsUiClearBackStack?.()}catch(_){}try{root.sagsV479GoHome?.()}catch(_){}}"),
-  'empty My Flight back stack must go HOME, not reopen My Flight');
-assert(src.includes("document.getElementById('sagsContextBackRow')?.remove()"),
-  'native back must replace the mutation-driven context back row');
-assert(src.includes('myFlightBackBusy'),'back action must be re-entry guarded');
-assert(src.includes('document.activeElement?.blur?.()'),'hidden focused button must release focus before close');
+assert(src.includes('function removeDeprecatedBackControls()'),'back-control cleanup missing');
+assert(!src.includes('function stableMyFlightBack(ev)'),'deprecated flashing back handler must be removed');
+assert(!src.includes('new MutationObserver(()=>ensureStableMyFlightBack())'),'back-button mutation observer must be removed');
+assert(runtime.includes('head.querySelector("#v644MyFlightBack")?.remove()'),'runtime must remove legacy My Flight back arrow');
+assert(runtime.includes('close.textContent="☰ MENU"'),'MENU must remain the navigation control');
+assert(!runtime.includes('title.textContent="📦 DANH SÁCH CHUYẾN BAY"'),'Cargo must not get a separate runtime header');
+assert(!control.includes('📦 DANH SÁCH CHUYẾN BAY'),'core list decorator must not restore Cargo-specific title');
 
 assert(src.includes('async function workspaceRows('),'shared FSAGS 208 flight rows helper missing');
-assert(src.includes('function renderCargoMyFlight('),'Cargo unified My Flight renderer missing');
-assert(src.includes('class="v1199Card sagsCargo208Card"'),'Cargo flights must use the same v1199 card language');
-assert(src.includes('class="v1199TaskBtn '),'Cargo FSAGS 208 actions must use the same task-tile button language');
-assert(src.includes("title.textContent='✈ MY FLIGHT'"),'Cargo header must use the shared My Flight shell');
-assert(src.includes("sub.textContent='FSAGS 208 · Kho hàng'"),'Cargo role context must stay explicit');
-assert(src.includes('__sagsCargoUnifiedV64117'),'Cargo My Flight entry wrapper must be installed independently of login timing');
-assert(src.includes('if(cargoRole())return renderCargoMyFlight'),'Cargo My Flight entry must route KH/Cargo to the unified renderer');
-assert(src.includes("if(!modal&&typeof cargoOpenBase==='function')"),'Cargo renderer must initialize the shared Flight Workspace shell on first open');
-assert(src.includes('listRows:workspaceRows'),'shared FSAGS 208 rows must be exported for regression/diagnostics');
+assert(src.includes('function cargoSharedCard('),'Cargo shared-card renderer missing');
+assert(src.includes('shared.cardHtml(group,date)'),'Cargo must use exact Daily Roster card renderer');
+assert(src.includes("title.textContent='✈ MY FLIGHT'"),'Cargo header must be MY FLIGHT');
+assert(src.includes('CHUYẾN ĐÃ HOÀN TẤT'),'Cargo tabs must match operational My Flight copy');
+assert(src.includes('v1199DirectTask,.v1199TaskBtn'),'Cargo shared task tile must be rebound to FSAGS 208 receive/open');
+assert(src.includes('__sagsCargoUnifiedV64127'),'Cargo entry wrapper must use the new unified renderer');
+assert(src.includes('listRows:workspaceRows'),'shared FSAGS 208 rows must stay exported');
+assert(!cargo.includes('Tất cả chuyến bay'),'Cargo menu must not use a separate visual label');
+assert(!cargo.includes('DANH SÁCH CHUYẾN BAY'),'Cargo header must not use a separate visual shell');
 
-console.log('V6.4.117 My Flight back + Cargo unified UI guard passed.');
+console.log('V6.4.127 MENU-only + exact shared Cargo MY FLIGHT UI guard passed.');
