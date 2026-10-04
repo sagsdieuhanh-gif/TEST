@@ -5,7 +5,7 @@
  */
 (function(root){
 'use strict';
-const BUILD='V6.4.133-20261004-MOBILE-MENU-STABLE-01';
+const BUILD='V6.4.134-20261004-MOBILE-MENU-ENTRY-01';
 const S=v=>String(v??'').trim();
 
 function modal(){
@@ -28,9 +28,39 @@ function resetBlockingUi(){
 function mobileLike(){
   try{return root.matchMedia?.('(max-width:899px)')?.matches||/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)}catch(_){return false}
 }
+function ensureMobileMenuButton(){
+  const nav=document.getElementById('sagsNavigationHeader');
+  if(!nav)return false;
+  let btn=document.getElementById('sagsMobileMenuBtn');
+  if(!btn){
+    btn=document.createElement('button');
+    btn.id='sagsMobileMenuBtn';btn.type='button';
+    btn.setAttribute('aria-label','Mở menu chức năng');
+    btn.setAttribute('aria-controls','v157Drawer');
+    btn.textContent='☰ MENU';
+    const brand=nav.querySelector('.sagsNavBrand');
+    nav.insertBefore(btn,brand||nav.firstChild);
+  }
+  btn.onclick=e=>{
+    e?.preventDefault?.();e?.stopPropagation?.();
+    try{
+      if(typeof root.v157OpenMenu==='function')root.v157OpenMenu();
+      else document.body.classList.add('v157-drawer-open');
+      btn.setAttribute('aria-expanded',String(document.body.classList.contains('v157-drawer-open')));
+      unlockTouchSurface({resetState:false});
+    }catch(err){console.warn('V6.4.134 MENU',err?.message||err)}
+  };
+  if(!document.getElementById('sagsMobileMenuEntryStyle')){
+    const st=document.createElement('style');st.id='sagsMobileMenuEntryStyle';
+    st.textContent='@media(max-width:899px){#sagsNavigationHeader #sagsMobileMenuBtn{display:block!important;flex:0 0 auto!important;min-width:74px!important;white-space:nowrap!important;touch-action:manipulation!important}body.v157-authenticated.v157-home #sagsGoStartBtn{display:none!important}#sagsNavigationHeader .sagsNavBrand{min-width:0!important}}@media(min-width:900px){#sagsMobileMenuBtn{display:none!important}}';
+    document.head.appendChild(st);
+  }
+  return true;
+}
 function unlockTouchSurface({resetState=false}={}){
   if(!document.body?.classList.contains('v157-authenticated'))return false;
   const body=document.body;
+  ensureMobileMenuButton();
   // Clear inherited blockers exactly once. Later safety passes must never
   // close a drawer/modal that the user has intentionally opened.
   if(resetState&&body.classList.contains('v157-home')){
@@ -65,8 +95,8 @@ function unlockTouchSurface({resetState=false}={}){
 let touchUnlockEpoch=0;
 function armTouchUnlock(){
   const epoch=++touchUnlockEpoch;
-  const safeRun=()=>{if(epoch!==touchUnlockEpoch)return;try{unlockTouchSurface({resetState:false})}catch(e){console.warn('V6.4.133 touch unlock',e?.message||e)}};
-  try{unlockTouchSurface({resetState:true})}catch(e){console.warn('V6.4.133 initial touch unlock',e?.message||e)}
+  const safeRun=()=>{if(epoch!==touchUnlockEpoch)return;try{unlockTouchSurface({resetState:false})}catch(e){console.warn('V6.4.134 touch unlock',e?.message||e)}};
+  try{unlockTouchSurface({resetState:true})}catch(e){console.warn('V6.4.134 initial touch unlock',e?.message||e)}
   requestAnimationFrame(safeRun);
   [80,260,900,1800].forEach(ms=>setTimeout(safeRun,ms));
 }

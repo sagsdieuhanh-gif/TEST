@@ -24,3 +24,9 @@ console.log('V6.4.132 mobile touch surface guard passed.');
 assert(hotfix.includes("unlockTouchSurface({resetState:false})"),'later safety passes must preserve user state');
 assert(hotfix.includes("backdrop&&body.classList.contains('v157-drawer-open')"),'active drawer must restore normal backdrop behavior');
 console.log('V6.4.133 user-opened drawer preservation guard passed.');
+
+assert(hotfix.includes('function ensureMobileMenuButton()'),'mobile MENU fallback must be guaranteed');
+assert(hotfix.includes("btn.id='sagsMobileMenuBtn'"),'mobile MENU fallback needs stable id');
+assert(hotfix.includes("if(typeof root.v157OpenMenu==='function')root.v157OpenMenu()"),'mobile MENU must call the canonical drawer opener');
+assert(hotfix.includes("body.v157-authenticated.v157-home #sagsGoStartBtn{display:none!important}"),'redundant Home button must hide on mobile Home');
+console.log('V6.4.134 guaranteed mobile MENU entry guard passed.');
