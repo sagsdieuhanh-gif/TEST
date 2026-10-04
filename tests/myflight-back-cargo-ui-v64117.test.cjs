@@ -1,19 +1,20 @@
 const fs=require('fs'),path=require('path'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const src=read('app/modules/fsags208-workspace.v1.js');
-const workflow=read('app/modules/workflow-cleanup.v6444.js');
+const ui=read('app/boot/32-fixed-ui-rule-v64113.js');
 const daily=read('app/modules/daily-roster.v502.js');
 
 assert(src.includes('function removeDeprecatedBackControls()'),'deprecated back cleanup missing');
 assert(!src.includes('function stableMyFlightBack('),'flashing My Flight back handler must be removed');
 assert(!src.includes("b.id='sagsStableMyFlightBack'"),'flashing arrow button must never be recreated');
 assert(!src.includes('myFlightBackObserver'),'back-button MutationObserver loop must be removed');
-assert(workflow.includes('function removeBackNavigationControls()'),'global back-arrow cleanup missing');
-assert(workflow.includes('function menuReturn(e)'),'MENU return handler missing');
-assert(workflow.includes('menu.onclick=menuReturn'),'MENU must be the navigation exit');
-assert(!workflow.includes("b.textContent='← QUAY LẠI'"),'secondary screens must not introduce back-arrow navigation');
-assert(workflow.includes("'sagsStableMyFlightBack','v644MyFlightBack','sagsContextBackRow'"),
+assert(ui.includes('function retireBackNavigation()'),'global back-arrow cleanup missing');
+assert(ui.includes('function goMainFromMenu(event)'),'MENU return handler missing');
+assert(ui.includes('__SAGS_MENU_RETURN_CAPTURE_V64119__'),'MENU capture guard missing');
+assert(ui.includes("'sagsStableMyFlightBack','v644MyFlightBack','sagsContextBackRow'"),
   'all known flashing back controls must be retired');
+assert(ui.includes("'v174DataHubClose','v181AdminClose'")&&ui.includes("button.textContent='ĐÓNG'"),
+  'legacy secondary back arrows must be normalized to close controls');
 
 assert(src.includes('async function workspaceRows('),'shared FSAGS 208 all-flight source missing');
 assert(src.includes('function cargoSharedCard('),'Cargo shared-card adapter missing');
