@@ -21,3 +21,5 @@ assert(roster.includes("host.querySelectorAll('.v1199DirectTask').forEach(btn=>b
 assert(roster.includes("if(exact){")&&roster.includes("MỞ BIỂU MẪU?"),'direct My Flight open must require confirmation');
 assert(sw.includes('./app/styles/desktop-shell-v64128.css'),'desktop shell must be part of verified PWA bootstrap');
 console.log('V6.4.128 desktop/form-open regression guard passed.');
+
+// verified-release-recheck-v64128
