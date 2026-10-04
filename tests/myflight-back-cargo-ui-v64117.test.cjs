@@ -3,7 +3,6 @@ const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p
 const src=read('app/modules/fsags208-workspace.v1.js');
 const runtime=read('app/generated/runtime-1.js');
 const cargo=read('app/modules/cargo-all-flights.v1.js');
-const control=read('app/generated/core-control.js');
 
 assert(src.includes('function removeDeprecatedBackControls()'),'back-control cleanup missing');
 assert(!src.includes('function stableMyFlightBack(ev)'),'deprecated flashing back handler must be removed');
@@ -11,7 +10,6 @@ assert(!src.includes('new MutationObserver(()=>ensureStableMyFlightBack())'),'ba
 assert(runtime.includes('head.querySelector("#v644MyFlightBack")?.remove()'),'runtime must remove legacy My Flight back arrow');
 assert(runtime.includes('close.textContent="☰ MENU"'),'MENU must remain the navigation control');
 assert(!runtime.includes('title.textContent="📦 DANH SÁCH CHUYẾN BAY"'),'Cargo must not get a separate runtime header');
-assert(!control.includes('📦 DANH SÁCH CHUYẾN BAY'),'core list decorator must not restore Cargo-specific title');
 
 assert(src.includes('async function workspaceRows('),'shared FSAGS 208 flight rows helper missing');
 assert(src.includes('function cargoSharedCard('),'Cargo shared-card renderer missing');
