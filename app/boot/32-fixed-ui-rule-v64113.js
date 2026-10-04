@@ -1,7 +1,7 @@
 /* E-REPORT SAGS V6.4.116 — shared Button Base and fixed UI runtime guard */
 (function(root){
 'use strict';
-const BUILD='V6.4.116-20261004-FIXED-UI-AUDIT-02';
+const BUILD='V6.4.118-PERF-SCOPED-OBSERVER-01';
 if(root.__SAGS_FIXED_UI_RULE_V64113__===BUILD)return;
 root.__SAGS_FIXED_UI_RULE_V64113__=BUILD;
 const $=id=>document.getElementById(id);
@@ -53,10 +53,10 @@ function reconcileFormDock(){
 }
 function tagLegacyButtons(scope=document){
   if(!scope)return;
-  const controls=scope.querySelectorAll?.('button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"]')||[];
-  for(const el of controls){
-    enhanceButton(el);
-  }
+  const selector='button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"]',controls=[];
+  if(scope.matches?.(selector))controls.push(scope);
+  controls.push(...(scope.querySelectorAll?.(selector)||[]));
+  for(const el of controls)enhanceButton(el);
 }
 function stripDuplicateCopy(scope=document.body){
   if(!scope)return;
@@ -80,16 +80,57 @@ function stripDuplicateCopy(scope=document.body){
     el.style.setProperty('display','none','important');
   }
 }
-let scheduled=false;
+let scheduled=false,fullScanQueued=false,dockQueued=false;
+const pendingScopes=new Set();
+function elementScope(node){
+  if(!node)return null;
+  if(node.nodeType===Node.TEXT_NODE)node=node.parentElement;
+  return node?.nodeType===Node.ELEMENT_NODE?node:null;
+}
+function touchesDock(el){
+  return !!el&&(el.id==='v324FormActions'||el.id==='v163SignBtn'||el.id==='v1134QuickTimeBtn'||el.id==='v324PdfBtn'||el.id==='v324HandoverBtn'||!!el.closest?.('#v324FormActions')||!!el.querySelector?.('#v324FormActions'));
+}
+function queueScope(node){
+  const el=elementScope(node);if(!el)return;
+  for(const x of pendingScopes)if(x===el||x.contains?.(el))return;
+  for(const x of [...pendingScopes])if(el.contains?.(x))pendingScopes.delete(x);
+  pendingScopes.add(el);
+  if(pendingScopes.size>24){pendingScopes.clear();pendingScopes.add(document.body);fullScanQueued=true}
+  if(touchesDock(el))dockQueued=true;
+}
 function apply(){
   scheduled=false;
-  try{reconcileFormDock();tagLegacyButtons(document);stripDuplicateCopy(document.body);}catch(e){console.info('Fixed UI rule',e?.message||e);}
+  try{
+    const full=fullScanQueued;fullScanQueued=false;
+    const scopes=full?[document.body]:[...pendingScopes];pendingScopes.clear();
+    if(full){tagLegacyButtons(document);stripDuplicateCopy(document.body);}
+    else for(const scope of scopes){tagLegacyButtons(scope);stripDuplicateCopy(scope);}
+    if(full||dockQueued)reconcileFormDock();
+  }catch(e){console.info('Fixed UI rule',e?.message||e);}
+  finally{dockQueued=false;}
 }
-function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(apply);}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
+function schedule(node=null,{full=false,dock=false}={}){
+  if(full){fullScanQueued=true;pendingScopes.clear();}
+  else if(node)queueScope(node);
+  if(dock)dockQueued=true;
+  if(scheduled)return;scheduled=true;requestAnimationFrame(apply);
+}
+const initial=()=>schedule(document.body,{full:true,dock:true});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initial,{once:true});else initial();
 new MutationObserver(records=>{
-  if(records.some(r=>r.type==='childList'||r.type==='characterData'||r.type==='attributes'))schedule();
+  for(const r of records){
+    if(r.type==='childList'){
+      if(r.addedNodes?.length)for(const n of r.addedNodes)queueScope(n);
+      else queueScope(r.target);
+    }else if(r.type==='characterData')queueScope(r.target?.parentElement);
+    else if(r.type==='attributes'){
+      // Ignore our own normalization-only class/style echo once the node is already stable.
+      if(r.target?.dataset?.sagsUiNormalized==='1'&&r.target?.classList?.contains('sagsUiButton')&&!touchesDock(r.target))continue;
+      queueScope(r.target);
+    }
+  }
+  if(pendingScopes.size||dockQueued)schedule();
 }).observe(document.documentElement,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['class','style']});
-root.addEventListener('pageshow',schedule,{passive:true});
-root.addEventListener('resize',schedule,{passive:true});
+root.addEventListener('pageshow',()=>schedule(document.body,{full:true,dock:true}),{passive:true});
+root.addEventListener('resize',()=>schedule(null,{dock:true}),{passive:true});
 })(window);
