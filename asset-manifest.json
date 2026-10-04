@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.134",
-  "build": "V6.4.134-20261004-MOBILE-MENU-ENTRY-01",
-  "strategy": "TEST atomic release + guaranteed mobile MENU entry + stable real-touch drawer + one-shot login cleanup + full performance batch + mandatory clean old shell",
+  "version": "V6.4.135",
+  "build": "V6.4.135-20261004-MOBILE-FORM-OPEN-01",
+  "strategy": "TEST atomic release + mobile form-open fast path + keep current surface until switch success + reuse live assignment + non-forced policy refresh + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "10b690699d844d0e8b43d406e809e8ac726100c8853298193eff516bd50ec361",
-      "bytes": 84772
+      "sha256": "53181da5d5c0512c8aabc0155a43265d310c62c309a862df193cfc5f3bceb06f",
+      "bytes": 84939
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "b55b118a4888abe1fdfb4cf257e10ee06101379bc49f69ad2155c1b45f0a609e",
-      "bytes": 81863
+      "sha256": "c6667cbadae80ea5f20628fbeb10c929c1f3c992df40de5ccb6c7a8d0ac3a232",
+      "bytes": 81790
     },
     "./service-worker.js": {
-      "sha256": "d6a3da8748faa6a88cb1c9021a18392d4082e668dc52ac3abe31ed0a0a729fd2",
-      "bytes": 22339
+      "sha256": "cc55e06e2d50033a827ce885ba7beb54163f0d0d05c236326a00313f2a4cae55",
+      "bytes": 22336
     },
     "./version.json": {
-      "sha256": "f0320f1db4bb95c41504f71070618a0a56f821928771d3b56a5cadbe6c899411",
-      "bytes": 817
+      "sha256": "83565356d60fc065418b9aebee10cf75a4b0c1b4f7c302b9c58f46934d80d22d",
+      "bytes": 922
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "2288c3ec7eb272835b9863e619387da485cd84b7f7d8ad278361e3e9b03b2073",
@@ -330,8 +330,8 @@
       "bytes": 31645
     },
     "./app/generated/startup-bundle-4.js": {
-      "sha256": "e85ec809b487edec9474145f7bab34a554b77410e3f64d29e562b47dc738097f",
-      "bytes": 180014
+      "sha256": "c4f487157d7369e8ccb0047dac8911cbed9ec6c7b3e7966915296fcad63ab46a",
+      "bytes": 180104
     },
     "./app/styles/mobile-navy-v64106.css": {
       "sha256": "e8abcc1ef135517585287c521ff6506d0d874c7b2f22c1feb31f3ebdc0a031e0",

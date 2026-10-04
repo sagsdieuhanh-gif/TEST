@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.134",
-  "displayVersion": "V6.4.134",
-  "label": "V6.4.134 - MOBILE MENU ENTRY",
-  "build": "V6.4.134-20261004-MOBILE-MENU-ENTRY-01",
-  "releasedAt": "2026-10-04T22:41:00+07:00",
+  "version": "V6.4.135",
+  "displayVersion": "V6.4.135",
+  "label": "V6.4.135 - MOBILE FORM OPEN",
+  "build": "V6.4.135-20261004-MOBILE-FORM-OPEN-01",
+  "releasedAt": "2026-10-04T23:18:00+07:00",
   "type": "performance",
-  "base": "V6.4.133-20261004-MOBILE-MENU-STABLE-01",
+  "base": "V6.4.134-20261004-MOBILE-MENU-ENTRY-01",
   "updatePolicy": "required",
-  "notes": "Guarantee a dedicated mobile MENU entry after authentication instead of depending on v163FlightBtn creation timing. The fallback calls the canonical v157OpenMenu drawer handler, remains stable through post-login safety retries, and hides the redundant Home button while already on Home. Retains the V6.4.131 performance batch and one-shot blocker cleanup.",
-  "message": "V6.4.134: mobile luôn có nút MENU thao tác thật sau đăng nhập; không còn phụ thuộc timing tạo nút cũ."
+  "notes": "Mobile form-open critical path optimization. Keep dossier/My Flight visible until the target local form has switched successfully, so slow Firebase/edit-lock work never exposes the post-login Home screen. Reuse the live mailbox assignment through canonical responsibility acquisition to remove duplicate Firebase reads, and stop forcing a static airline-form policy refresh on every form tap. Edit-lock, claim, handover and legacy compatibility semantics remain unchanged.",
+  "message": "V6.4.135: mở NHẬN/mở nhanh trên mobile nhanh hơn và không còn nhảy về Home trong lúc chờ form."
 }
