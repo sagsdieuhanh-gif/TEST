@@ -9,3 +9,5 @@ assert(!html.includes('id="roleBtnSignature"'),'legacy Signature toolbar button 
 assert(!html.includes('id="roleBtnFlights"'),'legacy Flights toolbar button must not exist');
 assert(finalizer.includes("V6.4.126-20261004-REMOVE-LEGACY-TOOLBAR-01"),'V6.4.126 release finalizer must be configured');
 console.log('V6.4.126 legacy toolbar removal guard passed.');
+
+// verified-release-recheck-v64126
