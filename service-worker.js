@@ -8,7 +8,7 @@ const CACHE_NAME='sags-app-shell-v64117-20261004-myflight-cargo-01';
 const META_CACHE_NAME='sags-app-meta-v64117-20261004-myflight-cargo-01';
 const ASSET_MANIFEST_URL='./asset-manifest.json';
 const MUTABLE_METADATA=new Set(['./forms/forms.registry.json','./data/form-configuration.json']);
-const SAGS_BOOTSTRAP=["./index.html","./app/generated/legacy-ui-bundle-1.css","./app/generated/base-ui.min.css","./app/generated/legacy-ui-bundle-2.css","./app/generated/design-ui.min.css","./app/boot/01-sags-v620-unified-form-migration.js","./app/generated/legacy-ui-bundle-3.css","./app/boot/02-sags-v611-update-alert-position.js","./app/generated/boot-group-1.js","./app/generated/legacy-05.min.js","./app/generated/legacy-06.min.js","./app/generated/legacy-ui-bundle-4.css","./app/generated/legacy-07.min.js","./app/boot/08-v412-kh208-script.js","./app/boot/09-v454AccountProfileOverrides.js","./app/boot/10-v470-hybrid-core.js","./app/boot/11-v476-core.js","./app/styles/boot-27-v484-system-dept-style.css","./app/boot/12-v484SystemDepartmentRoles.js","./app/styles/boot-28-v485-feature-permission-style.css","./app/boot/13-v485FeaturePermissions.js","./app/styles/boot-29-v18-account-hierarchy-style.css","./app/boot/14-v18CanonicalAccountHierarchy.js","./app/boot/15-v116-account-name-search.js","./app/modules/feature-loader.v1.js","./app/generated/core-shared.js","./app/generated/core-archive.js","./app/generated/boot-group-2.js","./app/generated/core-tools.js","./app/boot/18-v173-quick-time.js","./app/generated/legacy-ui-bundle-5.css","./app/boot/19-v183-fs09-quick.js","./app/styles/boot-32-v161-progress-v2-style.css","./app/generated/boot-group-3.js","./app/styles/boot-33-v1121-ios-time-footer-style.css","./app/boot/22-v1121-ios-time-footer-script.js","./app/styles/boot-34-v1122-roster-sign-style.css","./app/boot/23-v1122-roster-sign-script.js","./app/generated/legacy-ui-bundle-6.css","./app/generated/boot-group-6.js","./app/generated/boot-group-4.js","./app/generated/core-flight.js","./app/generated/core-control.js","./app/generated/core-postcontrol.js","./app/modules/admin-reset.v503hf2.js","./app/generated/core-performance.js","./app/modules/firebase-read-coalescer.v1.js","./app/modules/flight-governance.v1.js","./app/modules/daily-roster.v502.js","./app/modules/self-accept.v502.js","./app/boot/26-v644SafeStorageCleanup.js","./app/generated/runtime-1.js","./app/generated/startup-bundle-1.js","./app/generated/boot-group-5.js","./app/generated/startup-bundle-2.js","./app/modules/stability.v6.js","./app/modules/cross-browser-entry.v1.js","./app/modules/roster-lite.v5.js","./app/boot/30-sags-v6120-all-form-render-standard.js","./app/generated/startup-bundle-3.js","./app/boot/31-sags-grnd-ls-v621.js","./app/generated/startup-bundle-4.js","./app/modules/fsags208-workspace.v1.js","./app/styles/mobile-navy-v64106.css","./app/styles/fixed-ui-rule-v64113.css","./app/boot/32-fixed-ui-rule-v64113.js","./version.json","./data/airline-form-catalog.json","./assets/ui/myflight-hero-v64101.webp","./assets/branding/login-logo-10years.png","./service-worker.js","./app/modules/stability.v6-core.js","./app/modules/mobile-draft-recovery.v1.js","./app/modules/indexeddb-flight-store.v1.js"];
+const SAGS_BOOTSTRAP=["./index.html","./app/generated/legacy-ui-bundle-1.css","./app/generated/base-ui.min.css","./app/generated/legacy-ui-bundle-2.css","./app/generated/design-ui.min.css","./app/boot/01-sags-v620-unified-form-migration.js","./app/generated/legacy-ui-bundle-3.css","./app/boot/02-sags-v611-update-alert-position.js","./app/generated/boot-group-1.js","./app/generated/legacy-05.min.js","./app/generated/legacy-06.min.js","./app/generated/legacy-ui-bundle-4.css","./app/generated/legacy-07.min.js","./app/boot/08-v412-kh208-script.js","./app/boot/09-v454AccountProfileOverrides.js","./app/boot/10-v470-hybrid-core.js","./app/boot/11-v476-core.js","./app/styles/boot-27-v484-system-dept-style.css","./app/boot/12-v484SystemDepartmentRoles.js","./app/styles/boot-28-v485-feature-permission-style.css","./app/boot/13-v485FeaturePermissions.js","./app/styles/boot-29-v18-account-hierarchy-style.css","./app/boot/14-v18CanonicalAccountHierarchy.js","./app/boot/15-v116-account-name-search.js","./app/modules/feature-loader.v1.js","./app/generated/core-shared.js","./app/generated/core-archive.js","./app/generated/boot-group-2.js","./app/generated/core-tools.js","./app/boot/18-v173-quick-time.js","./app/generated/legacy-ui-bundle-5.css","./app/boot/19-v183-fs09-quick.js","./app/styles/boot-32-v161-progress-v2-style.css","./app/generated/boot-group-3.js","./app/styles/boot-33-v1121-ios-time-footer-style.css","./app/boot/22-v1121-ios-time-footer-script.js","./app/styles/boot-34-v1122-roster-sign-style.css","./app/boot/23-v1122-roster-sign-script.js","./app/generated/legacy-ui-bundle-6.css","./app/generated/boot-group-6.js","./app/generated/boot-group-4.js","./app/generated/core-flight.js","./app/generated/core-control.js","./app/generated/core-postcontrol.js","./app/modules/admin-reset.v503hf2.js","./app/generated/core-performance.js","./app/modules/firebase-read-coalescer.v1.js","./app/modules/flight-governance.v1.js","./app/modules/daily-roster.v502.js","./app/modules/self-accept.v502.js","./app/boot/26-v644SafeStorageCleanup.js","./app/generated/runtime-1.js","./app/generated/runtime-2.js","./app/generated/runtime-3.js","./app/generated/runtime-4.js","./app/generated/runtime-5.js","./app/generated/boot-group-5.js","./app/generated/startup-bundle-2.js","./app/modules/stability.v6.js","./app/modules/cross-browser-entry.v1.js","./app/modules/roster-lite.v5.js","./app/boot/30-sags-v6120-all-form-render-standard.js","./app/generated/startup-bundle-3.js","./app/boot/31-sags-grnd-ls-v621.js","./app/generated/startup-bundle-4.js","./app/modules/fsags208-workspace.v1.js","./app/styles/mobile-navy-v64106.css","./app/styles/fixed-ui-rule-v64113.css","./app/boot/32-fixed-ui-rule-v64113.js","./version.json","./data/airline-form-catalog.json","./assets/ui/myflight-hero-v64101.webp","./assets/branding/login-logo-10years.png","./service-worker.js","./app/modules/stability.v6-core.js","./app/modules/mobile-draft-recovery.v1.js","./app/modules/indexeddb-flight-store.v1.js"];
 const HOME= new URL('./index.html',self.registration.scope).href;
 const SCOPE_PATH=new URL(self.registration.scope).pathname;
 function scopeUrl(path){return new URL(path,self.registration.scope).href}
@@ -20,7 +20,12 @@ async function checksum(response,meta,path){
  const digest=await crypto.subtle.digest('SHA-256',b);const hash=[...new Uint8Array(digest)].map(n=>n.toString(16).padStart(2,'0')).join('');
  if(hash!==meta.sha256)throw new Error('SHA-256 mismatch '+path);
 }
-async function readManifest(){try{const c=await caches.open(META_CACHE_NAME),r=await c.match(scopeUrl(ASSET_MANIFEST_URL));return r?await r.json():null}catch(_){return null}}
+let sagsManifestMemo=null;const sagsVerifiedAssetKeys=new Set();
+function sagsAssetVerificationKey(cacheName,path,meta){return String(cacheName||'')+'|'+String(path||'')+'|'+String(meta?.sha256||'')+'|'+String(meta?.bytes||'')}
+async function readManifest(){
+ if(sagsManifestMemo?.build===BUILD)return sagsManifestMemo;
+ try{const c=await caches.open(META_CACHE_NAME),r=await c.match(scopeUrl(ASSET_MANIFEST_URL)),m=r?await r.json():null;if(m?.build===BUILD)sagsManifestMemo=m;return m}catch(_){return null}
+}
 async function assertIndexReleaseStamp(response){
  const text=await response.clone().text();
  const buildOk=text.includes('name="sags-release-build" content="'+BUILD+'"')||text.includes('name="sags-release-build" content="'+BUILD+'"')||text.includes('const APP_BUILD_VERSION="'+BUILD+'"')||text.includes("const APP_BUILD_VERSION='"+BUILD+"'");
@@ -64,7 +69,7 @@ async function sagsPriorAsset(path,meta,names,check=true){
   try{
    const store=await caches.open(name),r=await store.match(key);
    if(!r)continue;
-   if(check)await checksum(r,meta,path);
+   if(check){const vk=sagsAssetVerificationKey(name,path,meta);if(!sagsVerifiedAssetKeys.has(vk)){await checksum(r,meta,path);sagsVerifiedAssetKeys.add(vk)}}
    return r;
   }catch(e){console.warn('Ignoring damaged old cached asset',path,name,e?.message||e)}
  }
@@ -86,7 +91,7 @@ async function verifyStaged(manifest){
  const c=await caches.open(CACHE_NAME),prior=await sagsPriorShellNames();
  for(const path of SAGS_BOOTSTRAP){
   const r=await c.match(scopeUrl(path));
-  if(r){await checksum(r,manifest.assets[path],path);continue}
+  if(r){const vk=sagsAssetVerificationKey(CACHE_NAME,path,manifest.assets[path]);if(!sagsVerifiedAssetKeys.has(vk)){await checksum(r,manifest.assets[path],path);sagsVerifiedAssetKeys.add(vk)}continue}
   if(!await sagsPriorAsset(path,manifest.assets[path],prior))throw new Error('Missing verified bootstrap '+path);
  }
  return true;
@@ -108,18 +113,18 @@ async function stageRelease(){
   // Check local cached bytes against the NEW manifest before deciding to fetch.
   // An unchanged asset stays in its prior cache; no network OR duplicate cache copy.
   // A missing/modified/corrupt asset is downloaded and checked before insertion.
-  // Drain the three bounded workers before abort so no write can revive bad data.
+  // Drain four bounded workers before abort: faster staging without unbounded mobile concurrency.
   const prior=await sagsPriorShellNames();
   const queue=SAGS_BOOTSTRAP.slice();let failure=null;
-  await Promise.all(Array.from({length:3},async()=>{
+  await Promise.all(Array.from({length:4},async()=>{
     while(queue.length&&!failure){
       const path=queue.shift();
       try{
        const existing=await c.match(scopeUrl(path));
-       if(existing){try{await checksum(existing,m.assets[path],path);continue}catch(_){}}
+       if(existing){try{await checksum(existing,m.assets[path],path);sagsVerifiedAssetKeys.add(sagsAssetVerificationKey(CACHE_NAME,path,m.assets[path]));continue}catch(_){}}
        if(await sagsPriorAsset(path,m.assets[path],prior))continue;
        const r=path==='./version.json'?versionResponse.clone():await fetchFresh(path);
-       await checksum(r,m.assets[path],path);await c.put(scopeUrl(path),r.clone());
+       await checksum(r,m.assets[path],path);await c.put(scopeUrl(path),r.clone());sagsVerifiedAssetKeys.add(sagsAssetVerificationKey(CACHE_NAME,path,m.assets[path]));
       }catch(e){if(!failure)failure=e}
     }
   }));
@@ -129,7 +134,7 @@ async function stageRelease(){
   await verifyReleaseContract(m);
   markBootstrapVerified(m);
   const mc=await caches.open(META_CACHE_NAME);
-  await mc.put(scopeUrl(ASSET_MANIFEST_URL),new Response(JSON.stringify(m),{headers:{'Content-Type':'application/json','Cache-Control':'no-store'}}));
+  await mc.put(scopeUrl(ASSET_MANIFEST_URL),new Response(JSON.stringify(m),{headers:{'Content-Type':'application/json','Cache-Control':'no-store'}}));sagsManifestMemo=m;
  }catch(e){
   console.error('E-REPORT V5 stage aborted; previous release retained',e);
   await Promise.all([caches.delete(CACHE_NAME),caches.delete(META_CACHE_NAME)]);
@@ -143,8 +148,10 @@ async function verifiedAsset(request,event,path,key){
   const m=await readManifest();if(!m||m.build!==BUILD)throw new Error('No verified release manifest');
   if(hit){
    if(!m.assets[path])return hit;
-   try{await checksum(hit,m.assets[path],path);return hit}
-   catch(e){console.warn('Discarding stale current-cache asset',path,e?.message||e);try{await c.delete(key)}catch(_){}}
+   const vk=sagsAssetVerificationKey(CACHE_NAME,path,m.assets[path]);
+   if(sagsVerifiedAssetKeys.has(vk))return hit;
+   try{await checksum(hit,m.assets[path],path);sagsVerifiedAssetKeys.add(vk);return hit}
+   catch(e){console.warn('Discarding stale current-cache asset',path,e?.message||e);sagsVerifiedAssetKeys.delete(vk);try{await c.delete(key)}catch(_){}}
   }
   // Covers all other unchanged manifest assets too (e.g. PDF backgrounds).
   // Return verified old bytes directly instead of duplicating them on the phone.
@@ -177,7 +184,7 @@ async function verifyCurrentAssets(){
  const prior=await sagsPriorShellNames();
  for(const p of SAGS_BOOTSTRAP){
   let r=await c.match(scopeUrl(p));let good=false;
-  if(r){try{await checksum(r,m.assets[p],p);good=true}catch(_){}}
+  if(r){try{const vk=sagsAssetVerificationKey(CACHE_NAME,p,m.assets[p]);if(!sagsVerifiedAssetKeys.has(vk)){await checksum(r,m.assets[p],p);sagsVerifiedAssetKeys.add(vk)}good=true}catch(_){}}
   if(!good&&await sagsPriorAsset(p,m.assets[p],prior))good=true;
   if(!good){r=await fetchFresh(p);await checksum(r,m.assets[p],p);await c.put(scopeUrl(p),r.clone())}
  }
