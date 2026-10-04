@@ -1,12 +1,12 @@
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),write=(p,s)=>fs.writeFileSync(path.join(root,p),s),exists=p=>fs.existsSync(path.join(root,p));
-const VERSION='V6.4.117',BUILD='V6.4.117-20261004-MYFLIGHT-CARGO-01',LABEL='V6.4.117 - MY FLIGHT BACK + CARGO UI',RELEASED='2026-10-04T15:00:00+07:00';
+const VERSION='V6.4.118',BUILD='V6.4.118-20261004-PERFORMANCE-STABILITY-01',LABEL='V6.4.118 - PERFORMANCE + STABILITY',RELEASED='2026-10-04T16:25:00+07:00';
 const old=JSON.parse(read('version.json')),oldV=String(old.version||''),oldB=String(old.build||'');
 if(!oldV||!oldB)throw Error('Current version metadata missing');
 let index=read('index.html').split(oldB).join(BUILD).split(oldV).join(VERSION);
 assert(index.includes('name="sags-release-build" content="'+BUILD+'"'));assert(index.includes('name="sags-release-version" content="'+VERSION+'"'));
 write('index.html',index);
-const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'stability',base:oldB===BUILD?old.base:oldB,updatePolicy:'required',notes:'Fix repeated My Flight back navigation: dossier returns to My Flight and the next back returns home without focus/repaint loops. Unify KH/Cargo My Flight into the same v1199 flight-card and FSAGS task-tile interface used by operational roles, while keeping FSAGS 208 ownership, receive history and publish logic unchanged.',message:VERSION+': sửa nút quay lại My Flight và đồng bộ giao diện Kho hàng/FSAGS 208.'};
+const version={version:VERSION,displayVersion:VERSION,label:LABEL,build:BUILD,releasedAt:RELEASED,type:'performance',base:oldB===BUILD?old.base:oldB,updatePolicy:'required',notes:'Reduce startup/update cost by loading runtime chunks independently, removing the unused Firebase Functions compat SDK, preconnecting the Firebase CDN, memoizing verified PWA manifest/checksum work, scoping dynamic UI normalization to changed DOM regions, and bounding/trimming roster Firebase status reads. Source monoliths remain build inputs only and are not executed by index.html.',message:VERSION+': tối ưu tải trang, PWA, render mobile và luồng đọc Firebase.'};
 write('version.json',JSON.stringify(version,null,2)+'\n');
 let sw=read('service-worker.js').split(oldB).join(BUILD).split(oldV).join(VERSION);
 const cacheId=BUILD.toLowerCase().replace(/[^a-z0-9-]/g,'');
@@ -31,3 +31,5 @@ write(mp,JSON.stringify(m,null,2)+'\n');
 // mobile-release-sync-20261004
 
 // myflight-cargo-ui-v64117
+
+// performance-stability-v64118
