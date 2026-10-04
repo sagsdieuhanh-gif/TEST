@@ -28,11 +28,17 @@ function refreshRegistry(){
   try{const r=root.sagsV450GetFormRegistry?.();if(r?.forms?.length)registry=r}catch(_){}
   return registry;
 }
-async function applyPublishedRegistry(){
-  if(typeof root.sagsV450ApplyLayout!=='function')throw new Error('Form Manager registry runtime is not ready.');
-  await root.sagsV450ApplyLayout();refreshRegistry();
-  if(!registry?.forms?.length)throw new Error('forms.registry.json is not loaded.');
-  return registry;
+let registryApplyJob=null,lastRegistryApplyAt=0;
+async function applyPublishedRegistry(force=false){
+  if(!force&&registry?.forms?.length&&Date.now()-lastRegistryApplyAt<2500)return registry;
+  if(registryApplyJob)return registryApplyJob;
+  registryApplyJob=(async()=>{
+    if(typeof root.sagsV450ApplyLayout!=='function')throw new Error('Form Manager registry runtime is not ready.');
+    await root.sagsV450ApplyLayout();refreshRegistry();
+    if(!registry?.forms?.length)throw new Error('forms.registry.json is not loaded.');
+    lastRegistryApplyAt=Date.now();return registry;
+  })().finally(()=>{registryApplyJob=null});
+  return registryApplyJob;
 }
 
 function managedPages(){
@@ -243,7 +249,7 @@ async function boot(){
   wrapDraw();wrapExportChoice();patchPreparedButtons();ensureQuickNA();observeSvg();queuePaint();
   setTimeout(async()=>{try{await applyPublishedRegistry();observeSvg();queuePaint()}catch(_){}},900);
 }
-const uiObserver=new MutationObserver(()=>{ensureQuickNA();if(registry){if(!drawWrapped)wrapDraw();if(!G('openExportChoiceMenu')?.__sagsRegistryUnifiedV647)wrapExportChoice();if(root.sags5494ExportCurrentPdf!==root.sagsRegistryExport5494)root.sags5494ExportCurrentPdf=root.sagsRegistryExport5494;queuePaint()}});
+let uiMaintainQueued=false;const uiObserver=new MutationObserver(()=>{if(document.hidden||uiMaintainQueued)return;uiMaintainQueued=true;requestAnimationFrame(()=>{uiMaintainQueued=false;ensureQuickNA();if(registry){if(!drawWrapped)wrapDraw();if(!G('openExportChoiceMenu')?.__sagsRegistryUnifiedV647)wrapExportChoice();if(root.sags5494ExportCurrentPdf!==root.sagsRegistryExport5494)root.sags5494ExportCurrentPdf=root.sagsRegistryExport5494;queuePaint()}})});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{uiObserver.observe(document.documentElement,{subtree:true,childList:true});setTimeout(boot,420)},{once:true});
 else{uiObserver.observe(document.documentElement,{subtree:true,childList:true});setTimeout(boot,420)}
 root.addEventListener('pageshow',()=>setTimeout(async()=>{try{await applyPublishedRegistry();ensureQuickNA();queuePaint()}catch(_){}},250),{passive:true});

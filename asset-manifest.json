@@ -2,7 +2,7 @@
   "schema": 2,
   "version": "V6.4.130",
   "build": "V6.4.130-20261004-RECEIVE-FAST-PATH-01",
-  "strategy": "TEST atomic release + canonical receive fast path + mobile UI observer stabilization + dedicated desktop shell + restore form dock + no CHUYẾN + confirm direct open + mandatory clean old shell",
+  "strategy": "Ordered source bundles + unified mobile navy + targeted UI observers",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,24 +82,24 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "f3e226033c9ef94c586c68c0ff86c9784d2b63f3bbf2da55169249d9412dc88e",
-      "bytes": 79122
+      "sha256": "b2201c2b2baa3f3ea1a4279b28d56678744dc31069766836660dc05fc0d6a23b",
+      "bytes": 81863
     },
     "./service-worker.js": {
-      "sha256": "5e9ee684792da8d399fdbe874acc43bca2b6201138abde8a9749a108dfe73667",
-      "bytes": 22071
+      "sha256": "dbcbdd130ef025de5407406f1892da5ba8c0b3f15aaf12a7d33a1e769d6e080d",
+      "bytes": 22339
     },
     "./version.json": {
       "sha256": "09893da056ad325021bf9b88f9f78a1dd8297d65c3e0b9c74702a2b34b35dd82",
       "bytes": 759
     },
     "./app/modules/form-registry-runtime.v647.js": {
-      "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
-      "bytes": 17888
+      "sha256": "2288c3ec7eb272835b9863e619387da485cd84b7f7d8ad278361e3e9b03b2073",
+      "bytes": 18373
     },
     "./app/modules/form-registry-runtime.v6419.js": {
-      "sha256": "8c33713d4b54aafd4f158659089600646003c7a1a72b0bef5718347fa4576e32",
-      "bytes": 32038
+      "sha256": "7a63539774e647258b909acef313c90754659f604957794ecf97e00815dbf246",
+      "bytes": 33156
     },
     "./app/boot/01-sags-v620-unified-form-migration.js": {
       "sha256": "4c14262d845b89002fa967ff97e3cda9723a9c7227c4af2a9c2a32ad0dd6ba65",
@@ -114,8 +114,8 @@
       "bytes": 296425
     },
     "./app/boot/06-legacy.js": {
-      "sha256": "567f8d8a4c799969b3745794233b730ca48bbd757ee2db3b95552533ed4b91c6",
-      "bytes": 397266
+      "sha256": "c6bb8a8582f6ddfa4b053d341e1f9f048003172bdd0dbca05dcda2ae91a2a650",
+      "bytes": 397312
     },
     "./app/boot/07-legacy.js": {
       "sha256": "da14184a2a816eeaa752dc1e4a91b210fb766f62502ce7d3196f5cba9be2ef11",
@@ -286,12 +286,12 @@
       "bytes": 4567
     },
     "./app/generated/legacy-05.min.js": {
-      "sha256": "c04440b417c39c63f2106d2980cfaa46cf38dc8f527889ee9f688b93f13ab771",
-      "bytes": 283923
+      "sha256": "5f6e8d357969e4a60d7a559d3bb860eeeb6954efd35e260092db0fbf44f9b723",
+      "bytes": 286412
     },
     "./app/generated/legacy-06.min.js": {
-      "sha256": "35f1764d73576f554db6dd77ee50ce7d1436a0b724e3f78c3f12f8899426e2db",
-      "bytes": 386738
+      "sha256": "d6f5221ed48ede2c935d95e4454b923ba86ea96ae4589704c0385a8cf6f031de",
+      "bytes": 386775
     },
     "./app/generated/legacy-07.min.js": {
       "sha256": "7dc537b02522604d61e9702fed2df2430f2dafaacebb13ef9aa49f66111ce87b",
@@ -330,8 +330,8 @@
       "bytes": 31645
     },
     "./app/generated/startup-bundle-4.js": {
-      "sha256": "9e2983821134aaae3aa6ef38df29506a66897e1422a000bd5dc4cb1f1871008a",
-      "bytes": 178441
+      "sha256": "e85ec809b487edec9474145f7bab34a554b77410e3f64d29e562b47dc738097f",
+      "bytes": 180014
     },
     "./app/styles/mobile-navy-v64106.css": {
       "sha256": "e8abcc1ef135517585287c521ff6506d0d874c7b2f22c1feb31f3ebdc0a031e0",
