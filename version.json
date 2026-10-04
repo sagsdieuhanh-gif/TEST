@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.114",
-  "displayVersion": "V6.4.114",
-  "label": "V6.4.114 - FIXED UI AUDIT",
-  "build": "V6.4.114-20261004-FIXED-UI-AUDIT-01",
-  "releasedAt": "2026-10-04T13:35:00+07:00",
-  "type": "ui",
-  "base": "V6.4.113-20261004-FIXED-UI-RULE-01",
-  "updatePolicy": "optional",
-  "notes": "Project-wide FIXED UI audit: normalize legacy and dynamically rendered buttons to the approved compact rectangular 12px-radius system; preserve semantic accent colors and business logic; keep form actions on one compact row with Menu/Home on the second row; retain safe-area and non-overlap behavior; remove duplicate form-status copy.",
-  "message": "V6.4.114: project-wide FIXED UI audit."
+  "version": "V6.4.115",
+  "displayVersion": "V6.4.115",
+  "label": "V6.4.115 - MOBILE RELEASE SYNC",
+  "build": "V6.4.115-20261004-MOBILE-RELEASE-SYNC-01",
+  "releasedAt": "2026-10-04T13:45:00+07:00",
+  "type": "stability",
+  "base": "V6.4.114-20261004-FIXED-UI-AUDIT-01",
+  "updatePolicy": "required",
+  "notes": "Fix mobile update integrity: every release now gets build-unique CacheStorage; cached UI assets are checksum-verified before use; activated verified workers claim clients; index detects controller/build mismatch and enters repair instead of showing a new version with old UI.",
+  "message": "V6.4.115: mobile release cache and controller sync fix."
 }

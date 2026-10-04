@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.114",
-  "build": "V6.4.114-20261004-FIXED-UI-AUDIT-01",
-  "strategy": "TEST atomic release + project-wide FIXED UI audit",
+  "version": "V6.4.115",
+  "build": "V6.4.115-20261004-MOBILE-RELEASE-SYNC-01",
+  "strategy": "TEST atomic release + build-unique PWA cache + mixed-build guard",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "14727c1af2097a47d1ef08f27b489eaeb54b05911fe4cfe804258722e578bdb5",
-      "bytes": 80656
+      "sha256": "fc4dc7514e696907679a193148abf632d69375f6ac33a744d2a851466900a0e3",
+      "bytes": 80991
     },
     "./service-worker.js": {
-      "sha256": "4e6bf388967707223b9093a211f2cc38358b318cc43159cba924f2e95f8e24de",
-      "bytes": 20668
+      "sha256": "a7f8a8321728c2fd690bf39f35b4ffe69c68a58af4c1225843c88fb387d42925",
+      "bytes": 20683
     },
     "./version.json": {
-      "sha256": "bb2eff0e8facc7e2924aa25c029ecec97637c0c6bc517e32fb6088669faa4883",
-      "bytes": 694
+      "sha256": "cf1d8036aba5e556d06daa9d195453355ab60642dc273a1209089d5eb93b41d0",
+      "bytes": 669
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
