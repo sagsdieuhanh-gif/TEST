@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.129",
-  "build": "V6.4.129-20261004-MOBILE-UI-STABILITY-01",
-  "strategy": "TEST atomic release + mobile UI observer stabilization + dedicated desktop shell + restore form dock + no CHUYẾN + confirm direct open + mandatory clean old shell",
+  "version": "V6.4.130",
+  "build": "V6.4.130-20261004-RECEIVE-FAST-PATH-01",
+  "strategy": "TEST atomic release + canonical receive fast path + mobile UI observer stabilization + dedicated desktop shell + restore form dock + no CHUYẾN + confirm direct open + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "4039efbb64343ff4860edb70dec865cba9c4da94b4ebff62193f4cff98cf953d",
-      "bytes": 84330
+      "sha256": "10b690699d844d0e8b43d406e809e8ac726100c8853298193eff516bd50ec361",
+      "bytes": 84772
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "f3ac040333485458d0d3a9ba126369bb5f819060bdd5e92472d5b3ae258e7ecc",
-      "bytes": 79268
+      "sha256": "f3e226033c9ef94c586c68c0ff86c9784d2b63f3bbf2da55169249d9412dc88e",
+      "bytes": 79122
     },
     "./service-worker.js": {
-      "sha256": "61aceab7ffd160de72982673ecd87e3e6ae0ffbee95e26073fa30d917874e2d4",
-      "bytes": 22077
+      "sha256": "5e9ee684792da8d399fdbe874acc43bca2b6201138abde8a9749a108dfe73667",
+      "bytes": 22071
     },
     "./version.json": {
-      "sha256": "b595fff7b9958336cdd517037eb63782ff7ba52ed45b1c1d2fca7de327a75586",
-      "bytes": 715
+      "sha256": "09893da056ad325021bf9b88f9f78a1dd8297d65c3e0b9c74702a2b34b35dd82",
+      "bytes": 759
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",

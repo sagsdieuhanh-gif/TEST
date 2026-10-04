@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.129",
-  "displayVersion": "V6.4.129",
-  "label": "V6.4.129 - MOBILE UI STABILITY",
-  "build": "V6.4.129-20261004-MOBILE-UI-STABILITY-01",
-  "releasedAt": "2026-10-04T22:00:00+07:00",
+  "version": "V6.4.130",
+  "displayVersion": "V6.4.130",
+  "label": "V6.4.130 - RECEIVE FAST PATH",
+  "build": "V6.4.130-20261004-RECEIVE-FAST-PATH-01",
+  "releasedAt": "2026-10-04T22:07:00+07:00",
   "type": "ui",
-  "base": "V6.4.128-20261004-DESKTOP-LAYOUT-01",
+  "base": "V6.4.129-20261004-MOBILE-UI-STABILITY-01",
   "updatePolicy": "required",
-  "notes": "Mobile UI stability release. Keep the approved mobile layout unchanged while scoping fixed-UI attribute observation to the form dock, gating text cleanup to relevant copy, and coalescing mobile visual tagging to one animation-frame job. Desktop V6.4.128 layout remains unchanged.",
-  "message": "V6.4.129: ổn định giao diện mobile, giảm quét DOM nền; không đổi bố cục đã chốt."
+  "notes": "Canonical roster responsibility assignments now open directly through SAGSRosterResponsibility instead of traversing the legacy receive wrapper chain first. Legacy/non-canonical forms keep the existing receive path. Retains V6.4.129 mobile observer stabilization and V6.4.128 desktop layout.",
+  "message": "V6.4.130: giảm lag khi NHẬN biểu mẫu; assignment mới đi thẳng vào cơ chế responsibility, giữ nguyên luồng legacy."
 }
