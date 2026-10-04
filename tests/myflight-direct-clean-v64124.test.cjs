@@ -3,7 +3,7 @@ const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p
 const roster=read('app/modules/daily-roster.v502.js');
 const css=read('app/styles/fixed-ui-rule-v64113.css');
 const version=JSON.parse(read('version.json'));
-assert.equal(version.version,'V6.4.124');
+assert(Number(String(version.version||'').split('.').pop())>=124,'V6.4.124 My Flight behavior must remain in later releases');
 assert(roster.includes('class="v1199FormTile v1199DirectTask'),'My Flight form tiles must be direct task buttons');
 assert(roster.includes("host.querySelectorAll('.v1199DirectTask').forEach(btn=>btn.onclick=()=>openTask("),'direct tiles must call the exact assignment open/receive flow');
 assert(roster.includes("sub.hidden=true;sub.style.display='none'"),'My Flight descriptive subtitle must be hidden');
