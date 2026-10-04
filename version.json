@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.123",
-  "displayVersion": "V6.4.123",
-  "label": "V6.4.123 - POST-LOGIN UNLOCK",
-  "build": "V6.4.123-20261004-POSTLOGIN-UNLOCK-01",
-  "releasedAt": "2026-10-04T19:31:00+07:00",
-  "type": "stability",
-  "base": "V6.4.122-20261004-ROLLBACK118-01",
+  "version": "V6.4.124",
+  "displayVersion": "V6.4.124",
+  "label": "V6.4.124 - MY FLIGHT DIRECT + MOBILE CLEARANCE",
+  "build": "V6.4.124-20261004-MYFLIGHT-DIRECT-CLEAN-01",
+  "releasedAt": "2026-10-04T20:45:00+07:00",
+  "type": "ui",
+  "base": "V6.4.123-20261004-POSTLOGIN-UNLOCK-01",
   "updatePolicy": "required",
-  "notes": "Fix the real Firebase post-login freeze. After successful Authentication + profile load, transition into the app in-place instead of forcing a second page reload/session restore. Explicitly close the full-screen login overlay, clear stale UI blockers, enter Home, and add a restore watchdog that makes the login card usable if cached-session recovery stalls.",
-  "message": "V6.4.123: sửa lỗi đăng nhập xong không thao tác được; bỏ reload lần hai và chống overlay đăng nhập treo."
+  "notes": "My Flight mobile cleanup: tap an assigned FSAGS form tile directly to receive/continue/open the exact assignment; remove the My Flight descriptive subtitle and redundant header MENU button; add bottom scroll clearance so the final form content can move fully above the fixed action/navigation bars; hide the tappable local-draft status badge while preserving local autosave/recovery; retain the V6.4.123 post-login unlock.",
+  "message": "V6.4.124: My Flight bấm thẳng biểu mẫu để nhận/mở việc, bỏ phần mô tả và MENU dư, sửa khoảng cuộn cuối biểu mẫu, ẩn nút trạng thái nháp nhưng vẫn giữ tự lưu."
 }
