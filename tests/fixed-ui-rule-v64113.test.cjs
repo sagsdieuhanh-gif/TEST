@@ -15,6 +15,8 @@ assert(css.includes('input[type="submit"]'),'submit controls must inherit fixed 
 assert(css.includes('.templateActions'),'legacy modal action rows must be normalized');
 assert(js.includes("v163SignBtn"),'existing signature action must be preserved in the action row');
 assert(js.includes('tagLegacyButtons'),'dynamic legacy buttons must be tagged by runtime guard');
+assert(js.includes('pendingScopes')&&js.includes('queueScope'),'dynamic UI normalization must batch only changed DOM scopes');
+assert(!js.includes('root.addEventListener(\'resize\',schedule'),'resize must not trigger a full-document normalization scan');
 assert(js.includes('HO SO BIEU MAU')&&js.includes('CHO NHAN'),'duplicate status cleanup missing');
 assert(rules.includes('THÊM CHỨC NĂNG MỚI NHƯNG KHÔNG THÊM MỘT PHONG CÁCH NÚT MỚI'),'project UI rule missing');
 console.log('Fixed UI rule checks passed.');
