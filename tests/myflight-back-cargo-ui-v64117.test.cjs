@@ -18,8 +18,9 @@ assert(src.includes('class="v1199Card sagsCargo208Card"'),'Cargo flights must us
 assert(src.includes('class="v1199TaskBtn '),'Cargo FSAGS 208 actions must use the same task-tile button language');
 assert(src.includes("title.textContent='✈ MY FLIGHT'"),'Cargo header must use the shared My Flight shell');
 assert(src.includes("sub.textContent='FSAGS 208 · Kho hàng'"),'Cargo role context must stay explicit');
-assert(src.includes('root.sagsCargoOpenAllFlights=function(date){return renderCargoMyFlight'),
-  'Cargo My Flight entry must route to the unified renderer');
+assert(src.includes('__sagsCargoUnifiedV64117'),'Cargo My Flight entry wrapper must be installed independently of login timing');
+assert(src.includes('if(cargoRole())return renderCargoMyFlight'),'Cargo My Flight entry must route KH/Cargo to the unified renderer');
+assert(src.includes("if(!modal&&typeof cargoOpenBase==='function')"),'Cargo renderer must initialize the shared Flight Workspace shell on first open');
 assert(src.includes('listRows:workspaceRows'),'shared FSAGS 208 rows must be exported for regression/diagnostics');
 
 console.log('V6.4.117 My Flight back + Cargo unified UI guard passed.');
