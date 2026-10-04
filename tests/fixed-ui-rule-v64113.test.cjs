@@ -13,6 +13,9 @@ assert(css.includes('--sags-form-dock-height,56px'),'content must reserve measur
 assert(css.includes('V6.4.114 PROJECT-WIDE BUTTON AUDIT'),'project-wide button audit guard missing');
 assert(css.includes('input[type="submit"]'),'submit controls must inherit fixed UI geometry');
 assert(css.includes('.templateActions'),'legacy modal action rows must be normalized');
+assert(css.includes('V6.4.128 COMPACT QUICK INPUT'),'compact quick-input rule missing');
+assert(css.includes('#quickTimeModal .quickTimeNow'),'quick-time clock control must be compact');
+assert(css.includes('#quickTimeModal .quickTimeFooterActions button'),'quick-time footer controls must be compact');
 assert(js.includes("v163SignBtn"),'existing signature action must be preserved in the action row');
 assert(js.includes('tagLegacyButtons'),'dynamic legacy buttons must be tagged by runtime guard');
 assert(js.includes('pendingScopes')&&js.includes('queueScope'),'dynamic UI normalization must batch only changed DOM scopes');
