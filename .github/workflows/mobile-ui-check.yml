@@ -22,4 +22,5 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
       - run: node tests/browser/mobile-navy.cjs
+      - run: node tests/browser/desktop-workspace.cjs
       - run: node tests/browser/roster-import.cjs

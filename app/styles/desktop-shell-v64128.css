@@ -3,7 +3,7 @@
    Mobile/tablet rules remain owned by the <=899px styles.
 */
 @media (min-width:1024px){
-  html.new-ui-v1{--sags-desktop-sidebar:284px;--sags-desktop-header:68px;--sags-desktop-content:1280px}
+  html.new-ui-v1{--sags-desktop-sidebar:268px;--sags-desktop-header:64px;--sags-desktop-content:1440px}
 
   /* HOME: permanent desktop sidebar + centered workspace */
   html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer{
@@ -58,6 +58,7 @@
     font-size:13px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
   }
 
+  html.new-ui-v1 body.v157-authenticated.v157-home #sagsWelcome{left:var(--sags-desktop-sidebar)!important}
   html.new-ui-v1 body.v157-authenticated.v157-home #v157HomeDashboard{
     inset:0 0 0 var(--sags-desktop-sidebar)!important;
     width:auto!important;
@@ -73,7 +74,7 @@
   }
   html.new-ui-v1 body.v157-authenticated.v157-home :is(.v157HomeGrid,.m6497Grid,.v6497Grid,.v174DataHubGrid,.v181AdminGrid){
     display:grid!important;
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr))!important;
     gap:14px!important;
   }
   html.new-ui-v1 body.v157-authenticated.v157-home :is(.m6497Card,.v157HomeCard,.v174DataCard,.v181AdminCard){
@@ -95,43 +96,82 @@
     padding:0 14px!important;border-radius:9px!important;font-size:13px!important;
   }
 
-  /* MY FLIGHT / DATA WORKSPACES: desktop-sized panels and real grids */
-  html.new-ui-v1 body #fwcModal{padding:28px!important;align-items:center!important;justify-content:center!important}
+  /* MY FLIGHT: full desktop workspace beside the persistent sidebar. */
+  html.new-ui-v1 body #fwcModal{
+    inset:0 0 0 var(--sags-desktop-sidebar)!important;
+    padding:18px 20px!important;
+    align-items:stretch!important;justify-content:stretch!important;
+    background:#eef3f7!important;
+    overflow:hidden!important;
+  }
   html.new-ui-v1 body #fwcModal .fwcPanel{
-    width:min(1180px,calc(100vw - 72px))!important;
-    max-width:1180px!important;
-    height:auto!important;max-height:calc(100vh - 72px)!important;
-    padding:22px!important;border-radius:16px!important;
-    overflow:auto!important;
+    width:100%!important;max-width:none!important;
+    height:calc(100vh - 36px)!important;max-height:none!important;
+    margin:0!important;padding:18px 20px 20px!important;
+    border:1px solid #d7e1ea!important;border-radius:14px!important;
+    background:#fff!important;overflow:auto!important;
+    box-shadow:0 8px 24px rgba(18,44,70,.10)!important;
   }
   html.new-ui-v1 body #fwcModal .fwcHead{
-    align-items:center!important;padding-bottom:12px!important;
-    border-bottom:1px solid rgba(143,199,255,.15)!important;
+    display:flex!important;align-items:center!important;gap:12px!important;
+    min-height:50px!important;padding:0 0 12px!important;
+    border-bottom:1px solid #dfe7ee!important;
+    background:#fff!important;
   }
-  html.new-ui-v1 body #fwcModal .fwcHead h3{font-size:20px!important}
+  html.new-ui-v1 body #fwcModal .fwcHead>div:first-child{flex:1 1 auto!important;min-width:0!important}
+  html.new-ui-v1 body #fwcModal .fwcHead h3{
+    margin:0!important;font-size:21px!important;line-height:1.2!important;color:#102f4f!important;
+  }
+  html.new-ui-v1 body #fwcModal .sagsMyFlightNavActions{
+    display:flex!important;align-items:center!important;gap:8px!important;flex:0 0 auto!important;
+  }
+  html.new-ui-v1 body #fwcModal #v644MyFlightBack{
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    width:42px!important;min-width:42px!important;height:40px!important;min-height:40px!important;
+    padding:0!important;border-radius:10px!important;font-size:20px!important;line-height:1!important;
+    transition:none!important;animation:none!important;
+  }
+  html.new-ui-v1 body #fwcModal #v479MyFlightHome{
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    width:auto!important;min-width:94px!important;height:40px!important;min-height:40px!important;
+    padding:0 14px!important;border-radius:10px!important;font-size:13px!important;
+    background:#123a72!important;color:#fff!important;
+  }
+  html.new-ui-v1 body #fwcModal #v477Close{display:none!important}
   html.new-ui-v1 body #fwcModal .fwcTools{
-    display:grid!important;
-    grid-template-columns:180px minmax(260px,1fr) auto auto!important;
-    gap:10px!important;margin:14px 0!important;
+    display:flex!important;align-items:center!important;gap:10px!important;
+    margin:14px 0 10px!important;padding:10px!important;
+    border:1px solid #dde6ed!important;border-radius:12px!important;background:#f8fafc!important;
   }
-  html.new-ui-v1 body #fwcModal .fwcTools :is(input,button){min-height:42px!important}
+  html.new-ui-v1 body #fwcModal .fwcTools .sagsWorkDateControl{flex:0 0 172px!important;min-width:172px!important}
+  html.new-ui-v1 body #fwcModal .fwcTools .sagsFlightSearchBox{flex:1 1 420px!important;min-width:240px!important}
+  html.new-ui-v1 body #fwcModal .fwcTools>input[type="search"]{flex:1 1 420px!important;min-width:240px!important}
+  html.new-ui-v1 body #fwcModal .fwcTools>button{flex:0 0 auto!important}
+  html.new-ui-v1 body #fwcModal .fwcTools :is(input,button){min-height:40px!important}
   html.new-ui-v1 body #fwcList.v1199Queue .v1199Tabs{
-    width:420px!important;max-width:100%!important;margin:12px 0 16px!important;
+    width:auto!important;max-width:460px!important;margin:10px 0 14px!important;
   }
   html.new-ui-v1 body #fwcList.v1199Queue .v1199FlightGrid{
-    display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    gap:14px!important;align-items:start!important;
+    display:grid!important;
+    grid-template-columns:repeat(auto-fit,minmax(285px,1fr))!important;
+    gap:12px!important;align-items:stretch!important;
   }
   html.new-ui-v1 body #fwcList.v1199Queue .v1199Card{
-    margin:0!important;padding:15px!important;border-radius:13px!important;height:100%!important;
+    min-width:0!important;margin:0!important;padding:14px!important;
+    border-radius:12px!important;height:100%!important;
+    box-shadow:0 2px 8px rgba(18,44,70,.06)!important;
   }
   html.new-ui-v1 body #fwcList.v1199Queue .v1199Tasks{
-    display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;
+    display:grid!important;grid-template-columns:1fr!important;gap:7px!important;
   }
-  html.new-ui-v1 body #fwcList.v1199Queue .v1199FormTile{min-height:82px!important;padding:10px 12px!important}
+  html.new-ui-v1 body #fwcList.v1199Queue .v1199FormTile{
+    min-height:58px!important;padding:8px 10px!important;border-radius:9px!important;
+  }
   @media (min-width:1500px){
-    html.new-ui-v1 body #fwcModal .fwcPanel{width:min(1360px,calc(100vw - 96px))!important;max-width:1360px!important}
-    html.new-ui-v1 body #fwcList.v1199Queue .v1199FlightGrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+    html.new-ui-v1{--sags-desktop-content:1480px}
+    html.new-ui-v1 body.v157-authenticated.v157-home :is(.v157HomeGrid,.m6497Grid,.v6497Grid,.v174DataHubGrid,.v181AdminGrid){
+      grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    }
   }
 
   /* OPERATIONAL FORM: compact desktop command bar, not a mobile bottom dock */
