@@ -214,8 +214,8 @@
       "bytes": 27751
     },
     "./app/modules/fsags208-workspace.v1.js": {
-      "sha256": "a485874f8e162d0c4dd25d3b83393954c799edab15e6e2b97e76ea0b33c67a95",
-      "bytes": 52199
+      "sha256": "80ccbcad1b6c46ece7acf75c0755aa7db914af7bb73c31597b66860deeb61dea",
+      "bytes": 52277
     },
     "./app/modules/cargo-all-flights.v1.js": {
       "sha256": "01cac72281fad8bdf5903548515fdffb92415e66f0ba541e91ec54531fd91923",
