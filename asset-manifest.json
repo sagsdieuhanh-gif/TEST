@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.117",
-  "build": "V6.4.117-20261004-MYFLIGHT-CARGO-01",
-  "strategy": "Runtime chunk cache reuse + verified PWA memo + scoped mobile UI + bounded Firebase reads",
+  "version": "V6.4.118",
+  "build": "V6.4.118-20261004-PERFORMANCE-STABILITY-01",
+  "strategy": "TEST atomic release + build-unique PWA cache + mixed-build guard",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "15dbf505eb6a025808660f244c92d0f6e4b67a62e6fc74e4e4d10a13157ed3fb",
-      "bytes": 80944
+      "sha256": "0b52be884d055557a7f3bae382b7e29da7a72dfa01d12e478da80da778d1be9c",
+      "bytes": 81434
     },
     "./service-worker.js": {
-      "sha256": "a40fb1a08d438bc9fc9b5a5e44a98c27f05f305cc62964a4b73d9eb1d895937e",
-      "bytes": 21936
+      "sha256": "a8e157e55b775896917102067646d15cb4cc6f94088643ebecdddf12fdab0d8c",
+      "bytes": 21957
     },
     "./version.json": {
-      "sha256": "6c57aaabb8d39a90552e7125eac2df8e4ae1a74415be912b9004a93ab5bd5ef8",
-      "bytes": 753
+      "sha256": "dff01e611680e7945a2098757b7a1f835ab45b543ccf435694c1a5989b698e40",
+      "bytes": 811
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",

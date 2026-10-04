@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.117",
-  "displayVersion": "V6.4.117",
-  "label": "V6.4.117 - MY FLIGHT BACK + CARGO UI",
-  "build": "V6.4.117-20261004-MYFLIGHT-CARGO-01",
-  "releasedAt": "2026-10-04T15:00:00+07:00",
-  "type": "stability",
-  "base": "V6.4.116-20261004-FIXED-UI-AUDIT-02",
+  "version": "V6.4.118",
+  "displayVersion": "V6.4.118",
+  "label": "V6.4.118 - PERFORMANCE + STABILITY",
+  "build": "V6.4.118-20261004-PERFORMANCE-STABILITY-01",
+  "releasedAt": "2026-10-04T16:25:00+07:00",
+  "type": "performance",
+  "base": "V6.4.117-20261004-MYFLIGHT-CARGO-01",
   "updatePolicy": "required",
-  "notes": "Fix repeated My Flight back navigation: dossier returns to My Flight and the next back returns home without focus/repaint loops. Unify KH/Cargo My Flight into the same v1199 flight-card and FSAGS task-tile interface used by operational roles, while keeping FSAGS 208 ownership, receive history and publish logic unchanged.",
-  "message": "V6.4.117: sửa nút quay lại My Flight và đồng bộ giao diện Kho hàng/FSAGS 208."
+  "notes": "Reduce startup/update cost by loading runtime chunks independently, removing the unused Firebase Functions compat SDK, preconnecting the Firebase CDN, memoizing verified PWA manifest/checksum work, scoping dynamic UI normalization to changed DOM regions, and bounding/trimming roster Firebase status reads. Source monoliths remain build inputs only and are not executed by index.html.",
+  "message": "V6.4.118: tối ưu tải trang, PWA, render mobile và luồng đọc Firebase."
 }
