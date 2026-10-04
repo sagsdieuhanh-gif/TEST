@@ -72,6 +72,12 @@ const {chromium}=require('playwright'),root=path.resolve(__dirname,'../..');
     assert(dock.dock.bottom<=dock.nav.y+1,'dock/nav overlap');
     assert(dock.padding>=dock.dock.height+dock.nav.height+12,'content bottom clearance');
    }
+   if(width>=1024){
+    assert(dock.dock.y>=60&&dock.dock.y<=90,'desktop form command bar must sit near the top, not the phone bottom dock '+JSON.stringify(dock));
+    assert(Math.abs((width-dock.dock.right)-24)<=3,'desktop form command bar must align to the right workspace edge '+JSON.stringify(dock));
+    assert(dock.buttons.every(b=>b.rect.height===42),'desktop action height '+JSON.stringify(dock));
+    assert(dock.navButtons.every(b=>b.height===42),'desktop navigation height '+JSON.stringify(dock));
+   }
    // The geometry must never override business visibility or create an update loop.
    await page.evaluate(()=>{document.getElementById('v324PdfBtn').style.display='none';});
    await page.waitForTimeout(100);
