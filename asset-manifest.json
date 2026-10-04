@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.122",
-  "build": "V6.4.122-20261004-ROLLBACK118-01",
-  "strategy": "TEST atomic release + build-unique PWA cache + mixed-build guard",
+  "version": "V6.4.123",
+  "build": "V6.4.123-20261004-POSTLOGIN-UNLOCK-01",
+  "strategy": "TEST atomic release + post-login in-place unlock + restore watchdog",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "5751b309c24a8537908571d6171482c281739c6dd2962c1cd871d6fe70052844",
-      "bytes": 80734
+      "sha256": "56e1a49866db2f25d282bab081e3bc929b548467640b0c32cd0eec0d2358e494",
+      "bytes": 81221
     },
     "./service-worker.js": {
-      "sha256": "f9874d9cf88761ed402ca91a580b180f3024bf3c5c71486aa0cc4bba69041fec",
-      "bytes": 21927
+      "sha256": "e966ee25617d4b67e50acdcc964574361d79f5e8f1f2769e171c3b34ca518ee9",
+      "bytes": 21986
     },
     "./version.json": {
-      "sha256": "2ddc50e96b8d1ba66c68b2153b46d3c188b0654e2b1f0d54d0b9d69f22323228",
-      "bytes": 712
+      "sha256": "e5c693552d5bd34d7e29de750038ba6019d3df1fffa65bc19d4774b4947f552d",
+      "bytes": 818
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -560,6 +560,10 @@
     "./app/generated/runtime-5.js": {
       "sha256": "03f61b9add33905fe1b1c4467a2f0895d58cb4eb11a81aa2f47a86e4af2ebfd4",
       "bytes": 25746
+    },
+    "./app/modules/post-login-unlock.v64123.js": {
+      "sha256": "b33092a5bc87f327a09f1f7cbd1634624cb8af803aa92975cb4a8ff412de3aeb",
+      "bytes": 8462
     }
   }
 }
