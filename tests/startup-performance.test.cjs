@@ -11,7 +11,7 @@ assert(max.bytes<400000,'no executed startup JS asset may reach 400KB; largest '
 assert(scripts.includes('./app/modules/flight-governance.v1.js'),'governance engine must load');
 assert(scripts.some(p=>p.includes('startup-bundle-')),'safe IIFE bundles must be active');
 assert(!scripts.includes('./app/generated/startup-bundle-1.js'),'runtime 2-5 must not be rebound into one large startup bundle');
-assert(scripts.includes('./app/boot/33-v64120-cargo-myflight-route.js'),'Cargo exact-UI route authority must be part of startup');
+assert(scripts.includes('./app/modules/cargo-myflight-ui.v64120.js'),'Cargo exact-UI route authority must be part of startup');
 for(const n of [2,3,4,5])assert(scripts.includes('./app/generated/runtime-'+n+'.js'),'runtime-'+n+' must load independently for cache reuse');
 assert(!scripts.some(p=>/app\/core\/(?:app\.v503|runtime\.v503hf2\.bundle)\.js$/.test(p)),'source monoliths must never execute in startup');
 assert(css.some(p=>p.includes('legacy-ui-bundle-')),'legacy CSS clusters must be bundled');
