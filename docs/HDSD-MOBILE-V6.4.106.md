@@ -32,3 +32,9 @@ Bấm My Flight mở màn gọn: header 54px, ô biểu mẫu 60px, ô ngày 44p
 ## V6.4.110
 
 MENU và TRANG CHỦ ở đáy mobile và luôn dùng được trong My Flight. ĐỔI MẬT KHẨU và ĐĂNG XUẤT nằm cùng một hàng trong menu. Bỏ QUAY LẠI và TỰ NHẬN VIỆC trong My Flight. Daily Roster mặc định cập nhật một phần: đọc preview, kiểm tra và xác nhận publish; chỉ chọn FULL khi thay toàn bộ ngày. Xem báo cáo trong TEST-V6.4.110-ROSTER-MOBILE.md.
+
+
+## V6.4.111 — xác nhận Daily Roster
+
+AD bấm ĐỔ DAILY ROSTER: nút XÁC NHẬN PUBLISH luôn hiển thị trong màn roster và giữ ở đầu vùng cuộn. Chọn file, kiểm tra PREVIEW rồi xác nhận. Nút bị khóa khi chưa chọn file, đang đọc hoặc có lỗi. Chỉ đọc file không ghi phân công; thông báo lỗi được giữ để AD xử lý rồi chọn lại file. Bấm CẬP NHẬT để nạp bản V6.4.111.
+

@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.110",
-  "displayVersion": "V6.4.110",
-  "label": "V6.4.110 TEST - ROSTER & MOBILE",
-  "build": "V6.4.110-20261004-ROSTER-MOBILE-01",
-  "releasedAt": "2026-10-04T04:16:39+07:00",
-  "type": "feature",
-  "base": "V6.4.109-20261004-MYFLIGHT-ROUTE-01",
+  "version": "V6.4.111",
+  "displayVersion": "V6.4.111",
+  "label": "V6.4.111 TEST - ROSTER CONFIRM",
+  "build": "V6.4.111-20261004-ROSTER-CONFIRM-01",
+  "releasedAt": "2026-10-04T07:55:00+07:00",
+  "type": "fix",
+  "base": "V6.4.110-20261004-ROSTER-MOBILE-01",
   "updatePolicy": "optional",
-  "notes": "Mobile: MENU/TRANG CHỦ ở thanh dưới; ĐỔI MẬT KHẨU/ĐĂNG XUẤT một hàng; bỏ QUAY LẠI và TỰ NHẬN VIỆC trong My Flight. Roster: form dùng chung theo ngày/turnaround/canonical, trách nhiệm ARR/DEP riêng, preview PARTIAL/FULL, revision CAS, bảo toàn dữ liệu và audit.",
-  "message": "V6.4.110: cập nhật roster và bố cục mobile."
+  "notes": "Daily Roster: luôn hiện nút XÁC NHẬN PUBLISH cho AD; chỉ bật khi preview hợp lệ; giữ lỗi đọc file; nút nằm cố định khi cuộn.",
+  "message": "V6.4.111: sửa nút xác nhận Daily Roster cho AD."
 }
