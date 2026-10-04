@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.126",
-  "build": "V6.4.126-20261004-REMOVE-LEGACY-TOOLBAR-01",
-  "strategy": "TEST atomic release + remove legacy toolbar + mandatory clean old shell",
+  "version": "V6.4.127",
+  "build": "V6.4.127-20261004-RESTORE-FORM-DOCK-CONFIRM-01",
+  "strategy": "TEST atomic release + restore form dock + no CHUYẾN + confirm direct open + mandatory clean old shell",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "bcc2d5bafab40822569588f669bbee4f0015afc785c27390dfc0dd282858bb07",
-      "bytes": 83974
+      "sha256": "cb0a66eab5ef11aba31713f585832289bc3ef85972bc66cd29f399018a8b3e3f",
+      "bytes": 84213
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
@@ -82,16 +82,16 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "59992a9c300a4a4c005a8a66fc92a7d0eec1074269cb022ae0618637fa44bbf8",
-      "bytes": 79150
+      "sha256": "4c4984bade1c84b88a6d6d42b91a14fb00d97c6252e628d4f077cd3e329f3280",
+      "bytes": 79562
     },
     "./service-worker.js": {
-      "sha256": "f7b0134ac71578153b68ea3ce18ebc0176d1171ca2f03bc394114408510b0d72",
-      "bytes": 22043
+      "sha256": "3f55f8ebf332f4a97f395e0f15623112f617dd0769b45cc659f77415d20567c5",
+      "bytes": 22055
     },
     "./version.json": {
-      "sha256": "590ab97143be1be03318610a8a80316ed84e9cf0c55e9d3eedd134091c34504c",
-      "bytes": 716
+      "sha256": "f893e1b396379a174705151347b62230af9e52f4915b5ccb96b8bacddd76a3c0",
+      "bytes": 882
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -226,8 +226,8 @@
       "bytes": 71353
     },
     "./app/generated/core-control.js": {
-      "sha256": "d84c3e19653eea8a223f44535693e176f7b21a8b336cf4f00258e5ac95067783",
-      "bytes": 86176
+      "sha256": "5fe9660ef1429aea05e3a367b29cfca33ee7408c89a2a4f017111cd3244154f0",
+      "bytes": 85967
     },
     "./app/generated/core-flight.js": {
       "sha256": "683a957d818ab7bb075f29b570f002685a375027246fc0af0b212a78c7519490",
@@ -250,8 +250,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "d82ce403a83efcd0da070c81a9b74be6b5b6dd172ea12b81688e473bcc350440",
-      "bytes": 134809
+      "sha256": "bf4cfb77c82c9c2a536e21c0d49b6f83b9a9405edf26ce20f8f4ca89f95666f1",
+      "bytes": 134678
     },
     "./app/modules/feature-loader.v1.js": {
       "sha256": "dcd4029fa8de624e597b695906ae4adc9d3d61d7dad013c52d5895bb4249a6fd",
@@ -526,8 +526,8 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "5b0092b1ae6558e7ccf1a3836386eaa0ed1ab16ae7a49359b40f1f559f79a832",
-      "bytes": 24842
+      "sha256": "99a71ad7f4629a278a9f73d8562373540fdbbf1db150ebc4abd1784b6f502eae",
+      "bytes": 25469
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
       "sha256": "2109a24ab29092ffe728bde74f70a3c77bb320bbfe8fa44f25c4f068b5064150",
