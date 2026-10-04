@@ -10,7 +10,11 @@ assert(css.includes('bottom:calc(var(--sags-nav-bar-height) + env(safe-area-inse
 assert(css.includes('grid-template-columns:repeat(2,minmax(0,1fr))'),'Menu/Home two-column row missing');
 assert(css.includes('grid-template-columns:repeat(var(--sags-action-count,4),minmax(0,1fr))'),'compact form action row missing');
 assert(css.includes('--sags-form-dock-height,56px'),'content must reserve measured dock height');
+assert(css.includes('V6.4.114 PROJECT-WIDE BUTTON AUDIT'),'project-wide button audit guard missing');
+assert(css.includes('input[type="submit"]'),'submit controls must inherit fixed UI geometry');
+assert(css.includes('.templateActions'),'legacy modal action rows must be normalized');
 assert(js.includes("v163SignBtn"),'existing signature action must be preserved in the action row');
+assert(js.includes('tagLegacyButtons'),'dynamic legacy buttons must be tagged by runtime guard');
 assert(js.includes('HO SO BIEU MAU')&&js.includes('CHO NHAN'),'duplicate status cleanup missing');
 assert(rules.includes('THÊM CHỨC NĂNG MỚI NHƯNG KHÔNG THÊM MỘT PHONG CÁCH NÚT MỚI'),'project UI rule missing');
 console.log('Fixed UI rule checks passed.');
