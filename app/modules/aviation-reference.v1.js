@@ -228,11 +228,11 @@
   document.addEventListener('click',e=>{
     if(e.target?.closest?.('#roleLoginSubmit,[data-v6494-key],[data-ops-route],[data-ops-retry],#v479MyFlightHome,.fwcHead button'))setTimeout(schedule,0);
   },true);
-  if(typeof MutationObserver==='function'){
-    const workspaceObserver=new MutationObserver(list=>{
-      if(list.some(m=>m.target?.nodeType===1&&(m.target.closest?.('#fwcModal')||m.target.id==='fwcList')))void decorateWorkspaceFlights();
-    });
-    try{workspaceObserver.observe(document.body,{subtree:true,childList:true})}catch(_){}
-  }
+  const refreshWorkspaceBrand=()=>{void decorateWorkspaceFlights();setTimeout(()=>void decorateWorkspaceFlights(),90);setTimeout(()=>void decorateWorkspaceFlights(),320);};
+  document.addEventListener('click',e=>{
+    if(e.target?.closest?.('.v157MenuItem[data-v157-key="myflight"],#roleBtnFlights,#roleBtnRosterFlights,#fwcModal button'))refreshWorkspaceBrand();
+  },true);
+  document.addEventListener('change',e=>{if(e.target?.id==='fwcDate')refreshWorkspaceBrand()},true);
+  window.addEventListener('sags:personal-roster-updated',refreshWorkspaceBrand);
   setTimeout(schedule,350); setTimeout(schedule,1400);
 })();
