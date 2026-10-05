@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.101",
-  "displayVersion": "V6.4.101",
-  "label": "V6.4.101 - AIRLINE CAROUSEL + MOBILE UX + SPEED",
-  "build": "V6.4.101-20261006-MOBILE-UX-SPEED-01",
-  "releasedAt": "2026-10-05T17:41:10.248181+00:00",
-  "type": "ui-performance-enhancement",
-  "base": "V6.4.100-20261005-HOME-AIRLINE-SPEED-01",
+  "version": "V6.4.102",
+  "displayVersion": "V6.4.102",
+  "label": "V6.4.102 - SUPERVISOR ALL FLIGHTS + AD CONTRAST",
+  "build": "V6.4.102-20261006-SUPERVISOR-ALL-FLIGHTS-AD-CONTRAST-01",
+  "releasedAt": "2026-10-05T18:41:24Z",
+  "type": "ui-workflow-fix",
+  "base": "V6.4.101-20261006-MOBILE-UX-SPEED-01",
   "updatePolicy": "required",
-  "notes": "Logo HAV do người dùng cung cấp; AK và FD tách riêng, tên hãng đầy đủ đã đối chiếu nguồn chính thức. Hàng logo cao gấp đôi, mũi tên chuyển hãng. Bảng chuyến theo giờ, số dòng vừa màn hình và Xem tất cả. Tự ký chỉ chạy đúng chuyến đang mở, thiếu mẫu chữ ký không chặn trang chủ. Nhập nhanh mobile đồng nhất navy/cyan, tối ưu vùng chạm và bàn phím. Chỉ xử lý popup đang mở, bỏ vẽ lại biểu mẫu khi chuyển ô nhanh, gom 31 CSS thành 2 request, cache logo nội bộ.",
-  "message": "V6.4.101: hãng rõ tên, bảng chuyến gọn, nhập nhanh mobile và phản hồi nhanh hơn."
+  "notes": "Giữ nguyên toàn bộ tối ưu V6.4.101 và nhập các phần cần thiết từ V6.4.89 mà không hạ phiên bản: sửa tương phản AD/DAILY ROSTER/MENU/QUAY LẠI; AD, Kho hàng, cấp Ca, cấp Đội và cấp Phòng xem toàn bộ chuyến trong Danh sách chuyến bay hôm nay, chỉ Nhân viên giữ phạm vi chuyến được phân công; tên FSAGS 54/94 đọc đúng cấu hình Form Manager; logo hãng hiển thị trong card MY FLIGHT trên PC/mobile, chỉ dùng asset nội bộ và fallback mã hãng, không tải logo từ CDN ngoài; bộ logo được đưa vào PWA bootstrap để tải/cache cùng ứng dụng.",
+  "message": "V6.4.102: cấp quản lý xem toàn bộ chuyến, nhân viên chỉ xem chuyến được phân; đồng bộ logo local và sửa tương phản AD."
 }
