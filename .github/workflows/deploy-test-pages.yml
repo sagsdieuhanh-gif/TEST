@@ -40,6 +40,8 @@ jobs:
         run: node tests/v64104-mobile-perf-cleanup.test.cjs
       - name: Verify V6.4.105 MY FLIGHT stability
         run: node tests/v64105-myflight-stability.test.cjs
+      - name: Verify V6.4.106 MY FLIGHT chips and stability
+        run: node tests/v64106-myflight-chip-stability-perf.test.cjs
       - name: Verify pinned cache integrity
         run: node tests/pwa-staging.test.cjs
       - uses: actions/configure-pages@v5
