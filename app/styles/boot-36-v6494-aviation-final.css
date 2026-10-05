@@ -35,7 +35,7 @@ html.new-ui-v1 body.v6494-home-active :is(#roleHomeIdle,#v157HomeDashboard,#v157
 .v6494Account button{min-height:40px;border:1px solid var(--a-border);border-radius:9px;background:#0a2130;color:#8ea8b7;display:flex;align-items:center;justify-content:center;gap:5px;font-size:9px;font-weight:700}.v6494Account button svg{width:15px;height:15px}
 .v6494Main{position:relative;flex:1;min-width:0;min-height:0;background:radial-gradient(circle at 80% 0,rgba(20,103,139,.16),transparent 32%),linear-gradient(180deg,#071824,#06131f);display:flex;flex-direction:column}
 .v6494Top{height:62px;flex:0 0 62px;display:flex;align-items:center;gap:10px;padding:9px 20px;border-bottom:1px solid var(--a-border);background:rgba(6,19,31,.91);backdrop-filter:blur(10px)}
-.v6494MobileBrand{display:none}.v6494Search{height:42px;max-width:560px;flex:1;display:flex;align-items:center;gap:9px;padding:0 12px;border:1px solid var(--a-border);border-radius:10px;background:#0a2233;color:#718fa2}.v6494Search svg{width:17px;height:17px}.v6494Search input{min-width:0;flex:1;border:0!important;outline:0!important;background:transparent!important;color:#eef8fb!important;-webkit-text-fill-color:#eef8fb!important;font-size:12px!important}.v6494Search input::placeholder{color:#6c8798}
+.v6494MobileBrand{display:none}.v6494MobileProfile{display:none}.v6494Search{height:42px;max-width:560px;flex:1;display:flex;align-items:center;gap:9px;padding:0 12px;border:1px solid var(--a-border);border-radius:10px;background:#0a2233;color:#718fa2}.v6494Search svg{width:17px;height:17px}.v6494Search input{min-width:0;flex:1;border:0!important;outline:0!important;background:transparent!important;color:#eef8fb!important;-webkit-text-fill-color:#eef8fb!important;font-size:12px!important}.v6494Search input::placeholder{color:#6c8798}
 .v6494Notice{width:42px;height:42px;border:1px solid var(--a-border);border-radius:10px;background:#0a2233;color:#a7bdca;display:grid;place-items:center}.v6494Notice:hover{color:#fff;border-color:var(--a-border2)}
 .v6494TopIdentity{margin-left:auto;text-align:right}.v6494TopIdentity b{display:block;color:#edf7fa;font-size:11px}.v6494TopIdentity small{display:block;margin-top:2px;color:#6d8a9c;font-size:8px}
 .v6494Scroll{flex:1;min-height:0;overflow:auto;padding:18px 22px 32px}.v6494Scroll>*{max-width:1380px;margin-inline:auto}
@@ -75,11 +75,9 @@ html.new-ui-v1 body :is(.v174DataHubPanel,.v181AdminPanel,.sagsAdminPanel,.drPan
 /* Mobile is a separate field-operation layout */
 @media(max-width:767px){
  #v6494AviationHome.show{display:block;overflow:hidden}
- .v6494Side{position:absolute;inset:58px 0 64px;width:auto;height:auto;padding:0 10px 16px;border:0;background:transparent;overflow:auto}
- .v6494Brand{display:none}.v6494Profile{margin:8px 0 10px;grid-template-columns:46px minmax(0,1fr);padding:10px;background:linear-gradient(145deg,rgba(13,54,75,.94),rgba(7,31,47,.96));border-radius:12px}.v6494Avatar{width:46px;height:46px}.v6494Profile b{font-size:13px}.v6494Profile small,.v6494Profile span{font-size:9px}
- .v6494Nav{overflow:visible;padding:0}.v6494Nav section{margin:8px 0 12px}.v6494Nav h3{margin:0 2px 6px;font-size:8px}
- .v6494Nav section{display:block}.v6494Nav section button{display:none}
- .v6494Account{display:none}
+ .v6494Side{display:none}
+ .v6494MobileProfile{display:grid;grid-template-columns:46px minmax(0,1fr);gap:9px;align-items:center;margin:8px 0 10px;padding:10px;border:1px solid var(--a-border);border-radius:12px;background:linear-gradient(145deg,rgba(13,54,75,.94),rgba(7,31,47,.96))}
+ .v6494MobileProfile .v6494Avatar{width:46px;height:46px}.v6494MobileProfile small{display:block;color:#718ea0;font-size:9px}.v6494MobileProfile b{display:block;margin:2px 0;color:#f6fbfd;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.v6494MobileProfile span{display:block;color:#70d5df;font-size:9px}
  .v6494Main{position:static;display:block;background:linear-gradient(180deg,#06131f,#071824)}
  .v6494Top{position:absolute;left:0;right:0;top:0;height:58px;padding:calc(7px + env(safe-area-inset-top)) 10px 7px;border-bottom:1px solid var(--a-border);background:#06131f;z-index:3}
  .v6494MobileBrand{display:block;min-width:0;flex:1}.v6494MobileBrand b{display:block;color:#fff;font-size:14px;letter-spacing:.04em}.v6494MobileBrand small{display:block;margin-top:2px;color:#607e91;font-size:6.5px;letter-spacing:.13em}
