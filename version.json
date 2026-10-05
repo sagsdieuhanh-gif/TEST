@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.102",
-  "displayVersion": "V6.4.102",
-  "label": "V6.4.102 - SUPERVISOR ALL FLIGHTS + AD CONTRAST",
-  "build": "V6.4.102-20261006-SUPERVISOR-ALL-FLIGHTS-AD-CONTRAST-01",
-  "releasedAt": "2026-10-05T18:41:24Z",
-  "type": "ui-workflow-fix",
-  "base": "V6.4.101-20261006-MOBILE-UX-SPEED-01",
+  "version": "V6.4.103",
+  "displayVersion": "V6.4.103",
+  "label": "V6.4.103 - DASHBOARD FIDELITY",
+  "build": "V6.4.103-20261006-DASHBOARD-FIDELITY-01",
+  "releasedAt": "2026-10-05T20:14:40Z",
+  "type": "ui-fidelity",
+  "base": "V6.4.102-20261006-SUPERVISOR-ALL-FLIGHTS-AD-CONTRAST-01",
   "updatePolicy": "required",
-  "notes": "Giữ nguyên toàn bộ tối ưu V6.4.101 và nhập các phần cần thiết từ V6.4.89 mà không hạ phiên bản: sửa tương phản AD/DAILY ROSTER/MENU/QUAY LẠI; AD, Kho hàng, cấp Ca, cấp Đội và cấp Phòng xem toàn bộ chuyến trong Danh sách chuyến bay hôm nay, chỉ Nhân viên giữ phạm vi chuyến được phân công; tên FSAGS 54/94 đọc đúng cấu hình Form Manager; logo hãng hiển thị trong card MY FLIGHT trên PC/mobile, chỉ dùng asset nội bộ và fallback mã hãng, không tải logo từ CDN ngoài; bộ logo được đưa vào PWA bootstrap để tải/cache cùng ứng dụng.",
-  "message": "V6.4.102: cấp quản lý xem toàn bộ chuyến, nhân viên chỉ xem chuyến được phân; đồng bộ logo local và sửa tương phản AD."
+  "notes": "Tinh chỉnh trang chủ theo mẫu duyệt: logo hãng trong Danh sách chuyến bay hiển thị trực tiếp không còn khung nền; ba card Chuyến đang làm, Đã hoàn thành hôm nay, Chờ xử lý dùng icon lớn, số nổi bật, dòng đơn vị, CTA và nền gradient/decorative line-art như mẫu; đồng bộ hero, dải hãng, heading, counter/refresh/Xem tất cả, bảng chuyến, badge trạng thái, nút Mở, spacing và typography. Giữ nguyên logic V6.4.102: cấp quản lý xem toàn bộ chuyến, nhân viên chỉ xem chuyến được phân; logo vẫn dùng local asset/PWA cache.",
+  "message": "V6.4.103: dashboard sát mẫu hơn, logo bảng không khung và 3 card trạng thái được thiết kế lại."
 }
