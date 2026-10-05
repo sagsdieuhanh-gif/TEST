@@ -34,6 +34,8 @@ jobs:
         run: |
           node tests/home-overview-owner.test.cjs
           node tests/v64102-supervisor-scope.test.cjs
+      - name: Verify V6.4.103 dashboard fidelity
+        run: node tests/v64103-dashboard-fidelity.test.cjs
       - name: Verify pinned cache integrity
         run: node tests/pwa-staging.test.cjs
       - uses: actions/configure-pages@v5
