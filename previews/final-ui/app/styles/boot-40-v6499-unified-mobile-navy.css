@@ -1,0 +1,356 @@
+/* E-REPORT SAGS V6.4.99 — UNIFIED MOBILE NAVY
+   MOBILE ONLY <=767px. Desktop/PC remains unchanged.
+   One visual system for the outer mobile shell + MY FLIGHT workspace. */
+@media(max-width:767px){
+  :root{
+    --m6499-bg:#031523;
+    --m6499-bg2:#061c31;
+    --m6499-surface:#0b2945;
+    --m6499-surface2:#0e3152;
+    --m6499-surface3:#123858;
+    --m6499-border:#275d80;
+    --m6499-border-soft:#1c4a6b;
+    --m6499-text:#f5f9fd;
+    --m6499-muted:#9bb9ce;
+    --m6499-blue:#69b9ff;
+    --m6499-blue2:#2f8bd7;
+    --m6499-green:#4ce2a2;
+    --m6499-green-bg:#0b4a43;
+    --m6499-shadow:0 12px 30px rgba(0,8,20,.22);
+  }
+
+  /* ---------- OUTER MOBILE HOME ---------- */
+  html.new-ui-v1 body.v6497-mobile-shell #v6497MobileHome{
+    background:
+      radial-gradient(circle at 90% -2%,rgba(50,120,205,.17),transparent 28%),
+      linear-gradient(180deg,#06264a 0%,#041b30 19%,#031523 100%)!important;
+    color:var(--m6499-text)!important;
+  }
+
+  #v6497MobileHome .m6497Mast{
+    background:linear-gradient(135deg,#0a3d77 0%,#072f63 58%,#062750 100%)!important;
+    border-bottom-color:rgba(118,177,220,.20)!important;
+  }
+  #v6497MobileHome .m6497BrandSub{color:#9bb9ce!important}
+  #v6497MobileHome .m6497Bell{color:#edf6fd!important}
+  #v6497MobileHome .m6497MiniAvatar{
+    background:linear-gradient(145deg,#4f93c9,#6fb2db)!important;
+    color:#fff!important;
+  }
+
+  #v6497MobileHome .m6497Nav{
+    background:rgba(5,28,48,.96)!important;
+    border-bottom-color:rgba(95,151,190,.18)!important;
+  }
+  #v6497MobileHome .m6497NavBtn{
+    background:#0a2d4c!important;
+    border-color:#3b6483!important;
+    color:#fff!important;
+  }
+
+  #v6497MobileHome .m6497User{
+    background:linear-gradient(135deg,#0e3152,#0a2742)!important;
+    border-color:#2a5c7d!important;
+    box-shadow:none!important;
+  }
+  #v6497MobileHome .m6497UserAvatar{
+    background:linear-gradient(145deg,#4f9ed7,#68bbdf)!important;
+    color:#fff!important;
+  }
+  #v6497MobileHome .m6497UserJob{color:var(--m6499-muted)!important}
+  #v6497MobileHome .m6497UserOnline{color:var(--m6499-green)!important}
+  #v6497MobileHome .m6497Role{
+    background:#08233c!important;border-color:#345c78!important;color:#d9ecf8!important;
+  }
+
+  #v6497MobileHome .m6497SectionTitle{color:#a6c1d5!important}
+
+  /* All feature cards share one navy family. Accent classes no longer recolor full cards. */
+  #v6497MobileHome .m6497Card,
+  #v6497MobileHome .m6497Card.green,
+  #v6497MobileHome .m6497Card.purple,
+  #v6497MobileHome .m6497Card.orange,
+  #v6497MobileHome .m6497Card.red,
+  #v6497MobileHome .m6497Card.teal{
+    background:linear-gradient(135deg,#0d2d4d,#09253f)!important;
+    border-color:#245679!important;
+    color:#fff!important;
+    box-shadow:none!important;
+  }
+  #v6497MobileHome .m6497Card .m6497Icon,
+  #v6497MobileHome .m6497Card.green .m6497Icon,
+  #v6497MobileHome .m6497Card.purple .m6497Icon,
+  #v6497MobileHome .m6497Card.orange .m6497Icon,
+  #v6497MobileHome .m6497Card.red .m6497Icon,
+  #v6497MobileHome .m6497Card.teal .m6497Icon{
+    background:linear-gradient(145deg,#15598b,#247db7)!important;
+    border-color:#3f86b4!important;
+    color:#eef8ff!important;
+  }
+  #v6497MobileHome .m6497Card[data-v6497-action="closeout"] .m6497Icon,
+  #v6497MobileHome .m6497Card[data-v6497-action="myflight"] .m6497Icon{
+    background:linear-gradient(145deg,#126b72,#1696a1)!important;
+  }
+  #v6497MobileHome .m6497Card[data-v6497-action="closeout"]{
+    border-color:#2a7d83!important;
+  }
+  #v6497MobileHome .m6497Meta{color:#9dbcd1!important}
+  #v6497MobileHome .m6497Card::after{color:#c7deec!important}
+
+  #v6497MobileHome .m6497Footer{
+    border-top-color:rgba(92,147,181,.16)!important;
+  }
+  #v6497MobileHome .m6497FooterBtn.password{
+    background:#0b365a!important;border-color:#245e87!important;color:#f4f9fd!important;
+  }
+  #v6497MobileHome .m6497FooterBtn.logout{
+    background:#10273a!important;border-color:#36546c!important;color:#c5d4df!important;
+  }
+  #v6497MobileHome .m6497Version{
+    background:#0a2b49!important;border-color:#245677!important;color:#dcecf7!important;
+  }
+  #v6497MobileHome .m6497Dot{background:var(--m6499-green)!important}
+
+  /* ---------- MY FLIGHT / FLIGHT WORKSPACE ---------- */
+  html.new-ui-v1 #fwcModal{
+    inset:0!important;
+    padding:0!important;
+    align-items:stretch!important;
+    justify-content:stretch!important;
+    background:
+      radial-gradient(circle at 90% 0%,rgba(54,119,194,.18),transparent 26%),
+      linear-gradient(180deg,#06284b 0%,#041a2f 20%,#031523 100%)!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcPanel{
+    width:100vw!important;
+    max-width:100vw!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    margin:0!important;
+    padding:calc(10px + env(safe-area-inset-top)) 12px calc(16px + env(safe-area-inset-bottom))!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    color:var(--m6499-text)!important;
+    box-shadow:none!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+
+  html.new-ui-v1 #fwcModal .fwcHead{
+    position:sticky!important;
+    top:0!important;
+    z-index:4!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    align-items:center!important;
+    gap:10px!important;
+    padding:10px 0 14px!important;
+    margin:0 0 10px!important;
+    border-bottom:1px solid rgba(79,134,173,.28)!important;
+    background:linear-gradient(180deg,rgba(3,21,35,.98),rgba(3,21,35,.92))!important;
+    backdrop-filter:blur(10px)!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcHead>div{min-width:0!important}
+  html.new-ui-v1 #fwcModal .fwcHead h3{
+    margin:0!important;
+    color:#fff!important;
+    font:900 25px/1.05 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+    letter-spacing:-.02em!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcSub{
+    margin-top:5px!important;
+    color:#9ebcd0!important;
+    font:600 11px/1.35 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcHead .fwcBtn{
+    min-width:46px!important;
+    width:auto!important;
+    min-height:46px!important;
+    padding:0 13px!important;
+    border-radius:14px!important;
+    background:#0b2f4e!important;
+    border:1px solid #315f80!important;
+    color:#fff!important;
+  }
+
+  html.new-ui-v1 #fwcModal #fwcBody{padding:0!important}
+
+  html.new-ui-v1 #fwcModal .fwcTools{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+    margin:0 0 12px!important;
+    padding:13px!important;
+    border-radius:17px!important;
+    background:linear-gradient(135deg,#0a2b49,#08243d)!important;
+    border:1px solid #285878!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcTools input,
+  html.new-ui-v1 #fwcModal .fwcTools .sagsFlightSearchBox,
+  html.new-ui-v1 #fwcModal .fwcTools .sagsFlightSearchBox input{
+    min-width:0!important;
+    width:100%!important;
+    min-height:50px!important;
+    box-sizing:border-box!important;
+    border-radius:13px!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcTools input,
+  html.new-ui-v1 #fwcModal .fwcTools .sagsFlightSearchBox input{
+    background:#0a2239!important;
+    border:1px solid #396583!important;
+    color:#fff!important;
+    font:750 15px system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcTools input::placeholder,
+  html.new-ui-v1 #fwcModal .fwcTools .sagsFlightSearchBox input::placeholder{
+    color:#82a5bc!important;opacity:1!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcTools .sagsFlightSearchBox>span{
+    display:none!important;
+  }
+
+  html.new-ui-v1 #fwcModal .fwcTools>.fwcBtn{
+    min-height:50px!important;
+    width:100%!important;
+    border-radius:13px!important;
+    background:#0c3659!important;
+    border:1px solid #376b91!important;
+    color:#eef8ff!important;
+    font:850 12px/1.15 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcTools>.fwcBtn.green{
+    background:linear-gradient(135deg,#2f8bd7,#68b9ff)!important;
+    border-color:#68b9ff!important;
+    color:#062044!important;
+  }
+
+  html.new-ui-v1 #fwcModal .fwcStatus{
+    margin:0 0 12px!important;
+    padding:12px 13px!important;
+    border-radius:14px!important;
+    background:#0b2b49!important;
+    border:1px solid #295a7c!important;
+    color:#b8d0e0!important;
+    font:600 11px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcStatus.err{
+    background:#3b2028!important;border-color:#7f3e4b!important;color:#ffd4dc!important;
+  }
+
+  html.new-ui-v1 #fwcModal .fwcFlight{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:10px!important;
+    margin:0 0 11px!important;
+    padding:14px!important;
+    border-radius:17px!important;
+    border:1px solid #245779!important;
+    background:linear-gradient(135deg,#0d2d4c,#09243d)!important;
+    box-shadow:none!important;
+    color:#fff!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcFlight:hover{
+    background:linear-gradient(135deg,#0d2d4c,#09243d)!important;
+    border-color:#2f6b91!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcFlightTitle{
+    color:#fff!important;
+    font:900 29px/1.05 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+    letter-spacing:-.02em!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcMeta{
+    color:#a9c5d8!important;
+    font:600 12px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  }
+
+  html.new-ui-v1 #fwcModal .fwcBadges,
+  html.new-ui-v1 #fwcModal .fwcModules,
+  html.new-ui-v1 #fwcModal .fwcDeptStatuses{
+    gap:6px!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcBadge,
+  html.new-ui-v1 #fwcModal .fwcDeptStatus{
+    padding:5px 8px!important;
+    border-radius:999px!important;
+    background:#102f4d!important;
+    border:1px solid #315d7b!important;
+    color:#bfd4e2!important;
+    font:800 9.5px/1 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcDeptStatus.done,
+  html.new-ui-v1 #fwcModal .fwcBadge:not(.warn){
+    background:#0a433e!important;
+    border-color:#267b70!important;
+    color:#76efc0!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcDeptStatus.working{
+    background:#0b3558!important;border-color:#2b6790!important;color:#9fd0ef!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcBadge.warn,
+  html.new-ui-v1 #fwcModal .fwcDeptStatus.waiting{
+    background:#102f4d!important;border-color:#315d7b!important;color:#bfd4e2!important;
+  }
+
+  html.new-ui-v1 #fwcModal .fwcFlight>.fwcBtn{
+    width:100%!important;
+    min-height:48px!important;
+    border-radius:13px!important;
+    background:#0d3659!important;
+    border:1px solid #3b6c8f!important;
+    color:#f4f9fd!important;
+    font:850 12px/1.1 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  }
+
+  html.new-ui-v1 #fwcModal .fwcBack{margin:0 0 10px!important}
+  html.new-ui-v1 #fwcModal .fwcBack .fwcBtn{
+    min-height:44px!important;border-radius:12px!important;background:#0b2f4f!important;
+    border:1px solid #315e80!important;color:#fff!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcWorkspaceHead{
+    margin:0 0 12px!important;
+    padding:14px!important;
+    border-radius:17px!important;
+    background:linear-gradient(135deg,#0d2d4d,#09243d)!important;
+    border:1px solid #245779!important;
+    color:#fff!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcWorkspaceTitle{
+    color:#fff!important;
+    font:900 26px/1.05 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcUnitGrid{
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcUnit,
+  html.new-ui-v1 #fwcModal .fwcUnit.mine{
+    padding:14px!important;
+    border-radius:16px!important;
+    background:#0b2945!important;
+    border:1px solid #245779!important;
+    color:#fff!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcUnit.mine{
+    border-color:#2c756f!important;
+    background:#0a3437!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcUnit h4{color:#fff!important}
+  html.new-ui-v1 #fwcModal .fwcOwner,
+  html.new-ui-v1 #fwcModal .fwcTasks,
+  html.new-ui-v1 #fwcModal .fwcNotice{
+    color:#a8c3d5!important;
+  }
+  html.new-ui-v1 #fwcModal .fwcUnitState{
+    background:#102f4d!important;color:#bfd4e2!important;border:1px solid #315d7b!important;
+  }
+
+  @media(max-width:390px){
+    html.new-ui-v1 #fwcModal .fwcTools{grid-template-columns:1fr!important}
+    html.new-ui-v1 #fwcModal .fwcFlightTitle{font-size:26px!important}
+    html.new-ui-v1 #fwcModal .fwcHead h3{font-size:22px!important}
+  }
+}
