@@ -1,8 +1,8 @@
-/* E-REPORT SAGS V6.4.97 · DOSSIER NOTIFICATIONS + UPPERCASE FORMS
+/* E-REPORT SAGS V6.4.99 · DOSSIER NOTIFICATIONS + UPPERCASE FORMS
    Event-driven only: no polling and no DOM-wide MutationObserver. */
 (function(root){
 'use strict';
-const BUILD='V6.4.97-20261005-DOSSIER-NOTIFY-UPPER-01';
+const BUILD='V6.4.99-20261005-PERFORMANCE-01';
 if(root.__SAGS_V6497_DOSSIER_ENH__===BUILD)return;
 root.__SAGS_V6497_DOSSIER_ENH__=BUILD;
 
@@ -71,7 +71,8 @@ function wrapFinalData(){
 }
 function wrapSync(name){
  const base=root[name];if(typeof base!=='function'||base.__sagsUppercaseV6497)return;
- const fn=function(){beforeFormAction();const out=base.apply(this,arguments);uppercaseFormState();return out};fn.__sagsUppercaseV6497=1;fn.__base=base;root[name]=fn;
+ const boundary=!['draw','persist'].includes(name);
+ const fn=function(){if(boundary)beforeFormAction();const out=base.apply(this,arguments);if(boundary)uppercaseFormState();return out};fn.__sagsUppercaseV6497=1;fn.__base=base;root[name]=fn;
  try{if(name==='draw')draw=fn;else if(name==='persist')persist=fn;else if(name==='commitEntry')commitEntry=fn;else if(name==='qteSaveCompact')qteSaveCompact=fn;else if(name==='fs09qSave')fs09qSave=fn;else if(name==='sendReport')sendReport=fn;else if(name==='sendKH208Sheet')sendKH208Sheet=fn;else if(name==='saveKH208Local')saveKH208Local=fn}catch(_){}
 }
 function installUppercase(){
@@ -82,7 +83,7 @@ function installUppercase(){
   document.head.appendChild(st);
  }
  ['draw','persist','commitEntry','qteSaveCompact','fs09qSave','sendReport','sendKH208Sheet','saveKH208Local','sags5494ExportCurrentPdf'].forEach(wrapSync);
- document.addEventListener('input',e=>{if(!e.isComposing&&uppercaseEditor(e.target))uppercaseFormState()},true);
+ document.addEventListener('input',e=>{if(!e.isComposing)uppercaseEditor(e.target)},true);
  document.addEventListener('change',e=>{if(uppercaseEditor(e.target))uppercaseFormState()},true);
  document.addEventListener('blur',e=>{if(uppercaseEditor(e.target))uppercaseFormState()},true);
  root.addEventListener('beforeprint',beforeFormAction,{passive:true});

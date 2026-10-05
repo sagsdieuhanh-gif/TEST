@@ -316,13 +316,15 @@ const QUEUE_STATUS_FIELDS=['claimStatus','workPartStatus','taskStatusV333','task
 const queueStatusCache=new Map();
 root.sagsV477InvalidateQueueStatus=function(){queueStatusCache.clear()};
 async function readState(aid,force=false){
-  // Only status leaves, never the entire session/envelope/signatures.
   aid=S(aid);if(!aid)return {};
   const k=me()+'|'+aid,old=queueStatusCache.get(k);
   if(!force&&old&&Date.now()-old.at<30000)return old.promise;
-  const promise=(async()=>{const out={};await Promise.all(QUEUE_STATUS_FIELDS.map(async field=>{
-    try{const val=(await db(`roster_sessions/${safe(aid)}/${field}`).once('value')).val();if(val!==null&&val!==undefined)out[field]=val}catch(_){}
-  }));return out})();queueStatusCache.set(k,{at:Date.now(),promise});
+  const promise=(async()=>{
+    const raw=(await db('roster_sessions/'+safe(aid)).once('value')).val()||{},out={};
+    for(const field of QUEUE_STATUS_FIELDS){const val=raw?.[field];if(val!==null&&val!==undefined)out[field]=val}
+    return out;
+  })();
+  queueStatusCache.set(k,{at:Date.now(),promise});
   try{return await promise}catch(e){queueStatusCache.delete(k);throw e}
 }
 const dossierDocCache=new Map();
@@ -494,7 +496,7 @@ async function openTask(aid,fid,completed,cardDate='',exact=false,button=null){
       alert(`Phân công của bạn ngày ${date} vừa thay đổi hoặc không còn hiệu lực. Hệ thống sẽ tải lại danh sách, không mở nhầm form khác.`);
       return void renderPersonal(date);
     }
-    if(!completed){await root.sagsAirlineFormPolicy?.ready(true);if(root.sagsAirlineFormPolicy?.allowed(item,item.formGroup)===false)throw new Error("Biểu mẫu này chưa được AD bật cho hãng hoặc loại tàu của chuyến.");}
+    if(!completed){await root.sagsAirlineFormPolicy?.ready();if(root.sagsAirlineFormPolicy?.allowed(item,item.formGroup)===false)throw new Error("Biểu mẫu này chưa được AD bật cho hãng hoặc loại tàu của chuyến.");}
     const realFid=S(item.flightId||fid);
     // Completed forms also go through the same exact-assignment NHẬN handler.
     if(!completed)try{await clearStaleClaimIfNeeded(item)}catch(e){

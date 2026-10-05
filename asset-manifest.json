@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.98",
-  "build": "V6.4.98-20261005-FIREBASE-REGISTER-01",
-  "strategy": "atomic release + Firebase Auth registration + users/{UID} account source + permission regression gate",
+  "version": "V6.4.99",
+  "build": "V6.4.99-20261005-PERFORMANCE-01",
+  "strategy": "atomic release + event-driven aviation UI + compact RTDB status reads + performance regression gate",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "fd282d329ff5cadeaf81cb522b651c61565c220ba661c6ed120381ebff6c68d7",
-      "bytes": 82778
+      "sha256": "87a870acb9c6874278eb19ef368e315e39344066ad1e9fdd0a936ddf9f78cbcd",
+      "bytes": 82693
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
@@ -74,8 +74,8 @@
       "bytes": 10344
     },
     "./app/modules/ui-preferences.v1.js": {
-      "sha256": "7e009eb51461f70efafed764b84f5f46c136355802686f33a6e3bbe5031c5d99",
-      "bytes": 30188
+      "sha256": "ef582cbd780ff39336c2640880c60aa6e40453ef72242e1f6527eee31e9694fe",
+      "bytes": 30606
     },
     "./app/styles/app.bundle.css": {
       "sha256": "013be6bee9f38bf79864dcab0658f438966d77172692446f698c042539601c2e",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "eff7a0c25aaf7e26765f5397f249304bd64f236123c70b4767b497d151d8dd72",
-      "bytes": 81689
+      "sha256": "bc596231786f459f0dd5927d7345fbf97a6c757d02dcdc55bd38e7cad4c5d140",
+      "bytes": 81095
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "af5c7ad7e5f4b94ac1e5f315b4a85e07c7a23419d6582134a8661e003e98df5d",
-      "bytes": 22155
+      "sha256": "cfff46ab4c21765620030723262e3a7c9f5155a7ce87ddc427ef38a9a6c9bdb8",
+      "bytes": 22137
     },
     "./version.json": {
-      "sha256": "9195e1fef508cd8302871fe83e9f8cf5e5f7a87ded997835bc8b1e37b25ac1ef",
-      "bytes": 925
+      "sha256": "e442158796f51bfcbdf3029527ebdf1a8d8fe59996391a6a8c1215578d0c41c6",
+      "bytes": 976
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -562,8 +562,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "fec515a97e2a8725a314aa5967c466d296d4b0c1b57249adcd1a97c9cf074ec4",
-      "bytes": 134617
+      "sha256": "0353f7157790c513b0442495bfc52442ee06250a3558070156b6caf0d93a35c1",
+      "bytes": 134611
     },
     "./app/generated/runtime-2.js": {
       "sha256": "1f39b1b745951be59ae0f2882d190a3359b056c69682e256a049fdb7dceb0bd4",
@@ -582,8 +582,8 @@
       "bytes": 25747
     },
     "./app/modules/feature-loader.v1.js": {
-      "sha256": "ca0fc1db76966533f6c6d0d230cae735ebc6d0e785280ce9dbc74394995ef0c5",
-      "bytes": 1678
+      "sha256": "e26c16a54f5e1bd7f2b26df08e099fe1c6dbf380f325c0e5ac42ba1114b397a1",
+      "bytes": 1672
     },
     "./app/modules/firebase-read-coalescer.v1.js": {
       "sha256": "2be879e74429432ad5a6130923cc67bb9bb66b5dd4a66533c09c1842a6d035dd",
@@ -618,8 +618,8 @@
       "bytes": 1556
     },
     "./app/boot/32-v6494-aviation-shell.js": {
-      "sha256": "23ccaa01ca50bc3b0163bc22529b36c4e08da76181a36a766b10b96d08e674cd",
-      "bytes": 12195
+      "sha256": "ce978eeebb0aaf907a105a22e5de707b2ad1e28ec84dd03f60d82a7ccb72c9a9",
+      "bytes": 13285
     },
     "./app/styles/boot-36-v6494-aviation-final.css": {
       "sha256": "1f079062ebf4189632b83a50cafbdd6f7a274690c3fcb5c947950dbf4db61c3d",
@@ -630,16 +630,16 @@
       "bytes": 17309
     },
     "./app/modules/aviation-reference.v1.js": {
-      "sha256": "304b731018764a835a16ad52123ec58c5046f952d16d83e89335a0ca53496273",
-      "bytes": 5625
+      "sha256": "f6a4f5178af1bcdacffcb8763929053740f92513a6a6d70c71c37b7b59161eb6",
+      "bytes": 6020
     },
     "./assets/branding/apron-night-v6494.webp": {
       "sha256": "7a17d332d8dce854de03be8918034b378012b7fece42abc6c71ed9575bc257a0",
       "bytes": 223220
     },
     "./app/boot/33-v6497-dossier-enhancements.js": {
-      "sha256": "9bbcb17441a0ded4f0c13215fff4d2db2cc1d9de2b4af7fefa2e4a9acac45af9",
-      "bytes": 19165
+      "sha256": "7ccc4b3372e1fc62b8658451fe98ecdc8e9d09d2ccc2041f0011e0db04d11c60",
+      "bytes": 19210
     }
   }
 }

@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.98",
-  "displayVersion": "V6.4.98",
-  "label": "V6.4.98 - FIREBASE ACCOUNT REGISTRATION FIX",
-  "build": "V6.4.98-20261005-FIREBASE-REGISTER-01",
-  "releasedAt": "2026-10-05T16:07:00Z",
-  "type": "account-registration-fix",
-  "base": "V6.4.97-20261005-DOSSIER-NOTIFY-UPPER-01",
+  "version": "V6.4.99",
+  "displayVersion": "V6.4.99",
+  "label": "V6.4.99 - PERFORMANCE FIX",
+  "build": "V6.4.99-20261005-PERFORMANCE-01",
+  "releasedAt": "2026-10-05T16:24:00Z",
+  "type": "performance-fix",
+  "base": "V6.4.98-20261005-FIREBASE-REGISTER-01",
   "updatePolicy": "required",
-  "notes": "Sửa lỗi AD tạo tài khoản người mới nhưng không đăng ký được Firebase Authentication. Luồng tạo tài khoản chuẩn hiện tạo Auth user bằng secondary Firebase app, ghi profile vào Firestore users/{UID}, tự rollback Auth nếu ghi profile lỗi, danh sách quản lý tài khoản đọc từ users, sửa hồ sơ và phân quyền cũng dùng cùng nguồn Firebase UID. Thêm regression test chặn quay lại cơ chế tài khoản legacy.",
-  "message": "V6.4.98: sửa đăng ký tài khoản người mới bằng Firebase Authentication."
+  "notes": "Tối ưu lag sau UI mới: bỏ MutationObserver toàn DOM và polling 3 giây của Aviation shell; bỏ MutationObserver toàn DOM của Home reference UI; bỏ vòng quét UI Preferences mỗi 1,2 giây và observer toàn document; My Flight đọc trạng thái một lần cho mỗi assignment thay vì 19 request Firebase; nút NHẬN/MỞ không còn ép tải lại Airline Form Policy ở mỗi lần bấm; nhập chữ IN HOA không còn quét lại toàn bộ state ở từng phím gõ. Không thay đổi quyền, workflow hay dữ liệu nghiệp vụ.",
+  "message": "V6.4.99: giảm tải DOM/Firebase, tăng tốc My Flight và nhập biểu mẫu."
 }
