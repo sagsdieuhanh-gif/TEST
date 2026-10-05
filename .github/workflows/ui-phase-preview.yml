@@ -1,0 +1,68 @@
+name: UI Phase Preview
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ui-phase-preview-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'ui-redesign-phase')
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main as preview root
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site
+
+      - name: Checkout phase branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: phase
+
+      - name: Prepare isolated phase preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="${GITHUB_HEAD_REF:-ui-redesign-phase1}"
+          if [[ "$branch" =~ ui-redesign-phase([0-9]+) ]]; then
+            n="${BASH_REMATCH[1]}"
+          else
+            n="1"
+          fi
+          target="site/previews/phase-$n"
+          mkdir -p "$target"
+          rsync -a --delete             --exclude '.git'             --exclude '.github'             --exclude 'node_modules'             phase/ "$target/"
+          touch site/.nojekyll
+          echo "PREVIEW_PATH=previews/phase-$n/" >> "$GITHUB_ENV"
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy preview
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Print preview URL
+        shell: bash
+        run: echo "${{ steps.deployment.outputs.page_url }}${PREVIEW_PATH}"
