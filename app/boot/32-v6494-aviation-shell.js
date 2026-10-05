@@ -64,6 +64,7 @@ function available(key){
 }
 function trigger(key){
  if(key==='home'){try{root.sagsV479GoHome?.()}catch(_){}sync();return}
+ if(key==='notice'&&typeof root.sagsFlightNoticeOpen==='function'){root.sagsFlightNoticeOpen();return}
  if(key==='settings'){
    const b=$('sagsUiPrefsBtn');if(b){b.click();return}
    try{root.sagsSetUiTheme?.('dark')}catch(_){}return;
