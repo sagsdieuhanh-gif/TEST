@@ -113,3 +113,175 @@ html.new-ui-v1.new-ui-v1.new-ui-v1 body .sagsAdminGrid{grid-template-columns:1fr
 @media(max-height:700px) and (max-width:767px){.opsReferenceBrand{top:32px}.opsReferenceBrand b{font-size:26px}html.new-ui-v1.new-ui-v1.new-ui-v1 body #roleLoginModal{padding-top:180px!important}.opsLoginStrap{margin-top:16px}}
 @media(prefers-reduced-motion:reduce){html.new-ui-v1.new-ui-v1.new-ui-v1 body *{scroll-behavior:auto!important}}
 }
+
+
+/* ==========================================================================
+   V6.4.100 · HOME ALIGNMENT + AIRLINE IDENTITY
+   ========================================================================== */
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Scroll{
+  --ops-home-max:1380px;
+}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Hero,
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsAirlineStrip,
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494QuickHead,
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeMetrics,
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeQueue{
+  width:min(100%,var(--ops-home-max))!important;
+  max-width:var(--ops-home-max)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Hero{order:2}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsAirlineStrip{
+  order:3;
+  margin-top:10px!important;
+  padding:8px 9px;
+  border:1px solid var(--ops-line);
+  border-radius:11px;
+  background:#0a1d2b;
+  overflow:hidden;
+}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494QuickHead{order:4;margin-top:18px!important}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeMetrics{order:5;margin-top:0!important;margin-bottom:16px!important}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494QuickGrid{order:6}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Work{order:7}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeQueue{order:8;margin-top:16px!important}
+
+#opsAirlineStrip .opsAirlineStripTrack{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:1px 1px 3px;
+  scrollbar-width:thin;
+  scroll-snap-type:x proximity;
+}
+#opsAirlineStrip .opsAirlineChip{
+  flex:0 0 auto;
+  min-width:82px;
+  height:48px;
+  padding:5px 8px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  border:1px solid rgba(100,190,220,.13);
+  border-radius:9px;
+  background:#0d2637;
+  color:#dceaf0;
+  scroll-snap-align:start;
+}
+#opsAirlineStrip .opsAirlineChip b{font-size:9px;line-height:1.1;letter-spacing:.02em}
+#opsAirlineStrip .opsAirlineChipLogos{display:flex;align-items:center;gap:2px}
+.opsAirlineMark{
+  width:32px;
+  height:32px;
+  display:inline-grid;
+  place-items:center;
+  flex:0 0 32px;
+  border-radius:7px;
+  background:#f7fafc;
+  overflow:hidden;
+}
+.opsAirlineLogo{
+  display:block;
+  width:28px;
+  height:28px;
+  object-fit:contain;
+}
+.opsAirlineFallback{
+  min-width:28px;
+  height:28px;
+  padding:0 4px;
+  display:inline-grid;
+  place-items:center;
+  border-radius:6px;
+  background:#102f42;
+  color:#8ee7ef;
+  font:800 9px/1 var(--a-font,Inter,Arial,sans-serif);
+}
+.opsAirlineMark .opsAirlineFallback{
+  width:100%;
+  height:100%;
+  border-radius:0;
+  background:#102f42;
+}
+.opsAirlineMark .opsAirlineFallback[hidden]{display:none!important}
+.opsAirlineStripEmpty{padding:9px;color:#7694a6;font-size:10px}
+
+#opsHomeQueue{
+  padding:18px 18px 10px!important;
+  background:#0b1e2c!important;
+}
+#opsHomeQueue .opsQueueHead{
+  min-height:48px;
+  margin-bottom:10px;
+}
+#opsHomeQueue .opsQueueHead small{
+  display:block;
+  margin-bottom:3px;
+  color:#668699;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.14em;
+}
+#opsHomeQueue .opsQueueHead h2{font-size:17px!important;margin:0!important}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #opsHomeQueue .opsQueueHead>button{
+  margin:0!important;
+  min-height:40px!important;
+  height:40px!important;
+  padding:0 12px!important;
+}
+#opsHomeFlights{margin-top:0!important}
+.opsFlightTableWrap{width:100%;overflow-x:auto}
+#opsHomeFlights table{
+  min-width:930px;
+  table-layout:auto;
+}
+#opsHomeFlights th{
+  background:#0f2738!important;
+  color:#8ca6b5!important;
+  font-size:10px!important;
+  font-weight:650!important;
+  letter-spacing:.01em;
+}
+#opsHomeFlights td{
+  color:#dce9ef;
+  vertical-align:middle;
+}
+#opsHomeFlights tr:last-child td{border-bottom:0}
+#opsHomeFlights tbody tr:hover{background:#0c2232}
+#opsHomeFlights .opsAirlineCell{width:62px}
+#opsHomeFlights .opsAirlineMark{width:36px;height:36px;flex-basis:36px}
+#opsHomeFlights .opsAirlineLogo{width:31px;height:31px}
+#opsHomeFlights .opsFlightNo{min-width:104px;color:#f6fbfd}
+#opsHomeFlights .opsTime{white-space:nowrap;font-variant-numeric:tabular-nums}
+#opsHomeFlights .opsForms{max-width:230px;color:#b7cad5}
+#opsHomeFlights .opsOpenCell{width:74px;text-align:right}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #opsHomeFlights .opsOpenCell button{
+  min-width:58px!important;
+  height:38px!important;
+  min-height:38px!important;
+  margin:0!important;
+  padding:0 10px!important;
+  border-radius:8px!important;
+  font-size:11px!important;
+  font-weight:750!important;
+}
+.opsStatus{
+  font-weight:700;
+  border-radius:7px!important;
+}
+.opsStatus-working{border-color:rgba(33,212,232,.48)!important;background:rgba(22,143,184,.14);color:#89eef5!important}
+.opsStatus-complete{border-color:rgba(36,199,122,.42)!important;background:rgba(36,199,122,.12);color:#9ee9c3!important}
+.opsStatus-pending{border-color:rgba(228,166,42,.38)!important;background:rgba(228,166,42,.10);color:#efc66e!important}
+
+@media(min-width:768px){
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Scroll{padding-left:24px!important;padding-right:24px!important}
+}
+@media(max-width:767px){
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsAirlineStrip{display:none!important}
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494QuickHead{order:3}
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeMetrics{order:4}
+}

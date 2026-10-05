@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.99",
-  "displayVersion": "V6.4.99",
-  "label": "V6.4.99 - PERFORMANCE FIX",
-  "build": "V6.4.99-20261005-PERFORMANCE-01",
-  "releasedAt": "2026-10-05T16:24:00Z",
-  "type": "performance-fix",
-  "base": "V6.4.98-20261005-FIREBASE-REGISTER-01",
+  "version": "V6.4.100",
+  "displayVersion": "V6.4.100",
+  "label": "V6.4.100 - HOME AIRLINE + RECEIVE SPEED",
+  "build": "V6.4.100-20261005-HOME-AIRLINE-SPEED-01",
+  "releasedAt": "2026-10-05T16:38:00Z",
+  "type": "ui-performance-enhancement",
+  "base": "V6.4.99-20261005-PERFORMANCE-01",
   "updatePolicy": "required",
-  "notes": "Tối ưu lag sau UI mới: bỏ MutationObserver toàn DOM và polling 3 giây của Aviation shell; bỏ MutationObserver toàn DOM của Home reference UI; bỏ vòng quét UI Preferences mỗi 1,2 giây và observer toàn document; My Flight đọc trạng thái một lần cho mỗi assignment thay vì 19 request Firebase; nút NHẬN/MỞ không còn ép tải lại Airline Form Policy ở mỗi lần bấm; nhập chữ IN HOA không còn quét lại toàn bộ state ở từng phím gõ. Không thay đổi quyền, workflow hay dữ liệu nghiệp vụ.",
-  "message": "V6.4.99: giảm tải DOM/Firebase, tăng tốc My Flight và nhập biểu mẫu."
+  "notes": "Tối ưu thao tác NHẬN/MỞ biểu mẫu bằng cách tái sử dụng trạng thái queue và assignment từ mailbox Firebase đang live, giảm các lượt đọc Firebase lặp lại. Home đọc danh sách hãng trực tiếp từ data/carrier-service-guide.json (nguồn Lưu ý phục vụ hãng), hiển thị dải logo hãng dưới banner và logo hãng trong bảng chuyến hôm nay; logo tải bất đồng bộ/lazy từ nguồn internet. Căn banner, dải hãng, summary cards và bảng về cùng một trục/max-width; thiết kế lại bảng chuyến theo mẫu aviation console.",
+  "message": "V6.4.100: nhận form nhanh hơn, logo hãng theo Lưu ý phục vụ hãng, Home căn thẳng và bảng chuyến mới."
 }

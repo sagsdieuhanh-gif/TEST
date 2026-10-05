@@ -76,6 +76,13 @@ root.sagsV478ManifestForWorker=async function(opDate){
 };
 root.sagsV477ManifestForWorker=root.sagsV478ManifestForWorker;
 root.sagsV478MailboxStats=()=>({user:live.user,date:live.date,loaded:live.loaded,local:live.local,items:Object.keys(live.items).length,query:'opDate == selected day'});
+root.sagsV478GetAssignmentFast=function(aid,opDate){
+  const d=S(opDate)||dateNow(),u=me(),id=S(aid);
+  if(!id||!u||live.user!==u||live.date!==d||!live.loaded||live.local)return null;
+  const item=live.items[id];
+  if(!item||item.active===false||item.duplicateInactive===true||norm(item.targetUser||item.user)!==u||S(item.opDate)!==d)return null;
+  return {...item,user:u,targetUser:u};
+};
 function ensureHomeButton(modal){
   if(!modal)return;
   const head=modal.querySelector('.fwcHead');if(!head)return;
