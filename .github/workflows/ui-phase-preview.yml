@@ -1,0 +1,55 @@
+name: UI Phase Preview
+
+on:
+  push:
+    branches:
+      - "ui-redesign-phase*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "ui-phase-preview"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}previews/phase-1/
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main as preview root
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site
+
+      - name: Checkout current phase
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          path: phase
+
+      - name: Prepare phase preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p site/previews/phase-1
+          rsync -a --delete             --exclude '.git'             --exclude '.github'             --exclude 'node_modules'             phase/ site/previews/phase-1/
+          touch site/.nojekyll
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy preview
+        id: deployment
+        uses: actions/deploy-pages@v4
