@@ -44,7 +44,7 @@ const DEF=[
   {key:'settings',label:'Cài đặt',meta:'Giao diện & tùy chọn'}
  ]}
 ];
-let syncing=false,observer=null,lastMenuSignature='';
+let syncing=false,stateObserver=null,lastMenuSignature='',syncFrame=0;
 function session(){try{return root.__sagsGetSession?.()||{}}catch(_){return{}}}
 function profile(){const s=session();return s.profile||root.currentUserProfile||{}}
 function role(){const s=session(),p=profile();return S(s.role||p.role||root.currentRole).toUpperCase()}
@@ -69,7 +69,7 @@ function trigger(key){
    const b=$('sagsUiPrefsBtn');if(b){b.click();return}
    try{root.sagsSetUiTheme?.('dark')}catch(_){}return;
  }
- const b=legacyButton(key);if(b&&!b.disabled){b.click();return}
+ const b=legacyButton(key);if(b&&!b.disabled){b.click();scheduleSync();setTimeout(scheduleSync,120);return}
 }
 function todayText(){try{return new Intl.DateTimeFormat('vi-VN',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date())}catch(_){return new Date().toLocaleDateString()}}
 function ensure(){
@@ -138,13 +138,24 @@ function sync(){
   if(show)document.body.classList.remove('v157-drawer-open');
  }finally{syncing=false}
 }
+function scheduleSync(){
+ if(syncFrame)return;
+ syncFrame=requestAnimationFrame(()=>{syncFrame=0;sync()});
+}
+function observeStateTargets(){
+ try{stateObserver?.disconnect()}catch(_){}
+ stateObserver=new MutationObserver(scheduleSync);
+ const cfg={attributes:true,attributeFilter:['class','style','aria-hidden','hidden']};
+ try{stateObserver.observe(document.body,{attributes:true,attributeFilter:['class']})}catch(_){}
+ const ids=['roleLoginModal','fwcModal','v174DataHub','v181AdminCenter','appUpdateModal','roleChangePasswordModal','quickTimeModal','fs09QuickModal','finalPaperModal','flightSessionModal','accountManagerModal','auditManagerModal','activityMonitorModal','fleetManagerModal','kh208ManagerModal','finalSheetManagerModal','fs09SheetManagerModal'];
+ for(const id of ids){const el=$(id);if(el)try{stateObserver.observe(el,cfg)}catch(_){}}
+}
 function boot(){
- ensure();sync();
- observer=new MutationObserver(()=>requestAnimationFrame(sync));
- try{observer.observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class','style','aria-hidden','disabled','hidden']})}catch(_){}
- window.addEventListener('pageshow',sync,{passive:true});
- document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()},{passive:true});
- setInterval(()=>{if(!document.hidden)sync()},3000);
+ ensure();sync();observeStateTargets();
+ window.addEventListener('pageshow',()=>{observeStateTargets();scheduleSync()},{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden){observeStateTargets();scheduleSync()}},{passive:true});
+ ['sags:login','sags:logout','sags:rolechange','sags:profilechange','sags:ui-ready'].forEach(name=>root.addEventListener?.(name,()=>{observeStateTargets();scheduleSync()}));
+ document.addEventListener('click',e=>{if(e.target?.closest?.('[data-v6494-key],[data-v6494-account],#v157LogoutBtn,.fwcHead button,.sagsAdminTopActions button'))setTimeout(scheduleSync,0)},true);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })(window);
