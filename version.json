@@ -7,6 +7,6 @@
   "type": "ui-performance-cleanup",
   "base": "V6.4.103-20261006-DASHBOARD-FIDELITY-01",
   "updatePolicy": "required",
-  "notes": "Mobile: 3 card Chuyến đang làm / Đã hoàn thành hôm nay / Chờ xử lý nằm trên một hàng ngang, co giãn cho 360-767px. Tối ưu PC + mobile: bỏ render lại bảng chuyến khi resize không đổi số dòng, giảm quét lặp khi gắn nhận diện hãng, dùng content-visibility cho danh sách dài, preconnect Firebase SDK, sửa lazy AI dùng build hiện tại. Gộp 4 CSS siêu nhỏ vào new-ui để giảm 4 request. Dọn 299 file dư thừa gồm snapshot previews/final-ui, 2 monolith app/core không còn tham chiếu và 4 CSS đã gộp, giảm khoảng 24.8 MB khỏi repo/deploy artifact. Giữ nguyên logic nghiệp vụ V6.4.103/V6.4.102.",
+  "notes": "Mobile: 3 card Chuyến đang làm / Đã hoàn thành hôm nay / Chờ xử lý nằm trên một hàng ngang, co giãn cho 360-767px. Tối ưu PC + mobile: bỏ render lại bảng chuyến khi resize không đổi số dòng, giảm quét lặp khi gắn nhận diện hãng, dùng content-visibility cho danh sách dài, preconnect Firebase SDK, sửa lazy AI dùng build hiện tại. Gộp 4 CSS siêu nhỏ vào new-ui để giảm 4 request. Dọn 293 file snapshot previews/final-ui và 4 CSS đã gộp, giảm khoảng 23.6 MB khỏi repo/deploy artifact. Hai file app/core được rà soát nhưng giữ lại vì bộ regression test còn dùng làm nguồn chuẩn nghiệp vụ. Giữ nguyên logic V6.4.103/V6.4.102.",
   "message": "V6.4.104: 3 card mobile một hàng ngang, dọn code/file dư và tối ưu tốc độ render/load trên mobile + PC."
 }
