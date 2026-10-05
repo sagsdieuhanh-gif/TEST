@@ -228,9 +228,11 @@
   document.addEventListener('click',e=>{
     if(e.target?.closest?.('#roleLoginSubmit,[data-v6494-key],[data-ops-route],[data-ops-retry],#v479MyFlightHome,.fwcHead button'))setTimeout(schedule,0);
   },true);
-  const workspaceObserver=new MutationObserver(list=>{
-    if(list.some(m=>m.target?.nodeType===1&&(m.target.closest?.('#fwcModal')||m.target.id==='fwcList')))void decorateWorkspaceFlights();
-  });
-  try{workspaceObserver.observe(document.body,{subtree:true,childList:true})}catch(_){}
+  if(typeof MutationObserver==='function'){
+    const workspaceObserver=new MutationObserver(list=>{
+      if(list.some(m=>m.target?.nodeType===1&&(m.target.closest?.('#fwcModal')||m.target.id==='fwcList')))void decorateWorkspaceFlights();
+    });
+    try{workspaceObserver.observe(document.body,{subtree:true,childList:true})}catch(_){}
+  }
   setTimeout(schedule,350); setTimeout(schedule,1400);
 })();
