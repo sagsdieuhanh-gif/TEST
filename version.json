@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.95",
-  "displayVersion": "V6.4.95",
-  "label": "V6.4.95 - REFERENCE AVIATION UI",
-  "build": "V6.4.95-20261005-REFERENCE-UI-01",
-  "releasedAt": "2026-10-05T14:08:11.631850+00:00",
-  "type": "ui",
-  "base": "V6.4.94-20261005-FINAL-AVIATION-SHELL-01",
+  "version": "V6.4.96",
+  "displayVersion": "V6.4.96",
+  "label": "V6.4.96 - MOBILE LOGOUT",
+  "build": "V6.4.96-20261005-MOBILE-LOGOUT-01",
+  "releasedAt": "2026-10-05T14:52:00Z",
+  "type": "ui-hotfix",
+  "base": "V6.4.95-20261005-REFERENCE-UI-01",
   "updatePolicy": "required",
-  "notes": "Tích hợp trên Aviation Shell V6.4.94. Nền sân đỗ ban đêm theo ảnh mẫu, PC sidebar/hero/bảng chuyến và mobile hồ sơ/ảnh/menu hai cột. Bảng trang chủ đọc dữ liệu Daily Roster của tài khoản hiện tại. Sửa lớp popup ép bố cục login/My Flight, tiêu đề và nút điều hướng lặp. Đồng bộ runtime, cache và manifest.",
-  "message": "V6.4.95: giao diện PC và mobile theo ảnh tham chiếu E-REPORT SAGS."
+  "notes": "Bổ sung nút Đăng xuất hiển thị rõ trên Home/Menu mobile, đặt ngay trong thẻ hồ sơ người dùng với vùng bấm tối thiểu 44px. Không thay đổi nghiệp vụ, phân quyền hay dữ liệu chuyến.",
+  "message": "V6.4.96: thêm nút Đăng xuất rõ ràng trên mobile."
 }
