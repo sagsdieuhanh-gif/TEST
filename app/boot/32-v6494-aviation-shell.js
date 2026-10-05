@@ -1,8 +1,8 @@
-/* E-REPORT SAGS V6.4.95 · Final Aviation Operations shell
+/* E-REPORT SAGS V6.4.96 · Final Aviation Operations shell
    Presentation/navigation adapter only. Existing business handlers remain authoritative. */
 (function(root){
 'use strict';
-const BUILD='V6.4.95-20261005-REFERENCE-UI-01';
+const BUILD='V6.4.96-20261005-MOBILE-LOGOUT-01';
 if(root.__SAGS_V6494_AVIATION_SHELL__===BUILD)return;
 root.__SAGS_V6494_AVIATION_SHELL__=BUILD;
 const $=id=>document.getElementById(id);
@@ -83,7 +83,7 @@ function ensure(){
  '<section class="v6494Main">'+
   '<header class="v6494Top"><div class="v6494MobileBrand"><b>E-REPORT <span>SAGS</span></b><small>AIRPORT GROUND OPERATIONS</small></div><label class="v6494Search">'+ICONS.search+'<input id="v6494Search" type="search" placeholder="Tìm chuyến bay, số hiệu, sân bay..." autocomplete="off"></label><button class="v6494Notice" type="button" data-v6494-key="notice" aria-label="Thông báo">'+ICONS.notice+'</button><div class="v6494TopIdentity"><b id="v6494TopName">Người dùng</b><small id="v6494TopRole">—</small></div></header>'+
   '<div class="v6494Scroll">'+
-   '<div class="v6494MobileProfile"><div class="v6494Avatar" id="v6494MobileAvatar">U</div><div><small>Xin chào,</small><b id="v6494MobileName">Người dùng</b><span id="v6494MobileRole">—</span></div></div>'+
+   '<div class="v6494MobileProfile"><div class="v6494Avatar" id="v6494MobileAvatar">U</div><div class="v6494MobileIdentity"><small>Xin chào,</small><b id="v6494MobileName">Người dùng</b><span id="v6494MobileRole">—</span></div><button class="v6494MobileLogout" type="button" data-v6494-account="logout" aria-label="Đăng xuất">'+ICONS.logout+'<span>Đăng xuất</span></button></div>'+
    '<div class="v6494Hero"><div><small>E-REPORT SAGS</small><h1>E-REPORT <span>SAGS</span></h1><p class="v6494HeroDesktop">Đồng hành cùng<br>mỗi chuyến bay an toàn.</p><p class="v6494HeroMobile">VÌ MỘT SÂN BAY<br>AN TOÀN VÀ HIỆU QUẢ HƠN</p><button type="button" data-v6494-key="myflight">'+ICONS.myflight+'<span>Mở My Flight</span></button></div></div>'+
    '<div class="v6494QuickHead"><div><small>HÔM NAY</small><h2 id="v6494Date"></h2></div><span>OPERATIONS CONSOLE</span></div>'+
    '<div class="v6494QuickGrid">'+
