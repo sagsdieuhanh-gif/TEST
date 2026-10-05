@@ -1,0 +1,231 @@
+/* V6.4.128 · DESKTOP SHELL
+   Desktop is a dedicated workspace, not a stretched mobile layout.
+   Mobile/tablet rules remain owned by the <=899px styles.
+*/
+@media (min-width:1024px){
+  html.new-ui-v1{--sags-desktop-sidebar:268px;--sags-desktop-header:64px;--sags-desktop-content:1440px}
+
+  /* HOME: permanent desktop sidebar + centered workspace */
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer{
+    display:block!important;
+    position:fixed!important;
+    inset:0 auto 0 0!important;
+    width:var(--sags-desktop-sidebar)!important;
+    max-width:none!important;
+    transform:none!important;
+    overflow:auto!important;
+    border-right:1px solid rgba(143,199,255,.15)!important;
+    box-shadow:10px 0 28px rgba(0,10,28,.16)!important;
+    z-index:120!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157DrawerBackdrop{
+    display:none!important;opacity:0!important;pointer-events:none!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home.v157-drawer-open{overflow:auto!important}
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157DrawerHead{
+    min-height:190px!important;padding:22px 20px 18px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157Brand{
+    grid-template-columns:76px minmax(0,1fr)!important;gap:12px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157LogoBox{
+    padding:7px!important;border-radius:12px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157LogoBox img{max-height:72px!important}
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157BrandText{
+    font-size:13px!important;line-height:1.3!important;letter-spacing:.35px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157UserCard{margin-top:16px!important}
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157Avatar{
+    width:44px!important;height:44px!important;flex-basis:44px!important;font-size:18px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuBody{
+    border-radius:0!important;margin:0!important;padding:14px 10px 24px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157Section{
+    padding:0 4px!important;margin:8px 0 14px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuItem{
+    min-height:44px!important;height:44px!important;
+    grid-template-columns:34px minmax(0,1fr)!important;
+    padding:5px 8px!important;gap:8px!important;border-radius:9px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuItem .ico{
+    width:32px!important;height:32px!important;border-radius:8px!important;font-size:15px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuItem .meta{display:none!important}
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuItem>span:not(.ico):not(.meta){
+    font-size:13px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+  }
+
+  html.new-ui-v1 body.v157-authenticated.v157-home #sagsWelcome{left:var(--sags-desktop-sidebar)!important}
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157HomeDashboard{
+    inset:0 0 0 var(--sags-desktop-sidebar)!important;
+    width:auto!important;
+    padding:30px 34px 40px!important;
+    overflow:auto!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157HomeDashboard>*{
+    width:min(100%,var(--sags-desktop-content))!important;
+    margin-left:auto!important;margin-right:auto!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157HomeDashboard .v157Welcome{
+    padding:0 0 22px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home :is(.v157HomeGrid,.m6497Grid,.v6497Grid,.v174DataHubGrid,.v181AdminGrid){
+    display:grid!important;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr))!important;
+    gap:14px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home :is(.m6497Card,.v157HomeCard,.v174DataCard,.v181AdminCard){
+    min-height:92px!important;
+    padding:14px 16px!important;
+    border-radius:13px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #sagsNavigationHeader{
+    position:fixed!important;
+    top:14px!important;right:22px!important;left:auto!important;bottom:auto!important;
+    width:auto!important;min-width:0!important;height:auto!important;min-height:0!important;
+    display:flex!important;gap:8px!important;padding:0!important;
+    background:transparent!important;border:0!important;box-shadow:none!important;
+    z-index:160!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #sagsNavigationHeader .sagsNavBrand{display:none!important}
+  html.new-ui-v1 body.v157-authenticated.v157-home #sagsNavigationHeader :is(button,a){
+    width:auto!important;min-width:104px!important;height:40px!important;min-height:40px!important;
+    padding:0 14px!important;border-radius:9px!important;font-size:13px!important;
+  }
+
+  /* MY FLIGHT: full desktop workspace beside the persistent sidebar. */
+  html.new-ui-v1 body.v157-authenticated #fwcModal{
+    position:fixed!important;
+    top:0!important;right:0!important;bottom:0!important;left:var(--sags-desktop-sidebar)!important;
+    width:auto!important;height:auto!important;max-width:none!important;
+    margin:0!important;padding:18px 20px!important;
+    align-items:stretch!important;justify-content:stretch!important;
+    background:#eef3f7!important;
+    overflow:hidden!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcPanel{
+    width:100%!important;max-width:none!important;
+    height:calc(100vh - 36px)!important;max-height:none!important;
+    margin:0!important;padding:18px 20px 20px!important;
+    border:1px solid #d7e1ea!important;border-radius:14px!important;
+    background:#fff!important;overflow:auto!important;
+    box-shadow:0 8px 24px rgba(18,44,70,.10)!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcHead{
+    display:flex!important;align-items:center!important;gap:12px!important;
+    min-height:50px!important;padding:0 0 12px!important;
+    border-bottom:1px solid #dfe7ee!important;
+    background:#fff!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcHead>div:first-child{flex:1 1 auto!important;min-width:0!important}
+  html.new-ui-v1 body #fwcModal .fwcHead h3{
+    margin:0!important;font-size:21px!important;line-height:1.2!important;color:#102f4f!important;
+  }
+  html.new-ui-v1 body #fwcModal .sagsMyFlightNavActions{
+    display:flex!important;align-items:center!important;gap:8px!important;flex:0 0 auto!important;
+  }
+  html.new-ui-v1 body #fwcModal #v644MyFlightBack{
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    width:42px!important;min-width:42px!important;height:40px!important;min-height:40px!important;
+    padding:0!important;border-radius:10px!important;font-size:20px!important;line-height:1!important;
+    transition:none!important;animation:none!important;
+  }
+  html.new-ui-v1 body #fwcModal #v479MyFlightHome{
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    width:auto!important;min-width:94px!important;height:40px!important;min-height:40px!important;
+    padding:0 14px!important;border-radius:10px!important;font-size:13px!important;
+    background:#123a72!important;color:#fff!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcTools{
+    display:flex!important;align-items:center!important;gap:10px!important;
+    margin:14px 0 10px!important;padding:10px!important;
+    border:1px solid #dde6ed!important;border-radius:12px!important;background:#f8fafc!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcTools .sagsWorkDateControl{flex:0 0 172px!important;min-width:172px!important}
+  html.new-ui-v1 body #fwcModal .fwcTools .sagsFlightSearchBox{flex:1 1 420px!important;min-width:240px!important}
+  html.new-ui-v1 body #fwcModal .fwcTools>input[type="search"]{flex:1 1 420px!important;min-width:240px!important}
+  html.new-ui-v1 body #fwcModal .fwcTools>button{flex:0 0 auto!important}
+  html.new-ui-v1 body #fwcModal .fwcTools :is(input,button){min-height:40px!important}
+  html.new-ui-v1 body #fwcList.v1199Queue .v1199Tabs{
+    width:auto!important;max-width:460px!important;margin:10px 0 14px!important;
+  }
+  html.new-ui-v1 body #fwcList.v1199Queue .v1199FlightGrid{
+    display:grid!important;
+    grid-template-columns:repeat(auto-fit,minmax(285px,1fr))!important;
+    gap:12px!important;align-items:stretch!important;
+  }
+  html.new-ui-v1 body #fwcList.v1199Queue .v1199Card{
+    min-width:0!important;margin:0!important;padding:14px!important;
+    border-radius:12px!important;height:100%!important;
+    box-shadow:0 2px 8px rgba(18,44,70,.06)!important;
+  }
+  html.new-ui-v1 body #fwcList.v1199Queue .v1199Tasks{
+    display:grid!important;grid-template-columns:1fr!important;gap:7px!important;
+  }
+  html.new-ui-v1 body #fwcList.v1199Queue .v1199FormTile{
+    min-height:58px!important;padding:8px 10px!important;border-radius:9px!important;
+  }
+  @media (min-width:1500px){
+    html.new-ui-v1{--sags-desktop-content:1480px}
+    html.new-ui-v1 body.v157-authenticated.v157-home :is(.v157HomeGrid,.m6497Grid,.v6497Grid,.v174DataHubGrid,.v181AdminGrid){
+      grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    }
+  }
+
+  /* OPERATIONAL FORM: compact desktop command bar, not a mobile bottom dock */
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsNavigationHeader{
+    position:fixed!important;top:14px!important;right:18px!important;bottom:auto!important;left:auto!important;
+    width:auto!important;height:auto!important;min-height:0!important;
+    display:flex!important;gap:8px!important;padding:0!important;
+    background:transparent!important;border:0!important;box-shadow:none!important;z-index:2147483640!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsNavigationHeader :is(button,a){
+    width:auto!important;min-width:98px!important;height:40px!important;min-height:40px!important;
+    padding:0 13px!important;border-radius:10px!important;font-size:12.5px!important;
+  }
+  /* V6.4.88 geometry, new-UI visual language: two balanced bottom rows. */
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock{
+    display:flex!important;flex-direction:column!important;position:fixed!important;
+    left:50%!important;right:auto!important;top:auto!important;bottom:12px!important;
+    transform:translateX(-50%)!important;
+    width:min(940px,calc(100vw - 40px))!important;max-width:940px!important;
+    padding:0!important;gap:6px!important;
+    border:0!important;border-radius:0!important;background:transparent!important;
+    box-shadow:none!important;z-index:2147483600!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock #v324FormActions.show{
+    display:grid!important;
+    grid-template-columns:repeat(var(--sags-action-count,4),minmax(0,1fr))!important;
+    width:100%!important;gap:6px!important;padding:6px!important;
+    border:1px solid rgba(113,186,226,.16)!important;border-radius:12px!important;
+    background:rgba(5,23,41,.96)!important;box-shadow:0 10px 28px rgba(0,8,22,.24)!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock #v324FormActions :is(.v324FormAction,#v163SignBtn){
+    width:100%!important;min-width:0!important;height:40px!important;min-height:40px!important;max-height:40px!important;
+    padding:0 10px!important;border-radius:9px!important;font-size:12px!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock #v163OperationNav{
+    display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    width:100%!important;gap:6px!important;padding:6px!important;
+    border:1px solid rgba(113,186,226,.16)!important;border-radius:12px!important;
+    background:rgba(5,23,41,.96)!important;box-shadow:0 10px 28px rgba(0,8,22,.24)!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock #v163OperationNav button{
+    width:100%!important;min-width:0!important;height:40px!important;min-height:40px!important;
+    padding:0 10px!important;border-radius:9px!important;font-size:12px!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home){
+    padding-top:28px!important;padding-bottom:118px!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) .sheet:not(.hide){
+    margin-left:auto!important;margin-right:auto!important;
+  }
+
+  /* Generic desktop dialogs: readable width, no phone-card stretching */
+  html.new-ui-v1 body :is(.sagsAdminPanel,.fleetManagerPanel,.finalFormsPanel,.formMenuBox,.flightSessionBox,.v174DataHubPanel,.v181AdminPanel){
+    max-width:min(1120px,calc(100vw - 72px))!important;
+  }
+}
