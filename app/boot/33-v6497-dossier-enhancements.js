@@ -179,7 +179,7 @@ function addNotice({date,fid,flight,kind,mod}){
  if(at>maxEventAt){maxEventAt=at;writeWater(noticeUser,date,Math.max(sinceBase,maxEventAt-5000))}
  if(!significant(kind,mod))return;
  const unit=kindUnit(kind);if(sender&&sender===me())return;if(unit&&unit===currentUnit())return;
- const n={id:'N_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7),sig,at,date,fid,flight,kind:niceKind(kind),unit:unit||'BỘ PHẬN',sender:sender||'',status:U(mod?.status||'ĐÃ GỬI'),read:false};
+ const n={id:'N_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7),sig,at,date,fid,flight,kind:niceKind(kind),unit:unit==='DH'?'ĐH':(unit||'BỘ PHẬN'),sender:sender||'',status:U(mod?.status||'ĐÃ GỬI'),read:false};
  noticeItems.unshift(n);noticeItems=noticeItems.slice(0,60);saveNotices();updateBadge();
  try{root.showToast?.(n.unit+' ĐÃ GỬI '+n.kind+' · '+n.flight)}catch(_){}
 }
