@@ -44,7 +44,7 @@ const DEF=[
   {key:'settings',label:'Cài đặt',meta:'Giao diện & tùy chọn'}
  ]}
 ];
-let syncing=false,observer=null;
+let syncing=false,observer=null,lastMenuSignature='';
 function session(){try{return root.__sagsGetSession?.()||{}}catch(_){return{}}}
 function profile(){const s=session();return s.profile||root.currentUserProfile||{}}
 function role(){const s=session(),p=profile();return S(s.role||p.role||root.currentRole).toUpperCase()}
@@ -117,22 +117,22 @@ function renderMenus(){
   navHtml+='<section><h3>'+esc(sec.group)+'</h3>'+items.map(x=>menuCard(x,true)).join('')+'</section>';
   if(sec.group!=='HỆ THỐNG'||items.some(x=>x.key!=='settings'))mobileHtml+='<div class="v6494MobileGroup"><h3>'+esc(sec.group)+'</h3><div>'+items.map(x=>menuCard(x,false)).join('')+'</div></div>';
  }
+ const sig=navHtml+'\u0000'+mobileHtml;if(sig===lastMenuSignature)return;lastMenuSignature=sig;
  nav.innerHTML=navHtml;mobile.innerHTML=mobileHtml;
 }
 function syncIdentity(){
  const p=profile(),r=role()||'—',name=S(p.name||p.fullName||p.displayName||p.username||p.userName||r||'Người dùng');
- const initial=(name.match(/[A-ZÀ-Ỹ0-9]/iu)?.[0]||'U').toUpperCase();
- for(const id of['v6494Name','v6494TopName','v6494MobileName']){const e=$(id);if(e)e.textContent=name}
- for(const id of['v6494Role','v6494TopRole','v6494MobileRole']){const e=$(id);if(e)e.textContent=r}
- if($('v6494Avatar'))$('v6494Avatar').textContent=initial;if($('v6494MobileAvatar'))$('v6494MobileAvatar').textContent=initial;
- if($('v6494Date'))$('v6494Date').textContent=todayText();
+ const initial=(name.match(/[A-ZÀ-Ỹ0-9]/iu)?.[0]||'U').toUpperCase(),put=(id,v)=>{const e=$(id);if(e&&e.textContent!==v)e.textContent=v};
+ for(const id of['v6494Name','v6494TopName','v6494MobileName'])put(id,name);
+ for(const id of['v6494Role','v6494TopRole','v6494MobileRole'])put(id,r);
+ put('v6494Avatar',initial);put('v6494MobileAvatar',initial);put('v6494Date',todayText());
 }
 function sync(){
  if(syncing)return;syncing=true;
  try{
   const el=ensure();renderMenus();syncIdentity();
   const show=homeState();
-  el.classList.toggle('show',show);el.setAttribute('aria-hidden',show?'false':'true');
+  el.classList.toggle('show',show);const hidden=show?'false':'true';if(el.getAttribute('aria-hidden')!==hidden)el.setAttribute('aria-hidden',hidden);
   document.body.classList.toggle('v6494-home-active',show);
   if(show)document.body.classList.remove('v157-drawer-open');
  }finally{syncing=false}
