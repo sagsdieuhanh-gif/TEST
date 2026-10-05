@@ -10,6 +10,8 @@ const index=read('index.html');
 assert.match(roster,/host\.__v1199SourceHtml!==next/,'personal MY FLIGHT must compare source data, not decorated DOM');
 assert.doesNotMatch(roster,/if\(host\.innerHTML!==next\)/,'decorated DOM must not trigger card replacement loops');
 assert.match(roster,/b&&b\.textContent!=='MY FLIGHT'/,'MY FLIGHT launcher text write must be idempotent');
+assert.match(roster,/v1199Tasks v1199FormStrip/,'personal flight cards must use the compact form strip');
+assert.match(roster,/user\+\(dept\?' · '\+dept:''\)/,'personal form chips must include assignee and department');
 
 assert.doesNotMatch(lite,/\[0,120,450,900,1900\]/,'five-pass canonical card rewriting must be removed');
 assert.doesNotMatch(lite,/\[0,120,500,1400\]/,'applyRoleUI retry storm must be removed');
