@@ -530,8 +530,8 @@
       "bytes": 109993
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
-      "sha256": "13098140ce34a54fe9e6ee8325e2eba877d673546157a08a92b64ef60fdd0132",
-      "bytes": 9018
+      "sha256": "bdc54cbf752c6db4974c5e2eec6f33567d0ad56e25104ff48971b27cbcdbcb83",
+      "bytes": 9209
     },
     "./app/boot/25-v1154-update-detector-r2.js": {
       "sha256": "68c7ed26f0f180b4193cd71554a0214bddded76fe3f731132ec83895c7ff18c9",
