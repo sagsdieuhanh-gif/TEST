@@ -75,7 +75,13 @@
     route(button.dataset.opsRoute);
   });
   function schedule() { if (pending) return; pending = true; requestAnimationFrame(() => { pending = false; sync(); }); }
-  const observer = new MutationObserver(schedule);
-  observer.observe(document.body, {childList: true, subtree: true, attributes:true, attributeFilter:['class']});
+  function resetOverview(){ overviewKey=''; schedule(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule, {once: true}); else schedule();
+  window.addEventListener('pageshow', schedule, {passive:true});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)schedule()},{passive:true});
+  window.addEventListener('sags:personal-roster-updated',resetOverview);
+  document.addEventListener('click',e=>{
+    if(e.target?.closest?.('#roleLoginSubmit,[data-v6494-key],[data-ops-route],[data-ops-retry],#v479MyFlightHome,.fwcHead button'))setTimeout(schedule,0);
+  },true);
+  setTimeout(schedule,350);setTimeout(schedule,1400);
 })();
