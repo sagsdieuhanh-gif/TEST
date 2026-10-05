@@ -132,7 +132,7 @@ new MutationObserver(records=>{
 function drawShell(d){
   const modal=ensureModal();modal.hidden=false;modal.style.removeProperty('display');modal.classList.add('show');root.sagsOverlayLayout?.refresh();
   const host=document.getElementById('fwcBody');if(!host)return false;
-  host.innerHTML='<div class="fwcTools"><input id="fwcDate" type="date"><input id="sagsFlightSearch" type="search" placeholder="Tìm số hiệu chuyến bay" aria-label="Tìm số hiệu chuyến bay" autocomplete="off"><button class="fwcBtn" id="v477Refresh" type="button">LÀM MỚI</button></div><div class="fwcStatus" id="fwcStatus" role="status">Đang đọc hộp phân công của bạn…</div><div id="fwcList" class="v1199Queue"></div>';
+  host.innerHTML='<div class="fwcTools"><input id="fwcDate" type="date"><input id="sagsFlightSearch" type="search" placeholder="Tìm chuyến" aria-label="Tìm số hiệu chuyến bay" autocomplete="off"><button class="fwcBtn" id="v477Refresh" type="button" aria-label="Làm mới danh sách" title="Làm mới">↻</button></div><div class="fwcStatus" id="fwcStatus" role="status">Đang tải công việc…</div><div id="fwcList" class="v1199Queue"></div>';
   const inp=document.getElementById('fwcDate');inp.value=d;inp.onchange=()=>root.flightWorkspaceOpenList?.(inp.value);
   document.getElementById('v477Refresh').onclick=()=>root.flightWorkspaceRefresh?.();
   try{sessionStorage.setItem('sagsV36FwcDate',d)}catch(_){}
@@ -145,7 +145,7 @@ async function openLite(requestedDate){
   try{
     const man=await root.sagsV478ManifestForWorker(d);
     const status=document.getElementById('fwcStatus');
-    if(status)status.textContent=man.fromDeviceCache?'Đang ngoại tuyến · danh sách phân công đã lưu trên máy; chỉ mở form khi kết nối cho phép.':'MY FLIGHT · hồ sơ các chuyến có phân công của bạn · mở hồ sơ để nhận việc và xem tài liệu';
+    if(status)status.textContent=man.fromDeviceCache?'Ngoại tuyến · đang dùng danh sách đã lưu trên máy.':'Công việc được phân theo Daily Roster';
     let renderer=root.__SAGS_DAILY_ROSTER_FINAL_V1199?.renderPersonal;
     for(let i=0;typeof renderer!=='function'&&i<20;i++){await new Promise(r=>setTimeout(r,50));renderer=root.__SAGS_DAILY_ROSTER_FINAL_V1199?.renderPersonal}
     if(typeof renderer!=='function')throw new Error('MY FLIGHT renderer mới chưa sẵn sàng; không dùng giao diện legacy.');

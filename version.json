@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.88",
-  "displayVersion": "V6.4.88",
-  "label": "V6.4.88 - AUTO CACHE CLEANUP",
-  "build": "V6.4.88-20261003-AUTO-CACHE-CLEANUP-01",
-  "releasedAt": "2026-10-03T13:27:00Z",
-  "type": "fix",
-  "base": "V6.4.87-20261003-STALE-WORKER-DETACH-01",
+  "version": "V6.4.89",
+  "displayVersion": "V6.4.89",
+  "label": "V6.4.89 - MOBILE RUNTIME + COMPACT MY FLIGHT",
+  "build": "V6.4.89-20261005-MOBILE-RUNTIME-UI-01",
+  "releasedAt": "2026-10-05T09:35:00Z",
+  "type": "optimization",
+  "base": "V6.4.88-20261003-AUTO-CACHE-CLEANUP-01",
   "updatePolicy": "required",
-  "notes": "Từ bản này, sau khi ứng dụng đã chạy đúng build mới, ứng dụng tự yêu cầu service worker dọn toàn bộ cache phát hành cũ theo cơ chế an toàn. Cleanup chỉ đụng các cache app shell/meta, không xóa localStorage, IndexedDB, dữ liệu chuyến, nháp biểu mẫu hoặc dữ liệu nghiệp vụ. Nếu đang có chuyến hoạt động hoặc có nhiều cửa sổ app mở thì cleanup được hoãn và tự thử lại khi app trở về trạng thái an toàn. Giữ nguyên cơ chế V6.4.87 tách controller cũ và repair network-only cho thiết bị đang bị kẹt ở bản cũ.",
-  "message": "V6.4.88: tự dọn cache bản cũ sau cập nhật thành công, giảm nhu cầu xóa bộ nhớ đệm thủ công ở các lần update sau."
+  "notes": "Giữ nguyên nghiệp vụ/legacy; bỏ nút ĐÓNG MENU và TỰ NHẬN VIỆC; thu gọn MY FLIGHT mobile; trì hoãn registry lớn đến sau đăng nhập trên mobile; giảm polling UI nền; defer CSS chức năng không cần cho Login; cleanup cache cũ chỉ giữ bootstrap cần thiết.",
+  "message": "V6.4.89: mobile nhẹ hơn, MY FLIGHT gọn hơn và version runtime đồng bộ đúng với máy chủ."
 }
