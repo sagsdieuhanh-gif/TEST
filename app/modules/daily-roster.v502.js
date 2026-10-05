@@ -149,8 +149,14 @@ async function hydrateWorkspaceForFlight(date,fid,aid){
   // Fresh per-assignment mailbox check; stale on-device workspace mapping alone
   // must never authorize a read or an automatic copy after reassignment.
   let item=null;
-  try{const user=normUser(root.currentUserProfile?.username||''),snap=await root.sagsV470Ref(`${MAIL}/${safe(user)}/items/${safe(aid)}`).once('value');item=snap.val()}
-  catch(_){return 0}
+  try{
+    item=root.sagsV478GetAssignmentFast?.(aid,date)||null;
+    if(!item){
+      const user=normUser(root.currentUserProfile?.username||'');
+      const snap=await root.sagsV470Ref(`${MAIL}/${safe(user)}/items/${safe(aid)}`).once('value');
+      item=snap.val();
+    }
+  }catch(_){return 0}
   if(!item||item.active===false||normUser(item.targetUser||item.user)!==normUser(root.currentUserProfile?.username||'')||S(item.flightId)!==S(fid)||S(item.opDate)!==date)return 0;
   const info=rememberWorkspace(item,date);
   const wk=S(info?.workspaceKey);if(!wk||S(info.opDate)!==date||S(info.flightId)!==S(fid))return 0;
@@ -303,7 +309,7 @@ function itemWorking(item,st){
 }
 async function clearStaleClaimIfNeeded(item){
   const aid=S(item?.assignmentId);if(!aid||!ownedActive(item))return false;
-  const st=await readState(aid,true),t=normalizedTask(st),progress=['IN_PROGRESS','CLAIMED','ACTIVE','WORKING'].includes(t)||U(st?.claimStatus)==='CLAIMED';if(!progress)return false;
+  const st=await readState(aid,false),t=normalizedTask(st),progress=['IN_PROGRESS','CLAIMED','ACTIVE','WORKING'].includes(t)||U(st?.claimStatus)==='CLAIMED';if(!progress)return false;
   const claimant=norm(st?.claimedBy),owner=norm(st?.ownerUser),claimedAt=Number(st?.claimedAtMs||0),reassignedAt=Number(st?.reassignedAtMs||0);
   const stale=(claimant&&claimant!==me())||(!claimant&&owner&&owner!==me())||(!claimant&&reassignedAt>0&&reassignedAt>=claimedAt);
   if(!stale)return false;
@@ -488,7 +494,9 @@ const openingTasks=new Set();
 async function openTask(aid,fid,completed,cardDate='',exact=false,button=null){
   const date=syncQueueDate(queueDate(cardDate)),key=date+'|'+S(aid||fid);
   if(openingTasks.has(key))return;
-  openingTasks.add(key);queueStatusCache.delete(me()+'|'+S(aid));if(button)button.disabled=true;
+  openingTasks.add(key);queueStatusCache.delete(me()+'|'+S(aid));
+  let originalButtonText='';
+  if(button){originalButtonText=button.textContent||'';button.disabled=true;button.classList.add('v64100Opening');button.textContent='ĐANG MỞ…'}
   try{
     const man=await readManifest(date);
     const item=exact?(man?.items?.[aid]||null):resolveOwnedItem(man,aid,fid,completed);
@@ -507,7 +515,7 @@ async function openTask(aid,fid,completed,cardDate='',exact=false,button=null){
     root.sagsFlightDossierClose?.();const opened=await root.v324ReceiveOrOpen(realFid,S(item.assignmentId),date);
     // Opening a task no longer triggers a device pin or a second mailbox read.
   }catch(e){console.error('Mở công việc roster thất bại',e);alert('Không mở được công việc '+date+': '+S(e?.message||e));}
-  finally{openingTasks.delete(key);if(button?.isConnected)button.disabled=false;}
+  finally{openingTasks.delete(key);if(button?.isConnected){button.disabled=false;button.classList.remove('v64100Opening');if(originalButtonText)button.textContent=originalButtonText;}}
 }
 root.v1199QueueTab=function(tab){activeTab=tab==='completed'?'completed':'pending';void renderPersonal(queueDate(currentQueueDate))};
 
