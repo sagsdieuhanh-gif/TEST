@@ -496,7 +496,7 @@ async function openTask(aid,fid,completed,cardDate='',exact=false,button=null){
       alert(`Phân công của bạn ngày ${date} vừa thay đổi hoặc không còn hiệu lực. Hệ thống sẽ tải lại danh sách, không mở nhầm form khác.`);
       return void renderPersonal(date);
     }
-    if(!completed){await root.sagsAirlineFormPolicy?.ready(true);if(root.sagsAirlineFormPolicy?.allowed(item,item.formGroup)===false)throw new Error("Biểu mẫu này chưa được AD bật cho hãng hoặc loại tàu của chuyến.");}
+    if(!completed){await root.sagsAirlineFormPolicy?.ready();if(root.sagsAirlineFormPolicy?.allowed(item,item.formGroup)===false)throw new Error("Biểu mẫu này chưa được AD bật cho hãng hoặc loại tàu của chuyến.");}
     const realFid=S(item.flightId||fid);
     // Completed forms also go through the same exact-assignment NHẬN handler.
     if(!completed)try{await clearStaleClaimIfNeeded(item)}catch(e){
