@@ -5688,3 +5688,126 @@ html.new-ui-v1 body #fwcModal.show :is(.fwcBtn,.v1199Action){
     background:#06131f!important;
   }
 }
+
+
+/* ==========================================================================
+   V6.4.102 · SUPERVISOR ALL-FLIGHT HOME + AD CONTRAST HARDENING
+   Preserve V6.4.101 airline/mobile performance layer; this is a late visual
+   override only for controls/panels that inherited legacy low-contrast colors.
+   ========================================================================== */
+html.new-ui-v1 body.v157-authenticated #v181AdminCenter .v181AdminPanel,
+html.new-ui-v1 body.v157-authenticated .sagsAdminModal .sagsAdminPanel,
+html.new-ui-v1 body.v157-authenticated #dailyRosterModal .drPanel{
+  color:#e7f4fb!important;
+}
+html.new-ui-v1 body.v157-authenticated #v181AdminCenter .v181AdminCard{
+  color:#e4f2fa!important;
+}
+html.new-ui-v1 body.v157-authenticated #v181AdminCenter .v181AdminCard :is(b,strong,span,p,small),
+html.new-ui-v1 body.v157-authenticated :is(#activityMonitorStatus,#adccProgressList,.adccCard,.activitySummaryCard){
+  color:#dcedf7!important;
+}
+html.new-ui-v1 body.v157-authenticated .sagsAdminPanel :is(.sagsAdminField>label,.sagsUserMeta,.sagsAdminHint,.sagsAuditMeta,.fleetManagerHint,.fleetLabel),
+html.new-ui-v1 body.v157-authenticated #dailyRosterModal .drPanel :is(.drField>label,.drSub,.drHint,.drStatus){
+  color:#b8d3e2!important;
+}
+html.new-ui-v1 body.v157-authenticated .sagsAdminPanel .sagsAdminField > div > span{
+  color:#d9edf8!important;
+}
+html.new-ui-v1 body.v157-authenticated .sagsAdminPanel input[readonly]{
+  background:rgba(4,21,37,.72)!important;
+  color:#effaff!important;
+  border-color:rgba(132,193,228,.16)!important;
+}
+html.new-ui-v1 body.v157-authenticated .sagsAdminPanel select option{
+  background:#071a2e!important;
+  color:#effaff!important;
+}
+html.new-ui-v1 body.v157-authenticated #v503AdminResetPanel{
+  background:rgba(11,39,66,.78)!important;
+  color:#edf9ff!important;
+  border-color:rgba(127,197,235,.20)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.02)!important;
+}
+html.new-ui-v1 body.v157-authenticated #v503AdminResetPanel :is(div,label,b,strong,span){color:inherit!important}
+html.new-ui-v1 body.v157-authenticated #v503AdminResetPanel [style*="color:#93370d"]{color:#ffd38d!important}
+
+/* DAILY ROSTER · AD direct reassignment table: never render pale text on a pale table. */
+html.new-ui-v1 body.v157-authenticated #dailyRosterModal #drManage{
+  color:#dff0f8!important;
+}
+html.new-ui-v1 body.v157-authenticated #dailyRosterModal #drManage :is(table,thead,tbody,tr){
+  background:transparent!important;
+  color:inherit!important;
+}
+html.new-ui-v1 body.v157-authenticated #dailyRosterModal #drManage table{
+  width:100%!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+  overflow:hidden!important;
+  border:1px solid rgba(125,190,226,.18)!important;
+  border-radius:12px!important;
+}
+html.new-ui-v1 body.v157-authenticated #dailyRosterModal #drManage th{
+  background:#102c43!important;
+  color:#eaf8ff!important;
+  border-color:rgba(128,190,224,.16)!important;
+  font-weight:850!important;
+}
+html.new-ui-v1 body.v157-authenticated #dailyRosterModal #drManage td{
+  background:#0b2236!important;
+  color:#dceef7!important;
+  border-color:rgba(128,190,224,.12)!important;
+}
+html.new-ui-v1 body.v157-authenticated #dailyRosterModal #drManage tr:nth-child(even) td{
+  background:#0d283e!important;
+}
+html.new-ui-v1 body.v157-authenticated #dailyRosterModal #drManage :is(b,strong,span,small){
+  color:inherit!important;
+}
+html.new-ui-v1 body.v157-authenticated #dailyRosterModal #drManage button{
+  background:#eaf3f7!important;
+  color:#17435c!important;
+  border:1px solid #bdd4df!important;
+  font-weight:850!important;
+}
+html.new-ui-v1 body.v157-authenticated #dailyRosterModal #drManage button:hover{
+  background:#fff!important;
+}
+
+/* MY FLIGHT MENU and AD back controls: fixed contrast + no broken QUAY LẠI wrapping. */
+html.new-ui-v1 body.v157-authenticated #fwcModal .fwcHead :is(#v477Close,#v644MyFlightBack,.fwcBtn.gray),
+html.new-ui-v1 body.v157-authenticated #v181AdminCenter .v181AdminHead button{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  color:#eefaff!important;
+  background:#153b55!important;
+  border:1px solid rgba(114,194,229,.30)!important;
+  text-shadow:none!important;
+  line-height:1.1!important;
+}
+html.new-ui-v1 body.v157-authenticated #fwcModal .fwcHead :is(#v477Close,#v644MyFlightBack,.fwcBtn.gray):hover,
+html.new-ui-v1 body.v157-authenticated #v181AdminCenter .v181AdminHead button:hover{
+  background:#1a4a68!important;
+  border-color:rgba(129,214,245,.45)!important;
+}
+@media(max-width:600px){
+  html.new-ui-v1 body.v157-authenticated #fwcModal .fwcHead :is(#v477Close,#v644MyFlightBack,.fwcBtn.gray),
+  html.new-ui-v1 body.v157-authenticated #v181AdminCenter .v181AdminHead button{
+    min-height:42px!important;
+    padding:8px 10px!important;
+    font-size:11px!important;
+    flex:0 0 auto!important;
+  }
+  html.new-ui-v1 body.v157-authenticated #dailyRosterModal #drManage{
+    overflow-x:auto!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+  html.new-ui-v1 body.v157-authenticated #dailyRosterModal #drManage table{
+    min-width:720px!important;
+  }
+}
