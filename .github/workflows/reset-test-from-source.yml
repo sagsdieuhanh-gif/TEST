@@ -24,8 +24,12 @@ jobs:
           git archive refs/remotes/source/main | tar -x
           node /tmp/apply-test-roster-policy.cjs
           node tests/roster-stable-family.test.cjs
+          # GITHUB_TOKEN cannot change workflow files. Keep current workflows unchanged for this one push;
+          # they are replaced in one clean follow-up commit by the GitHub connector.
+          rm -rf .github/workflows
+          git checkout "$EXPECTED_MAIN" -- .github/workflows || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Reset TEST from E-REPORT-SAGS V6.4.88 and lock roster form family"
+          git commit -m "Reset TEST from E-REPORT-SAGS V6.4.88 and lock roster form family [skip ci]"
           git push origin HEAD:main
