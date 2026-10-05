@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.92",
-  "displayVersion": "V6.4.92",
-  "label": "V6.4.92 - AVIATION OPERATIONS LUXURY UI",
-  "build": "V6.4.92-20261005-AVIATION-LUXURY-01",
-  "releasedAt": "2026-10-05T13:12:00Z",
-  "type": "ui-redesign",
-  "base": "V6.4.91-20261005-MYFLIGHT-DH-UNIFIED-01",
+  "version": "V6.4.93",
+  "displayVersion": "V6.4.93",
+  "label": "V6.4.93 - UI STABILITY FIX",
+  "build": "V6.4.93-20261005-UI-STABILITY-01",
+  "releasedAt": "2026-10-05T13:24:00Z",
+  "type": "ui-stability-fix",
+  "base": "V6.4.92-20261005-AVIATION-LUXURY-01",
   "updatePolicy": "required",
-  "notes": "Áp dụng bộ UI/UX E-REPORT SAGS theo phong cách Modern Aviation Operations / Dark Luxury trực tiếp vào TEST. Desktop dùng console tối chuyên nghiệp với sidebar cố định, home và MY FLIGHT đồng nhất; mobile dùng bố cục riêng cho thao tác một tay, menu sau đăng nhập và MY FLIGHT full-screen compact. Giữ nguyên nghiệp vụ, quyền, dữ liệu roster, biểu mẫu và bề mặt giấy in.",
-  "message": "V6.4.92: triển khai giao diện dark aviation premium cho desktop và mobile."
+  "notes": "Sửa lỗi giao diện mới chỉ hiện khoảng 1–2 giây rồi bị runtime cũ giành lại. Bỏ tự động chuyển KH/Cargo vào màn danh sách cũ sau đăng nhập; tất cả vai trò ở lại menu mới cho đến khi người dùng chọn chức năng. KH/Cargo dùng cùng route MY FLIGHT chuẩn như ĐH/AD. Tăng ưu tiên CSS cho shell dark aviation để các rule legacy chạy muộn không thể trả giao diện về nền trắng/cũ.",
+  "message": "V6.4.93: giữ giao diện mới ổn định, không tự quay về UI cũ."
 }
