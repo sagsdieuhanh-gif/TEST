@@ -26,7 +26,7 @@ html.new-ui-v1{
   --sags-font-ui:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
   --sags-shadow-soft:0 8px 28px rgba(0,12,28,.18);
   --sags-focus-ring:0 0 0 3px rgba(75,174,255,.18);
-  --sags-button-radius:var(--sags-radius);
+  --sags-button-radius:12px;
   --sags-button-height:44px;
   --sags-nav-button-height:48px;
   --sags-button-icon-size:20px;
