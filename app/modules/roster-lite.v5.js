@@ -105,10 +105,10 @@ function ensureHomeButton(modal){
   }
 }
 function ensureModal(){
-  let modal=document.getElementById('fwcModal');if(modal){ensureHomeButton(modal);return modal;}
+  let modal=document.getElementById('fwcModal');if(modal){ensureHomeButton(modal);setTimeout(()=>installFlightFilterObserver(),0);return modal;}
   modal=document.createElement('div');modal.id='fwcModal';modal.className='';
   modal.innerHTML='<div class="fwcPanel"><div class="fwcHead"><h3>MY FLIGHT</h3><button class="fwcBtn gray" type="button" id="v477Close">ĐÓNG</button></div><div id="fwcBody"></div></div>';
-  document.body.appendChild(modal);document.getElementById('v477Close').onclick=()=>root.flightWorkspaceClose?.();ensureHomeButton(modal);return modal;
+  document.body.appendChild(modal);document.getElementById('v477Close').onclick=()=>root.flightWorkspaceClose?.();ensureHomeButton(modal);setTimeout(()=>installFlightFilterObserver(),0);return modal;
 }
 function normalizeFlightDossierCards(){
  if(typeof root.sagsV338OpenDossier!=='function')return;
