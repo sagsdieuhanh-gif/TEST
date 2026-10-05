@@ -950,6 +950,6 @@ html.new-ui-v1.new-ui-v1.new-ui-v1 body #opsHomeFlights .opsOpenCell button{
   #dailyRosterModal .drFlightCard,
   .v1199PersonalList > *{
     content-visibility:auto;
-    contain-intrinsic-size:88px;
+    contain-intrinsic-size:auto 240px;
   }
 }
