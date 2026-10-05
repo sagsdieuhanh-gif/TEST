@@ -689,3 +689,68 @@
     }
   }
 }
+
+
+/* PHASE 4 · DESKTOP OPERATIONAL FORM */
+@media(min-width:1024px){
+  html.new-ui-v1 body.v163-operational:not(.v157-home){
+    padding-top:64px!important;
+    padding-bottom:86px!important;
+    background:
+      radial-gradient(circle at 88% 0%,rgba(23,82,135,.18),transparent 30%),
+      linear-gradient(180deg,#0a2139,#081a2f)!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsNavigationHeader{
+    top:12px!important;
+    right:18px!important;
+    gap:7px!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsNavigationHeader :is(button,a){
+    min-width:96px!important;
+    height:40px!important;
+    min-height:40px!important;
+    padding:0 12px!important;
+    border:1px solid #315e82!important;
+    border-radius:12px!important;
+    background:#0d365d!important;
+    color:#f8fbff!important;
+    font:700 12px/1 var(--sags-font-ui)!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock{
+    bottom:12px!important;
+    width:min(900px,calc(100vw - 56px))!important;
+    max-width:900px!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock #v324FormActions.show{
+    gap:7px!important;
+    padding:7px!important;
+    border:1px solid #315e82!important;
+    border-radius:14px!important;
+    background:rgba(6,27,48,.97)!important;
+    box-shadow:0 14px 34px rgba(0,8,22,.24)!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock #v324FormActions :is(.v324FormAction,#v163SignBtn){
+    height:42px!important;
+    min-height:42px!important;
+    max-height:42px!important;
+    border:1px solid #315e82!important;
+    border-radius:12px!important;
+    background:#0d365d!important;
+    color:#f8fbff!important;
+    font:700 12px/1 var(--sags-font-ui)!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock #v1134QuickTimeBtn{background:#0d3f72!important;border-color:#448ed0!important}
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock #v163SignBtn{background:#3b321f!important;border-color:#b18a3d!important}
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock #v324PdfBtn{background:#0a3a3d!important;border-color:#3f9b7a!important}
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock #v324HandoverBtn{background:#0b7cff!important;border-color:#4ea5f6!important;color:#fff!important}
+  html.new-ui-v1 body.v163-operational:not(.v157-home) #sagsMobileFormDock #v163OperationNav{
+    display:none!important;
+  }
+  html.new-ui-v1 body.v163-operational:not(.v157-home) .sheet:not(.hide){
+    margin-left:auto!important;
+    margin-right:auto!important;
+    box-shadow:0 14px 42px rgba(0,8,22,.26)!important;
+  }
+}
