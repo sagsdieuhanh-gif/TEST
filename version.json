@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.96",
-  "displayVersion": "V6.4.96",
-  "label": "V6.4.96 - MOBILE LOGOUT",
-  "build": "V6.4.96-20261005-MOBILE-LOGOUT-01",
-  "releasedAt": "2026-10-05T14:52:00Z",
-  "type": "ui-hotfix",
-  "base": "V6.4.95-20261005-REFERENCE-UI-01",
+  "version": "V6.4.97",
+  "displayVersion": "V6.4.97",
+  "label": "V6.4.97 - DOSSIER NOTIFY + UPPERCASE FORMS",
+  "build": "V6.4.97-20261005-DOSSIER-NOTIFY-UPPER-01",
+  "releasedAt": "2026-10-05T15:24:00Z",
+  "type": "workflow-ui-enhancement",
+  "base": "V6.4.96-20261005-MOBILE-LOGOUT-01",
   "updatePolicy": "required",
-  "notes": "Bổ sung nút Đăng xuất hiển thị rõ trên Home/Menu mobile, đặt ngay trong thẻ hồ sơ người dùng với vùng bấm tối thiểu 44px. Không thay đổi nghiệp vụ, phân quyền hay dữ liệu chuyến.",
-  "message": "V6.4.96: thêm nút Đăng xuất rõ ràng trên mobile."
+  "notes": "Toàn bộ dữ liệu chữ trong biểu mẫu được chuẩn hóa IN HOA khi nhập/lưu/vẽ/xuất nhưng không đụng ngày giờ, số, checkbox, chữ ký, ảnh hay file. Chuông thông báo mới chỉ theo dõi đúng các flightId được phân công cho tài khoản và báo khi bộ phận khác gửi tài liệu chính thức của cùng hồ sơ chuyến; không dùng polling hay MutationObserver mới. TVJ-GOF-035 hiển thị BBBT ngay bên dưới như các biểu mẫu Ramp khác. FSAGS 208 tự điền Flight No., Date, A/C Type, ETD và Route từ dữ liệu chuyến khi ô còn trống.",
+  "message": "V6.4.97: uppercase forms, dossier-scoped bell, TVJ + BBBT, FSAGS208 autofill."
 }
