@@ -162,7 +162,11 @@ function ensureCanonicalRoleViewStyle(){
 #fwcList.v478CanonicalQueue .v478CanonicalRoleCard .fwcDeptStatuses{display:none!important}
 #fwcList.v478CanonicalQueue .v478RoleModuleWrap{display:block!important;min-width:0!important}
 #fwcList.v478CanonicalQueue .v478RoleModules{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important;margin:9px 0!important;max-width:none!important}
-#fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge{display:flex!important;align-items:center!important;min-height:54px!important;padding:8px!important;border:1px solid #cbdbe6!important;border-radius:10px!important;background:#eef4f9!important;color:#314a61!important;font:800 10px/1.25 Arial!important;white-space:normal!important;text-align:left!important}
+#fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:3px!important;min-height:54px!important;padding:8px!important;border:1px solid #cbdbe6!important;border-radius:10px!important;background:#eef4f9!important;color:#314a61!important;font:800 10px/1.25 Arial!important;white-space:normal!important;text-align:left!important}
+#fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge b{display:block!important;color:inherit!important;font:900 11px/1.15 Arial!important}
+#fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge small{display:block!important;color:inherit!important;opacity:.82!important;font:800 9px/1.25 Arial!important;overflow-wrap:anywhere!important}
+#fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge.done{border-color:#4c9c76!important;background:#e7f6ed!important;color:#14633a!important}
+#fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge.working{border-color:#6aaed8!important;background:#eaf6ff!important;color:#135c86!important}
 #fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge.warn{border-color:#e4bd72!important;background:#fff7e6!important;color:#8a4b00!important}
 #fwcList.v478CanonicalQueue .v478RoleActions{display:grid!important;grid-template-columns:1fr!important;gap:7px!important;margin-top:auto!important}
 #fwcList.v478CanonicalQueue .v478RoleActions>.fwcBtn{width:100%!important;min-height:42px!important;margin:0!important;border-radius:9px!important}
