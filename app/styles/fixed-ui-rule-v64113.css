@@ -41,8 +41,8 @@ html.new-ui-v1{
   --sags-button-font-size:14px;
   --sags-button-font-weight:700;
 }
-html.new-ui-v1 body button,
-html.new-ui-v1 body [role="button"]{
+html.new-ui-v1 body button:not(.quickTimeNow),
+html.new-ui-v1 body [role="button"]:not(.quickTimeNow){
   border-radius:var(--sags-button-radius)!important;
   box-shadow:none!important;
 }
@@ -235,7 +235,7 @@ html.new-ui-v1 body :is(.formMenuGrid button,.exportChoiceGrid button,.v377Creat
     border-radius:var(--sags-button-radius)!important;
     box-shadow:none!important;
   }
-  html.new-ui-v1 body :is(.sagsAdminPanel,.flightSessionBox,.fwcPanel,.hf4Panel,.sagsDossierPanel,.fleetManagerPanel,.finalFormsPanel,.formMenuBox,.fs09qPanel,.quickTimePanel,.v485PermBox) button{
+  html.new-ui-v1 body :is(.sagsAdminPanel,.flightSessionBox,.fwcPanel,.hf4Panel,.sagsDossierPanel,.fleetManagerPanel,.finalFormsPanel,.formMenuBox,.fs09qPanel,.quickTimePanel,.v485PermBox) button:not(.quickTimeNow){
     min-height:44px!important;
     padding:7px 10px!important;
     border-radius:var(--sags-button-radius)!important;
@@ -263,8 +263,8 @@ html.new-ui-v1 body :is(.formMenuGrid button,.exportChoiceGrid button,.v377Creat
    rendered controls. Business logic and semantic state stay intact.
    ========================================================== */
 html.new-ui-v1 body :is(
-  button,
-  [role="button"],
+  button:not(.quickTimeNow),
+  [role="button"]:not(.quickTimeNow),
   input[type="button"],
   input[type="submit"],
   input[type="reset"]
@@ -310,7 +310,7 @@ html.new-ui-v1 body :is(
   #signModal .panel,
   #signatureSampleModal>div,
   #timeSkipModal>div
-) button{
+) button:not(.quickTimeNow){
   min-height:40px!important;
   padding:6px 10px!important;
   border-radius:var(--sags-button-radius)!important;
@@ -439,7 +439,7 @@ html.new-ui-v1 body :is(
 
 /* Shared Button Base. The runtime tags existing controls without replacing
    nodes or handlers. All variants inherit the same dimensions and typography. */
-html.new-ui-v1.new-ui-v1 body .sagsUiButton{
+html.new-ui-v1.new-ui-v1 body .sagsUiButton:not(.quickTimeNow){
   box-sizing:border-box!important;
   border-radius:var(--sags-button-radius)!important;
   height:var(--sags-button-height)!important;
@@ -469,7 +469,7 @@ html.new-ui-v1 body .sagsUiButton:is(.active,.selected,[aria-selected="true"],[a
 html.new-ui-v1.new-ui-v1 body .sagsUiButton:is(:disabled,[aria-disabled="true"],[aria-busy="true"]){opacity:.5!important}
 /* Scoped legacy selectors defeat older ID rules without changing visibility,
    positioning, permission checks or print/paper dimensions. */
-html.new-ui-v1.new-ui-v1 body :is(#roleLoginModal,#v157Drawer,#v6497MobileHome,#fwcModal,#v174DataHub,#v181AdminCenter,#accountManagerModal,#flightSessionModal,#sagsFlightDossierModal,#fleetManagerModal,#finalFormsModal,#formMenuModal,#templateModal,#signModal,#signatureSampleModal,#timeSkipModal,#exportChoiceModal,#csgMgr) .sagsUiButton{
+html.new-ui-v1.new-ui-v1 body :is(#roleLoginModal,#v157Drawer,#v6497MobileHome,#fwcModal,#v174DataHub,#v181AdminCenter,#accountManagerModal,#flightSessionModal,#sagsFlightDossierModal,#fleetManagerModal,#finalFormsModal,#formMenuModal,#templateModal,#signModal,#signatureSampleModal,#timeSkipModal,#exportChoiceModal,#csgMgr) .sagsUiButton:not(.quickTimeNow){
   border-radius:var(--sags-button-radius)!important;
   height:var(--sags-button-height)!important;
   min-height:var(--sags-button-height)!important;
