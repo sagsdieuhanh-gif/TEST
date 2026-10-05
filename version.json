@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.104",
-  "displayVersion": "V6.4.104",
-  "label": "V6.4.104 - MOBILE ROW + PERFORMANCE CLEANUP",
-  "build": "V6.4.104-20261006-MOBILE-PERF-CLEANUP-01",
-  "releasedAt": "2026-10-05T20:29:04Z",
-  "type": "ui-performance-cleanup",
-  "base": "V6.4.103-20261006-DASHBOARD-FIDELITY-01",
+  "version": "V6.4.105",
+  "displayVersion": "V6.4.105",
+  "label": "V6.4.105 - MY FLIGHT STABILITY + FORM OVERVIEW",
+  "build": "V6.4.105-20261006-MYFLIGHT-STABILITY-FORM-OVERVIEW-01",
+  "releasedAt": "2026-10-05T20:52:52Z",
+  "type": "ui-stability-workflow-visibility",
+  "base": "V6.4.104-20261006-MOBILE-PERF-CLEANUP-01",
   "updatePolicy": "required",
-  "notes": "Mobile: 3 card Chuyến đang làm / Đã hoàn thành hôm nay / Chờ xử lý nằm trên một hàng ngang, co giãn cho 360-767px. Tối ưu PC + mobile: bỏ render lại bảng chuyến khi resize không đổi số dòng, giảm quét lặp khi gắn nhận diện hãng, dùng content-visibility cho danh sách dài, preconnect Firebase SDK, sửa lazy AI dùng build hiện tại. Gộp 4 CSS siêu nhỏ vào new-ui để giảm 4 request. Dọn 293 file snapshot previews/final-ui và 4 CSS đã gộp, giảm khoảng 23.6 MB khỏi repo/deploy artifact. Hai file app/core được rà soát nhưng giữ lại vì bộ regression test còn dùng làm nguồn chuẩn nghiệp vụ. Giữ nguyên logic V6.4.103/V6.4.102.",
-  "message": "V6.4.104: 3 card mobile một hàng ngang, dọn code/file dư và tối ưu tốc độ render/load trên mobile + PC."
+  "notes": "Sửa MY FLIGHT bị nhấp nháy liên tục: loại #fwcModal khỏi MutationObserver đồng bộ giao diện toàn cục, biến các cập nhật header/MENU thành idempotent và thống nhất tiêu đề MY FLIGHT giữa shell với Daily Roster để không còn vòng lặp MY FLIGHT ↔ ✈ MY FLIGHT. Đồng thời hiển thị ngay trên từng card chuyến danh sách biểu mẫu đã sinh ra, người phụ trách/thực hiện và trạng thái CHỜ NHẬN/ĐANG THỰC HIỆN/HOÀN TẤT; 54/94 lấy đúng tên từ Form Manager. Không cần mở HỒ SƠ CHUYẾN mới biết ai đang làm biểu mẫu nào. Giữ nguyên toàn bộ tối ưu V6.4.104.",
+  "message": "V6.4.105: ổn định MY FLIGHT, hết nhấp nháy và hiện biểu mẫu + người phụ trách + trạng thái ngay trên card chuyến."
 }
