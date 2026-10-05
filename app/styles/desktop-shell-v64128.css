@@ -467,3 +467,225 @@
     box-shadow:none!important;
   }
 }
+
+
+/* PHASE 3 · DESKTOP MY FLIGHT
+   Dark operational workspace; business handlers and roster ownership are unchanged. */
+@media(min-width:1024px){
+  html.new-ui-v1{--sags-desktop-sidebar:264px}
+  html.new-ui-v1 body.v157-authenticated #fwcModal{
+    left:264px!important;
+    padding:18px 20px!important;
+    background:
+      radial-gradient(circle at 88% 0%,rgba(23,82,135,.22),transparent 30%),
+      linear-gradient(180deg,#0a2139,#081a2f)!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcPanel{
+    height:calc(100vh - 36px)!important;
+    padding:16px 18px 20px!important;
+    border:1px solid #234d70!important;
+    border-radius:14px!important;
+    background:#0b2540!important;
+    color:#f8fbff!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcHead{
+    min-height:52px!important;
+    padding:0 0 12px!important;
+    border-bottom:1px solid #234d70!important;
+    background:transparent!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcHead h3{
+    color:#f8fbff!important;
+    font:700 22px/1.15 var(--sags-font-ui,Arial)!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcHead .fwcSub{
+    margin-top:4px!important;
+    color:#91a8bd!important;
+    font:500 12px/1.3 var(--sags-font-ui,Arial)!important;
+  }
+  html.new-ui-v1 body #fwcModal :is(#v644MyFlightBack,#v479MyFlightHome,#sagsStableMyFlightBack){
+    height:40px!important;
+    min-height:40px!important;
+    border:1px solid #315e82!important;
+    border-radius:12px!important;
+    background:#0d365d!important;
+    color:#f8fbff!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcTools{
+    gap:8px!important;
+    margin:12px 0 10px!important;
+    padding:9px!important;
+    border:1px solid #234d70!important;
+    border-radius:12px!important;
+    background:#081f37!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcTools :is(input,select,.sagsFlightSearchBox){
+    min-height:42px!important;
+    border:1px solid #416d8e!important;
+    border-radius:12px!important;
+    background:#0a2947!important;
+    color:#f8fbff!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcTools input{
+    color:#f8fbff!important;
+    -webkit-text-fill-color:#f8fbff!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcTools input::placeholder{color:#7898b2!important;opacity:1!important}
+  html.new-ui-v1 body #fwcModal .fwcTools :is(button,.fwcBtn,.hf4Open){
+    min-height:42px!important;
+    border:1px solid #315e82!important;
+    border-radius:12px!important;
+    background:#0d365d!important;
+    color:#f8fbff!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcTools>.hf4Open{
+    border-color:#4ea5f6!important;
+    background:#0b7cff!important;
+    color:#fff!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcStatus{
+    border:1px solid #234d70!important;
+    border-radius:10px!important;
+    background:#081f37!important;
+    color:#91a8bd!important;
+  }
+  html.new-ui-v1 body #fwcList.v1199Queue .v1199Tabs{
+    width:min(100%,560px)!important;
+    max-width:none!important;
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:8px!important;
+    margin:8px 0 10px!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199Tab{
+    min-height:46px!important;
+    border:1px solid #285d88!important;
+    border-radius:12px!important;
+    background:#082744!important;
+    color:#a9c6db!important;
+    font:700 11px/1.15 var(--sags-font-ui,Arial)!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199Tab.active{
+    border-color:#4fa6e9!important;
+    background:#0d365d!important;
+    color:#fff!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199Count{
+    min-width:27px!important;height:27px!important;line-height:27px!important;
+    border-radius:8px!important;
+    background:#0b7cff!important;color:#fff!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199OwnerNote{
+    color:#91a8bd!important;
+    font:500 11px/1.35 var(--sags-font-ui,Arial)!important;
+  }
+  html.new-ui-v1 body #fwcList.v1199Queue .v1199FlightGrid{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+  html.new-ui-v1 body #fwcList.v1199Queue .v1199Card,
+  html.new-ui-v1 body #fwcList.sagsCargo208Queue .v1199Card{
+    padding:12px!important;
+    border:1px solid #285d88!important;
+    border-radius:14px!important;
+    background:#082744!important;
+    color:#f8fbff!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199Title,
+  html.new-ui-v1 body #fwcList.sagsCargo208Queue .v1199Title{
+    color:#f8fbff!important;
+    font:750 20px/1.05 var(--sags-font-ui,Arial)!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199Meta,
+  html.new-ui-v1 body #fwcList.sagsCargo208Queue .v1199Meta{
+    margin-top:6px!important;
+    color:#a9c6db!important;
+    font:500 11px/1.4 var(--sags-font-ui,Arial)!important;
+  }
+  html.new-ui-v1 body #fwcList.v1199Queue .v1199Tasks,
+  html.new-ui-v1 body #fwcList.sagsCargo208Queue .v1199Tasks{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:7px!important;
+    margin:10px 0!important;
+  }
+  html.new-ui-v1 body #fwcModal :is(.v1199FormTile,.v1199TaskBtn),
+  html.new-ui-v1 body #fwcList.sagsCargo208Queue .v1199TaskBtn{
+    min-height:68px!important;
+    padding:8px!important;
+    border:1px solid #315e82!important;
+    border-radius:12px!important;
+    background:#0b315a!important;
+    color:#f8fbff!important;
+    font:700 11px/1.22 var(--sags-font-ui,Arial)!important;
+    text-align:left!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body #fwcModal :is(.v1199FormTile,.v1199TaskBtn).done,
+  html.new-ui-v1 body #fwcList.sagsCargo208Queue .v1199TaskBtn.done{
+    border-color:#287a70!important;
+    background:#0a3a3d!important;
+    color:#d8f8eb!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199DossierSummary,
+  html.new-ui-v1 body #fwcModal .v1199PolicySummary{
+    border:1px solid #234d70!important;
+    border-radius:10px!important;
+    background:#061f38!important;
+    color:#a9c6db!important;
+  }
+  html.new-ui-v1 body #fwcModal :is(.v1199DocChip,.v1199PolicyChip){
+    border:1px solid #315e82!important;
+    border-radius:8px!important;
+    background:#0d365d!important;
+    color:#d9edff!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199FlightActions,
+  html.new-ui-v1 body #fwcList.sagsCargo208Queue .v1199FlightActions{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:7px!important;
+    margin-top:8px!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199Action,
+  html.new-ui-v1 body #fwcList.sagsCargo208Queue .v1199Action{
+    min-height:40px!important;
+    border:1px solid #315e82!important;
+    border-radius:12px!important;
+    background:#0d365d!important;
+    color:#f8fbff!important;
+    font:700 10px/1.15 var(--sags-font-ui,Arial)!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199Action.finish{
+    border-color:#287a70!important;background:#0a3a3d!important;color:#baf4cd!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199Action.reopenFlight{
+    border-color:#77693c!important;background:#3c3420!important;color:#f3dda3!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199FlightState{
+    margin:8px 0 0!important;
+    border:1px solid #287a70!important;
+    border-radius:8px!important;
+    background:#0a3a3d!important;
+    color:#baf4cd!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199Empty{
+    border:1px solid #285d88!important;
+    border-radius:12px!important;
+    background:#082744!important;
+    color:#91a8bd!important;
+  }
+  @media(min-width:1500px){
+    html.new-ui-v1 body #fwcList.v1199Queue .v1199FlightGrid{
+      grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    }
+  }
+}
