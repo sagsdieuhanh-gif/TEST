@@ -1,14 +1,14 @@
-/* E-REPORT SAGS V6.4.115 · AIRLINE GLASS UI + VERSION SYNC + RTDB DATA SAVER + CORE STABILITY PRESERVED · IMMUTABLE EXECUTABLE PATHS / PINNED VERIFIED SHELL
+/* E-REPORT SAGS V6.4.88 · AIRLINE GLASS UI + VERSION SYNC + RTDB DATA SAVER + CORE STABILITY PRESERVED · IMMUTABLE EXECUTABLE PATHS / PINNED VERIFIED SHELL
    Base: V4.8.10B Layered PDF + HF1–HF4. Never mix navigation HTML with a different runtime.
 */
 'use strict';
-const BUILD='V6.4.144-20261005-UNIFIED-CONTROLS-01';
-const DISPLAY_VERSION='V6.4.144';
-const CACHE_NAME='sags-app-shell-v64144-20261005-unified-controls-01';
-const META_CACHE_NAME='sags-app-meta-v64144-20261005-unified-controls-01';
+const BUILD='V6.4.88-20261003-AUTO-CACHE-CLEANUP-01';
+const DISPLAY_VERSION='V6.4.88';
+const CACHE_NAME='sags-app-shell-v688-auto-cache-cleanup-01';
+const META_CACHE_NAME='sags-app-meta-v688-auto-cache-cleanup-01';
 const ASSET_MANIFEST_URL='./asset-manifest.json';
 const MUTABLE_METADATA=new Set(['./forms/forms.registry.json','./data/form-configuration.json']);
-const SAGS_BOOTSTRAP=["./index.html","./app/generated/legacy-ui-bundle-1.css","./app/generated/base-ui.min.css","./app/generated/legacy-ui-bundle-2.css","./app/generated/design-ui.min.css","./app/boot/01-sags-v620-unified-form-migration.js","./app/generated/legacy-ui-bundle-3.css","./app/boot/02-sags-v611-update-alert-position.js","./app/generated/boot-group-1.js","./app/generated/legacy-05.min.js","./app/generated/legacy-06.min.js","./app/generated/legacy-ui-bundle-4.css","./app/generated/legacy-07.min.js","./app/boot/08-v412-kh208-script.js","./app/boot/09-v454AccountProfileOverrides.js","./app/boot/10-v470-hybrid-core.js","./app/boot/11-v476-core.js","./app/styles/boot-27-v484-system-dept-style.css","./app/boot/12-v484SystemDepartmentRoles.js","./app/styles/boot-28-v485-feature-permission-style.css","./app/boot/13-v485FeaturePermissions.js","./app/styles/boot-29-v18-account-hierarchy-style.css","./app/boot/14-v18CanonicalAccountHierarchy.js","./app/boot/15-v116-account-name-search.js","./app/modules/feature-loader.v1.js","./app/generated/core-shared.js","./app/generated/core-archive.js","./app/generated/boot-group-2.js","./app/generated/core-tools.js","./app/boot/18-v173-quick-time.js","./app/generated/legacy-ui-bundle-5.css","./app/boot/19-v183-fs09-quick.js","./app/styles/boot-32-v161-progress-v2-style.css","./app/generated/boot-group-3.js","./app/styles/boot-33-v1121-ios-time-footer-style.css","./app/boot/22-v1121-ios-time-footer-script.js","./app/styles/boot-34-v1122-roster-sign-style.css","./app/boot/23-v1122-roster-sign-script.js","./app/generated/legacy-ui-bundle-6.css","./app/generated/boot-group-6.js","./app/generated/boot-group-4.js","./app/generated/core-flight.js","./app/generated/core-control.js","./app/generated/core-postcontrol.js","./app/modules/admin-reset.v503hf2.js","./app/generated/core-performance.js","./app/modules/firebase-read-coalescer.v1.js","./app/modules/flight-governance.v1.js","./app/modules/daily-roster.v502.js","./app/modules/self-accept.v502.js","./app/boot/26-v644SafeStorageCleanup.js","./app/generated/runtime-1.js","./app/generated/runtime-2.js","./app/generated/runtime-3.js","./app/generated/runtime-4.js","./app/generated/runtime-5.js","./app/generated/boot-group-5.js","./app/generated/startup-bundle-2.js","./app/modules/stability.v6.js","./app/modules/cross-browser-entry.v1.js","./app/modules/roster-lite.v5.js","./app/boot/30-sags-v6120-all-form-render-standard.js","./app/generated/startup-bundle-3.js","./app/boot/31-sags-grnd-ls-v621.js","./app/generated/startup-bundle-4.js","./app/modules/fsags208-workspace.v1.js","./app/styles/mobile-navy-v64106.css","./app/styles/fixed-ui-rule-v64113.css","./app/styles/desktop-shell-v64128.css","./app/boot/32-fixed-ui-rule-v64113.js","./app/modules/post-login-unlock.v64123.js","./app/modules/update-ui-clean.v64125.js","./version.json","./data/airline-form-catalog.json","./assets/ui/myflight-hero-v64101.webp","./assets/branding/login-logo-10years.png","./service-worker.js","./app/modules/stability.v6-core.js","./app/modules/mobile-draft-recovery.v1.js","./app/modules/indexeddb-flight-store.v1.js"];
+const SAGS_BOOTSTRAP=["./index.html","./app/boot/01-sags-v620-unified-form-migration.js","./app/boot/02-sags-v611-update-alert-position.js","./app/generated/boot-group-1.js","./app/boot/05-legacy.js","./app/boot/06-legacy.js","./app/boot/07-legacy.js","./app/boot/08-v412-kh208-script.js","./app/boot/09-v454AccountProfileOverrides.js","./app/boot/10-v470-hybrid-core.js","./app/boot/11-v476-core.js","./app/boot/12-v484SystemDepartmentRoles.js","./app/boot/13-v485FeaturePermissions.js","./app/boot/14-v18CanonicalAccountHierarchy.js","./app/boot/15-v116-account-name-search.js","./app/modules/feature-loader.v1.js","./app/generated/core-shared.js","./app/generated/core-archive.js","./app/generated/boot-group-2.js","./app/generated/core-tools.js","./app/boot/18-v173-quick-time.js","./app/boot/19-v183-fs09-quick.js","./app/generated/boot-group-3.js","./app/boot/22-v1121-ios-time-footer-script.js","./app/boot/23-v1122-roster-sign-script.js","./app/generated/boot-group-4.js","./app/generated/core-flight.js","./app/generated/core-control.js","./app/generated/core-postcontrol.js","./app/modules/admin-reset.v503hf2.js","./app/generated/core-performance.js","./app/modules/firebase-read-coalescer.v1.js","./app/modules/daily-roster.v502.js","./app/modules/self-accept.v502.js","./app/boot/26-v644SafeStorageCleanup.js","./app/generated/runtime-1.js","./app/generated/runtime-2.js","./app/generated/runtime-3.js","./app/generated/runtime-4.js","./app/generated/runtime-5.js","./app/generated/boot-group-5.js","./app/modules/quick-entry.v1.js","./app/modules/ui-preferences.v1.js","./app/modules/stability.v6.js","./app/modules/cross-browser-entry.v1.js","./app/modules/roster-lite.v5.js","./app/boot/30-sags-v6120-all-form-render-standard.js","./app/modules/tvj-gof-035.v630.js","./app/modules/tvj-gof-035.v631.js","./app/modules/tvj-gof-035.v632.js","./app/boot/31-sags-grnd-ls-v621.js","./app/modules/fsags54-94.v622.js","./app/modules/form-registry-runtime.v647.js","./app/modules/form-registry-runtime.v6419.js","./app/modules/airline-form-policy.v1.js","./app/modules/workflow-cleanup.v6444.js","./app/modules/fsags208-workspace.v1.js","./app/styles/app.bundle.css","./app/styles/new-ui-v1.css","./app/styles/boot-01-legacy.css","./app/styles/boot-02-legacy.css","./app/styles/boot-03-legacy.css","./app/styles/boot-04-sags-login-bg-v640.css","./app/styles/boot-05-sags-role-home-v642.css","./app/styles/boot-06-v110-role-backgrounds.css","./app/styles/boot-07-v15-r002-serial-mask.css","./app/styles/boot-08-v114-final-paper-check-style.css","./app/styles/boot-09-sags-personal-account-test-style.css","./app/styles/boot-10-v139-fleet-manager-style.css","./app/styles/boot-11-v49-loading208-style.css","./app/styles/boot-12-v411-activity-detail-style.css","./app/styles/boot-13-v417-ad-control-center-style.css","./app/styles/boot-14-v412-kh208-style.css","./app/styles/boot-15-v476-style.css","./app/styles/boot-16-v482-responsive-ui-style.css","./app/styles/boot-17-v377AdminFormToolsStyle.css","./app/styles/boot-18-sags-v115-clean-ui.css","./app/styles/boot-19-v502RosterDirectStyle.css","./app/styles/boot-20-v503hf1AdControlResetStyle.css","./app/styles/boot-21-legacy.css","./app/styles/boot-22-sags-v611-update-alert-style.css","./app/styles/boot-23-v1-restore-final-send-button.css","./app/styles/boot-24-v1-final-header-layout.css","./app/styles/boot-25-v1-final-actions-unified.css","./app/styles/boot-26-v2-7-mobile-final-toolbar-fix.css","./app/styles/boot-27-v484-system-dept-style.css","./app/styles/boot-28-v485-feature-permission-style.css","./app/styles/boot-29-v18-account-hierarchy-style.css","./app/styles/boot-30-v178-fs09-quick-premium-style.css","./app/styles/boot-31-v183-fs09-closeout-quick-style.css","./app/styles/boot-32-v161-progress-v2-style.css","./app/styles/boot-33-v1121-ios-time-footer-style.css","./app/styles/boot-34-v1122-roster-sign-style.css","./app/styles/boot-35-v1134-quick-time-direct-style.css","./service-worker.js","./version.json","./data/airline-form-catalog.json","./app/modules/stability.v6-core.js","./app/modules/mobile-draft-recovery.v1.js","./app/modules/indexeddb-flight-store.v1.js"];
 const HOME= new URL('./index.html',self.registration.scope).href;
 const SCOPE_PATH=new URL(self.registration.scope).pathname;
 function scopeUrl(path){return new URL(path,self.registration.scope).href}
@@ -20,12 +20,7 @@ async function checksum(response,meta,path){
  const digest=await crypto.subtle.digest('SHA-256',b);const hash=[...new Uint8Array(digest)].map(n=>n.toString(16).padStart(2,'0')).join('');
  if(hash!==meta.sha256)throw new Error('SHA-256 mismatch '+path);
 }
-let sagsManifestMemo=null;const sagsVerifiedAssetKeys=new Set();
-function sagsAssetVerificationKey(cacheName,path,meta){return String(cacheName||'')+'|'+String(path||'')+'|'+String(meta?.sha256||'')+'|'+String(meta?.bytes||'')}
-async function readManifest(){
- if(sagsManifestMemo?.build===BUILD)return sagsManifestMemo;
- try{const c=await caches.open(META_CACHE_NAME),r=await c.match(scopeUrl(ASSET_MANIFEST_URL)),m=r?await r.json():null;if(m?.build===BUILD)sagsManifestMemo=m;return m}catch(_){return null}
-}
+async function readManifest(){try{const c=await caches.open(META_CACHE_NAME),r=await c.match(scopeUrl(ASSET_MANIFEST_URL));return r?await r.json():null}catch(_){return null}}
 async function assertIndexReleaseStamp(response){
  const text=await response.clone().text();
  const buildOk=text.includes('name="sags-release-build" content="'+BUILD+'"')||text.includes('name="sags-release-build" content="'+BUILD+'"')||text.includes('const APP_BUILD_VERSION="'+BUILD+'"')||text.includes("const APP_BUILD_VERSION='"+BUILD+"'");
@@ -69,7 +64,7 @@ async function sagsPriorAsset(path,meta,names,check=true){
   try{
    const store=await caches.open(name),r=await store.match(key);
    if(!r)continue;
-   if(check){const vk=sagsAssetVerificationKey(name,path,meta);if(!sagsVerifiedAssetKeys.has(vk)){await checksum(r,meta,path);sagsVerifiedAssetKeys.add(vk)}}
+   if(check)await checksum(r,meta,path);
    return r;
   }catch(e){console.warn('Ignoring damaged old cached asset',path,name,e?.message||e)}
  }
@@ -91,7 +86,7 @@ async function verifyStaged(manifest){
  const c=await caches.open(CACHE_NAME),prior=await sagsPriorShellNames();
  for(const path of SAGS_BOOTSTRAP){
   const r=await c.match(scopeUrl(path));
-  if(r){const vk=sagsAssetVerificationKey(CACHE_NAME,path,manifest.assets[path]);if(!sagsVerifiedAssetKeys.has(vk)){await checksum(r,manifest.assets[path],path);sagsVerifiedAssetKeys.add(vk)}continue}
+  if(r){await checksum(r,manifest.assets[path],path);continue}
   if(!await sagsPriorAsset(path,manifest.assets[path],prior))throw new Error('Missing verified bootstrap '+path);
  }
  return true;
@@ -113,18 +108,18 @@ async function stageRelease(){
   // Check local cached bytes against the NEW manifest before deciding to fetch.
   // An unchanged asset stays in its prior cache; no network OR duplicate cache copy.
   // A missing/modified/corrupt asset is downloaded and checked before insertion.
-  // Drain four bounded workers before abort: faster staging without unbounded mobile concurrency.
+  // Drain the three bounded workers before abort so no write can revive bad data.
   const prior=await sagsPriorShellNames();
   const queue=SAGS_BOOTSTRAP.slice();let failure=null;
-  await Promise.all(Array.from({length:4},async()=>{
+  await Promise.all(Array.from({length:3},async()=>{
     while(queue.length&&!failure){
       const path=queue.shift();
       try{
        const existing=await c.match(scopeUrl(path));
-       if(existing){try{await checksum(existing,m.assets[path],path);sagsVerifiedAssetKeys.add(sagsAssetVerificationKey(CACHE_NAME,path,m.assets[path]));continue}catch(_){}}
+       if(existing){try{await checksum(existing,m.assets[path],path);continue}catch(_){}}
        if(await sagsPriorAsset(path,m.assets[path],prior))continue;
        const r=path==='./version.json'?versionResponse.clone():await fetchFresh(path);
-       await checksum(r,m.assets[path],path);await c.put(scopeUrl(path),r.clone());sagsVerifiedAssetKeys.add(sagsAssetVerificationKey(CACHE_NAME,path,m.assets[path]));
+       await checksum(r,m.assets[path],path);await c.put(scopeUrl(path),r.clone());
       }catch(e){if(!failure)failure=e}
     }
   }));
@@ -134,7 +129,7 @@ async function stageRelease(){
   await verifyReleaseContract(m);
   markBootstrapVerified(m);
   const mc=await caches.open(META_CACHE_NAME);
-  await mc.put(scopeUrl(ASSET_MANIFEST_URL),new Response(JSON.stringify(m),{headers:{'Content-Type':'application/json','Cache-Control':'no-store'}}));sagsManifestMemo=m;
+  await mc.put(scopeUrl(ASSET_MANIFEST_URL),new Response(JSON.stringify(m),{headers:{'Content-Type':'application/json','Cache-Control':'no-store'}}));
  }catch(e){
   console.error('E-REPORT V5 stage aborted; previous release retained',e);
   await Promise.all([caches.delete(CACHE_NAME),caches.delete(META_CACHE_NAME)]);
@@ -144,15 +139,9 @@ async function stageRelease(){
 async function reportNetworkRx(id,url,r){try{if(!id||!r?.ok)return;let n=Number(r.headers.get('content-length'))||0;if(!n)n=(await r.clone().blob()).size||0;const c=await self.clients.get(id);if(c&&n)c.postMessage({type:'SAGS_NET_RX',bytes:n,url:String(url||''),atMs:Date.now()})}catch(_){}}
 async function verifiedAsset(request,event,path,key){
  const c=await caches.open(CACHE_NAME),hit=await c.match(key);
+ if(hit)return hit;
  try{
   const m=await readManifest();if(!m||m.build!==BUILD)throw new Error('No verified release manifest');
-  if(hit){
-   if(!m.assets[path])return hit;
-   const vk=sagsAssetVerificationKey(CACHE_NAME,path,m.assets[path]);
-   if(sagsVerifiedAssetKeys.has(vk))return hit;
-   try{await checksum(hit,m.assets[path],path);sagsVerifiedAssetKeys.add(vk);return hit}
-   catch(e){console.warn('Discarding stale current-cache asset',path,e?.message||e);sagsVerifiedAssetKeys.delete(vk);try{await c.delete(key)}catch(_){}}
-  }
   // Covers all other unchanged manifest assets too (e.g. PDF backgrounds).
   // Return verified old bytes directly instead of duplicating them on the phone.
   if(m.assets[path]){
@@ -184,7 +173,7 @@ async function verifyCurrentAssets(){
  const prior=await sagsPriorShellNames();
  for(const p of SAGS_BOOTSTRAP){
   let r=await c.match(scopeUrl(p));let good=false;
-  if(r){try{const vk=sagsAssetVerificationKey(CACHE_NAME,p,m.assets[p]);if(!sagsVerifiedAssetKeys.has(vk)){await checksum(r,m.assets[p],p);sagsVerifiedAssetKeys.add(vk)}good=true}catch(_){}}
+  if(r){try{await checksum(r,m.assets[p],p);good=true}catch(_){}}
   if(!good&&await sagsPriorAsset(p,m.assets[p],prior))good=true;
   if(!good){r=await fetchFresh(p);await checksum(r,m.assets[p],p);await c.put(scopeUrl(p),r.clone())}
  }
@@ -198,9 +187,8 @@ self.addEventListener('install',event=>event.waitUntil((async()=>{
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
  const m=await readManifest();if(!m||m.build!==BUILD)throw new Error('Missing verified V5 release');
  await ensureBootstrapVerified(m);
- // A newly activated, fully verified worker must own the next UI immediately.
- // This prevents a new index/version badge from being paired with old cached UI assets.
- await self.clients.claim();
+ // Do not delete older build caches or claim other tabs. They can finish their work.
+ // Activation happens only after a user explicitly selects "Cập nhật ngay".
 })()));
 async function safeCleanupOldReleaseCaches(){
  // Never touch localStorage, IndexedDB, drafts, flight data or mutable form registry.
@@ -257,7 +245,6 @@ self.addEventListener('message',event=>{
  }
  if(event.data?.type==='SAGS_CHECK_ASSETS')event.waitUntil(verifyCurrentAssets().catch(e=>console.warn('E-REPORT V5 asset check failed',e)));
 });
-let sagsFormRegistryJob=null;function sagsFormRegistryFetch(req){if(sagsFormRegistryJob)return sagsFormRegistryJob.then(r=>r.clone());sagsFormRegistryJob=fetch(req,{cache:'no-store'}).then(r=>r.ok?r:new Response('FORM REGISTRY UNAVAILABLE',{status:r.status})).catch(()=>new Response('FORM REGISTRY UNAVAILABLE',{status:503})).finally(()=>{sagsFormRegistryJob=null});return sagsFormRegistryJob.then(r=>r.clone())}
 self.addEventListener('fetch',event=>{
  const req=event.request;if(req.method!=='GET')return;const url=new URL(req.url);
  if(url.origin!==self.location.origin||!url.pathname.startsWith(SCOPE_PATH))return;
@@ -271,7 +258,7 @@ self.addEventListener('fetch',event=>{
  }
  if(path==='./data/form-configuration.json'){event.respondWith(networkMetadata(req,event));return}
  if(meta||carrierMeta||carrierRefresh){event.respondWith(networkMetadata(req,event,meta));return}
- if(path==='./forms/forms.registry.json'){event.respondWith(sagsFormRegistryFetch(req));return}
+ if(path==='./forms/forms.registry.json'){event.respondWith(fetch(req,{cache:'no-store'}).then(r=>r.ok?r:new Response('FORM REGISTRY UNAVAILABLE',{status:r.status})).catch(()=>new Response('FORM REGISTRY UNAVAILABLE',{status:503})));return}
  if(req.mode==='navigate'&&(url.pathname===SCOPE_PATH||path==='./index.html')){
   // Keep the active release pinned, but never strand the user on a blank 503.
   // If the verified shell is missing/corrupt, route to the network-only repair
@@ -292,4 +279,3 @@ self.addEventListener('fetch',event=>{
  if(req.mode==='navigate')return;
  event.respondWith(verifiedAsset(req,event,path,canonicalUrl(url)));
 });
-

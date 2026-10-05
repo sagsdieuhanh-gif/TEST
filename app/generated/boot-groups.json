@@ -19,9 +19,5 @@
     "./app/boot/27-v460RuntimeGuard.js",
     "./app/boot/28-legacy.js",
     "./app/boot/29-sags-v6118-carrier-lazy.js"
-  ],
-  [
-    "./app/boot/36-v6496-approved-mobile-ui.js",
-    "./app/boot/38-v64100-ui-copy-cleanup.js"
   ]
 ]

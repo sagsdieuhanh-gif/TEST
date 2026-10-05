@@ -1,34 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi" class="new-ui-v1">
-<head>
-<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="//www.gstatic.com">
+<head><script id="sagsCanonicalProduction">/* TEST deployment: stay on GitHub Pages; do not redirect to production. */</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, maximum-scale=6, user-scalable=yes, viewport-fit=cover, interactive-widget=resizes-content" name="viewport"/>
 <title>PĐH SAGS-CXR</title>
-<meta name="sags-release-build" content="V6.4.144-20261005-UNIFIED-CONTROLS-01">
-<meta name="sags-release-version" content="V6.4.144">
-<meta name="sags-release-date" content="04/10/26">
-<script id="sags-release-controller-guard">
-(()=>{"use strict";
- const expected=String(document.querySelector('meta[name="sags-release-build"]')?.content||"").trim();
- if(!expected||!("serviceWorker" in navigator)||!navigator.serviceWorker.controller)return;
- const controller=navigator.serviceWorker.controller,ch=new MessageChannel();
- let settled=false,timer=0;
- const finish=()=>{if(settled)return;settled=true;clearTimeout(timer);try{ch.port1.close()}catch(_){}};
- const repair=(reason,got="")=>{if(settled)return;settled=true;clearTimeout(timer);try{ch.port1.close()}catch(_){}
-  const once="sags-controller-repair:"+expected;
-  try{if(sessionStorage.getItem(once)==="1")return;sessionStorage.setItem(once,"1");localStorage.setItem("sags-repair-target",expected)}catch(_){}
-  const u=new URL("./repair.html",location.href);u.searchParams.set("stage","1");u.searchParams.set("auto","1");u.searchParams.set("target",expected);u.searchParams.set("from","controller-mismatch");u.searchParams.set("reason",reason);if(got)u.searchParams.set("controller",got);u.searchParams.set("_",Date.now());location.replace(u.href);
- };
- ch.port1.onmessage=e=>{const got=String(e?.data?.build||"").trim();if(got&&got!==expected)repair("build-mismatch",got);else finish()};
- timer=setTimeout(()=>{let applying="",ready="";try{applying=localStorage.getItem("pdh-update-applying")||"";ready=localStorage.getItem("sags-repair-ready")||""}catch(_){}
-  if(applying===expected||ready===expected)repair("controller-timeout");else finish();
- },1400);
- try{controller.postMessage({type:"SAGS_QUERY_BUILD"},[ch.port2])}catch(_){finish()}
-})();
-</script>
-<link href="./manifest.webmanifest?v=V6.4.144-20261005-UNIFIED-CONTROLS-01" rel="manifest"/>
+<meta name="sags-release-build" content="V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<meta name="sags-release-version" content="V6.4.88">
+<meta name="sags-release-date" content="03/10/26">
+<link href="./manifest.webmanifest?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01" rel="manifest"/>
 <link href="./assets/icons/favicon-16.png?v=486" rel="icon" sizes="16x16" type="image/png"/>
 <link href="./assets/icons/favicon-32.png?v=486" rel="icon" sizes="32x32" type="image/png"/>
 <link href="./assets/icons/icon-192.png?v=486" rel="icon" sizes="192x192" type="image/png"/>
@@ -37,22 +16,40 @@
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="PĐH SAGS-CXR" name="apple-mobile-web-app-title"/>
 <meta content="#003B8E" name="theme-color"/>
-<link rel="stylesheet" href="./app/generated/legacy-ui-bundle-1.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"><style id="sags-login-bg-v640" data-sags-bundled-style="1"></style><style id="sags-role-home-v642" data-sags-bundled-style="1"></style><style id="v110-role-backgrounds" data-sags-bundled-style="1"></style><style id="v15-r002-serial-mask" data-sags-bundled-style="1"></style><style id="v114-final-paper-check-style" data-sags-bundled-style="1"></style><style id="sags-personal-account-test-style" data-sags-bundled-style="1"></style><style id="v139-fleet-manager-style" data-sags-bundled-style="1"></style><style id="v49-loading208-style" data-sags-bundled-style="1"></style><style id="v411-activity-detail-style" data-sags-bundled-style="1"></style><style id="v417-ad-control-center-style" data-sags-bundled-style="1"></style><style id="v412-kh208-style" data-sags-bundled-style="1"></style><style id="v476-style" data-sags-bundled-style="1"></style><style id="v482-responsive-ui-style" data-sags-bundled-style="1"></style><style id="v377AdminFormToolsStyle" data-sags-bundled-style="1"></style><style id="sags-v115-clean-ui" data-sags-bundled-style="1"></style>
-<link rel="stylesheet" href="./app/generated/base-ui.min.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01">
-<link rel="stylesheet" href="./app/generated/legacy-ui-bundle-2.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"><style id="v502RosterDirectStyle" data-sags-bundled-style="1"></style><style id="v503hf1AdControlResetStyle" data-sags-bundled-style="1"></style>
-<link rel="stylesheet" href="./app/generated/design-ui.min.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01">
+<link rel="stylesheet" href="./app/styles/boot-01-legacy.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link rel="stylesheet" href="./app/styles/boot-02-legacy.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link rel="stylesheet" href="./app/styles/boot-03-legacy.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="sags-login-bg-v640" rel="stylesheet" href="./app/styles/boot-04-sags-login-bg-v640.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="sags-role-home-v642" rel="stylesheet" href="./app/styles/boot-05-sags-role-home-v642.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v110-role-backgrounds" rel="stylesheet" href="./app/styles/boot-06-v110-role-backgrounds.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v15-r002-serial-mask" rel="stylesheet" href="./app/styles/boot-07-v15-r002-serial-mask.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v114-final-paper-check-style" rel="stylesheet" href="./app/styles/boot-08-v114-final-paper-check-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="sags-personal-account-test-style" rel="stylesheet" href="./app/styles/boot-09-sags-personal-account-test-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v139-fleet-manager-style" rel="stylesheet" href="./app/styles/boot-10-v139-fleet-manager-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v49-loading208-style" rel="stylesheet" href="./app/styles/boot-11-v49-loading208-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v411-activity-detail-style" rel="stylesheet" href="./app/styles/boot-12-v411-activity-detail-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v417-ad-control-center-style" rel="stylesheet" href="./app/styles/boot-13-v417-ad-control-center-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v412-kh208-style" rel="stylesheet" href="./app/styles/boot-14-v412-kh208-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v476-style" rel="stylesheet" href="./app/styles/boot-15-v476-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v482-responsive-ui-style" rel="stylesheet" href="./app/styles/boot-16-v482-responsive-ui-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v377AdminFormToolsStyle" rel="stylesheet" href="./app/styles/boot-17-v377AdminFormToolsStyle.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="sags-v115-clean-ui" rel="stylesheet" href="./app/styles/boot-18-sags-v115-clean-ui.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link rel="stylesheet" href="./app/styles/app.bundle.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v502RosterDirectStyle" rel="stylesheet" href="./app/styles/boot-19-v502RosterDirectStyle.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v503hf1AdControlResetStyle" rel="stylesheet" href="./app/styles/boot-20-v503hf1AdControlResetStyle.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link rel="stylesheet" href="./app/styles/new-ui-v1.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
 
-<script id="sags-v620-unified-form-migration" src="./app/boot/01-sags-v620-unified-form-migration.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<script id="sags-v620-unified-form-migration" src="./app/boot/01-sags-v620-unified-form-migration.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
 
-<link rel="stylesheet" href="./app/generated/legacy-ui-bundle-3.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"><style id="sags-v611-update-alert-style" data-sags-bundled-style="1"></style>
-
+<link rel="stylesheet" href="./app/styles/boot-21-legacy.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="sags-v611-update-alert-style" rel="stylesheet" href="./app/styles/boot-22-sags-v611-update-alert-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
 </head>
 <body>
 <div aria-hidden="true" id="roleHomeIdle"></div>
 <div id="roleLoginModal">
 <div class="roleLoginCard">
 <div class="roleLoginLogo"><img src="assets/branding/login-logo-10years.png?v=1" alt="SAGS-CXR 10 Years Anniversary"></div>
-<div class="newUiLoginEyebrow" aria-label="Giao diện NEW UI V1">SAGS / E-REPORT <span id="loginReleaseVersion">V6.4.144</span></div>
+<div class="newUiLoginEyebrow" aria-label="Giao diện NEW UI V1">SAGS / E-REPORT <span id="loginReleaseVersion">V6.4.88</span></div>
 <h2>Đăng nhập</h2>
 <div id="personalLoginFields">
 <label>Tài khoản</label>
@@ -264,9 +261,39 @@
   </div>
 </div>
 
-<div id="buildMarker">V6.4.144</div>
+<div id="buildMarker">V6.4.88</div>
 <div aria-live="polite" id="currentFerryFlag"><span class="dot"></span><span id="currentFerryFlagText">FERRY</span></div>
-<div class="toolbar compact-main-toolbar sagsCompatibilityToolbar" id="sagsCompatibilityToolbar" aria-hidden="true"></div>\n<div id="v377CreateFormModal" class="v377CreateFormModal" style="display:none" role="dialog" aria-modal="true" aria-label="Tạo biểu mẫu">
+<div class="toolbar compact-main-toolbar">
+<div class="badge">PĐH SAGS-CXR</div>
+<div class="roleAccountCluster" id="roleAccountCluster" style="display:none">
+<div class="roleStatusBadge" id="roleStatusBadge"></div>
+<button class="roleChangePassBtn" id="roleChangePasswordBtn" onclick="openChangePasswordModal()" style="display:none">Đổi MK</button>
+<button class="roleLogoutBtn" id="roleLogoutBtn" onclick="roleLogout()">Đăng xuất</button>
+</div>
+<div class="toolbar-row main-actions">
+<button id="roleBtnFlights" onclick="openFlightSessions()">Chuyến</button>
+<button id="roleBtnNotebook" type="button" onclick="window.sagsV6118OpenCarrierNotebook?window.sagsV6118OpenCarrierNotebook():alert('Sổ tay chưa tải xong. Vui lòng thử lại.')" aria-label="Mở Sổ tay hãng">📓 SỔ TAY HÃNG</button>
+<button id="roleBtnQuickTime" onclick="openQuickTimePanel()" style="display:none">⏱ NHẬP NHANH</button>
+<button class="fs09QuickBtn" id="fs09QuickBtn" onclick="openFS09SheetManager()">PVHK<span class="fs09NotifyBadge" id="fs09NotifyBadge" style="display:none">0</span></button>
+<button class="fs09QuickBtn" id="khQuickBtn" onclick="openKH208Manager()">KH<span class="fs09NotifyBadge" id="khNotifyBadge" style="display:none">0</span></button>
+<button id="roleBtnSignature" onclick="openTemplateMenu()">Chữ Kí</button>
+<button class="finalFormsQuickBtn" id="finalFormsQuickBtn" onclick="openFinalSheetManager()">FINAL</button>
+<button id="roleBtnExport" onclick="openExportChoiceMenu()">Xuất</button>
+<button id="roleBtnAccounts" onclick="openAccountManager()" style="display:none">Tài khoản</button>
+<button id="roleBtnAudit" onclick="openAuditManager()" style="display:none">Nhật ký</button>
+<button id="roleBtnActivity" onclick="openActivityMonitor()" style="display:none">TIẾN ĐỘ</button>
+<button id="roleBtnApprovalQueue" onclick="sagsV339OpenApprovalQueue()" style="display:none">✓ CHỜ DUYỆT <span id="v339ApprovalBadge" style="display:none"></span></button>
+
+<button id="roleBtnFleet" onclick="openFleetManager()" style="display:none" title="Quản lý Fleet tàu bay">FLEET TÀU BAY</button>
+
+
+</div>
+<div id="v377AdminFormToolsRow" class="v377AdminFormToolsRow" style="display:none">
+  <button id="v377CreateFormBtn" type="button" onclick="v377OpenCreateFormMenu()">➕ TẠO BIỂU MẪU</button>
+  <button id="v440FormManagerBtn" type="button" onclick="sagsV440OpenFormManager()">🧩 QUẢN LÝ / THÊM BIỂU MẪU</button>
+  </div>
+</div>
+<div id="v377CreateFormModal" class="v377CreateFormModal" style="display:none" role="dialog" aria-modal="true" aria-label="Tạo biểu mẫu">
   <div class="v377CreateFormCard">
     <div class="v377CreateFormHead"><div><b>➕ TẠO BIỂU MẪU</b><small>AD · chọn đúng tên biểu mẫu cần tạo/mở mới</small></div><button type="button" onclick="v377CloseCreateFormMenu()">×</button></div>
     <div class="v377CreateFormGrid">
@@ -282,15 +309,15 @@
   </div>
 </div>
 <div id="appUpdateModal" style="display:none;position:fixed;inset:0;z-index:60000;background:rgba(0,0,0,.50);align-items:center;justify-content:center;padding:14px;box-sizing:border-box;pointer-events:auto;touch-action:manipulation" role="dialog" aria-modal="true" aria-labelledby="appUpdateTitle">
-<div style="width:min(88vw,340px);background:#fff;border-radius:16px;padding:16px;box-sizing:border-box;font:13px/1.4 Arial;box-shadow:0 14px 38px rgba(0,0,0,.30)">
-<h3 id="appUpdateTitle" style="margin:0 0 8px;color:#003B8E;font:800 18px/1.25 Arial;text-align:center">CÓ BẢN MỚI</h3>
-<p id="appUpdateVersionText" style="margin:0 0 12px;text-align:center;font:14px/1.4 Arial">Cập nhật để dùng phiên bản mới nhất. Dữ liệu và bản nháp vẫn được giữ nguyên.</p>
+<div style="width:min(92vw,420px);background:#fff;border-radius:16px;padding:20px;box-sizing:border-box;font:14px/1.45 Arial;box-shadow:0 14px 38px rgba(0,0,0,.30)">
+<h3 id="appUpdateTitle" style="margin:0 0 10px;color:#003B8E;font:800 20px Arial;text-align:center">CÓ PHIÊN BẢN MỚI</h3>
+<p id="appUpdateVersionText" style="margin:0 0 15px;text-align:center">Bạn có thể tiếp tục nhập liệu. Nháp chuyến chỉ lưu trên máy này; hãy hoàn tất và kiểm tra các thao tác gửi chính thức trước khi cập nhật.</p>
 <div style="display:flex;justify-content:center;gap:9px;flex-wrap:wrap">
-<button type="button" id="appUpdateLaterBtn" onclick="dismissAppUpdate()" style="border:1px solid #a9bdca;background:#f1f6fa;color:#234255;border-radius:11px;padding:11px 16px;font-weight:800;font-size:15px">ĐỂ SAU</button>
-<button type="button" id="appUpdateNowBtn" onclick="return window.sagsApplyUpdateFromButton(event)" style="border:0;background:#0067c5;color:#fff;border-radius:11px;padding:11px 16px;font-weight:900;font-size:15px;min-height:48px;touch-action:manipulation;pointer-events:auto;position:relative;z-index:2">CẬP NHẬT</button>
+<button type="button" id="appUpdateLaterBtn" onclick="dismissAppUpdate()" style="border:1px solid #a9bdca;background:#f1f6fa;color:#234255;border-radius:11px;padding:11px 16px;font-weight:800;font-size:15px">CẬP NHẬT SAU</button>
+<button type="button" id="appUpdateNowBtn" onclick="return window.sagsApplyUpdateFromButton(event)" style="border:0;background:#0067c5;color:#fff;border-radius:11px;padding:11px 16px;font-weight:900;font-size:15px;min-height:48px;touch-action:manipulation;pointer-events:auto;position:relative;z-index:2">CẬP NHẬT NGAY</button>
 </div></div></div>
 <button id="sagsDeferredUpdate" type="button" hidden onclick="showDeferredAppUpdate()" aria-label="Có bản cập nhật mới, bấm để chọn thời điểm cập nhật" title="Có bản cập nhật mới · Nhấn để cập nhật khi đã lưu xong" style="position:fixed;right:12px;bottom:128px;z-index:65000;border:2px solid #b45309;background:#fff1c1;color:#713f12;border-radius:99px;padding:10px 14px;font:900 12px Arial;box-shadow:0 5px 18px #0002">⚠ CÓ BẢN CẬP NHẬT</button>
-<script id="sags-v611-update-alert-position" src="./app/boot/02-sags-v611-update-alert-position.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<script id="sags-v611-update-alert-position" src="./app/boot/02-sags-v611-update-alert-position.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
 <div id="flightSessionModal">
 <div class="flightSessionBox">
 <h3>Chuyến đang làm</h3>
@@ -309,8 +336,8 @@
 </div>
 <input accept="image/*" id="attachmentInput" multiple="" type="file"/>
 <input accept="image/*" capture="environment" id="cameraAttachmentInput" style="display:none" type="file"/>
-<div class="sheet scroll-sheet" id="page1"><img draggable="false" src="forms/fsags42.3/page-01.png?v=2" loading="lazy" decoding="async" fetchpriority="low"/><svg id="svg1" preserveaspectratio="none" viewbox="0 0 1241 1755"></svg></div>
-<div class="sheet scroll-sheet hide" id="page2"><img draggable="false" src="forms/fsags42.3/page-02.png?v=2" loading="lazy" decoding="async" fetchpriority="low"/><svg id="svg2" preserveaspectratio="none" viewbox="0 0 1241 1755"></svg></div>
+<div class="sheet scroll-sheet" id="page1"><img draggable="false" src="forms/fsags42.3/page-01.png?v=2"/><svg id="svg1" preserveaspectratio="none" viewbox="0 0 1241 1755"></svg></div>
+<div class="sheet scroll-sheet hide" id="page2"><img draggable="false" src="forms/fsags42.3/page-02.png?v=2"/><svg id="svg2" preserveaspectratio="none" viewbox="0 0 1241 1755"></svg></div>
 <div class="sheet scroll-sheet hide attachment-pick-page" id="page3" onclick="openAttachmentPickerFor('page3', event)">
 <div class="page3-inner page3-clean-frame">
 <img alt="SAGS" class="page3-clean-logo" src="assets/branding/logo.png?v=2"/>
@@ -318,7 +345,7 @@
 </div>
 </div>
 <div class="sheet scroll-sheet hide" id="page4">
-<img alt="Biên bản bất thường F/SAGS-CXR/56" draggable="false" src="forms/bbbt/page-01.png?v=2" loading="lazy" decoding="async" fetchpriority="low"/>
+<img alt="Biên bản bất thường F/SAGS-CXR/56" draggable="false" src="forms/bbbt/page-01.png?v=2"/>
 <svg id="svg4" preserveaspectratio="none" viewbox="0 0 1241 1755"></svg>
 <div id="bbbtCxrNoDisplay">CXR No: —</div>
 </div>
@@ -329,11 +356,11 @@
 </div>
 </div>
 <div class="sheet scroll-sheet hide" id="page6">
-<img alt="FSAGS 42.1 Trang 1" draggable="false" src="forms/fsags42.1/page-01.png?v=2" loading="lazy" decoding="async" fetchpriority="low"/>
+<img alt="FSAGS 42.1 Trang 1" draggable="false" src="forms/fsags42.1/page-01.png?v=2"/>
 <svg id="svg6" preserveaspectratio="none" viewbox="0 0 1241 1755"></svg>
 </div>
 <div class="sheet scroll-sheet hide" id="page7">
-<img alt="FSAGS 42.1 Trang 2" draggable="false" src="forms/fsags42.1/page-02.png?v=2" loading="lazy" decoding="async" fetchpriority="low"/>
+<img alt="FSAGS 42.1 Trang 2" draggable="false" src="forms/fsags42.1/page-02.png?v=2"/>
 <svg id="svg7" preserveaspectratio="none" viewbox="0 0 1241 1755"></svg>
 </div>
 <div class="sheet scroll-sheet hide attachment-pick-page" id="page8" onclick="openAttachmentPickerFor('fsags421', event)">
@@ -343,11 +370,11 @@
 </div>
 </div>
 <div class="sheet scroll-sheet hide" id="page9">
-<img alt="FSAGS 55.1 Trang 1" draggable="false" src="forms/fsags55.1/page-01.png?v=2" loading="lazy" decoding="async" fetchpriority="low"/>
+<img alt="FSAGS 55.1 Trang 1" draggable="false" src="forms/fsags55.1/page-01.png?v=2"/>
 <svg id="svg9" preserveaspectratio="none" viewbox="0 0 1241 1755"></svg>
 </div>
 <div class="sheet scroll-sheet hide" id="page10">
-<img alt="FSAGS 55.1 Trang 2" draggable="false" src="forms/fsags55.1/page-02.png?v=2" loading="lazy" decoding="async" fetchpriority="low"/>
+<img alt="FSAGS 55.1 Trang 2" draggable="false" src="forms/fsags55.1/page-02.png?v=2"/>
 <svg id="svg10" preserveaspectratio="none" viewbox="0 0 1241 1755"></svg>
 </div>
 <div class="sheet scroll-sheet hide attachment-pick-page" id="page14" onclick="openAttachmentPickerFor('fsags551', event)">
@@ -357,17 +384,17 @@
 </div>
 </div>
 <div class="sheet scroll-sheet hide" id="page11">
-<img alt="F/SAGS-CXR/09 Trang 1" draggable="false" src="forms/fsags09/page-01.png?v=346" loading="lazy" decoding="async" fetchpriority="low"/>
+<img alt="F/SAGS-CXR/09 Trang 1" draggable="false" src="forms/fsags09/page-01.png?v=346"/>
 <svg id="svg11" preserveaspectratio="none" viewbox="0 0 1241 1755"></svg>
 <button id="fs09PageSendBtn" onclick="sendFSAGS09Closeout()" type="button">GỬI KẾT SỔ</button>
 <button id="fs09SheetChooserBtn" onclick="openFS09SheetManager()" type="button">CHỌN TỜ KẾT SỔ</button>
 </div>
 <div class="sheet scroll-sheet hide" id="page12">
-<img alt="F/SAGS-CXR/09 Trang 2" draggable="false" src="forms/fsags09/page-02.png?v=346" loading="lazy" decoding="async" fetchpriority="low"/>
+<img alt="F/SAGS-CXR/09 Trang 2" draggable="false" src="forms/fsags09/page-02.png?v=346"/>
 <svg id="svg12" preserveaspectratio="none" viewbox="0 0 1241 1755"></svg>
 </div>
 <div class="hide" id="page13">
-<img alt="F/SAG-CXR/208 · Loading Detail Sheet" draggable="false" src="forms/fsags208/page-01.png?v=49" loading="lazy" decoding="async" fetchpriority="low"/>
+<img alt="F/SAG-CXR/208 · Loading Detail Sheet" draggable="false" src="forms/fsags208/page-01.png?v=49"/>
 <svg id="svg13" preserveaspectratio="none" viewbox="0 0 1241 1755"></svg>
 <button id="kh208SendBtn" onclick="sendKH208Sheet()" type="button" style="display:none">GỬI FSAGS 208</button>
 <button id="kh208ChooserBtn" onclick="openKH208Manager()" type="button" style="display:none">KH · CHỌN TỜ</button>
@@ -416,7 +443,7 @@
 </div>
 <div class="finalFormStage">
 <div class="finalFormCanvas" id="finalFormCanvas">
-<img alt="Biểu mẫu FINAL" id="finalFormImage" src="forms/vu/page-01.png" loading="lazy" decoding="async" fetchpriority="low"/>
+<img alt="Biểu mẫu FINAL" id="finalFormImage" src="forms/vu/page-01.png"/>
 <div class="vjHeaderPatch" id="vjSerialHide" style="display:none"></div>
 <div class="vjHeaderPatch" id="vjAcRegBox" style="display:none"><span>A/C REGN:</span></div>
 <div id="ffZoneWarning"></div>
@@ -827,20 +854,24 @@
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-functions-compat.js"></script>
 <script></script>
 <script id="sags-v6118-firebase-config"></script>
-<script src="./app/generated/boot-group-1.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/generated/legacy-05.min.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/generated/legacy-06.min.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<link rel="stylesheet" href="./app/generated/legacy-ui-bundle-4.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"><style id="v1-restore-final-send-button" data-sags-bundled-style="1"></style><style id="v1-final-header-layout" data-sags-bundled-style="1"></style><style id="v1-final-actions-unified" data-sags-bundled-style="1"></style><style id="v2-7-mobile-final-toolbar-fix" data-sags-bundled-style="1"></style>
-<script src="./app/generated/legacy-07.min.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script id="v412-kh208-script" src="./app/boot/08-v412-kh208-script.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<script src="./app/generated/boot-group-1.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/boot/05-legacy.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/boot/06-legacy.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<link id="v1-restore-final-send-button" rel="stylesheet" href="./app/styles/boot-23-v1-restore-final-send-button.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v1-final-header-layout" rel="stylesheet" href="./app/styles/boot-24-v1-final-header-layout.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v1-final-actions-unified" rel="stylesheet" href="./app/styles/boot-25-v1-final-actions-unified.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v2-7-mobile-final-toolbar-fix" rel="stylesheet" href="./app/styles/boot-26-v2-7-mobile-final-toolbar-fix.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<script src="./app/boot/07-legacy.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script id="v412-kh208-script" src="./app/boot/08-v412-kh208-script.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
 
-<script id="v454AccountProfileOverrides" src="./app/boot/09-v454AccountProfileOverrides.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<script id="v454AccountProfileOverrides" src="./app/boot/09-v454AccountProfileOverrides.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
 
-<script id="v470-hybrid-core" src="./app/boot/10-v470-hybrid-core.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>\n
+<script id="v470-hybrid-core" src="./app/boot/10-v470-hybrid-core.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>\n
 
-<script id="v476-core" src="./app/boot/11-v476-core.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>\n
+<script id="v476-core" src="./app/boot/11-v476-core.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>\n
 <button id="v476ThreeUQuick" type="button" onclick="v479Open3UActions()">3U REPORT</button>
 <div class="sagsAdminModal" id="v479ThreeUActionModal" onclick="if(event.target===this)v479Close3UActions()">
   <div class="v479ThreeUActionPanel">
@@ -864,23 +895,24 @@
     <div class="opsComposerBottomActions"><button class="sagsAdminBtn opsMvaCopyBtn" onclick="v479Share3U()">CHIA SẺ QUA ỨNG DỤNG</button><button class="sagsAdminBtn" onclick="v476Copy3UReport()">SAO CHÉP</button><button class="sagsAdminBtn secondary opsComposerClose" onclick="v476Close3UComposer()">ĐÓNG</button></div>
   </div>
 </div>
-<link id="v484-system-dept-style" rel="stylesheet" href="./app/styles/boot-27-v484-system-dept-style.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01">
-<script id="v484SystemDepartmentRoles" src="./app/boot/12-v484SystemDepartmentRoles.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<link id="v485-feature-permission-style" rel="stylesheet" href="./app/styles/boot-28-v485-feature-permission-style.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01">
+<link id="v484-system-dept-style" rel="stylesheet" href="./app/styles/boot-27-v484-system-dept-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<script id="v484SystemDepartmentRoles" src="./app/boot/12-v484SystemDepartmentRoles.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<link id="v485-feature-permission-style" rel="stylesheet" href="./app/styles/boot-28-v485-feature-permission-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
 <div id="v485FeaturePermissionModal" class="v485PermModal" aria-hidden="true"><div class="v485PermBox"><div class="v485PermTitle">AD · PHÂN QUYỀN CHỨC NĂNG</div><div id="v485PermSub" class="v485PermSub"></div><div id="v485PermGrid" class="v485PermGrid"></div><div class="v485PermHint">AD có thể bật/tắt <b>quyền nghiệp vụ theo từng tài khoản</b>, không phụ thuộc vai trò/chức danh nếu AD chủ động chọn. Mặc định vẫn lấy theo vai trò; quyền AD chọn sẽ ghi đè mặc định. Các quyền bảo mật hệ thống như quản lý tài khoản/phân quyền/Audit vẫn chỉ AD và không nằm trong danh sách này.</div><div id="v485PermStatus" class="v485PermSub" style="margin-top:9px"></div><div class="v485PermActions"><button class="v485Reset" onclick="v485ResetPermissionEditor()">MẶC ĐỊNH VAI TRÒ</button><button class="v485Cancel" onclick="v485ClosePermissionEditor()">ĐÓNG</button><button class="v485Save" onclick="v485SavePermissionEditor()">LƯU QUYỀN</button></div></div></div>
-<script id="v485FeaturePermissions" src="./app/boot/13-v485FeaturePermissions.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<link id="v18-account-hierarchy-style" rel="stylesheet" href="./app/styles/boot-29-v18-account-hierarchy-style.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01">
-<script id="v18CanonicalAccountHierarchy" src="./app/boot/14-v18CanonicalAccountHierarchy.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script id="v116-account-name-search" src="./app/boot/15-v116-account-name-search.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/modules/feature-loader.v1.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/generated/core-shared.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/generated/core-archive.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01" data-phase="archive"></script>
+<script id="v485FeaturePermissions" src="./app/boot/13-v485FeaturePermissions.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<link id="v18-account-hierarchy-style" rel="stylesheet" href="./app/styles/boot-29-v18-account-hierarchy-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<script id="v18CanonicalAccountHierarchy" src="./app/boot/14-v18CanonicalAccountHierarchy.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script id="v116-account-name-search" src="./app/boot/15-v116-account-name-search.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/modules/feature-loader.v1.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/generated/core-shared.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/generated/core-archive.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01" data-phase="archive"></script>
 <script id="v120-build02-fixes"></script>
 <script id="v121-closeout-validation"></script>
-<script src="./app/generated/boot-group-2.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/generated/core-tools.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01" data-phase="tools"></script>
-<script id="v173-quick-time" src="./app/boot/18-v173-quick-time.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<link rel="stylesheet" href="./app/generated/legacy-ui-bundle-5.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"><style id="v178-fs09-quick-premium-style" data-sags-bundled-style="1"></style><style id="v183-fs09-closeout-quick-style" data-sags-bundled-style="1"></style>
+<script src="./app/generated/boot-group-2.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/generated/core-tools.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01" data-phase="tools"></script>
+<script id="v173-quick-time" src="./app/boot/18-v173-quick-time.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<link id="v178-fs09-quick-premium-style" rel="stylesheet" href="./app/styles/boot-30-v178-fs09-quick-premium-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<link id="v183-fs09-closeout-quick-style" rel="stylesheet" href="./app/styles/boot-31-v183-fs09-closeout-quick-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
 <div id="fs09QuickModal" onclick="if(event.target===this)closeFS09QuickPanel()">
   <div class="fs09qPanel">
     <div class="fs09qHead">
@@ -906,69 +938,67 @@
     </div>
   </div>
 </div>
-<script id="v183-fs09-quick" src="./app/boot/19-v183-fs09-quick.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<link id="v161-progress-v2-style" rel="stylesheet" href="./app/styles/boot-32-v161-progress-v2-style.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01">
+<script id="v183-fs09-quick" src="./app/boot/19-v183-fs09-quick.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<link id="v161-progress-v2-style" rel="stylesheet" href="./app/styles/boot-32-v161-progress-v2-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
 <script id="v163-ramp-progress-v1"></script>
 <script id="v154-rtdb-first-permissions"></script>
-<script src="./app/generated/boot-group-3.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<script src="./app/generated/boot-group-3.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
 
-<link id="v1121-ios-time-footer-style" rel="stylesheet" href="./app/styles/boot-33-v1121-ios-time-footer-style.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01">
-<script id="v1121-ios-time-footer-script" src="./app/boot/22-v1121-ios-time-footer-script.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<link id="v1121-ios-time-footer-style" rel="stylesheet" href="./app/styles/boot-33-v1121-ios-time-footer-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<script id="v1121-ios-time-footer-script" src="./app/boot/22-v1121-ios-time-footer-script.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
 
-<link id="v1122-roster-sign-style" rel="stylesheet" href="./app/styles/boot-34-v1122-roster-sign-style.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01">
-<script id="v1122-roster-sign-script" src="./app/boot/23-v1122-roster-sign-script.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<link rel="stylesheet" href="./app/generated/legacy-ui-bundle-6.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"><style id="v1134-quick-time-direct-style" data-sags-bundled-style="1"></style><style id="v6491-global-contrast-style" data-sags-bundled-style="1"></style><style id="v6495-mobile-ui-refresh-style" data-sags-bundled-style="1"></style><style id="v6496-approved-mobile-ui-style" data-sags-bundled-style="1"></style><style id="v6499-unified-mobile-navy-style" data-sags-bundled-style="1"></style><style id="v64100-mobile-typography-style" data-sags-bundled-style="1"></style><style id="v64103-myflight-style-only" data-sags-bundled-style="1"></style>
+<link id="v1122-roster-sign-style" rel="stylesheet" href="./app/styles/boot-34-v1122-roster-sign-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
+<script id="v1122-roster-sign-script" src="./app/boot/23-v1122-roster-sign-script.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<link id="v1134-quick-time-direct-style" rel="stylesheet" href="./app/styles/boot-35-v1134-quick-time-direct-style.css?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01">
 
-<script id="v6496-approved-mobile-ui-script"></script>
-<script id="v64100-ui-copy-cleanup-script"></script>
-<script src="./app/generated/boot-group-6.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
 <script id="v1151-zoom-entry-direct"></script>
 <script id="v1154-update-detector-r2"></script>
-<script src="./app/generated/boot-group-4.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<script src="./app/generated/boot-group-4.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
 
 <!-- V6.4.4: restore execution phases accidentally dropped during V6.4 directory restructuring. -->
-<script src="./app/generated/core-flight.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01" data-phase="flight"></script>
-<script src="./app/generated/core-control.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01" data-phase="control"></script>
-<script src="./app/generated/core-postcontrol.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01" data-phase="postcontrol"></script>
-<script src="./app/modules/admin-reset.v503hf2.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01" id="v503AdminBackupReset"></script>
-<script src="./app/generated/core-performance.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01" data-phase="performance"></script>
-<script src="./app/modules/firebase-read-coalescer.v1.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/modules/flight-governance.v1.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/modules/daily-roster.v502.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01" id="dailyRosterCleanV11102"></script>
+<script src="./app/generated/core-flight.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01" data-phase="flight"></script>
+<script src="./app/generated/core-control.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01" data-phase="control"></script>
+<script src="./app/generated/core-postcontrol.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01" data-phase="postcontrol"></script>
+<script src="./app/modules/admin-reset.v503hf2.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01" id="v503AdminBackupReset"></script>
+<script src="./app/generated/core-performance.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01" data-phase="performance"></script>
+<script src="./app/modules/firebase-read-coalescer.v1.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/modules/daily-roster.v502.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01" id="dailyRosterCleanV11102"></script>
 <!-- Named-person handover remains removed; self-accept only restores the supported self/roster workflow. -->
-<script src="./app/modules/self-accept.v502.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01" id="sagsHF4SelfHandover"></script>
-<script id="v644SafeStorageCleanup" src="./app/boot/26-v644SafeStorageCleanup.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/generated/runtime-1.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/generated/runtime-2.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/generated/runtime-3.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script id="sags-runtime-performance-v64131">(()=>{"use strict";if(window.__SAGS_RUNTIME_PERF_V64131)return;window.__SAGS_RUNTIME_PERF_V64131=true;const nativeFetch=window.fetch.bind(window),TTL=2200;let regJob=null,regCopy=null,regAt=0;function isRegistry(input,init){try{const method=String(init?.method||(typeof input==="object"&&input?.method)||"GET").toUpperCase();if(method!=="GET")return false;const raw=typeof input==="string"?input:input?.url;if(!raw)return false;const u=new URL(raw,location.href);return u.origin===location.origin&&/\/forms\/forms\.registry\.json$/.test(u.pathname)&&!u.searchParams.has("__sags_strict")}catch(_){return false}}window.fetch=function(input,init){if(!isRegistry(input,init))return nativeFetch(input,init);const now=Date.now();if(regCopy&&now-regAt<TTL)return Promise.resolve(regCopy.clone());if(regJob)return regJob.then(r=>r.clone());regJob=nativeFetch(input,init).then(r=>{if(r?.ok){regCopy=r.clone();regAt=Date.now()}return r}).finally(()=>{regJob=null});return regJob.then(r=>r.clone())};function patchLayout(){const base=window.sagsV450ApplyLayout;if(typeof base!=="function"||base.__sagsPerfV64131)return false;let job=null,lastAt=0,lastValue;const w=async function(){if(job)return job;if(Date.now()-lastAt<TTL&&lastValue!==undefined)return lastValue;job=Promise.resolve(base.apply(this,arguments)).then(v=>{lastAt=Date.now();lastValue=v;return v}).finally(()=>{job=null});return job};w.__sagsPerfV64131=true;w.__sagsPerfBase=base;window.sagsV450ApplyLayout=w;return true}function patchRoster(){const e=window.__SAGS_DAILY_ROSTER_FINAL_V1199,base=e?.renderPersonal;if(typeof base!=="function"||base.__sagsPerfV64131)return false;let job=null,key="";const w=function(d){const k=String(d||"");if(job&&k===key)return job;key=k;job=Promise.resolve(base.apply(this,arguments)).finally(()=>{job=null});return job};w.__sagsPerfV64131=true;w.__sagsPerfBase=base;e.renderPersonal=w;return true}let tries=0;function install(){patchLayout();patchRoster();if(++tries<8)setTimeout(install,tries<3?80:350)}patchRoster();setTimeout(install,0);window.addEventListener("pageshow",()=>setTimeout(install,40),{passive:true});})();</script>
-<script src="./app/generated/runtime-4.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/generated/runtime-5.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<script src="./app/modules/self-accept.v502.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01" id="sagsHF4SelfHandover"></script>
+<script id="v644SafeStorageCleanup" src="./app/boot/26-v644SafeStorageCleanup.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/generated/runtime-1.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/generated/runtime-2.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/generated/runtime-3.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/generated/runtime-4.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/generated/runtime-5.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
 <script id="v460RuntimeGuard"></script>
 <script></script>
 <script id="sags-v6118-carrier-lazy"></script>
-<script src="./app/generated/boot-group-5.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/generated/startup-bundle-2.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/modules/stability.v6.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/modules/cross-browser-entry.v1.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script src="./app/modules/roster-lite.v5.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01" id="v477MailboxLite"></script>
+<script src="./app/generated/boot-group-5.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/modules/quick-entry.v1.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/modules/ui-preferences.v1.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/modules/stability.v6.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/modules/cross-browser-entry.v1.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/modules/roster-lite.v5.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01" id="v477MailboxLite"></script>
 
 
-<script id="sags-v6120-all-form-render-standard" src="./app/boot/30-sags-v6120-all-form-render-standard.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<script id="sags-v6120-all-form-render-standard" src="./app/boot/30-sags-v6120-all-form-render-standard.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
 
-<script src="./app/generated/startup-bundle-3.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<script src="./app/modules/tvj-gof-035.v630.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/modules/tvj-gof-035.v631.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/modules/tvj-gof-035.v632.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
 
 
-<script id="sags-grnd-ls-v621" src="./app/boot/31-sags-grnd-ls-v621.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<script id="sags-grnd-ls-v621" src="./app/boot/31-sags-grnd-ls-v621.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
 
 
-<script src="./app/generated/startup-bundle-4.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
-<script id="sags-fsags208-workspace-v1" src="./app/modules/fsags208-workspace.v1.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<script src="./app/modules/fsags54-94.v622.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/modules/form-registry-runtime.v647.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/modules/form-registry-runtime.v6419.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
 
-<link id="mobile-navy-v64106" rel="stylesheet" href="./app/styles/mobile-navy-v64106.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01">
-<link id="fixed-ui-rule-v64113" rel="stylesheet" href="./app/styles/fixed-ui-rule-v64113.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01">
-<link id="desktop-shell-v64128" rel="stylesheet" href="./app/styles/desktop-shell-v64128.css?v=V6.4.144-20261005-UNIFIED-CONTROLS-01">
-<script id="fixed-ui-rule-runtime-v64113" src="./app/boot/32-fixed-ui-rule-v64113.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>\n<script id="post-login-unlock-v64123" src="./app/modules/post-login-unlock.v64123.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>\n<script id="update-ui-clean-v64125" src="./app/modules/update-ui-clean.v64125.js?v=V6.4.144-20261005-UNIFIED-CONTROLS-01"></script>
+<script src="./app/modules/airline-form-policy.v1.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script src="./app/modules/workflow-cleanup.v6444.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+<script id="sags-fsags208-workspace-v1" src="./app/modules/fsags208-workspace.v1.js?v=V6.4.88-20261003-AUTO-CACHE-CLEANUP-01"></script>
+
 </body>
 </html>
-

@@ -76,20 +76,6 @@ async function getFlight(date,fid){const s=await db(FLIGHTS+'/'+safe(date)+'/'+s
 function historyValues(x){return Object.values(x&&typeof x==='object'?x:{}).sort((a,b)=>Number(a?.seq||a?.revisionNo||0)-Number(b?.seq||b?.revisionNo||0)||Number(a?.atMs||0)-Number(b?.atMs||0))}
 function historyHtml(mod){const rh=historyValues(mod?.receiveHistory),sh=historyValues(mod?.sendHistory);let out='';if(rh.length)out+='<div class="s208Hist"><b>LỊCH SỬ TIẾP NHẬN</b>'+rh.map(x=>'<div>Lần '+esc(x.seq)+' · '+esc(x.name||x.username)+' · '+esc(fmt(x.atMs))+(x.fromUsername?' · từ '+esc(x.fromName||x.fromUsername):'')+'</div>').join('')+'</div>';if(sh.length)out+='<div class="s208Hist"><b>LỊCH SỬ GỬI</b>'+sh.map(x=>'<div>Revision '+esc(x.revisionNo)+' · '+esc(x.name||x.username)+' · '+esc(fmt(x.atMs))+'</div>').join('')+'</div>';return out}
 function statusText(mod){if(!mod)return'CHƯA TẠO';if(mod.policyEnabled===false)return'ĐÃ TẮT THEO HÃNG';if(Number(mod.revisionNo||0)>0&&mod.status==='SENT')return'ĐÃ GỬI · R'+Number(mod.revisionNo||0);if(mod.currentHandler?.username)return'ĐANG XỬ LÝ';return'CHỜ KHO HÀNG NHẬN'}
-
-async function workspaceRows(date=currentDate()){
- date=S(date)||today();await reconcileDate(date,false);
- const snap=await db(FLIGHTS+'/'+safe(date)).once('value'),flights=snap.val()||{},rows=[];
- for(const [key,r0] of Object.entries(flights)){
-   const rec=r0||{},fid=S(rec.flightId||key),mod=rec.modules?.[MODULE];if(!mod)continue;
-   const active=mod.policyEnabled!==false||Number(mod.receiveCount||0)>0||Number(mod.revisionNo||0)>0;if(!active)continue;
-   if(isHandlerRole()){if(role()!=='AD'&&mod.policyEnabled===false)continue;}
-   else if(!canReadFlight()||!published208(mod))continue;
-   rows.push({fid,rec,mod});
- }
- rows.sort((a,b)=>S(a.rec.std||a.rec.sta).localeCompare(S(b.rec.std||b.rec.sta))||flightName(a.rec).localeCompare(flightName(b.rec)));
- return rows;
-}
 function ensureManagerDate(){
  const st=document.getElementById('kh208ManagerStatus');if(!st||document.getElementById('kh208WorkspaceDateWrap'))return;
  const w=document.createElement('div');w.id='kh208WorkspaceDateWrap';w.style.cssText='display:flex;gap:8px;align-items:center;margin:0 0 10px;padding:9px;border:1px solid #d7dee7;border-radius:10px;background:#f7f9fb';
@@ -109,7 +95,13 @@ function cardFor(date,fid,rec,mod){
 async function renderManager(){
  const host=document.getElementById('kh208ManagerList');if(!host)return;ensureManagerDate();const create=document.getElementById('kh208CreateBox');if(create)create.style.display='none';
  const date=currentDate();host.innerHTML='<div style="padding:12px;color:#667">Đang tải Flight Workspace…</div>';
- try{const rows=await workspaceRows(date);
+ try{await reconcileDate(date,false);const snap=await db(FLIGHTS+'/'+safe(date)).once('value'),flights=snap.val()||{},rows=[];
+   for(const [key,r0] of Object.entries(flights)){const rec=r0||{},fid=S(rec.flightId||key),mod=rec.modules?.[MODULE];if(!mod)continue;const active=mod.policyEnabled!==false||Number(mod.receiveCount||0)>0||Number(mod.revisionNo||0)>0;if(!active)continue;
+     if(isHandlerRole()){if(role()!=='AD'&&mod.policyEnabled===false)continue;}
+     else {if(!canReadFlight()||!published208(mod))continue;}
+     rows.push({fid,rec,mod});
+   }
+   rows.sort((a,b)=>S(a.rec.std||a.rec.sta).localeCompare(S(b.rec.std||b.rec.sta))||flightName(a.rec).localeCompare(flightName(b.rec)));
    host.innerHTML='';for(const x of rows)host.appendChild(cardFor(date,x.fid,x.rec,x.mod));
    if(!rows.length)host.innerHTML='<div style="padding:14px;color:#667;text-align:center">Không có FSAGS 208 áp dụng cho ngày này.</div>';
    try{root.kh208SetStatus?.((isHandlerRole()?'FSAGS 208 theo Flight Workspace':'FSAGS 208 đã gửi')+' · '+rows.length+' chuyến.')}catch(_){}
@@ -228,130 +220,6 @@ async function injectWorkspace(date,fid){const paint=++workspacePaint;root.__sag
  pending.replaceWith(card);
  }catch(e){pending.textContent='Không tải được FSAGS 208: '+S(e?.message||e)+' · Bấm tải lại danh sách để thử lại.';console.info('FSAGS208 workspace card',e?.message||e)}}
 root.sags208RenderWorkspace=injectWorkspace;
-
-/* V6.4.117 — KH/CARGO uses the same MY FLIGHT card/tile language as other roles.
-   The business path remains FSAGS 208 Flight Workspace; only the list/shell is unified. */
-let cargoMyFlightPaint=0,myFlightBackBusy=false,myFlightBackObserver=null,myFlightBackRootObserver=null,cargoOpenBase=null,cargoRefreshBase=null;
-function cargoRole(){return role()!=='AD'&&isHandlerRole()&&(['KH','CARGO'].includes(role())||root.__SAGS_CARGO_ALL_FLIGHTS?.isCargo?.()===true)}
-function ensureCargoQueueStyle(){
- if(document.getElementById('sagsCargo208UnifiedStyle'))return;
- const st=document.createElement('style');st.id='sagsCargo208UnifiedStyle';st.textContent=`
- #fwcList.sagsCargo208Queue{display:block}
- #fwcList.sagsCargo208Queue .v1199FlightGrid{display:grid;grid-template-columns:1fr;gap:8px}
- #fwcList.sagsCargo208Queue .v1199Card{border:1px solid #d4dee8;border-radius:12px;background:#fff;padding:11px;margin:8px 0;box-shadow:0 2px 7px rgba(0,0,0,.04)}
- #fwcList.sagsCargo208Queue .v1199Title{font:900 17px Arial;color:#0b4f91}
- #fwcList.sagsCargo208Queue .v1199Meta{font:12px/1.45 Arial;color:#5d6f80;margin-top:4px}
- #fwcList.sagsCargo208Queue .v1199Tasks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:9px 0}
- #fwcList.sagsCargo208Queue .v1199TaskBtn{min-width:0;min-height:68px;padding:8px;border:1px solid #8eb7df;border-radius:12px;background:#e9f3ff;color:#064b85;font:900 12px/1.25 Arial;text-align:left;cursor:pointer}
- #fwcList.sagsCargo208Queue .v1199TaskBtn.done{background:#e8f6ee;color:#14713d;border-color:#a4d7b8}
- #fwcList.sagsCargo208Queue .v1199TaskBtn small{display:block;margin-top:4px;font:700 10px/1.25 Arial;opacity:.82}
- #fwcList.sagsCargo208Queue .v1199FlightActions{display:grid;grid-template-columns:1fr;gap:6px;margin-top:8px}
- #fwcList.sagsCargo208Queue .v1199Action{width:100%;min-height:42px;border:1px solid #3a6e96;border-radius:12px;background:#0b67b2;color:#fff;font:900 12px Arial;cursor:pointer}
- #fwcList.sagsCargo208Queue .v1199Empty{padding:22px 12px;border:1px dashed #c7d1db;border-radius:11px;background:#fafcfe;text-align:center;color:#607080;font:800 12px/1.5 Arial}
- @media(max-width:767px){#fwcList.sagsCargo208Queue .v1199Card{margin:0!important}#fwcList.sagsCargo208Queue .v1199TaskBtn{min-height:72px}}
- `;document.head.appendChild(st);
-}
-function uiReturnStack(){try{const a=JSON.parse(sessionStorage.getItem('sagsUiBackStackV183')||'[]');return Array.isArray(a)?a.filter(x=>['admin','datahub'].includes(String(x))):[]}catch(_){return[]}}
-function workspaceShown(){const m=document.getElementById('fwcModal');if(!m||m.hidden||!m.classList.contains('show'))return false;try{return getComputedStyle(m).display!=='none'&&getComputedStyle(m).visibility!=='hidden'}catch(_){return true}}
-function dossierShown(){const m=document.getElementById('sagsFlightDossierModal');if(!m||m.hidden)return false;try{return getComputedStyle(m).display!=='none'&&getComputedStyle(m).visibility!=='hidden'}catch(_){return m.classList.contains('show')}}
-function stableMyFlightBack(ev){
- try{ev?.preventDefault?.();ev?.stopPropagation?.();ev?.stopImmediatePropagation?.()}catch(_){}
- if(myFlightBackBusy)return false;myFlightBackBusy=true;
- try{document.activeElement?.blur?.()}catch(_){}
- const hasReturn=uiReturnStack().length>0,m=document.getElementById('fwcModal');
- try{root.flightWorkspaceClose?.()}catch(_){}
- if(m){m.classList.remove('show','open','active');m.hidden=true;m.style.display='none';m.setAttribute('aria-hidden','true')}
- try{root.sagsOverlayLayout?.refresh()}catch(_){}
- if(hasReturn&&typeof root.sagsUiReturnPrevious==='function'){try{root.sagsUiReturnPrevious()}catch(_){}}
- else{try{root.sagsUiClearBackStack?.()}catch(_){}try{root.sagsV479GoHome?.()}catch(_){}}
- setTimeout(()=>{myFlightBackBusy=false},180);return false;
-}
-function ensureStableMyFlightBack(){
- const modal=document.getElementById('fwcModal'),head=modal?.querySelector('.fwcHead');if(!head)return;
- let b=head.querySelector('#sagsStableMyFlightBack');
- if(!b){b=document.createElement('button');b.id='sagsStableMyFlightBack';b.type='button';b.className='fwcBtn gray';b.textContent='←';b.title='Quay lại';b.setAttribute('aria-label','Quay lại');b.addEventListener('click',stableMyFlightBack);const first=head.querySelector('button');head.insertBefore(b,first||null)}
- const runtimeBack=head.querySelector('#v644MyFlightBack'),hasReturn=uiReturnStack().length>0,hideStable=hasReturn&&!!runtimeBack&&!runtimeBack.hidden;
- if(b.hidden!==hideStable)b.hidden=hideStable;
- if(workspaceShown()&&!dossierShown())document.getElementById('sagsContextBackRow')?.remove();
-}
-function installStableMyFlightBack(){
- ensureStableMyFlightBack();
- if(typeof MutationObserver!=='function')return;
- const modal=document.getElementById('fwcModal');
- if(modal&&!myFlightBackObserver){
-   myFlightBackObserver=new MutationObserver(()=>ensureStableMyFlightBack());
-   myFlightBackObserver.observe(modal,{subtree:true,childList:true,attributes:true,attributeFilter:['class','hidden','style']});
-   try{myFlightBackRootObserver?.disconnect?.()}catch(_){}myFlightBackRootObserver=null;
-   return;
- }
- if(modal||myFlightBackObserver||myFlightBackRootObserver)return;
- const host=document.body||document.documentElement;if(!host)return;
- myFlightBackRootObserver=new MutationObserver(()=>{
-   if(!document.getElementById('fwcModal'))return;
-   try{myFlightBackRootObserver?.disconnect?.()}catch(_){}myFlightBackRootObserver=null;
-   installStableMyFlightBack();
- });
- myFlightBackRootObserver.observe(host,{subtree:true,childList:true});
-}
-function cargoStatus(mod){
- const cur=mod?.currentHandler||{},mine=norm(cur.username)===me(),rev=Number(mod?.revisionNo||0);
- if(rev>0&&mod?.status==='SENT')return{done:true,label:'Đã gửi · R'+rev,mine};
- if(cur.username)return{done:false,label:(mine?'Đang nhập':'Đang xử lý · '+S(cur.name||cur.username)),mine};
- return{done:false,label:'Chờ nhận',mine:false};
-}
-function cargoCardHtml(date,x){
- const rec=x.rec||{},mod=x.mod||{},st=cargoStatus(mod),route=S(rec.route),ac=S(rec.acReg||rec.acRegn)||'—',sta=S(rec.sta)||'—',std=S(rec.std)||'—',cur=mod.currentHandler||{};
- const openLabel=st.mine?'TIẾP TỤC FSAGS 208':cur.username?'NHẬN LẠI FSAGS 208':'NHẬN FSAGS 208';
- const view=published208(mod)?'<button type="button" class="v1199TaskBtn done" data-cargo208-view="'+esc(x.fid)+'"><b>✓ BẢN ĐÃ GỬI</b><small>Mở xem FSAGS 208 · R'+Number(mod.revisionNo||0)+'</small></button>':'';
- return '<article class="v1199Card sagsCargo208Card" data-cargo208-fid="'+esc(x.fid)+'"><div class="v1199Title">'+esc(flightName(rec))+'</div><div class="v1199Meta">'+esc(route)+(route?' · ':'')+'A/C '+esc(ac)+' · STA '+esc(sta)+' · STD '+esc(std)+'</div><div class="v1199Tasks"><button type="button" class="v1199TaskBtn '+(st.done?'done':'')+'" data-cargo208-open="'+esc(x.fid)+'"><b>📦 KHO HÀNG · FSAGS 208</b><small>'+esc(st.label)+'</small><small>➜ '+esc(openLabel)+'</small></button>'+view+'</div><div class="v1199FlightActions"><button type="button" class="v1199Action v1199DossierBtn" data-cargo208-dossier="'+esc(x.fid)+'">📁 HỒ SƠ CHUYẾN</button></div></article>';
-}
-function filterCargoCards(){
- const q=U(document.getElementById('sagsFlightSearch')?.value).replace(/\s+/g,'');
- document.querySelectorAll('#fwcList.sagsCargo208Queue .sagsCargo208Card').forEach(card=>{const hay=U(card.textContent).replace(/\s+/g,'');card.hidden=!!q&&!hay.includes(q)});
-}
-async function renderCargoMyFlight(date=currentDate()){
- if(!cargoRole())return false;date=S(date)||today();ensureCargoQueueStyle();
- let modal=document.getElementById('fwcModal');
- if(!modal&&typeof cargoOpenBase==='function'){try{await Promise.resolve(cargoOpenBase.call(root,date))}catch(e){console.info('Cargo base shell init',e?.message||e)}modal=document.getElementById('fwcModal')}
- if(!modal)return false;
- modal.hidden=false;modal.style.removeProperty('display');modal.removeAttribute('aria-hidden');modal.classList.add('show');
- const head=modal.querySelector('.fwcHead'),title=head?.querySelector('h3');if(title)title.textContent='✈ MY FLIGHT';
- let sub=head?.querySelector('.fwcSub');if(!sub&&title){sub=document.createElement('div');sub.className='fwcSub';title.insertAdjacentElement('afterend',sub)}if(sub)sub.textContent='FSAGS 208 · Kho hàng';
- ensureStableMyFlightBack();root.sagsOverlayLayout?.refresh();
- const body=document.getElementById('fwcBody');if(!body)return false;
- body.innerHTML='<div class="fwcTools"><input id="fwcDate" type="date" value="'+esc(date)+'"><label class="sagsFlightSearchBox"><span>TÌM CHUYẾN BAY</span><input id="sagsFlightSearch" type="search" placeholder="Ví dụ: VJ834, VN123" aria-label="Tìm số hiệu chuyến bay" autocomplete="off"></label><button class="fwcBtn" id="sagsCargo208Refresh" type="button">TẢI DANH SÁCH</button></div><div id="fwcStatus" class="fwcStatus">Đang tải công việc FSAGS 208…</div><div id="fwcList" class="v1199Queue sagsCargo208Queue"></div>';
- const dateInput=document.getElementById('fwcDate'),search=document.getElementById('sagsFlightSearch'),refresh=document.getElementById('sagsCargo208Refresh');
- if(dateInput)dateInput.onchange=()=>renderCargoMyFlight(dateInput.value);
- if(search)search.oninput=filterCargoCards;
- if(refresh)refresh.onclick=()=>renderCargoMyFlight(S(dateInput?.value)||date);
- try{sessionStorage.setItem('sagsV36FwcDate',date)}catch(_){}
- const token=++cargoMyFlightPaint,host=document.getElementById('fwcList');
- try{const rows=await workspaceRows(date);if(token!==cargoMyFlightPaint||!host?.isConnected)return true;
-   host.innerHTML=rows.length?'<div class="v1199OwnerNote">'+esc(myName())+' · '+esc(date)+' · '+rows.length+' chuyến có FSAGS 208</div><div class="v1199FlightGrid">'+rows.map(x=>cargoCardHtml(date,x)).join('')+'</div>':'<div class="v1199Empty">Không có FSAGS 208 áp dụng cho ngày này.</div>';
-   const status=document.getElementById('fwcStatus');if(status){status.textContent=rows.length?'':'Ngày này chưa có công việc FSAGS 208.';status.style.display=rows.length?'none':'block'}
-   host.querySelectorAll('[data-cargo208-open]').forEach(b=>b.onclick=async()=>{if(b.disabled)return;b.disabled=true;try{await takeoverOpen(date,b.dataset.cargo208Open)}finally{if(b.isConnected)b.disabled=false}});
-   host.querySelectorAll('[data-cargo208-view]').forEach(b=>b.onclick=async()=>{if(b.disabled)return;b.disabled=true;try{await openView(date,b.dataset.cargo208View)}finally{if(b.isConnected)b.disabled=false}});
-   host.querySelectorAll('[data-cargo208-dossier]').forEach(b=>b.onclick=()=>openDossier(date,b.dataset.cargo208Dossier));
-   filterCargoCards();
- }catch(e){if(token===cargoMyFlightPaint&&host)host.innerHTML='<div class="v1199Empty">Không tải được FSAGS 208: '+esc(e?.message||e)+'</div>'}
- ensureStableMyFlightBack();root.sagsOverlayLayout?.refresh();return true;
-}
-function installCargoMyFlight(){
- const currentOpen=root.sagsCargoOpenAllFlights;
- if(typeof currentOpen==='function'&&!currentOpen.__sagsCargoUnifiedV64117){
-   cargoOpenBase=currentOpen;
-   const open=function(date){if(cargoRole())return renderCargoMyFlight(S(date)||currentDate());return cargoOpenBase?.apply(this,arguments)};
-   open.__sagsCargoUnifiedV64117=true;open.__base=currentOpen;root.sagsCargoOpenAllFlights=open;
- }
- const currentRefresh=root.sagsCargoRefreshAllFlights;
- if(typeof currentRefresh==='function'&&!currentRefresh.__sagsCargoUnifiedV64117){
-   cargoRefreshBase=currentRefresh;
-   const refresh=function(){if(cargoRole())return renderCargoMyFlight(S(document.getElementById('fwcDate')?.value)||currentDate());return cargoRefreshBase?.apply(this,arguments)};
-   refresh.__sagsCargoUnifiedV64117=true;refresh.__base=currentRefresh;root.sagsCargoRefreshAllFlights=refresh;
- }
- if(!cargoRole())return;
- const menu=document.querySelector?.('.v157MenuItem[data-v157-key="myflight"]');if(menu){const labels=menu.querySelectorAll?.('span')||[];if(labels[1])labels[1].textContent='My Flight';const meta=menu.querySelector?.('.meta');if(meta)meta.textContent='FSAGS 208 · Công việc kho hàng'}
-}
 let wrappedOpen=null;
 function wrapWorkspaceOpen(){const fn=root.flightWorkspaceOpenFlight;if(typeof fn!=='function'||fn===wrappedOpen||fn.__sags208Workspace)return;const w=function(fid){const date=S(document.getElementById('fwcDate')?.value)||currentDate();root.__sags208ActiveWorkspace={opDate:date,flightId:S(fid)};const r=fn.apply(this,arguments);Promise.resolve(r).finally(()=>setTimeout(()=>injectWorkspace(date,S(fid)),120));return r};w.__sags208Workspace=1;w.__base=fn;root.flightWorkspaceOpenFlight=w;wrappedOpen=w}
 let wrappedPublish=null;
@@ -363,7 +231,7 @@ function ensureDossier(){
  const style=document.createElement('style');style.textContent='#sagsFlightDossierModal{position:fixed;inset:0;z-index:50000;display:none;align-items:center;justify-content:center;padding:16px;padding-bottom:max(16px,env(safe-area-inset-bottom));background:#001b2bb3}#sagsFlightDossierModal[hidden]{display:none!important}#sagsFlightDossierModal .sagsDossierPanel{box-sizing:border-box;width:min(760px,100%);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;padding:20px;border-radius:16px;background:#f5fafc;color:#173b4c;font:14px/1.5 Arial}#sagsFlightDossierModal h2{margin:0;font-size:20px;color:#173b4c}#sagsFlightDossierModal button{min-height:44px;padding:9px 14px;border:0;border-radius:9px;background:#0b7185;color:white;font-weight:800;cursor:pointer}#sagsFlightDossierModal .sagsDossierTop{display:flex;align-items:center;justify-content:space-between;gap:12px}#sagsFlightDossierModal .sagsDossierDoc{margin-top:12px;background:white;border:1px solid #c8dce4;padding:14px;border-radius:12px}#sagsFlightDossierModal .sagsDossierDoc b{color:#173b4c}#sagsFlightDossierModal .sagsDossierDoc small{display:block;color:#465f70;margin:5px 0 10px}@media(max-width:600px){#sagsFlightDossierModal{padding:10px}#sagsFlightDossierModal .sagsDossierPanel{padding:14px;max-height:calc(100dvh - 20px)}}';document.head.appendChild(style);
  modal=document.createElement('div');modal.id='sagsFlightDossierModal';modal.hidden=true;modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');modal.setAttribute('aria-labelledby','sagsDossierTitle');modal.innerHTML='<section class="sagsDossierPanel"><div class="sagsDossierTop"><h2 id="sagsDossierTitle">HỒ SƠ CHUYẾN BAY</h2><button id="sagsDossierClose" aria-label="Đóng hồ sơ chuyến">ĐÓNG</button></div><p id="sagsDossierFlight"></p><p>Bản đã gửi dùng chung cho các đơn vị. Mở xem không làm thay đổi người phụ trách hoặc dữ liệu nghiệp vụ.</p><h3>NHIỆM VỤ CỦA TÔI</h3><div id="sagsDossierTasks"></div><h3>TÀI LIỆU CÁC ĐƠN VỊ ĐÃ GỬI</h3><div id="sagsDossierDocs"></div><button id="sagsDossierRefresh" style="margin-top:14px">TẢI LẠI HỒ SƠ</button></section>';document.body.appendChild(modal);modal.querySelector('#sagsDossierClose').onclick=closeDossier;modal.querySelector('#sagsDossierRefresh').onclick=()=>dossierContext&&openDossier(dossierContext.date,dossierContext.fid);modal.addEventListener('keydown',e=>{if(e.key==='Escape')closeDossier();if(e.key==='Tab'){const btns=Array.from(modal.querySelectorAll('button:not([disabled])'));const first=btns[0],last=btns[btns.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}}});return modal;
 }
-function closeDossier(){dossierPaint++;try{document.activeElement?.blur?.()}catch(_){}const m=document.getElementById('sagsFlightDossierModal');if(m){m.hidden=true;m.style.display='none';m.classList.remove('show');m.setAttribute('aria-hidden','true');}root.sagsOverlayLayout?.refresh();}
+function closeDossier(){dossierPaint++;const m=document.getElementById('sagsFlightDossierModal');if(m){m.hidden=true;m.style.display='none';m.classList.remove('show');}root.sagsOverlayLayout?.refresh();}
 root.sagsFlightDossierClose=closeDossier;
 async function openDossier(date,fid){
  if(!canReadFlight())return alert('Cần đăng nhập tài khoản đang hoạt động để xem hồ sơ chuyến.');
@@ -382,7 +250,7 @@ async function openDossier(date,fid){
 root.sagsV338OpenDossier=openDossier;
 root.sagsV338OpenCurrentDossier=function(){const b=bindingFor();if(b)return openDossier(b.opDate,b.flightId);const m=root.currentFlightSessionMeta?.()||{},active=root.__sags208ActiveWorkspace;const fid=S(m.rosterFlightId||m.flightId),date=S(m.opDate||m.rosterDate||m.date||currentDate());if(fid)return openDossier(date,fid);if(active?.flightId)return openDossier(active.opDate,active.flightId);return root.flightWorkspaceOpenList?.(currentDate());};
 function redirectLegacyManager(){const fn=root.openKH208Manager;if(typeof fn==='function'&&!fn.__sags208Unified){const w=function(){try{root.closeKH208Manager?.()}catch(_){}return root.flightWorkspaceOpenList?.(currentDate())};w.__sags208Unified=true;w.__base=fn;root.openKH208Manager=w;try{openKH208Manager=w}catch(_){}}}
-function install(){wrapRosterPublish();wrapWorkspaceOpen();redirectLegacyManager();wrapWorkspaceVisibility();ensureWorkspaceStyle();ensureManagerDate();installStableMyFlightBack();installCargoMyFlight()}
+function install(){wrapRosterPublish();wrapWorkspaceOpen();redirectLegacyManager();wrapWorkspaceVisibility();ensureWorkspaceStyle();ensureManagerDate()}
 install();setTimeout(install,450);setTimeout(install,1400);setTimeout(install,3200);window.addEventListener('pageshow',()=>setTimeout(install,100),{passive:true});window.addEventListener('sags:airline-forms-changed',()=>{reconcileCompleted.clear();const active=root.__sags208ActiveWorkspace;const manager=document.getElementById('kh208ManagerModal');if(active&&document.querySelector('#fwcBody .fwcWorkspaceHead')){injectWorkspace(active.opDate,active.flightId).catch(e=>console.info('FSAGS208 policy refresh',e?.message||e));}else if(manager&&getComputedStyle(manager).display!=='none'){renderManager();}});
-root.__SAGS_FSAGS208_WORKSPACE={build:BUILD,reconcileDate,listRows:workspaceRows,takeoverOpen,openView,syncActiveDraft,published208,syncPublishedSummary,canReadFlight,renderCargoMyFlight,stableMyFlightBack};
+root.__SAGS_FSAGS208_WORKSPACE={build:BUILD,reconcileDate,takeoverOpen,openView,syncActiveDraft,published208,syncPublishedSummary,canReadFlight};
 })(window);

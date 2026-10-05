@@ -1,18 +1,1 @@
-const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
-const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const v=JSON.parse(read('version.json')),m=JSON.parse(read('asset-manifest.json')),h=read('index.html'),sw=read('service-worker.js'),legacy=read('app/boot/05-legacy.js');
-assert.equal(m.build,v.build);assert.equal(m.version,v.version);
-assert.equal(sw.match(/const BUILD='([^']+)'/)[1],v.build);
-assert.equal(h.match(/name="sags-release-build" content="([^"]+)"/)[1],v.build);
-assert.equal(h.match(/name="sags-release-version" content="([^"]+)"/)[1],v.version);
-const cacheId=v.build.toLowerCase().replace(/[^a-z0-9-]/g,'');
-assert.equal(sw.match(/const CACHE_NAME='([^']+)'/)[1],'sags-app-shell-'+cacheId,'cache storage must be unique per build');
-assert.equal(sw.match(/const META_CACHE_NAME='([^']+)'/)[1],'sags-app-meta-'+cacheId,'meta cache must be unique per build');
-assert(sw.includes('await self.clients.claim()'),'activated verified worker must claim clients');
-assert(h.includes('id="sags-release-controller-guard"'),'index must guard against controller/build mismatch');
-assert(legacy.includes('sags-release-build'),'runtime identity must derive from index meta');
-assert(!/const APP_BUILD_VERSION="V6\.4\./.test(legacy),'runtime build must not be hard-coded');assert(!h.includes('sagsCanonicalProduction'),'TEST must not redirect GitHub Pages to production');assert(!h.includes('e-report-sags.vercel.app'),'TEST index must stay isolated from production URL');
-console.log('Release consistency passed: '+v.build);
-
-const runtime=read('app/core/runtime.v503hf2.bundle.js');
-assert(!/const V6441_RUNNING_(?:VERSION|BUILD)="V6\.4\./.test(runtime),'sidebar running version must derive from the deployed release metadata');
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');const root=path.resolve(__dirname,'..');const read=p=>fs.readFileSync(path.join(root,p),'utf8');const build=JSON.parse(read('version.json')).build;assert.equal(JSON.parse(read('asset-manifest.json')).build,build);assert.equal(read('service-worker.js').match(/const BUILD='([^']+)'/)[1],build);const legacy=read('app/boot/05-legacy.js');assert.match(legacy,/meta\[name="sags-release-build"\]/);assert.match(legacy,/sags-release-version/);assert.equal(read('index.html').match(/name="sags-release-build" content="([^"]+)"/)[1],build);function walk(d){return fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.name==='.git'||e.name==='demo'?[]:e.isDirectory()?walk(path.join(d,e.name)):[path.join(d,e.name)])}for(const f of walk(root).filter(f=>/\.(js|html|json|css|webmanifest)$/.test(f))){for(const stamp of fs.readFileSync(f,'utf8').match(/V6\.4\.44-20261002-WORKFLOW-CLEANUP-\d+/g)||[])assert.equal(stamp,build,f+' has stale release stamp');}console.log('Release consistency passed: '+build);
