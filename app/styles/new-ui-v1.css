@@ -5811,3 +5811,35 @@ html.new-ui-v1 body.v157-authenticated #v181AdminCenter .v181AdminHead button:ho
     min-width:720px!important;
   }
 }
+
+
+/* ==========================================================================
+   V6.4.104 · CONSOLIDATED MICRO PATCHES
+   Inlined from four tiny standalone stylesheets to remove four render-time
+   CSS requests without changing their behavior.
+   ========================================================================== */
+#v310ShiftNav,#v1113QrFormBtn,.hf4Release{display:none!important}
+#activityMonitorModal #v503AdminResetPanel #v378ResetRecordsBtn{background:#075fb0!important;color:#fff!important;border-color:#075fb0!important;grid-column:auto!important;min-height:44px;white-space:normal!important}
+#activityMonitorModal #v503AdminResetPanel #v503ResetExecuteBtn{min-height:44px;white-space:normal!important;opacity:1}
+#activityMonitorModal #v503AdminResetPanel #v503ResetExecuteBtn:disabled{opacity:.5;cursor:not-allowed}
+#activityMonitorModal #v503AdminResetPanel #v378ResetStatus{grid-column:auto!important;max-width:100%;overflow-wrap:anywhere;box-sizing:border-box}
+#sagsDeferredUpdate[hidden]{display:none!important}
+#roleBtnNotebook{font-weight:800!important}
+#sagsDeferredUpdate:not([hidden]){
+  position:fixed!important;right:max(12px,env(safe-area-inset-right))!important;
+  bottom:var(--sags-v611-alert-bottom,calc(128px + env(safe-area-inset-bottom)))!important;
+  z-index:25010!important;min-height:44px;max-width:min(80vw,250px);white-space:normal;
+  border:2px solid #b45309!important;border-radius:999px!important;
+  background:#fff1c1;color:#713f12!important;
+  padding:10px 14px!important;font:900 12px/1.25 Arial,sans-serif!important;
+  box-shadow:0 0 0 3px rgba(245,158,11,.28),0 5px 18px rgba(69,34,0,.25);
+  animation:sagsV611UpdateAttention 1.8s ease-in-out infinite;
+}
+@keyframes sagsV611UpdateAttention{
+  0%,100%{background:#fff1c1;box-shadow:0 0 0 2px rgba(217,119,6,.2),0 5px 18px #45220040}
+  50%{background:#fecaca;box-shadow:0 0 0 7px rgba(217,119,6,.28),0 5px 24px #45220050}
+}
+#appUpdateModal{z-index:27000!important}
+@media(max-width:600px){#activityMonitorModal #v503AdminResetPanel{padding:10px!important;margin:9px 0 12px!important}}
+@media(prefers-reduced-motion:reduce){#sagsDeferredUpdate:not([hidden]){animation:none!important}}
+@media print{#sagsDeferredUpdate{display:none!important}}
