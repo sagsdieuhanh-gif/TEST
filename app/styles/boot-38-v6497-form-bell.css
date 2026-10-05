@@ -1,0 +1,18 @@
+/* E-REPORT SAGS V6.4.97 · FORM UPPERCASE + DOSSIER BELL */
+html.new-ui-v1 body.v163-operational :is(input[type="text"],input:not([type]),textarea,.quickTimeInput,.fs09qDataInput,.fs09qTextArea),
+html.new-ui-v1 body.v163-operational svg text,
+html.new-ui-v1 body #quickTimeModal :is(input[type="text"],textarea),
+html.new-ui-v1 body #fs09QuickModal :is(input[type="text"],textarea){text-transform:uppercase!important}
+html.new-ui-v1 body #v6497TvjBbbtBtn{border-color:rgba(228,166,42,.5)!important;background:#342915!important;color:#f6d899!important;font-weight:800!important}
+html.new-ui-v1 body .v6494Notice,html.new-ui-v1 body [data-v6494-key="notice"]{position:relative}
+html.new-ui-v1 body .v6497HasNotice::after{content:attr(data-notice-count);position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#e15353;color:#fff;display:grid;place-items:center;font:800 9px/1 Arial;border:2px solid #071824;box-sizing:border-box}
+#v6497NoticePanel{position:fixed;inset:0;z-index:30000;display:none;align-items:flex-start;justify-content:flex-end;padding:70px 18px 18px;background:rgba(1,8,14,.48);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+#v6497NoticePanel.show{display:flex}
+#v6497NoticePanel *{box-sizing:border-box}
+.v6497NoticeCard{width:min(420px,calc(100vw - 24px));max-height:min(70vh,640px);display:flex;flex-direction:column;border:1px solid rgba(100,190,220,.22);border-radius:13px;background:#081b29;color:#f2f7fa;box-shadow:0 22px 60px rgba(0,0,0,.32);overflow:hidden}
+.v6497NoticeHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 14px 10px;border-bottom:1px solid rgba(100,190,220,.16)}
+.v6497NoticeHead small{display:block;color:#6f8fa2;font-size:8px;letter-spacing:.14em}.v6497NoticeHead h3{margin:3px 0 0;font-size:16px}.v6497NoticeHead button{width:36px;height:36px;border:1px solid rgba(100,190,220,.18);border-radius:8px;background:#0d2a3c;color:#b9d0dc;font-size:22px}
+.v6497NoticeList{overflow:auto;padding:7px}.v6497NoticeEmpty{padding:28px 12px;text-align:center;color:#718da0;font-size:11px}
+.v6497NoticeItem{width:100%;display:grid;grid-template-columns:8px minmax(0,1fr);gap:9px;text-align:left;padding:10px;border:0;border-bottom:1px solid rgba(100,190,220,.11);background:#0a2233;color:#eaf5f8}.v6497NoticeItem.read{opacity:.66}.v6497NoticeItem .dot{width:7px;height:7px;margin-top:5px;border-radius:50%;background:#21d4e8}.v6497NoticeItem.read .dot{background:#597888}.v6497NoticeItem b{display:block;font-size:12px}.v6497NoticeItem small{display:block;margin-top:3px;color:#9bb1bf;font-size:10px;line-height:1.35}.v6497NoticeItem em{display:block;margin-top:4px;color:#617e90;font-size:8px;font-style:normal}
+.v6497NoticeFoot{padding:9px;border-top:1px solid rgba(100,190,220,.14)}.v6497NoticeFoot button{width:100%;min-height:40px;border:1px solid rgba(33,212,232,.28);border-radius:8px;background:#0d3449;color:#bceef3;font-size:10px;font-weight:800}
+@media(max-width:767px){#v6497NoticePanel{align-items:flex-end;padding:0}.v6497NoticeCard{width:100%;max-height:78dvh;border-radius:14px 14px 0 0;padding-bottom:env(safe-area-inset-bottom)}.v6497NoticeItem{min-height:58px}.v6497NoticeFoot button{min-height:44px}}
