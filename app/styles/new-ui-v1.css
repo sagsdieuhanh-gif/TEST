@@ -5843,3 +5843,83 @@ html.new-ui-v1 body.v157-authenticated #v181AdminCenter .v181AdminHead button:ho
 @media(max-width:600px){#activityMonitorModal #v503AdminResetPanel{padding:10px!important;margin:9px 0 12px!important}}
 @media(prefers-reduced-motion:reduce){#sagsDeferredUpdate:not([hidden]){animation:none!important}}
 @media print{#sagsDeferredUpdate{display:none!important}}
+
+
+/* ==========================================================================
+   V6.4.105 · MY FLIGHT FORM OVERVIEW
+   Show generated forms, responsible user and live status directly on each
+   flight card so supervisors do not need to open HỒ SƠ CHUYẾN first.
+   ========================================================================== */
+html.new-ui-v1 body #fwcModal .fwcFormOverview{
+  min-width:0!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormOverviewTitle{
+  margin:0 0 6px!important;
+  color:#6f91a6!important;
+  font:800 8.5px/1.2 var(--ops-font)!important;
+  letter-spacing:.10em!important;
+  text-transform:uppercase!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormOverview .fwcBadges{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:6px!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormOverview .fwcBadge{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  min-width:0!important;
+  min-height:52px!important;
+  padding:7px 8px!important;
+  border:1px solid rgba(83,150,181,.24)!important;
+  border-radius:9px!important;
+  background:#0b2a3e!important;
+  color:#dcebf1!important;
+  box-shadow:none!important;
+  white-space:normal!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormOverview .fwcBadge b{
+  display:block!important;
+  color:inherit!important;
+  font:850 10.5px/1.15 var(--ops-font)!important;
+  overflow-wrap:anywhere!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormOverview .fwcBadge small{
+  display:block!important;
+  margin-top:3px!important;
+  color:inherit!important;
+  opacity:.82!important;
+  font:700 8.5px/1.25 var(--ops-font)!important;
+  overflow-wrap:anywhere!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormOverview .fwcBadge.done,
+html.new-ui-v1 body #fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge.done{
+  border-color:rgba(36,199,122,.42)!important;
+  background:#0a302b!important;
+  color:#c9f5df!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormOverview .fwcBadge.working,
+html.new-ui-v1 body #fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge.working{
+  border-color:rgba(33,212,232,.45)!important;
+  background:#0b3447!important;
+  color:#cceff5!important;
+}
+@media(max-width:720px){
+  html.new-ui-v1 body #fwcModal .fwcFormOverview .fwcBadges{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:5px!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcFormOverview .fwcBadge{
+    min-height:48px!important;
+    padding:6px 7px!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcFormOverview .fwcBadge b{font-size:10px!important}
+  html.new-ui-v1 body #fwcModal .fwcFormOverview .fwcBadge small{font-size:8px!important}
+}
+@media(max-width:380px){
+  html.new-ui-v1 body #fwcModal .fwcFormOverview .fwcBadges{
+    grid-template-columns:1fr!important;
+  }
+}
