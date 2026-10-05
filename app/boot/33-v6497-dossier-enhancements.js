@@ -215,7 +215,7 @@ function install(){
  installUppercase();ensureNoticeUi();updateBadge();
  ['sags:login','sags:rolechange','sags:profilechange','sags:ui-ready','sags:personal-roster-updated'].forEach(name=>root.addEventListener?.(name,()=>{void refreshSubscriptions()}));
  root.addEventListener?.('sags:logout',()=>{stopSubscriptions()});
- document.addEventListener('click',e=>{if(e.target?.closest?.('#v157LogoutBtn,[data-v6494-account="logout"]'))setTimeout(stopSubscriptions,0)},true);
+ document.addEventListener('click',e=>{if(e.target?.closest?.('#v157LogoutBtn,[data-v6494-account="logout"]'))setTimeout(stopSubscriptions,0);if(e.target?.closest?.('#roleLoginSubmit')){setTimeout(()=>{void refreshSubscriptions()},600);setTimeout(()=>{void refreshSubscriptions()},1800)}},true);
  root.addEventListener('pageshow',()=>{void refreshSubscriptions()},{passive:true});
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refreshSubscriptions()},{passive:true});
  root.addEventListener('beforeunload',stopSubscriptions,{once:true});
