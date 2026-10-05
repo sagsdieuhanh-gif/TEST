@@ -24,5 +24,6 @@ assert.match(flight,/BIỂU MẪU · NGƯỜI PHỤ TRÁCH · TRẠNG THÁI/,'fl
 assert.match(flight,/st\.completedBy\|\|st\.claimedBy\|\|st\.ownerUser\|\|item\.user\|\|item\.targetUser/,'form summary must surface the responsible/actual user');
 assert.match(flight,/configuredFlightFormLabel\("fsags54"/,'54 label must honor Form Manager naming');
 assert.match(flight,/configuredFlightFormLabel\("fsags94"/,'94 label must honor Form Manager naming');
+assert.match(flight,/renderCargoAllFlights[\s\S]{0,1800}hydrateFlightAssignments/,'Kho hàng/all-flight view must hydrate form owners and live statuses before rendering');
 
 console.log('V6.4.105 MY FLIGHT stability + form overview regression passed.');
