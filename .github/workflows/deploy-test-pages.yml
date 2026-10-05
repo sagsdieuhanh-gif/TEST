@@ -38,6 +38,8 @@ jobs:
         run: node tests/v64103-dashboard-fidelity.test.cjs
       - name: Verify V6.4.104 mobile row and performance cleanup
         run: node tests/v64104-mobile-perf-cleanup.test.cjs
+      - name: Verify V6.4.105 MY FLIGHT stability
+        run: node tests/v64105-myflight-stability.test.cjs
       - name: Verify pinned cache integrity
         run: node tests/pwa-staging.test.cjs
       - uses: actions/configure-pages@v5
