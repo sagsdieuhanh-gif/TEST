@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.93",
-  "displayVersion": "V6.4.93",
-  "label": "V6.4.93 - UI STABILITY FIX",
-  "build": "V6.4.93-20261005-UI-STABILITY-01",
-  "releasedAt": "2026-10-05T13:24:00Z",
-  "type": "ui-stability-fix",
-  "base": "V6.4.92-20261005-AVIATION-LUXURY-01",
+  "version": "V6.4.94",
+  "displayVersion": "V6.4.94",
+  "label": "V6.4.94 - FINAL AVIATION OPERATIONS SHELL",
+  "build": "V6.4.94-20261005-FINAL-AVIATION-SHELL-01",
+  "releasedAt": "2026-10-05T13:36:00Z",
+  "type": "ui-shell-rebuild",
+  "base": "V6.4.93-20261005-UI-STABILITY-01",
   "updatePolicy": "required",
-  "notes": "Sửa lỗi giao diện mới chỉ hiện khoảng 1–2 giây rồi bị runtime cũ giành lại. Bỏ tự động chuyển KH/Cargo vào màn danh sách cũ sau đăng nhập; tất cả vai trò ở lại menu mới cho đến khi người dùng chọn chức năng. KH/Cargo dùng cùng route MY FLIGHT chuẩn như ĐH/AD. Tăng ưu tiên CSS cho shell dark aviation để các rule legacy chạy muộn không thể trả giao diện về nền trắng/cũ.",
-  "message": "V6.4.93: giữ giao diện mới ổn định, không tự quay về UI cũ."
+  "notes": "Sửa tận gốc việc sau đăng nhập vẫn thấy giao diện cũ. Không còn chỉ skin CSS trên shell legacy: thêm Aviation Home/Menu mới chạy trực tiếp trên DOM và dùng các handler nghiệp vụ hiện có; mobile có menu riêng 2 cột + bottom nav, desktop có sidebar/topbar/hero/quick operations riêng. CSS aviation được tải cuối cùng sau toàn bộ stylesheet legacy để không bị ghi đè. MY FLIGHT và các overlay chính dùng lớp dark aviation cuối cùng. Đồng bộ runtime version truth, service worker và manifest.",
+  "message": "V6.4.94: giao diện mới thực sự sở hữu màn hình sau đăng nhập."
 }
