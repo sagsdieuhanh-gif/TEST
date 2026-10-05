@@ -57,8 +57,13 @@ function uppercaseEditor(el){
  try{if(a!==null&&b!==null)el.setSelectionRange(a,b)}catch(_){}
  return true;
 }
-function uppercaseVisibleEditors(){document.querySelectorAll('#entryText,.quickTimeInput,.fs09qDataInput,.fs09qTextArea,#kh208ManagerModal input[type="text"],#kh208ManagerModal textarea,[data-form-field]').forEach(uppercaseEditor)}
-function beforeFormAction(){uppercaseVisibleEditors();uppercaseFormState()}
+function uppercaseVisibleEditors(){document.querySelectorAll('#entryText,.quickTimeInput,.fs09qDataInput,.fs09qTextArea,#kh208ManagerModal input[type="text"],#kh208ManagerModal textarea,#finalFormFields input[type="text"],#finalFormFields textarea,[data-form-field]').forEach(uppercaseEditor)}
+function uppercaseRecord(obj){
+ if(!obj||typeof obj!=='object')return obj;
+ for(const [k,v] of Object.entries(obj)){if(typeof v!=='string'||/signature|attach|image|photo|file|pdf|canvas|base64|url/i.test(k))continue;obj[k]=upperText(v)}
+ return obj;
+}
+function beforeFormAction(){uppercaseVisibleEditors();uppercaseFormState();try{if(typeof ffCurrentData==='function')uppercaseRecord(ffCurrentData(typeof ffCurrent!=='undefined'?ffCurrent:undefined))}catch(_){}}
 function wrapSync(name){
  const base=root[name];if(typeof base!=='function'||base.__sagsUppercaseV6497)return;
  const fn=function(){beforeFormAction();const out=base.apply(this,arguments);uppercaseFormState();return out};fn.__sagsUppercaseV6497=1;fn.__base=base;root[name]=fn;
