@@ -63,13 +63,19 @@ function uppercaseRecord(obj){
  for(const [k,v] of Object.entries(obj)){if(typeof v!=='string'||/signature|attach|image|photo|file|pdf|canvas|base64|url/i.test(k))continue;obj[k]=upperText(v)}
  return obj;
 }
-function beforeFormAction(){uppercaseVisibleEditors();uppercaseFormState();try{if(typeof ffCurrentData==='function')uppercaseRecord(ffCurrentData(typeof ffCurrent!=='undefined'?ffCurrent:undefined))}catch(_){}}
+function beforeFormAction(){uppercaseVisibleEditors();uppercaseFormState()}
+function wrapFinalData(){
+ let base=null;try{base=typeof ffCurrentData==='function'?ffCurrentData:root.ffCurrentData}catch(_){base=root.ffCurrentData}
+ if(typeof base!=='function'||base.__sagsUppercaseV6497)return;
+ const fn=function(){return uppercaseRecord(base.apply(this,arguments))};fn.__sagsUppercaseV6497=1;fn.__base=base;root.ffCurrentData=fn;try{ffCurrentData=fn}catch(_){}
+}
 function wrapSync(name){
  const base=root[name];if(typeof base!=='function'||base.__sagsUppercaseV6497)return;
  const fn=function(){beforeFormAction();const out=base.apply(this,arguments);uppercaseFormState();return out};fn.__sagsUppercaseV6497=1;fn.__base=base;root[name]=fn;
  try{if(name==='draw')draw=fn;else if(name==='persist')persist=fn;else if(name==='commitEntry')commitEntry=fn;else if(name==='qteSaveCompact')qteSaveCompact=fn;else if(name==='fs09qSave')fs09qSave=fn;else if(name==='sendReport')sendReport=fn;else if(name==='sendKH208Sheet')sendKH208Sheet=fn;else if(name==='saveKH208Local')saveKH208Local=fn}catch(_){}
 }
 function installUppercase(){
+ wrapFinalData();
  if(!document.getElementById('sagsV6497UppercaseStyle')){
   const st=document.createElement('style');st.id='sagsV6497UppercaseStyle';st.textContent=
    '#entryText,.quickTimeInput,.fs09qDataInput,.fs09qTextArea,#kh208ManagerModal input[type="text"],#kh208ManagerModal textarea,#finalFormFields input[type="text"],#finalFormFields textarea,[data-form-field]{text-transform:uppercase!important}';
