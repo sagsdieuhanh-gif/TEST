@@ -8,7 +8,7 @@
   // Display identity only; roster permissions continue to use the service guide.
   const AIRLINE_NAMES = {HAV:'HAV Aviation',VJ:'Vietjet Air',QH:'Bamboo Airways',DV:'SCAT Airlines',KC:'Air Astana',C6:'Centrum Air',KA:'Aero Nomad Airlines',N4:'Nordwind Airlines',AK:'AirAsia',FD:'Thai AirAsia',KE:'Korean Air',BX:'Air Busan',WE:'Parata Air',RF:'Aero K',TW:"T’way Air",OZ:'Asiana Airlines',LJ:'Jin Air','3U':'Sichuan Airlines',UQ:'Urumqi Air',DR:'Ruili Airlines',TR:'Scoot',HY:'Uzbekistan Airways',HU:'Hainan Airlines',VZ:'Thai Vietjet Air','9G':'Sun PhuQuoc Airways',B2:'Belavia',VU:'Vietravel Airlines'};
   let pending = false, overviewKey = '', carrierPromise = null, logoObserver = null;
-  let stripPending = false, flightView = null, showAll = false, tableFrame = 0;
+  let stripPending = false, flightView = null, showAll = false, tableFrame = 0, flightRevision = 0, lastFlightRenderKey = '', workspaceBrandTimer = 0;
   const safe = value => String(value ?? '').replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   const U = value => String(value ?? '').trim().toUpperCase();
   function normalizeCarrier(raw) {
@@ -139,6 +139,9 @@
     const all=$('opsFlightsAll');all.hidden=groups.length<=limit;
     all.textContent=showAll?'Thu gọn ↑':'Xem tất cả →';all.setAttribute('aria-expanded',String(showAll));
     $('opsFlightCount').textContent=rows.length+'/'+groups.length+' chuyến';
+    const renderKey=flightRevision+'|'+(showAll?1:0)+'|'+limit+'|'+groups.length;
+    if(renderKey===lastFlightRenderKey)return;
+    lastFlightRenderKey=renderKey;
     host.innerHTML = '<div class="opsFlightTableWrap"><table><thead><tr><th>Giờ</th><th>Hãng</th><th>Chuyến bay</th><th>Chặng bay</th><th>Đăng bạ</th><th>Trạng thái</th><th>Biểu mẫu</th><th aria-label="Thao tác"></th></tr></thead><tbody>' + rows.map(g => {
       const flight=g.primary||{}, forms=api.visibleFormTasks(g), label=api.flightLabel(flight)||'—',alias=airlineAlias(label,carriers);
       const workingFn=flightView.allFlights?(api.itemWorkingAny||api.itemWorking):api.itemWorking;
@@ -156,7 +159,7 @@
     try { session = window.__sagsGetSession?.(); } catch (_) { return; }
     const user = session?.profile;
     if (!document.body.classList.contains('v157-authenticated') || !user?.firebaseUid) {
-      if (overviewKey) { overviewKey = ''; flightView=null;showAll=false; host.textContent = 'Các chuyến được phân qua Daily Roster sẽ xuất hiện tại đây.'; metrics.replaceChildren();$('opsFlightsAll').hidden=true;$('opsFlightCount').textContent=''; }
+      if (overviewKey) { overviewKey = ''; flightView=null;showAll=false;lastFlightRenderKey='';flightRevision++; host.textContent = 'Các chuyến được phân qua Daily Roster sẽ xuất hiện tại đây.'; metrics.replaceChildren();$('opsFlightsAll').hidden=true;$('opsFlightCount').textContent=''; }
       return;
     }
     if (!document.body.classList.contains('v157-home')) return;
@@ -180,6 +183,7 @@
         +metricCardHtml('pending','Chờ xử lý',pending,'chuyến bay','Xử lý ngay','myflight');
       if (!groups.length) { flightView=null;$('opsFlightsAll').hidden=true;$('opsFlightCount').textContent='';host.textContent = allFlights?'Chưa có chuyến khai thác hôm nay.':'Chưa có chuyến được phân công hôm nay.'; return; }
       flightView={groups:groups.slice().sort((a,b)=>timeMinute(a.primary||{})-timeMinute(b.primary||{}) || String(api.flightLabel(a.primary)).localeCompare(String(api.flightLabel(b.primary)))),carriers,api,allFlights};
+      flightRevision++;lastFlightRenderKey='';
       renderFlights();
     } catch (_) {
       if (overviewKey === key) host.innerHTML = '<p>Không tải được dữ liệu chuyến bay.</p><button type="button" data-ops-retry>Thử lại</button>';
@@ -252,7 +256,7 @@
   document.addEventListener('click',e=>{
     if(e.target?.closest?.('#roleLoginSubmit,[data-v6494-key],[data-ops-route],[data-ops-retry],#v479MyFlightHome,.fwcHead button'))setTimeout(schedule,0);
   },true);
-  const refreshWorkspaceBrand=()=>{void decorateWorkspaceFlights();setTimeout(()=>void decorateWorkspaceFlights(),90);setTimeout(()=>void decorateWorkspaceFlights(),320);};
+  const refreshWorkspaceBrand=()=>{clearTimeout(workspaceBrandTimer);workspaceBrandTimer=setTimeout(async()=>{workspaceBrandTimer=0;await decorateWorkspaceFlights();const host=$('fwcList');const missing=!host||[...host.querySelectorAll('.fwcFlight,.v1199Card')].some(card=>!card.querySelector('.opsFwcBrand'));if(missing)setTimeout(()=>void decorateWorkspaceFlights(),180);},60);};
   document.addEventListener('click',e=>{
     if(e.target?.closest?.('.v157MenuItem[data-v157-key="myflight"],#roleBtnFlights,#roleBtnRosterFlights,#fwcModal button'))refreshWorkspaceBrand();
   },true);
