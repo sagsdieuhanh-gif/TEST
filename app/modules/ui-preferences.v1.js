@@ -575,3 +575,65 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
 })(window);
+
+
+/* V6.4.92 · Aviation Operations UI polish
+   Presentation only: line icons, login visual helpers, and copy cleanup. */
+(function(root){
+'use strict';
+if(root.__SAGS_V6492_AVIATION_UI__)return;
+root.__SAGS_V6492_AVIATION_UI__=true;
+const svg=(d)=>'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+d+'"/></svg>';
+const icons={
+  myflight:'M3 11l18-8-8 18-2-7-7-3 7-2z',
+  alerts:'M12 3l9 16H3L12 3zm0 6v4m0 3h.01',
+  guide:'M4 5.5A3.5 3.5 0 017.5 2H20v17H7.5A3.5 3.5 0 004 22V5.5zm0 0V22',
+  datahub:'M12 3v12m0 0l-4-4m4 4l4-4M4 18v3h16v-3',
+  closeout:'M5 12l4 4L19 6',
+  final:'M6 4h12v16H6zM9 8h6M9 12h6M9 16h4',
+  cross:'M4 7h12l-3-3m3 3l-3 3M20 17H8l3-3m-3 3l3 3',
+  archive:'M4 6h16v14H4zM7 3h10v3M8 10h8M8 14h5',
+  notice:'M18 8a6 6 0 10-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4',
+  adcontrol:'M12 3l8 4v5c0 5-3.3 8.6-8 10-4.7-1.4-8-5-8-10V7l8-4zM9 12l2 2 4-4'
+};
+function installLogin(){
+  const modal=document.getElementById('roleLoginModal'),pass=document.getElementById('roleLoginPass');
+  if(!modal||!pass)return;
+  if(!modal.querySelector('.sagsAviationLoginSub')){
+    const sub=document.createElement('div');sub.className='sagsAviationLoginSub';
+    sub.textContent='Truy cập hệ thống điều hành khai thác mặt đất';
+    const h=modal.querySelector('.roleLoginCard h2');h?.insertAdjacentElement('afterend',sub);
+  }
+  if(!pass.closest('.sagsAviationPassword')){
+    const wrap=document.createElement('div');wrap.className='sagsAviationPassword';
+    pass.parentNode.insertBefore(wrap,pass);wrap.appendChild(pass);
+    const b=document.createElement('button');b.type='button';b.className='sagsAviationPasswordToggle';b.setAttribute('aria-label','Hiện mật khẩu');
+    b.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg>';
+    b.onclick=()=>{const show=pass.type==='password';pass.type=show?'text':'password';b.setAttribute('aria-label',show?'Ẩn mật khẩu':'Hiện mật khẩu')};wrap.appendChild(b);
+  }
+}
+function installIcons(){
+  document.querySelectorAll('.v157MenuItem[data-v157-key]').forEach(btn=>{
+    const ico=btn.querySelector('.ico');if(!ico)return;
+    const key=String(btn.dataset.v157Key||'');const d=icons[key];if(!d||ico.dataset.v6492==='1')return;
+    ico.innerHTML=svg(d);ico.dataset.v6492='1';
+  });
+}
+function cleanMyFlight(){
+  const h=document.querySelector('#fwcModal .fwcHead h3');
+  if(h&&/MY FLIGHT|CHUYẾN HÔM NAY|DANH SÁCH CHUYẾN BAY/i.test(h.textContent||''))h.textContent='MY FLIGHT';
+  document.querySelectorAll('#fwcModal .fwcHead button').forEach(b=>{
+    const t=String(b.textContent||'').trim();
+    if(t==='☰ MENU')b.textContent='MENU';
+  });
+}
+let queued=false;
+function sync(){
+  installLogin();installIcons();cleanMyFlight();
+}
+function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;sync()})}
+document.addEventListener('DOMContentLoaded',schedule,{once:true});
+if(root.MutationObserver){const mo=new MutationObserver(schedule);mo.observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class','hidden']})}
+root.addEventListener('pageshow',schedule,{passive:true});
+setTimeout(schedule,250);setTimeout(schedule,1200);
+})(window);
