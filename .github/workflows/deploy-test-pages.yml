@@ -30,6 +30,10 @@ jobs:
         run: node tests/auto-sign-context-v64101.test.cjs
       - name: Verify carousel identity and logo coverage
         run: node tests/home-carousel-v64101.test.cjs
+      - name: Verify supervisor all-flight scope and AD contrast
+        run: |
+          node tests/home-overview-owner.test.cjs
+          node tests/v64102-supervisor-scope.test.cjs
       - name: Verify pinned cache integrity
         run: node tests/pwa-staging.test.cjs
       - uses: actions/configure-pages@v5
