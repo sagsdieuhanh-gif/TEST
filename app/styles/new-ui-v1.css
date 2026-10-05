@@ -5581,3 +5581,110 @@ html.new-ui-v1 body.v163-operational #sagsMobileFormDock #v324PdfBtn{
   html.new-ui-v1 body.v157-authenticated.v157-home #sagsNavigationHeader{display:none!important}
   html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer #v6444MenuClose{display:none!important}
 }
+
+
+/* ==========================================================================
+   V6.4.93 · UI STABILITY FIX
+   Prevent later runtime state/theme rules from visually restoring the legacy
+   white workspace after the new aviation shell has already rendered.
+   ========================================================================== */
+html.new-ui-v1[data-ui-theme] body.v157-authenticated.v157-home #v157Drawer,
+html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer{
+  background:linear-gradient(180deg,#071b2b 0%,#06131f 60%,#05111c 100%)!important;
+  color:#f2f7fa!important;
+}
+html.new-ui-v1[data-ui-theme] body.v157-authenticated.v157-home #v157Drawer .v157MenuBody,
+html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuBody{
+  background:transparent!important;
+}
+html.new-ui-v1[data-ui-theme] body.v157-authenticated.v157-home #v157Drawer .v157MenuItem,
+html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuItem{
+  color:#b8cbd7!important;
+}
+html.new-ui-v1[data-ui-theme] body.v157-authenticated.v157-home #v157Drawer .v157MenuItem.active,
+html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuItem.active{
+  background:linear-gradient(90deg,rgba(22,143,184,.22),rgba(16,38,53,.55))!important;
+  border-color:rgba(33,212,232,.28)!important;
+  color:#fff!important;
+}
+
+html.new-ui-v1[data-ui-theme] body #fwcModal.show,
+html.new-ui-v1 body #fwcModal.show{
+  background:#06131f!important;
+}
+html.new-ui-v1[data-ui-theme] body #fwcModal.show .fwcPanel,
+html.new-ui-v1 body #fwcModal.show .fwcPanel{
+  background:#071824!important;
+  color:#f2f7fa!important;
+  border-color:rgba(100,190,220,.18)!important;
+}
+html.new-ui-v1[data-ui-theme] body #fwcModal.show .fwcHead,
+html.new-ui-v1 body #fwcModal.show .fwcHead{
+  background:#071824!important;
+  border-bottom-color:rgba(100,190,220,.18)!important;
+}
+html.new-ui-v1[data-ui-theme] body #fwcModal.show .fwcHead h3,
+html.new-ui-v1 body #fwcModal.show .fwcHead h3{
+  color:#f2f7fa!important;
+}
+html.new-ui-v1[data-ui-theme] body #fwcModal.show .fwcTools,
+html.new-ui-v1 body #fwcModal.show .fwcTools{
+  background:#091d2b!important;
+  border-color:rgba(100,190,220,.18)!important;
+}
+html.new-ui-v1[data-ui-theme] body #fwcModal.show .fwcTools :is(input,button,.fwcBtn),
+html.new-ui-v1 body #fwcModal.show .fwcTools :is(input,button,.fwcBtn){
+  background:#0b2435!important;
+  color:#eff8fb!important;
+  -webkit-text-fill-color:#eff8fb!important;
+  border-color:rgba(113,170,199,.28)!important;
+}
+html.new-ui-v1[data-ui-theme] body #fwcModal.show :is(.fwcFlight,.v1199Card,.v478CanonicalRoleCard),
+html.new-ui-v1 body #fwcModal.show :is(.fwcFlight,.v1199Card,.v478CanonicalRoleCard){
+  background:linear-gradient(145deg,#0b2131,#091a28)!important;
+  color:#eef8fb!important;
+  border-color:rgba(100,190,220,.18)!important;
+  box-shadow:none!important;
+}
+html.new-ui-v1[data-ui-theme] body #fwcModal.show :is(.fwcFlightTitle,.v1199Title),
+html.new-ui-v1 body #fwcModal.show :is(.fwcFlightTitle,.v1199Title){
+  color:#f5fbfd!important;
+}
+html.new-ui-v1[data-ui-theme] body #fwcModal.show :is(.fwcMeta,.v1199Meta),
+html.new-ui-v1 body #fwcModal.show :is(.fwcMeta,.v1199Meta){
+  color:#91aabd!important;
+}
+html.new-ui-v1[data-ui-theme] body #fwcModal.show :is(.fwcBadge,.v1199FormTile,.v1199TaskBtn),
+html.new-ui-v1 body #fwcModal.show :is(.fwcBadge,.v1199FormTile,.v1199TaskBtn){
+  background:#0b2a3e!important;
+  color:#dcebf1!important;
+  border-color:rgba(83,150,181,.24)!important;
+}
+html.new-ui-v1[data-ui-theme] body #fwcModal.show :is(.fwcBtn,.v1199Action),
+html.new-ui-v1 body #fwcModal.show :is(.fwcBtn,.v1199Action){
+  background:#0d3449!important;
+  color:#e8f7fb!important;
+  border-color:rgba(64,171,202,.34)!important;
+}
+@media(max-width:767px){
+  html.new-ui-v1[data-ui-theme] body.v157-authenticated.v157-home #v157Drawer,
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+    transform:none!important;
+  }
+  html.new-ui-v1[data-ui-theme] body #fwcModal.show .fwcPanel,
+  html.new-ui-v1 body #fwcModal.show .fwcPanel{
+    background:#06131f!important;
+  }
+  html.new-ui-v1[data-ui-theme] body #fwcModal.show .fwcHead,
+  html.new-ui-v1 body #fwcModal.show .fwcHead{
+    background:rgba(6,19,31,.98)!important;
+  }
+  html.new-ui-v1[data-ui-theme] body #fwcModal.show #fwcBody,
+  html.new-ui-v1 body #fwcModal.show #fwcBody{
+    background:#06131f!important;
+  }
+}
