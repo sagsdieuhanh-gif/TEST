@@ -263,8 +263,8 @@ html.new-ui-v1 body :is(.formMenuGrid button,.exportChoiceGrid button,.v377Creat
    rendered controls. Business logic and semantic state stay intact.
    ========================================================== */
 html.new-ui-v1 body :is(
-  button,
-  [role="button"],
+  button:not(.quickTimeNow),
+  [role="button"]:not(.quickTimeNow),
   input[type="button"],
   input[type="submit"],
   input[type="reset"]
@@ -310,7 +310,7 @@ html.new-ui-v1 body :is(
   #signModal .panel,
   #signatureSampleModal>div,
   #timeSkipModal>div
-) button{
+) button:not(.quickTimeNow){
   min-height:40px!important;
   padding:6px 10px!important;
   border-radius:var(--sags-button-radius)!important;
@@ -439,7 +439,7 @@ html.new-ui-v1 body :is(
 
 /* Shared Button Base. The runtime tags existing controls without replacing
    nodes or handlers. All variants inherit the same dimensions and typography. */
-html.new-ui-v1.new-ui-v1 body .sagsUiButton{
+html.new-ui-v1.new-ui-v1 body .sagsUiButton:not(.quickTimeNow){
   box-sizing:border-box!important;
   border-radius:var(--sags-button-radius)!important;
   height:var(--sags-button-height)!important;
