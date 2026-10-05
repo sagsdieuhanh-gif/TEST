@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.90",
-  "displayVersion": "V6.4.90",
-  "label": "V6.4.90 - UNIFIED MY FLIGHT BY ROLE",
-  "build": "V6.4.90-20261005-MYFLIGHT-UNIFIED-01",
-  "releasedAt": "2026-10-05T12:22:00Z",
-  "type": "ui-consistency",
-  "base": "V6.4.89-20261005-MOBILE-RUNTIME-UI-01",
+  "version": "V6.4.91",
+  "displayVersion": "V6.4.91",
+  "label": "V6.4.91 - MY FLIGHT THEO GIAO DIỆN ĐH",
+  "build": "V6.4.91-20261005-MYFLIGHT-DH-UNIFIED-01",
+  "releasedAt": "2026-10-05T12:30:00Z",
+  "type": "ui-consistency-fix",
+  "base": "V6.4.90-20261005-MYFLIGHT-UNIFIED-01",
   "updatePolicy": "required",
-  "notes": "MY FLIGHT dùng chung giao diện chuẩn của Điều hành cho AD, ĐH, CBTT, KH/Cargo và PVHK. Giữ nguyên nguồn dữ liệu, quyền truy cập và nghiệp vụ theo từng role; chỉ thống nhất shell, toolbar, card, điều hướng và responsive.",
-  "message": "V6.4.90: MY FLIGHT thống nhất giao diện cho mọi vai trò."
+  "notes": "Sửa triệt để chênh lệch MY FLIGHT giữa ĐH, KH/Cargo và AD: dùng cùng header, bộ lọc, tab trạng thái, card chuyến và nút hồ sơ theo mẫu ĐH; giữ nguyên nguồn dữ liệu/quyền từng vai trò. Ngăn module Kho hàng chiếm lại route MY FLIGHT và bỏ dòng mô tả kỹ thuật trạng thái trên card ĐH.",
+  "message": "V6.4.91: KH và AD dùng giao diện MY FLIGHT theo mẫu ĐH."
 }
