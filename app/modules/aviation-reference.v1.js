@@ -66,7 +66,7 @@
     return '<article class="opsMetricCard opsMetric-'+kind+'">'
       +'<small class="opsMetricLabel">'+safe(label)+'</small>'
       +'<div class="opsMetricBody"><span class="opsMetricIcon">'+METRIC_ICONS[kind]+'</span>'
-      +'<strong>'+safe(count)+'</strong><span class="opsMetricUnit">'+safe(unit)+'</span></div>'
+      +'<span class="opsMetricCount"><strong>'+safe(count)+'</strong><span class="opsMetricUnit">'+safe(unit)+'</span></span></div>'
       +'<button type="button" class="opsMetricCta" data-ops-route="'+safe(routeKey)+'">'+safe(cta)+' <span aria-hidden="true">→</span></button>'
       +'<span class="opsMetricGhost" aria-hidden="true">'+METRIC_ICONS[kind]+'</span>'
       +'</article>';
