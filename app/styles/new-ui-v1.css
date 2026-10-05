@@ -5571,3 +5571,13 @@ html.new-ui-v1 body.v163-operational #sagsMobileFormDock #v324PdfBtn{
     min-height:44px!important;height:44px!important;padding:0 6px!important;font-size:10.5px!important;
   }
 }
+
+
+/* V6.4.92 mobile landing safety: the menu is the landing surface, regardless of drawer-open state. */
+@media(max-width:767px){
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer{
+    visibility:visible!important;opacity:1!important;pointer-events:auto!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #sagsNavigationHeader{display:none!important}
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer #v6444MenuClose{display:none!important}
+}
