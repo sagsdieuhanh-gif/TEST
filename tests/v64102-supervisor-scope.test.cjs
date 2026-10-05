@@ -21,6 +21,10 @@ assert(roster.includes("allFlights?(await db(`roster_manifests/${safe(date)}`).o
 assert.match(aviation,/api\.readOverview\(date,\{allFlights\}\)/);
 assert.match(aviation,/api\.allFlightScope\?\.\(\)/);
 assert.match(aviation,/itemWorkingAny/);
+assert.doesNotMatch(aviation,/images\.kiwi\.com/,'airline logos must never depend on an external CDN');
+assert.match(aviation,/opsFwcBrand/,'MY FLIGHT cards must carry airline identity');
+const sw=fs.readFileSync(path.join(root,'service-worker.js'),'utf8');
+assert.match(sw,/\.\/assets\/airlines\/VJ\.png/,'local airline logos must be precached');
 
 assert.match(roster,/configuredFormLabel\('fsags54'/);
 assert.match(roster,/configuredFormLabel\('fsags94'/);
