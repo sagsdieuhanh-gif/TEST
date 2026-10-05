@@ -451,3 +451,393 @@ body.sags-overlay-open #v6494AviationHome{filter:none!important;backdrop-filter:
   #fwcModal .opsFwcBrand .opsAirlineLogo{width:30px!important;height:30px!important;max-width:30px!important;max-height:30px!important}
   #fwcModal .opsFwcIdentity small{font-size:10px!important}
 }
+
+
+/* ==========================================================================
+   V6.4.103 · DASHBOARD FIDELITY
+   Target: reference dashboard cards + clean airline column + tighter table.
+   ========================================================================== */
+@media screen and (min-width:768px){
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Hero{
+    min-height:218px!important;
+    border-radius:12px!important;
+    border:1px solid rgba(115,184,222,.18)!important;
+    background:
+      linear-gradient(90deg,rgba(3,17,29,.88) 0%,rgba(3,17,29,.56) 34%,rgba(3,17,29,.12) 70%),
+      linear-gradient(0deg,rgba(3,15,25,.64),rgba(3,15,25,.08) 72%),
+      url('../../assets/branding/apron-night-v6494.webp') center 53%/cover no-repeat!important;
+    padding:26px 28px!important;
+    align-items:center!important;
+    overflow:hidden!important;
+  }
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Hero>div{
+    max-width:360px!important;
+  }
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Hero h1{
+    display:block!important;
+    margin:0 0 8px!important;
+    color:#f7fbff!important;
+    font-size:30px!important;
+    line-height:1.05!important;
+    letter-spacing:.01em!important;
+  }
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Hero h1 span{
+    color:#4dd5e5!important;
+  }
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Hero>div>small{
+    display:none!important;
+  }
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494HeroDesktop{
+    display:block!important;
+    margin:0!important;
+    color:#c0d0da!important;
+    font-size:16px!important;
+    line-height:1.45!important;
+  }
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Hero button{
+    display:none!important;
+  }
+}
+
+/* Airline strip: compact, even cards, same visual rhythm as target. */
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsAirlineStrip{
+  border-radius:12px!important;
+  background:linear-gradient(180deg,#0b2030,#091a27)!important;
+  border-color:rgba(115,184,222,.18)!important;
+}
+#opsAirlineStrip .opsAirlineChip{
+  min-height:84px!important;
+  border-radius:10px!important;
+  background:#10283a!important;
+  border:1px solid rgba(118,184,218,.16)!important;
+  box-shadow:none!important;
+}
+#opsAirlineStrip .opsAirlineIdentity b{
+  font-size:12px!important;
+  color:#f4f8fb!important;
+}
+#opsAirlineStrip .opsAirlineIdentity small{
+  color:#98b1c0!important;
+  font-size:9px!important;
+}
+
+/* Metric cards: match the reference dashboard hierarchy and icon treatment. */
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeMetrics{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:14px!important;
+  margin-top:0!important;
+  margin-bottom:18px!important;
+}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeMetrics>.opsMetricCard{
+  position:relative!important;
+  min-height:138px!important;
+  padding:17px 18px 14px!important;
+  overflow:hidden!important;
+  border-radius:12px!important;
+  border:1px solid rgba(113,181,216,.17)!important;
+  background:linear-gradient(135deg,#122b3e 0%,#0d2233 72%,#0a1b29 100%)!important;
+  box-shadow:0 10px 28px rgba(0,8,16,.12)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  box-sizing:border-box!important;
+}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeMetrics>.opsMetric-complete{
+  background:linear-gradient(135deg,#112e3b 0%,#0a343c 55%,#07343a 100%)!important;
+}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeMetrics>.opsMetric-pending{
+  background:linear-gradient(135deg,#122d42 0%,#10283b 62%,#0c2132 100%)!important;
+}
+#opsHomeMetrics .opsMetricLabel{
+  position:relative;
+  z-index:2;
+  margin:0!important;
+  color:#b6c9d5!important;
+  font-size:12px!important;
+  font-weight:650!important;
+  letter-spacing:0!important;
+}
+#opsHomeMetrics .opsMetricBody{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:40px auto 1fr;
+  align-items:center;
+  column-gap:10px;
+  margin-top:7px;
+  min-height:54px;
+}
+#opsHomeMetrics .opsMetricIcon{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+}
+#opsHomeMetrics .opsMetricIcon svg{
+  width:36px;
+  height:36px;
+  overflow:visible;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2.3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+#opsHomeMetrics .opsMetric-working .opsMetricIcon{color:#43d9f5}
+#opsHomeMetrics .opsMetric-working .opsMetricIcon svg path:first-child{
+  fill:#43d9f5;
+  stroke:#43d9f5;
+}
+#opsHomeMetrics .opsMetric-complete .opsMetricIcon{
+  color:#dffff2;
+  border-radius:9px;
+  background:linear-gradient(145deg,#37ddb6,#17a886);
+  box-shadow:0 6px 18px rgba(20,198,157,.22);
+}
+#opsHomeMetrics .opsMetric-complete .opsMetricIcon svg{width:29px;height:29px}
+#opsHomeMetrics .opsMetric-complete .opsMetricIcon svg rect{
+  fill:transparent;
+  stroke:transparent;
+}
+#opsHomeMetrics .opsMetric-pending .opsMetricIcon{
+  color:#5fcfff;
+}
+#opsHomeMetrics .opsMetricBody strong{
+  margin:0!important;
+  color:#f8fbff!important;
+  font-size:29px!important;
+  line-height:1!important;
+  font-weight:850!important;
+  font-variant-numeric:tabular-nums;
+}
+#opsHomeMetrics .opsMetricUnit{
+  align-self:end;
+  margin:0 0 3px 0;
+  color:#4cbdd8;
+  font-size:10px;
+  font-weight:600;
+  white-space:nowrap;
+}
+#opsHomeMetrics .opsMetricCta{
+  position:relative;
+  z-index:3;
+  align-self:flex-start;
+  min-height:0!important;
+  height:auto!important;
+  padding:2px 0!important;
+  margin:3px 0 0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#52d7e7!important;
+  box-shadow:none!important;
+  font-size:10px!important;
+  font-weight:700!important;
+  line-height:1.2!important;
+}
+#opsHomeMetrics .opsMetricCta:hover{
+  color:#8decf5!important;
+  text-decoration:underline!important;
+}
+#opsHomeMetrics .opsMetricGhost{
+  position:absolute;
+  right:-4px;
+  bottom:-18px;
+  width:118px;
+  height:118px;
+  color:rgba(122,185,215,.10);
+  transform:rotate(-8deg);
+  pointer-events:none;
+}
+#opsHomeMetrics .opsMetricGhost svg{
+  width:100%;
+  height:100%;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.1;
+}
+
+/* Queue frame and heading fidelity. */
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeQueue{
+  padding:14px 14px 10px!important;
+  border:1px solid rgba(113,181,216,.18)!important;
+  border-radius:12px!important;
+  background:#0a1c2a!important;
+}
+#opsHomeQueue .opsQueueHead{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:14px!important;
+  min-height:42px!important;
+  margin:0 0 8px!important;
+}
+#opsHomeQueue .opsQueueHead>div:first-child small{
+  margin-bottom:3px!important;
+  color:#627f91!important;
+  font-size:8px!important;
+  font-weight:750!important;
+  letter-spacing:.16em!important;
+}
+#opsHomeQueue .opsQueueHead h2{
+  margin:0!important;
+  color:#f2f7fa!important;
+  font-size:15px!important;
+  line-height:1.2!important;
+  font-weight:800!important;
+}
+#opsHomeQueue .opsQueueActions{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:8px!important;
+  flex-wrap:nowrap!important;
+}
+#opsHomeQueue #opsFlightCount{
+  color:#7e9baa!important;
+  font-size:9px!important;
+  font-weight:700!important;
+  white-space:nowrap!important;
+}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #opsHomeQueue .opsQueueActions button{
+  margin:0!important;
+  min-height:34px!important;
+  height:34px!important;
+  padding:0 10px!important;
+  border-radius:8px!important;
+  border:1px solid rgba(70,187,225,.34)!important;
+  background:#0e344a!important;
+  color:#83e9f5!important;
+  box-shadow:none!important;
+  font-size:10px!important;
+  font-weight:750!important;
+  white-space:nowrap!important;
+}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #opsHomeQueue .opsQueueActions button[data-ops-retry]{
+  width:34px!important;
+  min-width:34px!important;
+  padding:0!important;
+  font-size:15px!important;
+}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #opsHomeQueue .opsQueueActions #opsFlightsAll{
+  border-color:transparent!important;
+  background:transparent!important;
+  color:#80deee!important;
+  padding:0 2px!important;
+}
+
+/* Table fidelity: compact rows; airline mark floats directly on the dark table. */
+#opsHomeFlights{
+  margin-top:0!important;
+  color:#a8bdc9!important;
+}
+#opsHomeFlights .opsFlightTableWrap{
+  overflow-x:auto!important;
+  border-radius:8px!important;
+  scrollbar-width:thin;
+}
+#opsHomeFlights table{
+  min-width:900px!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+}
+#opsHomeFlights th{
+  padding:8px 8px!important;
+  background:#10293b!important;
+  color:#879fad!important;
+  border-bottom:1px solid rgba(117,180,213,.15)!important;
+  font-size:9px!important;
+  font-weight:650!important;
+}
+#opsHomeFlights td{
+  height:45px!important;
+  padding:7px 8px!important;
+  background:transparent!important;
+  color:#dce9ef!important;
+  border-bottom:1px solid rgba(117,180,213,.14)!important;
+  font-size:11px!important;
+}
+#opsHomeFlights tbody tr:hover td{
+  background:rgba(18,50,70,.48)!important;
+}
+#opsHomeFlights .opsAirlineCell{
+  width:54px!important;
+  text-align:center!important;
+}
+#opsHomeFlights .opsTableLogoBare{
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  max-width:31px!important;
+  max-height:24px!important;
+  object-fit:contain!important;
+  margin:0 auto!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+#opsHomeFlights .opsTableLogoFallback{
+  display:inline-block!important;
+  min-width:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  color:#93adbb!important;
+  font-size:10px!important;
+  font-weight:850!important;
+  line-height:1!important;
+}
+#opsHomeFlights .opsFlightNo b{
+  color:#f4f8fb!important;
+  font-size:11px!important;
+  font-weight:850!important;
+}
+#opsHomeFlights .opsTime{
+  color:#dce8ef!important;
+  font-weight:700!important;
+}
+#opsHomeFlights .opsForms{
+  color:#b7c9d3!important;
+  white-space:nowrap!important;
+}
+#opsHomeFlights .opsStatus{
+  padding:4px 7px!important;
+  border-radius:7px!important;
+  font-size:9px!important;
+  line-height:1.05!important;
+}
+html.new-ui-v1.new-ui-v1.new-ui-v1 body #opsHomeFlights .opsOpenCell button{
+  min-width:56px!important;
+  height:34px!important;
+  min-height:34px!important;
+  padding:0 11px!important;
+  border-radius:8px!important;
+  background:#103c55!important;
+  color:#dff7ff!important;
+  border:1px solid rgba(83,190,225,.42)!important;
+  font-size:10px!important;
+  font-weight:800!important;
+}
+
+/* Mobile keeps the same metric visual hierarchy without squeezing three cards. */
+@media(max-width:767px){
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeMetrics{
+    grid-template-columns:1fr!important;
+    gap:9px!important;
+  }
+  html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeMetrics>.opsMetricCard{
+    min-height:112px!important;
+    padding:13px 14px 11px!important;
+  }
+  #opsHomeMetrics .opsMetricBody{
+    grid-template-columns:36px auto 1fr;
+    min-height:44px;
+    margin-top:4px;
+  }
+  #opsHomeMetrics .opsMetricIcon{width:32px;height:32px}
+  #opsHomeMetrics .opsMetricIcon svg{width:30px;height:30px}
+  #opsHomeMetrics .opsMetricBody strong{font-size:26px!important}
+  #opsHomeMetrics .opsMetricGhost{width:94px;height:94px;bottom:-20px}
+}
