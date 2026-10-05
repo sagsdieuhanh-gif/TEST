@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.97",
-  "build": "V6.4.97-20261005-DOSSIER-NOTIFY-UPPER-01",
-  "strategy": "atomic release + event-driven dossier notifications + uppercase form data + TVJ BBBT + FSAGS208 autofill",
+  "version": "V6.4.98",
+  "build": "V6.4.98-20261005-FIREBASE-REGISTER-01",
+  "strategy": "atomic release + Firebase Auth registration + users/{UID} account source + permission regression gate",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "3670de1287f3ae676a6413d6efeb0f266d1e2122c3791f62b63ee05d3683ecf0",
-      "bytes": 81986
+      "sha256": "eff7a0c25aaf7e26765f5397f249304bd64f236123c70b4767b497d151d8dd72",
+      "bytes": 81689
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "ca5aee54bc19e6eac7687391367d0700f41958f4f34accdf71a905d6b147821c",
-      "bytes": 22164
+      "sha256": "af5c7ad7e5f4b94ac1e5f315b4a85e07c7a23419d6582134a8661e003e98df5d",
+      "bytes": 22155
     },
     "./version.json": {
-      "sha256": "06eabf10406fcbb7bfc680ef7dbfe5609a368dc4af215b0b998a2423568a340e",
-      "bytes": 1054
+      "sha256": "9195e1fef508cd8302871fe83e9f8cf5e5f7a87ded997835bc8b1e37b25ac1ef",
+      "bytes": 925
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -330,16 +330,16 @@
       "bytes": 17323
     },
     "./app/boot/13-v485FeaturePermissions.js": {
-      "sha256": "b67f52d6d7fa964dc01b406bf4678b42943fa53f2bb548a890d38131d0aa1d33",
-      "bytes": 13492
+      "sha256": "583aedae34ef9770776aaa614f5ace2dee3d84bf05571174b8d083505d890ab2",
+      "bytes": 13603
     },
     "./app/boot/14-v18CanonicalAccountHierarchy.js": {
-      "sha256": "064f36702399ec4742fd219f9bb4a07632bdf57df30916301c278841108b2f65",
-      "bytes": 20947
+      "sha256": "e94a2fc2c54543b2c2a6f25289d23f48e8c94cc3a14ab654b9c1b2689a816391",
+      "bytes": 22920
     },
     "./app/boot/15-v116-account-name-search.js": {
-      "sha256": "b2ffc046f021ab5218cc5a5090fd7cee940451e85c6db0d332c39f9036e55eb1",
-      "bytes": 2872
+      "sha256": "363e9cea94c7f7748ebba9240d1979f4fb569a727d66697188d21874ab3be0a0",
+      "bytes": 3079
     },
     "./app/boot/18-v173-quick-time.js": {
       "sha256": "b158f68910ade58b146cfa747f031fc24817f5705e24a5e954d205c23dacc81c",
@@ -562,8 +562,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "1eee8c02c1fbbe74c17471d72344ad13fc1d6e0c1ecd1edacc4d4884ee601955",
-      "bytes": 134620
+      "sha256": "fec515a97e2a8725a314aa5967c466d296d4b0c1b57249adcd1a97c9cf074ec4",
+      "bytes": 134617
     },
     "./app/generated/runtime-2.js": {
       "sha256": "1f39b1b745951be59ae0f2882d190a3359b056c69682e256a049fdb7dceb0bd4",
@@ -582,8 +582,8 @@
       "bytes": 25747
     },
     "./app/modules/feature-loader.v1.js": {
-      "sha256": "87c0612696ca9ac41ba5245ad5fefe211e36fdd9aabb475b6b028279f9c95575",
-      "bytes": 1681
+      "sha256": "ca0fc1db76966533f6c6d0d230cae735ebc6d0e785280ce9dbc74394995ef0c5",
+      "bytes": 1678
     },
     "./app/modules/firebase-read-coalescer.v1.js": {
       "sha256": "2be879e74429432ad5a6130923cc67bb9bb66b5dd4a66533c09c1842a6d035dd",
