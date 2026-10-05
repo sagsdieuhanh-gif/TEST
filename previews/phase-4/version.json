@@ -1,0 +1,12 @@
+{
+  "version": "V6.4.144",
+  "displayVersion": "V6.4.144",
+  "label": "V6.4.144 - UNIFIED CONTROLS",
+  "build": "V6.4.144-20261005-UNIFIED-CONTROLS-01",
+  "releasedAt": "2026-10-05T00:52:00+07:00",
+  "type": "ui",
+  "base": "V6.4.143-20261005-MOBILE-UNLOCK-SAFE-01",
+  "updatePolicy": "required",
+  "notes": "Unified operational control UI while retaining the verified FSAGS54/94 technical-hit exclusion and mobile unlock safety. Date controls now use one real input surface without fake overlay buttons, Quick Time uses one rounded field with a flat GIỜ trailing action instead of a circle-inside-pill clock, and operational inputs/selects/textareas share one consistent control system across desktop and mobile. Large functional action buttons are unchanged. Paper/form overlay fields are explicitly excluded.",
+  "message": "V6.4.144: giữ sửa field 54/94; làm lại ô ngày, giờ và control thao tác theo một bề mặt hiện đại, không còn bo tròn lồng bo tròn."
+}
