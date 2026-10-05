@@ -51,6 +51,26 @@
     if (!src) return '<span class="opsAirlineFallback">'+safe(c||'—')+'</span>';
     return '<span class="opsAirlineMark"><img class="opsAirlineLogo" data-src="'+safe(src)+'" alt="'+safe(c)+'" decoding="async"><span class="opsAirlineFallback">'+safe(c)+'</span></span>';
   }
+  function tableLogoHtml(code) {
+    const c = normalizeCarrier(code), src = logoUrl(c);
+    if (!c) return '<span class="opsTableLogoFallback">—</span>';
+    if (!src) return '<span class="opsTableLogoFallback">'+safe(c)+'</span>';
+    return '<img class="opsTableLogoBare" src="'+safe(src)+'" alt="'+safe(c)+'" loading="lazy" decoding="async">';
+  }
+  const METRIC_ICONS = {
+    working:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 26l36-15-14 32-5-13-17-4z"/><path d="M22 30 14 40M17 23 8 14"/></svg>',
+    complete:'<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="7" width="34" height="34" rx="9"/><path d="m15 25 6 6 13-15"/></svg>',
+    pending:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M13 34h23a8 8 0 0 0 1-16 13 13 0 0 0-25-2 9 9 0 0 0 1 18z"/><path d="M24 21v11m0 0-5-5m5 5 5-5"/></svg>'
+  };
+  function metricCardHtml(kind,label,count,unit,cta,routeKey){
+    return '<article class="opsMetricCard opsMetric-'+kind+'">'
+      +'<small class="opsMetricLabel">'+safe(label)+'</small>'
+      +'<div class="opsMetricBody"><span class="opsMetricIcon">'+METRIC_ICONS[kind]+'</span>'
+      +'<strong>'+safe(count)+'</strong><span class="opsMetricUnit">'+safe(unit)+'</span></div>'
+      +'<button type="button" class="opsMetricCta" data-ops-route="'+safe(routeKey)+'">'+safe(cta)+' <span aria-hidden="true">→</span></button>'
+      +'<span class="opsMetricGhost" aria-hidden="true">'+METRIC_ICONS[kind]+'</span>'
+      +'</article>';
+  }
   function carrierInfo(code,carriers){
     const c=normalizeCarrier(code);
     return (carriers||[]).find(row=>row.carrier===c||(row.aliases||[]).includes(c))||{carrier:c,name:AIRLINE_NAMES[c]||c};
@@ -123,7 +143,7 @@
       const flight=g.primary||{}, forms=api.visibleFormTasks(g), label=api.flightLabel(flight)||'—',alias=airlineAlias(label,carriers);
       const workingFn=flightView.allFlights?(api.itemWorkingAny||api.itemWorking):api.itemWorking;
       const status=g.flightClosed?'Hoàn tất':g.items.some((x,i)=>workingFn(x,g.states[i]))?'Đang làm':'Chờ xử lý';
-      return '<tr><td class="opsTime">'+safe(flightTime(flight)||'—')+'</td><td class="opsAirlineCell">'+logoHtml(alias,'opsTableLogo')+'</td><td class="opsFlightNo"><b>'+safe(label)+'</b></td><td>'+safe(flight.route||'—')+'</td><td>'+safe(flight.acReg||'—')+'</td><td><span class="opsStatus opsStatus-'+statusClass(status)+'">'+safe(status)+'</span></td><td class="opsForms">'+forms.map(x=>safe(api.formLabel(x.item))).join(' · ')+'</td><td class="opsOpenCell"><button type="button" data-ops-route="myflight">Mở</button></td></tr>';
+      return '<tr><td class="opsTime">'+safe(flightTime(flight)||'—')+'</td><td class="opsAirlineCell">'+tableLogoHtml(alias)+'</td><td class="opsFlightNo"><b>'+safe(label)+'</b></td><td>'+safe(flight.route||'—')+'</td><td>'+safe(flight.acReg||'—')+'</td><td><span class="opsStatus opsStatus-'+statusClass(status)+'">'+safe(status)+'</span></td><td class="opsForms">'+forms.map(x=>safe(api.formLabel(x.item))).join(' · ')+'</td><td class="opsOpenCell"><button type="button" data-ops-route="myflight">Mở</button></td></tr>';
     }).join('')+'</tbody></table></div>';
   }
   function statusClass(status) {
@@ -153,7 +173,11 @@
       const complete = groups.filter(g => g.flightClosed).length;
       const workingFn=allFlights?(api.itemWorkingAny||api.itemWorking):api.itemWorking;
       const working = groups.filter(g => !g.flightClosed && g.items.some((item,i) => workingFn(item,g.states[i]))).length;
-      metrics.innerHTML = [['Chuyến đang làm',working],['Hoàn tất hôm nay',complete],['Chờ xử lý',Math.max(0,groups.length-complete-working)]].map(([label,count]) => '<div><small>'+label+'</small><strong>'+count+'</strong></div>').join('');
+      const pending=Math.max(0,groups.length-complete-working);
+      metrics.innerHTML =
+        metricCardHtml('working','Chuyến đang làm',working,'chuyến bay','Xem danh sách','myflight')
+        +metricCardHtml('complete','Đã hoàn thành hôm nay',complete,'chuyến bay','Xem chi tiết','archive')
+        +metricCardHtml('pending','Chờ xử lý',pending,'chuyến bay','Xử lý ngay','myflight');
       if (!groups.length) { flightView=null;$('opsFlightsAll').hidden=true;$('opsFlightCount').textContent='';host.textContent = allFlights?'Chưa có chuyến khai thác hôm nay.':'Chưa có chuyến được phân công hôm nay.'; return; }
       flightView={groups:groups.slice().sort((a,b)=>timeMinute(a.primary||{})-timeMinute(b.primary||{}) || String(api.flightLabel(a.primary)).localeCompare(String(api.flightLabel(b.primary)))),carriers,api,allFlights};
       renderFlights();
