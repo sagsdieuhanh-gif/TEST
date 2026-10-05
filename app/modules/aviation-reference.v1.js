@@ -5,7 +5,6 @@
   const $ = id => document.getElementById(id);
   const brand = '<b>E-REPORT <em>SAGS</em></b><small>AIRPORT GROUND OPERATIONS</small>';
   const CARRIER_GUIDE = './data/carrier-service-guide.json';
-  const AIRLINE_LOGO_BASE = 'https://images.kiwi.com/airlines/64/';
   // Display identity only; roster permissions continue to use the service guide.
   const AIRLINE_NAMES = {HAV:'HAV Aviation',VJ:'Vietjet Air',QH:'Bamboo Airways',DV:'SCAT Airlines',KC:'Air Astana',C6:'Centrum Air',KA:'Aero Nomad Airlines',N4:'Nordwind Airlines',AK:'AirAsia',FD:'Thai AirAsia',KE:'Korean Air',BX:'Air Busan',WE:'Parata Air',RF:'Aero K',TW:"T’way Air",OZ:'Asiana Airlines',LJ:'Jin Air','3U':'Sichuan Airlines',UQ:'Urumqi Air',DR:'Ruili Airlines',TR:'Scoot',HY:'Uzbekistan Airways',HU:'Hainan Airlines',VZ:'Thai Vietjet Air','9G':'Sun PhuQuoc Airways',B2:'Belavia',VU:'Vietravel Airlines'};
   let pending = false, overviewKey = '', carrierPromise = null, logoObserver = null;
@@ -32,7 +31,7 @@
   }
   function logoUrl(code) {
     code = normalizeCarrier(code);
-    return AIRLINE_NAMES[code] ? './assets/airlines/'+code+(code==='KA'?'.svg':'.png') : code ? AIRLINE_LOGO_BASE + encodeURIComponent(code) + '.png' : '';
+    return AIRLINE_NAMES[code] ? './assets/airlines/'+code+(code==='KA'?'.svg':'.png') : '';
   }
   function airlineAlias(flightLabel, carriers) {
     const raw = U(flightLabel).replace(/[\s-]+/g,'');
@@ -42,13 +41,33 @@
     return aliases.find(alias => raw.startsWith(alias)) || '';
   }
   function logoHtml(code, cls='') {
-    const c = normalizeCarrier(code);
+    const c = normalizeCarrier(code), src = logoUrl(c);
     if (!c) return '<span class="opsAirlineFallback '+safe(cls)+'">—</span>';
-    return '<span class="opsAirlineMark '+safe(cls)+'"><img class="opsAirlineLogo" src="'+safe(logoUrl(c))+'" alt="'+safe(c)+'" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="opsAirlineFallback" hidden>'+safe(c)+'</span></span>';
+    if (!src) return '<span class="opsAirlineFallback '+safe(cls)+'">'+safe(c)+'</span>';
+    return '<span class="opsAirlineMark '+safe(cls)+'"><img class="opsAirlineLogo" src="'+safe(src)+'" alt="'+safe(c)+'" loading="lazy" decoding="async"><span class="opsAirlineFallback" hidden>'+safe(c)+'</span></span>';
   }
   function lazyLogoHtml(code) {
-    const c = normalizeCarrier(code);
-    return '<span class="opsAirlineMark"><img class="opsAirlineLogo" data-src="'+safe(logoUrl(c))+'" alt="'+safe(c)+'" decoding="async" referrerpolicy="no-referrer"><span class="opsAirlineFallback">'+safe(c)+'</span></span>';
+    const c = normalizeCarrier(code), src = logoUrl(c);
+    if (!src) return '<span class="opsAirlineFallback">'+safe(c||'—')+'</span>';
+    return '<span class="opsAirlineMark"><img class="opsAirlineLogo" data-src="'+safe(src)+'" alt="'+safe(c)+'" decoding="async"><span class="opsAirlineFallback">'+safe(c)+'</span></span>';
+  }
+  function carrierInfo(code,carriers){
+    const c=normalizeCarrier(code);
+    return (carriers||[]).find(row=>row.carrier===c||(row.aliases||[]).includes(c))||{carrier:c,name:AIRLINE_NAMES[c]||c};
+  }
+  async function decorateWorkspaceFlights(){
+    const host=$('fwcList');if(!host)return;
+    const carriers=await loadCarriers();if(!host.isConnected)return;
+    for(const card of host.querySelectorAll('.fwcFlight,.v1199Card')){
+      const title=card.querySelector('.fwcFlightTitle,.v1199Title');if(!title)continue;
+      const alias=airlineAlias(title.textContent,carriers);if(!alias)continue;
+      const info=carrierInfo(alias,carriers);
+      let brand=card.querySelector('.opsFwcBrand');
+      if(!brand){brand=document.createElement('div');brand.className='opsFwcBrand';title.insertAdjacentElement('beforebegin',brand);}
+      if(brand.dataset.carrier===info.carrier)continue;
+      brand.dataset.carrier=info.carrier;
+      brand.innerHTML=logoHtml(info.carrier,'opsFwcLogo')+'<span class="opsFwcIdentity"><b>'+safe(info.carrier)+'</b><small>'+safe(info.name||info.carrier)+'</small></span>';
+    }
   }
   function setupLogoObserver() {
     if (logoObserver || !('IntersectionObserver' in window)) return;
@@ -158,6 +177,7 @@
       $('personalLoginUser')?.setAttribute('aria-label', 'Tên đăng nhập');
       $('roleLoginPass')?.setAttribute('aria-label', 'Mật khẩu');
     }
+    void decorateWorkspaceFlights();
     const shell = $('v6494AviationHome');
     if (!shell) return;
     const scroll = shell.querySelector('.v6494Scroll'), hero = scroll?.querySelector('.v6494Hero');
@@ -208,5 +228,9 @@
   document.addEventListener('click',e=>{
     if(e.target?.closest?.('#roleLoginSubmit,[data-v6494-key],[data-ops-route],[data-ops-retry],#v479MyFlightHome,.fwcHead button'))setTimeout(schedule,0);
   },true);
+  const workspaceObserver=new MutationObserver(list=>{
+    if(list.some(m=>m.target?.nodeType===1&&(m.target.closest?.('#fwcModal')||m.target.id==='fwcList')))void decorateWorkspaceFlights();
+  });
+  try{workspaceObserver.observe(document.body,{subtree:true,childList:true})}catch(_){}
   setTimeout(schedule,350); setTimeout(schedule,1400);
 })();
