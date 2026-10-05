@@ -15,13 +15,6 @@ function enhanceButton(el){
     el.dataset.sagsUiSkip='form-hit';
     return el;
   }
-  // Integrated time helper is part of the input cell, not a standalone SAGS button.
-  // Keep it flat even after the global button normalizer tags dynamic controls.
-  if(el?.classList?.contains('quickTimeNow')){
-    el.style.setProperty('border-radius','0','important');
-    el.style.setProperty('box-shadow','none','important');
-    el.style.setProperty('transform','none','important');
-  }
   if(el.dataset.sagsUiNormalized==='1')return el;
   el.dataset.sagsUiNormalized='1';el.classList.add('sagsUiButton');return el;
 }
