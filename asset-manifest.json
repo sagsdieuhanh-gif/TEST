@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.93",
-  "build": "V6.4.93-20261005-UI-STABILITY-01",
-  "strategy": "atomic release + runtime anti-rollback + shared My Flight route + premium aviation UI",
+  "version": "V6.4.94",
+  "build": "V6.4.94-20261005-FINAL-AVIATION-SHELL-01",
+  "strategy": "atomic release + final last-loaded aviation shell + legacy handler adapter + verified bootstrap",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "fb1aeafda0dd352269a03aac18cece5fdb17fa11b9a0f48e52bf43c962b96a29",
-      "bytes": 80589
+      "sha256": "ba5b8ad1dda6cf2c475318c6fc5b59d93edfe8547e98be7d1ae727a15ba2f2ab",
+      "bytes": 81624
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "9126c4df8e4a514be1302a87d0667a5342bae4a687268af06a5c5a1e291c2512",
-      "bytes": 21754
+      "sha256": "30ee05197c041e0137b6f863d35e90e13007d340764dbb30fee6b68082840e74",
+      "bytes": 21866
     },
     "./version.json": {
-      "sha256": "e8deab456cb6a55c402e6ce15b4c828cb6db7a7cb17808fcd7af17e4a716d5a4",
-      "bytes": 869
+      "sha256": "c3eef4de1f4ce840ab9a80661c9a1587d41dce1bdab782c31339406783839ec3",
+      "bytes": 999
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -562,8 +562,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "b1b5bffe7672399a59c8ee331fa80a58716f562b5d1c701b66dd43069d141061",
-      "bytes": 134616
+      "sha256": "e2e94b4b92f40d5075242483197be2c7bdbf562753fc26d21ed8e287509e9051",
+      "bytes": 134620
     },
     "./app/generated/runtime-2.js": {
       "sha256": "1f39b1b745951be59ae0f2882d190a3359b056c69682e256a049fdb7dceb0bd4",
@@ -582,8 +582,8 @@
       "bytes": 25747
     },
     "./app/modules/feature-loader.v1.js": {
-      "sha256": "6e4d75ce9f2468a2cccffc2aa29a70b35b793c3f6d5028ac15dd253aadbe1dbe",
-      "bytes": 1673
+      "sha256": "ad77c068d1c4caa1d359d40d7054f090ac7a2f800ac4cff00726135258a5e306",
+      "bytes": 1681
     },
     "./app/modules/firebase-read-coalescer.v1.js": {
       "sha256": "2be879e74429432ad5a6130923cc67bb9bb66b5dd4a66533c09c1842a6d035dd",
@@ -616,6 +616,14 @@
     "./previews/final-ui/assets/ui/myflight-hero-v64101.webp": {
       "sha256": "7d694ad1b8d0ce6140a9655f8b619856db47beeee017c93b4d4b706f0855e7ec",
       "bytes": 1556
+    },
+    "./app/boot/32-v6494-aviation-shell.js": {
+      "sha256": "ccb1ad67c67046a31c541802413e265d835156dc18efb15f22861c85993af109",
+      "bytes": 11469
+    },
+    "./app/styles/boot-36-v6494-aviation-final.css": {
+      "sha256": "e1e4f39ac563d220a29b4b7129b833f3caa15e96c231ee8371412932a13c12f8",
+      "bytes": 17262
     }
   }
 }
