@@ -11,7 +11,7 @@ for(const file of ['app/generated/runtime-1.js','app/core/runtime.v503hf2.bundle
   assert.match(fn,/textContent!=="☰ MENU"/,file+' MENU text write must be idempotent');
   assert.match(fn,/home\.style\.display!==display/,file+' home-button display write must be idempotent');
   assert.match(fn,/back\.textContent!==backText/,file+' back-button text write must be idempotent');
-  assert.doesNotMatch(fn,/close\.textContent="☰ MENU"/,file+' must not rewrite MENU text on every sync');
+  assert.match(fn,/if\(close\.textContent!=="☰ MENU"\)close\.textContent="☰ MENU"/,file+' MENU write must be guarded by a value check');
 }
 const roster=read('app/modules/daily-roster.v502.js');
 assert.match(roster,/h&&h\.textContent!==\'MY FLIGHT\'/,'daily roster header must share the same stable MY FLIGHT title');
