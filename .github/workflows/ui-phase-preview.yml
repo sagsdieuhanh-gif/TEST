@@ -1,9 +1,11 @@
 name: UI Phase Preview
 
 on:
-  pull_request:
+  push:
     branches: [main]
-    types: [opened, synchronize, reopened]
+    paths:
+      - ".github/workflows/ui-phase-preview.yml"
+      - "preview-target.txt"
   workflow_dispatch:
 
 permissions:
@@ -12,12 +14,11 @@ permissions:
   id-token: write
 
 concurrency:
-  group: ui-phase-preview-${{ github.event.pull_request.number || github.run_id }}
+  group: ui-phase-preview-main
   cancel-in-progress: true
 
 jobs:
   deploy:
-    if: github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'ui-redesign-phase')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -29,27 +30,35 @@ jobs:
           ref: main
           path: site
 
+      - name: Read preview target
+        id: target
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="$(tr -d '\r\n' < site/preview-target.txt)"
+          if [[ ! "$branch" =~ ^ui-redesign-phase([0-9]+)$ ]]; then
+            echo "Invalid preview branch: $branch" >&2
+            exit 1
+          fi
+          n="${BASH_REMATCH[1]}"
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+          echo "phase=$n" >> "$GITHUB_OUTPUT"
+
       - name: Checkout phase branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ steps.target.outputs.branch }}
           path: phase
 
       - name: Prepare isolated phase preview
         shell: bash
         run: |
           set -euo pipefail
-          branch="${GITHUB_HEAD_REF:-ui-redesign-phase1}"
-          if [[ "$branch" =~ ui-redesign-phase([0-9]+) ]]; then
-            n="${BASH_REMATCH[1]}"
-          else
-            n="1"
-          fi
-          target="site/previews/phase-$n"
+          target="site/previews/phase-${{ steps.target.outputs.phase }}"
           mkdir -p "$target"
           rsync -a --delete             --exclude '.git'             --exclude '.github'             --exclude 'node_modules'             phase/ "$target/"
           touch site/.nojekyll
-          echo "PREVIEW_PATH=previews/phase-$n/" >> "$GITHUB_ENV"
+          echo "PREVIEW_PATH=previews/phase-${{ steps.target.outputs.phase }}/" >> "$GITHUB_ENV"
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
