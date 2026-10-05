@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.105",
-  "displayVersion": "V6.4.105",
-  "label": "V6.4.105 - MY FLIGHT STABILITY + FORM OVERVIEW",
-  "build": "V6.4.105-20261006-MYFLIGHT-STABILITY-FORM-OVERVIEW-01",
-  "releasedAt": "2026-10-05T20:52:52Z",
-  "type": "ui-stability-workflow-visibility",
-  "base": "V6.4.104-20261006-MOBILE-PERF-CLEANUP-01",
+  "version": "V6.4.106",
+  "displayVersion": "V6.4.106",
+  "label": "V6.4.106 - MY FLIGHT CHIP + STABILITY + PERFORMANCE",
+  "build": "V6.4.106-20261006-MYFLIGHT-CHIPS-STABILITY-PERF-01",
+  "releasedAt": "2026-10-05T21:07:35Z",
+  "type": "ui-stability-performance",
+  "base": "V6.4.105-20261006-MYFLIGHT-STABILITY-FORM-OVERVIEW-01",
   "updatePolicy": "required",
-  "notes": "Sửa MY FLIGHT bị nhấp nháy liên tục: loại #fwcModal khỏi MutationObserver đồng bộ giao diện toàn cục, biến các cập nhật header/MENU thành idempotent và thống nhất tiêu đề MY FLIGHT giữa shell với Daily Roster để không còn vòng lặp MY FLIGHT ↔ ✈ MY FLIGHT. Đồng thời hiển thị ngay trên từng card chuyến danh sách biểu mẫu đã sinh ra, người phụ trách/thực hiện và trạng thái CHỜ NHẬN/ĐANG THỰC HIỆN/HOÀN TẤT; 54/94 lấy đúng tên từ Form Manager. Không cần mở HỒ SƠ CHUYẾN mới biết ai đang làm biểu mẫu nào. Giữ nguyên toàn bộ tối ưu V6.4.104.",
-  "message": "V6.4.105: ổn định MY FLIGHT, hết nhấp nháy và hiện biểu mẫu + người phụ trách + trạng thái ngay trên card chuyến."
+  "notes": "Chốt phương án 2: biểu mẫu trên card chuyến hiển thị thành một hàng chip ngang gọn, có tên form, người phụ trách/bộ phận và trạng thái; khi nhiều form thì vuốt ngang thay vì kéo card cao. Sửa triệt để card MY FLIGHT nhấp nháy: không còn so sánh DOM đã được logo/theme trang trí với HTML nguồn; giữ DOM nếu dữ liệu không đổi; tái sử dụng shell danh sách khi refresh; giảm các đợt canonicalize 5 lần và applyRoleUI retry 4 lần xuống một lần chính + một fallback có điều kiện; observer MY FLIGHT được thu hẹp về modal. Tăng contain-intrinsic-size để giảm nhảy layout. Audit runtime xác nhận không có asset local bị thiếu/duplicate trong index; Firebase Firestore/Functions vẫn đang được dùng nên giữ lại; 58 file JS local khoảng 2.65MB, phần lớn là nghiệp vụ legacy đang được tham chiếu nên không xóa bừa.",
+  "message": "V6.4.106: form chip ngang gọn, hết vòng lặp card MY FLIGHT nhấp nháy và giảm re-render/layout trên mobile + PC."
 }
