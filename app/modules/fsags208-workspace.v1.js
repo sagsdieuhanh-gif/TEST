@@ -210,7 +210,6 @@ async function sendWorkspace(){
    if(tx?.committed===false||!revision)throw new Error('Quyền xử lý đã thay đổi trước khi gửi.');
    clearTimeout(syncTimer);draftSignatures.set(date+'|'+fid,JSON.stringify(st));const list=readList(),row=list.find(x=>x.id===activeId());if(row){row.sentAtMs=now;row.revisionNo=revision;row.updatedAt=now;writeList(list)}
    const pub={state:clone(st),revisionNo:revision,sentAtMs:now,sentBy:clone(who)};await syncPublishedSummary(date,fid,rec,{...mod,state:st,status:'SENT',revisionNo:revision,lastSentAtMs:now,lastSentBy:who,published:pub},pub);
-   try{await root.sagsFlightHubLink?.('FSAGS208',{flight:flightName(rec),state:st,revisionNo:revision},{opDate:date,flightId:fid,docId:'FSAGS208_R'+revision,revisionNo:revision,status:'SENT'})}catch(e){console.info('FSAGS208 Flight Hub notify',e?.message||e)}
    try{root.writeUserActivity?.('ĐÃ HOÀN TẤT FSAGS 208',flightName(rec)+' · '+date+' · R'+revision)}catch(_){}
    try{root.dispatchEvent(new CustomEvent('sags:flight-document-published',{detail:{opDate:date,flightId:fid,code:'FSAGS208',revisionNo:revision}}))}catch(_){}
    alert('✓ FSAGS 208 đã HOÀN TẤT và được đưa vào HỒ SƠ CHUYẾN · R'+revision+'.');setTimeout(()=>injectWorkspace(date,fid),80);return true;
