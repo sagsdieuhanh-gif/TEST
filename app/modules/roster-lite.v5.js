@@ -130,12 +130,25 @@ function filterFlightCards(){
   }
 }
 document.addEventListener('input',e=>{if(e.target?.id==='sagsFlightSearch'){const list=document.getElementById('fwcList');if(list?.classList.contains('v478CanonicalQueue'))v478ApplyRoleFilter();else filterFlightCards()}},true);
-let flightFilterFrame=0;
-new MutationObserver(records=>{
-  if(!records.some(r=>r.type==='childList'&&r.target?.closest?.('#fwcList')))return;
-  if(flightFilterFrame)return;
-  flightFilterFrame=requestAnimationFrame(()=>{flightFilterFrame=0;normalizeFlightDossierCards();const list=document.getElementById('fwcList');if(list?.classList.contains('v478CanonicalQueue'))v478ApplyRoleFilter();else filterFlightCards()});
-}).observe(document.body,{childList:true,subtree:true});
+let flightFilterFrame=0,flightFilterObserver=null,flightFilterTarget=null;
+function installFlightFilterObserver(){
+  const target=document.getElementById('fwcModal')||document.body;
+  if(flightFilterObserver&&flightFilterTarget===target)return;
+  try{flightFilterObserver?.disconnect()}catch(_){}
+  flightFilterTarget=target;
+  flightFilterObserver=new MutationObserver(records=>{
+    if(!records.some(r=>r.type==='childList'&&r.target?.closest?.('#fwcList')))return;
+    if(flightFilterFrame)return;
+    flightFilterFrame=requestAnimationFrame(()=>{
+      flightFilterFrame=0;
+      normalizeFlightDossierCards();
+      const list=document.getElementById('fwcList');
+      if(list?.classList.contains('v478CanonicalQueue'))v478ApplyRoleFilter();else filterFlightCards();
+    });
+  });
+  flightFilterObserver.observe(target,{childList:true,subtree:true});
+}
+installFlightFilterObserver();
 function drawShell(d){
   const modal=ensureModal();modal.hidden=false;modal.style.removeProperty('display');modal.classList.add('show');root.sagsOverlayLayout?.refresh();
   const host=document.getElementById('fwcBody');if(!host)return false;
@@ -161,8 +174,8 @@ function ensureCanonicalRoleViewStyle(){
 #fwcList.v478CanonicalQueue .v478CanonicalRoleCard .v478TechMeta,
 #fwcList.v478CanonicalQueue .v478CanonicalRoleCard .fwcDeptStatuses{display:none!important}
 #fwcList.v478CanonicalQueue .v478RoleModuleWrap{display:block!important;min-width:0!important}
-#fwcList.v478CanonicalQueue .v478RoleModules{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important;margin:9px 0!important;max-width:none!important}
-#fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:3px!important;min-height:54px!important;padding:8px!important;border:1px solid #cbdbe6!important;border-radius:10px!important;background:#eef4f9!important;color:#314a61!important;font:800 10px/1.25 Arial!important;white-space:normal!important;text-align:left!important}
+#fwcList.v478CanonicalQueue .v478RoleModules{display:flex!important;flex-wrap:nowrap!important;gap:6px!important;margin:8px 0!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin!important;overscroll-behavior-x:contain!important;-webkit-overflow-scrolling:touch!important;padding-bottom:2px!important}
+#fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge{display:flex!important;flex:0 0 auto!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:2px!important;width:auto!important;min-width:104px!important;max-width:138px!important;min-height:44px!important;padding:6px 7px!important;border:1px solid #cbdbe6!important;border-radius:9px!important;background:#eef4f9!important;color:#314a61!important;font:800 10px/1.2 Arial!important;white-space:normal!important;text-align:left!important}
 #fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge b{display:block!important;color:inherit!important;font:900 11px/1.15 Arial!important}
 #fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge small{display:block!important;color:inherit!important;opacity:.82!important;font:800 9px/1.25 Arial!important;overflow-wrap:anywhere!important}
 #fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge.done{border-color:#4c9c76!important;background:#e7f6ed!important;color:#14633a!important}
@@ -258,7 +271,13 @@ function canonicalizeRoleView(d){
   v478ApplyRoleFilter();root.sagsOverlayLayout?.refresh();
   return true;
 }
-function scheduleCanonicalRoleView(d){[0,120,450,900,1900].forEach(ms=>setTimeout(()=>{if(visible())canonicalizeRoleView(d)},ms))}
+let canonicalRoleTimer=0;
+function scheduleCanonicalRoleView(d){
+  clearTimeout(canonicalRoleTimer);
+  const run=()=>{if(visible())canonicalizeRoleView(d)};
+  if(root.requestAnimationFrame)root.requestAnimationFrame(run);else setTimeout(run,0);
+  canonicalRoleTimer=setTimeout(()=>{const list=document.getElementById('fwcList');if(visible()&&!list?.classList.contains('v478CanonicalQueue'))run()},220);
+}
 const baseOpen=root.flightWorkspaceOpenList,baseRefresh=root.flightWorkspaceRefresh;
 async function openLite(requestedDate){
   const d=S(requestedDate)||dateNow();
@@ -287,10 +306,10 @@ async function refreshLite(){
 }
 refreshLite.__v477MailboxLite=true;
 function renderCanonicalIfVisible(){if(!visible())return;if(role()==='AD'||isCargoRole()){canonicalizeRoleView(date());return}const renderer=root.__SAGS_DAILY_ROSTER_FINAL_V1199?.renderPersonal;if(typeof renderer==='function')Promise.resolve(renderer(date())).catch(e=>console.warn('Canonical MY FLIGHT render',e?.message||e))}
-function install(){if(root.flightWorkspaceOpenList!==openLite)root.flightWorkspaceOpenList=openLite;if(root.flightWorkspaceRefresh!==refreshLite)root.flightWorkspaceRefresh=refreshLite;const b=document.getElementById('roleBtnRosterFlights');if(b){b.textContent='MY FLIGHT';b.onclick=()=>openLite(dateNow())}}
+function install(){if(root.flightWorkspaceOpenList!==openLite)root.flightWorkspaceOpenList=openLite;if(root.flightWorkspaceRefresh!==refreshLite)root.flightWorkspaceRefresh=refreshLite;installFlightFilterObserver();const b=document.getElementById('roleBtnRosterFlights');if(b){if(b.textContent!=='MY FLIGHT')b.textContent='MY FLIGHT';b.onclick=()=>openLite(dateNow())}}
 function assertCanonical(){if(live.user&&(me()!==live.user||role()==='AD'||isCargoRole()))teardown();install();renderCanonicalIfVisible()}
 root.sagsV478OpenMyFlightLite=openLite;root.sagsV478RefreshMyFlightLite=refreshLite;root.sagsV478InstallCanonicalMyFlight=assertCanonical;
-const baseApplyRoleUI=root.applyRoleUI;if(typeof baseApplyRoleUI==='function'&&!baseApplyRoleUI.__v6424MyFlightAuthority){const wrapped=function(){const out=baseApplyRoleUI.apply(this,arguments);[0,120,500,1400].forEach(ms=>setTimeout(assertCanonical,ms));return out};wrapped.__v6424MyFlightAuthority=true;wrapped.__v6424Base=baseApplyRoleUI;root.applyRoleUI=wrapped;try{applyRoleUI=wrapped}catch(_){}}
+const baseApplyRoleUI=root.applyRoleUI;if(typeof baseApplyRoleUI==='function'&&!baseApplyRoleUI.__v6424MyFlightAuthority){let applySyncTimer=0;const wrapped=function(){const out=baseApplyRoleUI.apply(this,arguments);clearTimeout(applySyncTimer);setTimeout(assertCanonical,0);applySyncTimer=setTimeout(()=>{if(visible())assertCanonical()},240);return out};wrapped.__v6424MyFlightAuthority=true;wrapped.__v6424Base=baseApplyRoleUI;root.applyRoleUI=wrapped;try{applyRoleUI=wrapped}catch(_){}}
 install();setTimeout(assertCanonical,350);setTimeout(assertCanonical,1100);setTimeout(assertCanonical,3600);root.addEventListener?.('pageshow',()=>setTimeout(assertCanonical,60),{passive:true});root.addEventListener?.('focus',()=>setTimeout(assertCanonical,60),{passive:true});document.addEventListener?.('visibilitychange',()=>{if(!document.hidden)setTimeout(assertCanonical,80)},{passive:true});
 root.sagsV477MailboxStats=root.sagsV478MailboxStats;
 })(typeof window!=='undefined'?window:globalThis);
