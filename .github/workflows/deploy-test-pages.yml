@@ -20,6 +20,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify stable roster form-family policy
         run: node tests/roster-stable-family.test.cjs
+      - name: Verify Firebase account registration
+        run: node tests/firebase-account-registration-v6498.test.cjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
