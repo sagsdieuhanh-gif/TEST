@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.101",
-  "build": "V6.4.101-20261006-MOBILE-UX-SPEED-01",
-  "strategy": "atomic release + server-live receive fast path + carrier-guide airline identity + aligned aviation home",
+  "version": "V6.4.102",
+  "build": "V6.4.102-20261006-SUPERVISOR-ALL-FLIGHTS-AD-CONTRAST-01",
+  "strategy": "atomic release + supervisor all-flight overview + configured form labels + local-only airline card identity + AD contrast hardening",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "efbfe7aafcfe478c4c2150c6e67cb8d334c0b290b1333a1fe2a529bc34c1c963",
-      "bytes": 83053
+      "sha256": "c4e007d572dc650fddb32f9c5d3d1ffbdca852e58585a3379bef96a07582817e",
+      "bytes": 84873
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
@@ -82,8 +82,8 @@
       "bytes": 41473
     },
     "./app/styles/new-ui-v1.css": {
-      "sha256": "a4bd0c280e77d2ce26f0982e3958ac3e056090313a50579267b454fbe57dab90",
-      "bytes": 308455
+      "sha256": "52afb3045691b07fed09a839dab00e8af004f1a4f3d20ba03545924cd7331c8c",
+      "bytes": 313723
     },
     "./assets/audio/alert-crosscheck-complete.mp3": {
       "sha256": "2291844c0abc77005a2e8800e0dc8115c373134385a31a5d3d9e5f920a5acc07",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "e5e395da42abf0345164ebe664580ca8072f234d41365ed7aa0b4be97a943895",
-      "bytes": 80224
+      "sha256": "7eb030f475bb350242c715947b5cfa76cd16e673c60a91ed6fd20a641fcaeb4c",
+      "bytes": 81554
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "14031d918cd15043f7fbdf23906b04edcbd0662375053650d7a9f02b389e9dba",
-      "bytes": 20563
+      "sha256": "80129098a2e1f16dd08bd8028eb7b540d3b8cd1b9dbd1b8571b810ea0bef5965",
+      "bytes": 21350
     },
     "./version.json": {
-      "sha256": "751d2fa1a1203a6583175c0301c6f09b95355cae4b8055c649634636bb37d70e",
-      "bytes": 1059
+      "sha256": "3051577f57e04b35e5bb0e6c3524c9a02beb7272f9d422668974389d3f9fa7c6",
+      "bytes": 1174
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -626,12 +626,12 @@
       "bytes": 17226
     },
     "./app/styles/aviation-reference.v1.css": {
-      "sha256": "723240f2c5addc2a5eb4d8985f7ce062b1065b745cd2826f310a70d6f106c2c2",
-      "bytes": 36420
+      "sha256": "e8d7ef43ef09f0f6f655958747b65e0ec084ce23a57f3d82f849576fed58e8ea",
+      "bytes": 38419
     },
     "./app/modules/aviation-reference.v1.js": {
-      "sha256": "b47c058c1ff9cc7b707a156a993df5a17b3c85c356ae30151f1696503f7f1c81",
-      "bytes": 15474
+      "sha256": "775714ee8ab1f4ac4f2c8e45c5e5b6ea4f7af5a30a306269d27b61895cf37d77",
+      "bytes": 17312
     },
     "./assets/branding/apron-night-v6494.webp": {
       "sha256": "7a17d332d8dce854de03be8918034b378012b7fece42abc6c71ed9575bc257a0",
