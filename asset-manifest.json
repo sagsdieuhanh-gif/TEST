@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "53181da5d5c0512c8aabc0155a43265d310c62c309a862df193cfc5f3bceb06f",
-      "bytes": 84939
+      "sha256": "b95252d311e46e68c905967ebe5249deaac532bf656b02275bf513c6a04d69f6",
+      "bytes": 85388
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "7d0997d46fd818a31edd88f35480700cc197b9f9296600dd3ae7605772ac9796",
@@ -526,8 +526,8 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "bc19ac6be5460f55ad36b63fd381260970a964315f27d25a9b3c3b0c556f7562",
-      "bytes": 43615
+      "sha256": "1354ce73ee14147392e84388967a5946edd6452d4ea804b3ee36be5b8481c8e9",
+      "bytes": 58198
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
       "sha256": "13098140ce34a54fe9e6ee8325e2eba877d673546157a08a92b64ef60fdd0132",
@@ -574,8 +574,8 @@
       "bytes": 2573
     },
     "./app/styles/desktop-shell-v64128.css": {
-      "sha256": "6d21471d12c1b2934e3edc6c10e83b87fa7b9ae2a6f2f56c35abfe1e7cbab8a2",
-      "bytes": 21780
+      "sha256": "ca101cfbe45cf113d0ca1fe929b485eef1b20d9dd893a48931a76be2c82583bb",
+      "bytes": 29637
     }
   }
 }
