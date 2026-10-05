@@ -391,3 +391,63 @@ body.sags-overlay-open #v6494AviationHome{filter:none!important;backdrop-filter:
 }
 
 @media screen and (min-width:768px){html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Account button{min-height:44px!important;margin:0!important;font-size:12px!important;white-space:nowrap!important;padding:0 8px!important}html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome .v6494Account svg{width:16px!important;height:16px!important;flex-shrink:0}}
+
+
+/* V6.4.102 · airline identity inside every MY FLIGHT card, PC + mobile */
+#fwcModal .opsFwcBrand{
+  display:flex!important;
+  align-items:center!important;
+  gap:9px!important;
+  min-width:0!important;
+  margin:0 0 7px!important;
+}
+#fwcModal .opsFwcBrand .opsAirlineMark,
+#fwcModal .opsFwcBrand .opsAirlineFallback{
+  width:40px!important;
+  height:40px!important;
+  min-width:40px!important;
+  flex:0 0 40px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:10px!important;
+  background:#fff!important;
+  border:1px solid rgba(132,193,228,.20)!important;
+  overflow:hidden!important;
+  color:#173f60!important;
+  font:900 11px/1 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+}
+#fwcModal .opsFwcBrand .opsAirlineLogo{
+  display:block!important;
+  width:34px!important;
+  height:34px!important;
+  max-width:34px!important;
+  max-height:34px!important;
+  object-fit:contain!important;
+}
+#fwcModal .opsFwcIdentity{
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:2px!important;
+}
+#fwcModal .opsFwcIdentity b{
+  color:#effaff!important;
+  font:900 11px/1.1 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  letter-spacing:.10em!important;
+}
+#fwcModal .opsFwcIdentity small{
+  color:#9fc6da!important;
+  font:800 11px/1.25 system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  text-transform:uppercase!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+@media(max-width:720px){
+  #fwcModal .opsFwcBrand{gap:8px!important;margin-bottom:6px!important}
+  #fwcModal .opsFwcBrand .opsAirlineMark,
+  #fwcModal .opsFwcBrand .opsAirlineFallback{
+    width:36px!important;height:36px!important;min-width:36px!important;flex-basis:36px!important;border-radius:9px!important
+  }
+  #fwcModal .opsFwcBrand .opsAirlineLogo{width:30px!important;height:30px!important;max-width:30px!important;max-height:30px!important}
+  #fwcModal .opsFwcIdentity small{font-size:10px!important}
+}
