@@ -82,8 +82,8 @@
       "bytes": 26338
     },
     "./index.html": {
-      "sha256": "d45390094eaa1dece282f5d9e4940cfba6a39807dec21d9fc08aae7610ebfacf",
-      "bytes": 81790
+      "sha256": "e992e6da3818f08d88d38768c4099fb96e98ad24f7bc841022273817f2d35215",
+      "bytes": 82355
     },
     "./service-worker.js": {
       "sha256": "7da2c22b24b3d9cf712c84dcf7c4e98418bff686bd785a2a2f7e42caaa9516ed",
@@ -334,8 +334,8 @@
       "bytes": 181313
     },
     "./app/styles/mobile-navy-v64106.css": {
-      "sha256": "e8abcc1ef135517585287c521ff6506d0d874c7b2f22c1feb31f3ebdc0a031e0",
-      "bytes": 30086
+      "sha256": "4b5cc4e72492b585ebfd4896a4557918a5d6033722b66a92e84a6210c440e37c",
+      "bytes": 38164
     },
     "./app/modules/flight-governance.v1.js": {
       "sha256": "97e65fa6a8ed614cc312e569a73183aa22804ee2d63f1efdbc9529c8b35947db",
@@ -526,8 +526,8 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "c74c718b919516dcc29169453de379037565b122fc6c5ddbfb3559a2fd0602a1",
-      "bytes": 43392
+      "sha256": "bc19ac6be5460f55ad36b63fd381260970a964315f27d25a9b3c3b0c556f7562",
+      "bytes": 43615
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
       "sha256": "13098140ce34a54fe9e6ee8325e2eba877d673546157a08a92b64ef60fdd0132",
@@ -574,8 +574,8 @@
       "bytes": 2573
     },
     "./app/styles/desktop-shell-v64128.css": {
-      "sha256": "0f8e38758fdb188d7b17e759b283280fba131219f744b653b3838cabaecb132d",
-      "bytes": 12918
+      "sha256": "6d21471d12c1b2934e3edc6c10e83b87fa7b9ae2a6f2f56c35abfe1e7cbab8a2",
+      "bytes": 21780
     }
   }
 }

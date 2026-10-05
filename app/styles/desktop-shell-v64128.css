@@ -229,3 +229,241 @@
     max-width:min(1120px,calc(100vw - 72px))!important;
   }
 }
+
+
+/* PHASE 2 · DESKTOP LOGIN + HOME
+   Scoped to login and HOME only. Operational workspaces begin in later phases. */
+@media (min-width:1024px){
+  html.new-ui-v1 body #roleLoginModal{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    min-height:100dvh!important;
+    padding:48px clamp(56px,7vw,112px)!important;
+    box-sizing:border-box!important;
+    background:
+      linear-gradient(90deg,rgba(0,18,39,.12) 0%,rgba(0,18,39,.48) 53%,rgba(0,18,39,.82) 100%),
+      url('../../assets/ui/myflight-hero-v64101.webp') center/cover no-repeat!important;
+  }
+  html.new-ui-v1 body #roleLoginModal::before{
+    content:"E-REPORT SAGS";
+    position:absolute;
+    left:clamp(56px,7vw,112px);
+    bottom:72px;
+    color:#f8fbff;
+    font:700 clamp(28px,3.1vw,50px)/1 var(--sags-font-ui);
+    letter-spacing:-.03em;
+    text-shadow:0 3px 18px rgba(0,9,24,.45);
+    pointer-events:none;
+  }
+  html.new-ui-v1 body #roleLoginModal::after{
+    content:"Điều hành khai thác · Hồ sơ chuyến bay · Biểu mẫu điện tử";
+    position:absolute;
+    left:clamp(56px,7vw,112px);
+    bottom:42px;
+    color:#c9d7e6;
+    font:500 14px/1.4 var(--sags-font-ui);
+    pointer-events:none;
+  }
+  html.new-ui-v1 body #roleLoginModal .roleLoginCard{
+    width:420px!important;
+    max-width:42vw!important;
+    padding:26px!important;
+    border:1px solid rgba(113,164,207,.38)!important;
+    border-radius:16px!important;
+    background:rgba(8,30,53,.96)!important;
+    color:#f8fbff!important;
+    box-shadow:0 24px 70px rgba(0,9,24,.32)!important;
+    backdrop-filter:blur(10px)!important;
+  }
+  html.new-ui-v1 body #roleLoginModal .roleLoginLogo{
+    width:82px!important;
+    margin:0 0 16px!important;
+    padding:6px!important;
+    border:0!important;
+    border-radius:12px!important;
+    background:#fff!important;
+  }
+  html.new-ui-v1 body #roleLoginModal .newUiLoginEyebrow{
+    color:#a9c6db!important;
+    font-family:var(--sags-font-ui)!important;
+  }
+  html.new-ui-v1 body #roleLoginModal .newUiLoginEyebrow span{
+    border:1px solid #3f7098!important;
+    border-radius:8px!important;
+    background:#0d365d!important;
+    color:#d9edff!important;
+  }
+  html.new-ui-v1 body #roleLoginModal .roleLoginCard h2{
+    margin:0 0 18px!important;
+    color:#f8fbff!important;
+    font:700 30px/1.15 var(--sags-font-ui)!important;
+  }
+  html.new-ui-v1 body #roleLoginModal .roleLoginCard label{
+    color:#c9d7e6!important;
+    font:650 13px/1.3 var(--sags-font-ui)!important;
+  }
+  html.new-ui-v1 body #roleLoginModal .roleLoginCard input{
+    height:44px!important;
+    min-height:44px!important;
+    border:1px solid #416d8e!important;
+    border-radius:12px!important;
+    background:#05213e!important;
+    color:#f8fbff!important;
+    -webkit-text-fill-color:#f8fbff!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body #roleLoginModal .roleLoginCard input:focus{
+    border-color:#69baff!important;
+    box-shadow:var(--sags-focus-ring)!important;
+    outline:0!important;
+  }
+  html.new-ui-v1 body #roleLoginModal .phase2PasswordField{position:relative!important}
+  html.new-ui-v1 body #roleLoginModal .phase2PasswordField #roleLoginPass{padding-right:78px!important}
+  html.new-ui-v1 body #roleLoginModal .phase2PasswordToggle{
+    position:absolute!important;
+    right:5px!important;
+    top:5px!important;
+    width:66px!important;
+    min-width:66px!important;
+    max-width:66px!important;
+    height:34px!important;
+    min-height:34px!important;
+    max-height:34px!important;
+    padding:0 8px!important;
+    border:0!important;
+    border-left:1px solid #416d8e!important;
+    border-radius:8px!important;
+    background:#0d365d!important;
+    color:#cde7ff!important;
+    font:700 10px/1 var(--sags-font-ui)!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body #roleLoginModal .phase2LoginHint{
+    margin-top:8px!important;
+    color:#91a8bd!important;
+    font:500 11px/1.4 var(--sags-font-ui)!important;
+  }
+  html.new-ui-v1 body #roleLoginModal #roleLoginSubmit{
+    height:44px!important;
+    min-height:44px!important;
+    margin-top:16px!important;
+    border:1px solid #4ea5f6!important;
+    border-radius:12px!important;
+    background:#0b7cff!important;
+    color:#fff!important;
+    font:700 14px/1 var(--sags-font-ui)!important;
+    box-shadow:none!important;
+  }
+
+  html.new-ui-v1 body.v157-authenticated.v157-home{
+    background:#081a2f!important;
+    color:#f8fbff!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer{
+    width:264px!important;
+    background:#061b30!important;
+    border-right:1px solid #234d70!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157DrawerHead{
+    min-height:156px!important;
+    padding:18px 16px 12px!important;
+    background:linear-gradient(180deg,#092948,#061b30)!important;
+    border-bottom:1px solid #234d70!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157Brand{
+    grid-template-columns:58px minmax(0,1fr)!important;
+    gap:10px!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157LogoBox{
+    padding:5px!important;
+    border-radius:10px!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157LogoBox img{max-height:54px!important}
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157BrandText{
+    color:#f8fbff!important;
+    font:700 12px/1.35 var(--sags-font-ui)!important;
+    letter-spacing:.04em!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157UserCard{
+    margin-top:12px!important;
+    padding:7px 8px!important;
+    border:1px solid #234d70!important;
+    border-radius:12px!important;
+    background:#0a2846!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157Avatar{
+    width:38px!important;
+    height:38px!important;
+    flex-basis:38px!important;
+    background:#0d4f82!important;
+    color:#f8fbff!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuBody{
+    padding:10px 9px 18px!important;
+    background:#061b30!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157SectionTitle{
+    color:#7898b2!important;
+    font-family:var(--sags-font-ui)!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuItem{
+    height:44px!important;
+    min-height:44px!important;
+    border:1px solid transparent!important;
+    border-radius:12px!important;
+    background:transparent!important;
+    color:#c9d7e6!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuItem .ico{
+    border-radius:8px!important;
+    background:#0b315a!important;
+    color:#9bd0ff!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuItem:hover,
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157MenuItem.active{
+    border-color:#315e82!important;
+    background:#0d365d!important;
+    color:#fff!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157Drawer .v157DrawerFooter{
+    background:#061b30!important;
+    border-top:1px solid #234d70!important;
+  }
+
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157HomeDashboard{
+    inset:0 0 0 264px!important;
+    padding:28px 32px 40px!important;
+    background:
+      radial-gradient(circle at 85% 0%,rgba(23,82,135,.26),transparent 34%),
+      linear-gradient(180deg,#0a2139,#081a2f)!important;
+    color:#f8fbff!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157HomeDashboard .v157Welcome strong{
+    color:#f8fbff!important;
+    font-family:var(--sags-font-ui)!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157HomeDashboard .v157Welcome span{color:#91a8bd!important}
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157HomeDashboard :is(.v157Metric,.m6497Card,.v157HomeCard,.v174DataCard,.v181AdminCard){
+    border:1px solid #234d70!important;
+    border-radius:14px!important;
+    background:#102f4f!important;
+    color:#f8fbff!important;
+    box-shadow:none!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157HomeDashboard :is(.v157MetricHead,.v157MetricNum,.m6497Label,strong,h3,h4){
+    color:#f8fbff!important;
+  }
+  html.new-ui-v1 body.v157-authenticated.v157-home #v157HomeDashboard :is(.v157MetricSub,.m6497Meta,.m6497UserJob){color:#91a8bd!important}
+  html.new-ui-v1 body.v157-authenticated.v157-home #sagsNavigationHeader :is(button,a){
+    border:1px solid #315e82!important;
+    border-radius:12px!important;
+    background:#0d365d!important;
+    color:#f8fbff!important;
+    box-shadow:none!important;
+  }
+}

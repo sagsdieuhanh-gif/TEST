@@ -58,8 +58,12 @@
 <label>Tài khoản</label>
 <input autocomplete="username" id="personalLoginUser" placeholder="Nhập tài khoản" type="text" autocapitalize="none" spellcheck="false"/>
 </div>
-<label>Mật khẩu</label>
+<label for="roleLoginPass">Mật khẩu</label>
+<div class="phase2PasswordField">
 <input autocomplete="current-password" id="roleLoginPass" placeholder="Nhập mật khẩu" type="password"/>
+<button class="phase2PasswordToggle" type="button" aria-label="Hiện mật khẩu" aria-pressed="false" onclick="const p=document.getElementById('roleLoginPass');const show=p.type==='password';p.type=show?'text':'password';this.textContent=show?'ẨN':'HIỆN';this.setAttribute('aria-label',show?'Ẩn mật khẩu':'Hiện mật khẩu');this.setAttribute('aria-pressed',String(show))">HIỆN</button>
+</div>
+<div class="phase2LoginHint">Hệ thống E-REPORT SAGS · Dùng tài khoản được cấp</div>
 <button id="roleLoginSubmit" onclick="roleLogin()">ĐĂNG NHẬP</button>
 <div id="roleLoginError"></div>
 </div>
