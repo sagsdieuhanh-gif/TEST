@@ -561,11 +561,19 @@ html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeMetrics>.opsM
   position:relative;
   z-index:2;
   display:grid;
-  grid-template-columns:40px auto 1fr;
+  grid-template-columns:40px minmax(0,1fr);
   align-items:center;
   column-gap:10px;
   margin-top:7px;
   min-height:54px;
+}
+#opsHomeMetrics .opsMetricCount{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  min-width:0;
+  gap:3px;
 }
 #opsHomeMetrics .opsMetricIcon{
   width:38px;
@@ -611,11 +619,11 @@ html.new-ui-v1.new-ui-v1.new-ui-v1 body #v6494AviationHome #opsHomeMetrics>.opsM
   font-variant-numeric:tabular-nums;
 }
 #opsHomeMetrics .opsMetricUnit{
-  align-self:end;
-  margin:0 0 3px 0;
+  margin:0;
   color:#4cbdd8;
   font-size:10px;
   font-weight:600;
+  line-height:1.15;
   white-space:nowrap;
 }
 #opsHomeMetrics .opsMetricCta{
@@ -832,7 +840,7 @@ html.new-ui-v1.new-ui-v1.new-ui-v1 body #opsHomeFlights .opsOpenCell button{
     padding:13px 14px 11px!important;
   }
   #opsHomeMetrics .opsMetricBody{
-    grid-template-columns:36px auto 1fr;
+    grid-template-columns:36px minmax(0,1fr);
     min-height:44px;
     margin-top:4px;
   }
