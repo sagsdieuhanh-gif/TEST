@@ -21,6 +21,12 @@ assert.match(lite,/display:flex!important;flex-wrap:nowrap!important/,'canonical
 assert.match(flight,/function ensureFlightListShell\(date,cargoMode=false\)/,'stable list shell helper missing');
 assert.match(flight,/function commitFlightListHtml\(html\)/,'stable flight-list commit helper missing');
 assert.match(flight,/host\.__sagsSourceHtml===html/,'flight cards must not be replaced when source data is unchanged');
+assert.doesNotMatch(flight,/✈ HỒ SƠ CHUYẾN BAY · FLIGHT WORKSPACE/,'legacy title must not fight the MY FLIGHT header');
+const runtime=read('app/generated/runtime-1.js');
+const rs=runtime.indexOf('function scheduleRefresh(rec)');
+const re=runtime.indexOf('let mailRef=',rs);
+assert(rs>=0&&re>rs,'realtime MY FLIGHT scheduleRefresh block missing');
+assert.doesNotMatch(runtime.slice(rs,re),/dailyRosterRestartMailbox/,'realtime events must not restart the mailbox listener');
 
 assert.match(ui,/V6\.4\.106 · MY FLIGHT CHIP ROW \+ STABILITY/);
 assert.match(ui,/scroll-snap-type:x proximity!important/,'form chips should stay on one horizontally scrollable row');
