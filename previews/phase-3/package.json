@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "scripts": {
+    "build:runtime": "node tools/build-runtime.cjs",
+    "test": "node tests/run.cjs",
+    "test:browser": "node tests/browser/dossier.cjs",
+    "build:ui": "node tools/build-ui-assets.cjs",
+    "check:ui": "node tools/build-ui-assets.cjs --check",
+    "release:assets": "node tools/refresh-release-assets.cjs",
+    "test:ui": "node tests/browser/mobile-navy.cjs && node tests/browser/fixed-ui-audit.cjs"
+  },
+  "devDependencies": {
+    "acorn": "8.18.0",
+    "csso": "^5.0.5",
+    "playwright": "1.62.1",
+    "terser": "5.51.2"
+  }
+}
