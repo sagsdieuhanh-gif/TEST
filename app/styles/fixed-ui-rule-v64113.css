@@ -4,17 +4,39 @@
    Mandatory final override. New function != new button style.
 */
 html.new-ui-v1{
+  /* PHASE 1 · canonical design tokens. Future screens must consume these tokens. */
+  --sags-bg:#081a2f;
+  --sags-surface:#0d2945;
+  --sags-surface-2:#113453;
+  --sags-card:#102f4f;
+  --sags-primary:#0b7cff;
+  --sags-primary-dark:#075fc3;
+  --sags-gold:#f2c14e;
+  --sags-success:#22c55e;
+  --sags-warning:#f59e0b;
+  --sags-danger:#ef4444;
+  --sags-info:#06b6d4;
+  --sags-text:#f8fbff;
+  --sags-text-secondary:#c9d7e6;
+  --sags-muted:#91a8bd;
+  --sags-border:rgba(113,164,207,.34);
+  --sags-border-strong:#4b7ea6;
+  --sags-radius:12px;
+  --sags-control-height:44px;
+  --sags-font-ui:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --sags-shadow-soft:0 8px 28px rgba(0,12,28,.18);
+  --sags-focus-ring:0 0 0 3px rgba(75,174,255,.18);
   --sags-button-radius:12px;
   --sags-button-height:44px;
   --sags-nav-button-height:48px;
   --sags-button-icon-size:20px;
   --sags-button-gap:8px;
   --sags-button-padding-x:12px;
-  --sags-button-bg:#0b315a;
-  --sags-button-bg-active:#123e68;
-  --sags-button-border:#4077a6;
-  --sags-button-text:#f7fbff;
-  --sags-button-muted:#9fc4df;
+  --sags-button-bg:#0d365d;
+  --sags-button-bg-active:#154b79;
+  --sags-button-border:#4b7ea6;
+  --sags-button-text:#f8fbff;
+  --sags-button-muted:#a9c6db;
   --sags-nav-bar-height:60px;
   --sags-button-font-size:14px;
   --sags-button-font-weight:700;
@@ -688,11 +710,105 @@ html.new-ui-v1.new-ui-v1 body button.sags5494DirectHit.sagsUiButton{
 }
 
 
+/* PHASE 1 · SHARED UI PRIMITIVES
+   These classes are intentionally presentation-only. They do not replace
+   business nodes, event handlers, permission state, form overlays or print CSS. */
+html.new-ui-v1 body .sagsUiSurface,
+html.new-ui-v1 body .sagsUiCard,
+html.new-ui-v1 body .sagsUiModalPanel{
+  box-sizing:border-box;
+  border:1px solid var(--sags-border);
+  border-radius:var(--sags-radius);
+  background:var(--sags-surface);
+  color:var(--sags-text);
+}
+html.new-ui-v1 body .sagsUiCard{
+  padding:clamp(12px,1.5vw,18px);
+}
+html.new-ui-v1 body .sagsUiModalPanel{
+  background:var(--sags-surface-2);
+  box-shadow:var(--sags-shadow-soft);
+}
+html.new-ui-v1 body .sagsUiTitle{
+  margin:0;
+  color:var(--sags-text);
+  font-family:var(--sags-font-ui);
+  font-weight:700;
+}
+html.new-ui-v1 body .sagsUiMuted{
+  color:var(--sags-muted)!important;
+}
+html.new-ui-v1 body .sagsUiStatus{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:4px 8px;
+  border:1px solid var(--sags-border);
+  border-radius:8px;
+  background:rgba(255,255,255,.055);
+  color:var(--sags-text-secondary);
+  font:700 12px/1 var(--sags-font-ui);
+  white-space:nowrap;
+}
+html.new-ui-v1 body .sagsUiStatus:is(.is-success,[data-tone="success"]){
+  border-color:rgba(34,197,94,.55);
+  color:#baf4cd;
+}
+html.new-ui-v1 body .sagsUiStatus:is(.is-warning,[data-tone="warning"]){
+  border-color:rgba(245,158,11,.58);
+  color:#ffd98a;
+}
+html.new-ui-v1 body .sagsUiStatus:is(.is-danger,[data-tone="danger"]){
+  border-color:rgba(239,68,68,.58);
+  color:#ffc0c0;
+}
+html.new-ui-v1 body .sagsUiStatus:is(.is-info,[data-tone="info"]){
+  border-color:rgba(6,182,212,.58);
+  color:#b9f4ff;
+}
+html.new-ui-v1 body .sagsUiControl{
+  box-sizing:border-box;
+  min-height:var(--sags-control-height);
+  border:1px solid var(--sags-border-strong);
+  border-radius:var(--sags-radius);
+  background:var(--sags-surface);
+  color:var(--sags-text);
+  font-family:var(--sags-font-ui);
+  outline:0;
+  box-shadow:none;
+}
+html.new-ui-v1 body .sagsUiControl:focus{
+  border-color:#63bff7;
+  box-shadow:var(--sags-focus-ring);
+}
+html.new-ui-v1 body .sagsUiButton{
+  font-family:var(--sags-font-ui)!important;
+}
+html.new-ui-v1 body .sagsUiButton:focus-visible,
+html.new-ui-v1 body [role="button"].sagsUiButton:focus-visible{
+  outline:0!important;
+  border-color:#69baff!important;
+  box-shadow:var(--sags-focus-ring)!important;
+}
+html.new-ui-v1 body .sagsButtonIcon{
+  width:var(--sags-button-icon-size);
+  height:var(--sags-button-icon-size);
+  flex:0 0 var(--sags-button-icon-size);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+}
+@media (max-width:899px){
+  html.new-ui-v1 body .sagsUiCard{padding:12px}
+  html.new-ui-v1 body .sagsUiStatus{font-size:12px}
+}
+
 /* V6.4.144 · UNIFIED OPERATIONAL CONTROLS
    One control = one surface. Buttons keep their existing UI; paper/form overlays are excluded. */
 html.new-ui-v1{
   --sags-control-h:44px;
-  --sags-control-radius:10px;
+  --sags-control-radius:12px;
   --sags-control-bg:#ffffff;
   --sags-control-bg-soft:#f7fafc;
   --sags-control-border:#c7d4df;
