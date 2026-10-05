@@ -626,12 +626,12 @@
       "bytes": 17226
     },
     "./app/styles/aviation-reference.v1.css": {
-      "sha256": "abc1b27a4de2b8365aa6418e0c25629ed1a1bd554f0338908458815e2a233019",
-      "bytes": 50068
+      "sha256": "371d3cc97f89c3bdb0a536e89598e297cfc7e40b2b780076edc0afb75eb3645f",
+      "bytes": 50226
     },
     "./app/modules/aviation-reference.v1.js": {
-      "sha256": "1528c2f712d5b379307817f3573f9041426a63a3f761a811a9baf078556ed382",
-      "bytes": 19159
+      "sha256": "8e4a9b386c8a124041c7c98f9e076296fc3f0cd6eef32dd929563744e8d59a5d",
+      "bytes": 19195
     },
     "./assets/branding/apron-night-v6494.webp": {
       "sha256": "7a17d332d8dce854de03be8918034b378012b7fece42abc6c71ed9575bc257a0",
