@@ -526,8 +526,8 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "1354ce73ee14147392e84388967a5946edd6452d4ea804b3ee36be5b8481c8e9",
-      "bytes": 58198
+      "sha256": "470a7a6727392284697593e7ceca2429cfac3fdde9e9ef61b08f6ef2155aa614",
+      "bytes": 68322
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
       "sha256": "13098140ce34a54fe9e6ee8325e2eba877d673546157a08a92b64ef60fdd0132",
@@ -574,8 +574,8 @@
       "bytes": 2573
     },
     "./app/styles/desktop-shell-v64128.css": {
-      "sha256": "ca101cfbe45cf113d0ca1fe929b485eef1b20d9dd893a48931a76be2c82583bb",
-      "bytes": 29637
+      "sha256": "a16b20126993782aec9f7106af7bef3ce4fdbebddd34b226fda16f209e055d16",
+      "bytes": 32477
     }
   }
 }
