@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.96",
-  "build": "V6.4.96-20261005-MOBILE-LOGOUT-01",
-  "strategy": "atomic release + visible mobile logout + reference aviation UI + verified bootstrap",
+  "version": "V6.4.97",
+  "build": "V6.4.97-20261005-DOSSIER-NOTIFY-UPPER-01",
+  "strategy": "atomic release + event-driven dossier notifications + uppercase form data + TVJ BBBT + FSAGS208 autofill",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -50,8 +50,8 @@
       "bytes": 14942
     },
     "./app/modules/roster-lite.v5.js": {
-      "sha256": "6106161cf19207bb06382a7be8faa7986dfb95e00bcbdfe9c34c93a8d7c942aa",
-      "bytes": 24049
+      "sha256": "80935a6cf27921d53cbf707072d91d5648ac64f67d705b3ef9f97bb3ea012793",
+      "bytes": 24165
     },
     "./app/modules/stability.v6-core.js": {
       "sha256": "930372721342bb68abb18b5d7b48f10c280812987e467c61ba0720366df571b4",
@@ -62,8 +62,8 @@
       "bytes": 1129
     },
     "./app/modules/tvj-gof-035.v630.js": {
-      "sha256": "90972df1b900552eb04cdf3495c5108ae8befbf42e50a35cf84633df8947347b",
-      "bytes": 16593
+      "sha256": "8a0fc5d7375c4bacde480b7baaea6f8f251699730c3019f13a1e9cf46871ec8b",
+      "bytes": 17280
     },
     "./app/modules/tvj-gof-035.v631.js": {
       "sha256": "9e89b5d32de75bc395ec68685d77c4eb714a729e85c40ba144bc9585dd812d1a",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "aa3e6165867193766bdf2e2f08ad3aa9746c5cf04fee4e33578fad56cdfeab37",
-      "bytes": 81157
+      "sha256": "3670de1287f3ae676a6413d6efeb0f266d1e2122c3791f62b63ee05d3683ecf0",
+      "bytes": 81986
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "ae347d108c20b226b1d013846a8550a02cd69e74375c6f19a281001484a33532",
-      "bytes": 22097
+      "sha256": "ca5aee54bc19e6eac7687391367d0700f41958f4f34accdf71a905d6b147821c",
+      "bytes": 22164
     },
     "./version.json": {
-      "sha256": "d0c0482ba060b48f58f165bfae7b63a72f32cf8d0f1ecfb4fe937605852a99d5",
-      "bytes": 601
+      "sha256": "06eabf10406fcbb7bfc680ef7dbfe5609a368dc4af215b0b998a2423568a340e",
+      "bytes": 1054
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -522,8 +522,8 @@
       "bytes": 2661
     },
     "./app/modules/fsags208-workspace.v1.js": {
-      "sha256": "c0514943509927f7d9871544ca832dcf35c6232b293559aef2c548e08ed2ee37",
-      "bytes": 42251
+      "sha256": "a8c8cbf7d0b2c678afc8e827ab5d24e354656b34c1d4127efb3c5345bfb713d7",
+      "bytes": 42627
     },
     "./app/modules/cargo-all-flights.v1.js": {
       "sha256": "b17e3fb680151066e280bb070a3d0f9b8370d7895e6970daf3489027000b6a5c",
@@ -562,8 +562,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "de2915ed9c05f73b45428ee5d6c804e180f3df3b69a689227592c66f51d8ca17",
-      "bytes": 134613
+      "sha256": "1eee8c02c1fbbe74c17471d72344ad13fc1d6e0c1ecd1edacc4d4884ee601955",
+      "bytes": 134620
     },
     "./app/generated/runtime-2.js": {
       "sha256": "1f39b1b745951be59ae0f2882d190a3359b056c69682e256a049fdb7dceb0bd4",
@@ -582,8 +582,8 @@
       "bytes": 25747
     },
     "./app/modules/feature-loader.v1.js": {
-      "sha256": "f67d134a43ef451cd479e98d70134b296b1d34e3ff80cafbda33434d7ae3a7cb",
-      "bytes": 1674
+      "sha256": "87c0612696ca9ac41ba5245ad5fefe211e36fdd9aabb475b6b028279f9c95575",
+      "bytes": 1681
     },
     "./app/modules/firebase-read-coalescer.v1.js": {
       "sha256": "2be879e74429432ad5a6130923cc67bb9bb66b5dd4a66533c09c1842a6d035dd",
@@ -618,8 +618,8 @@
       "bytes": 1556
     },
     "./app/boot/32-v6494-aviation-shell.js": {
-      "sha256": "de741fd03de907629b2f6df951d0675a29d81504742d11ceb449e346cf07ba80",
-      "bytes": 12085
+      "sha256": "23ccaa01ca50bc3b0163bc22529b36c4e08da76181a36a766b10b96d08e674cd",
+      "bytes": 12195
     },
     "./app/styles/boot-36-v6494-aviation-final.css": {
       "sha256": "1f079062ebf4189632b83a50cafbdd6f7a274690c3fcb5c947950dbf4db61c3d",
@@ -636,6 +636,10 @@
     "./assets/branding/apron-night-v6494.webp": {
       "sha256": "7a17d332d8dce854de03be8918034b378012b7fece42abc6c71ed9575bc257a0",
       "bytes": 223220
+    },
+    "./app/boot/33-v6497-dossier-enhancements.js": {
+      "sha256": "416d545f6280c7b55ff138f0455b48e01585b2b543b51a891093b517550eba99",
+      "bytes": 17698
     }
   }
 }
