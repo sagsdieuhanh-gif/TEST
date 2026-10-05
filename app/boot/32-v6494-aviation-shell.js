@@ -1,8 +1,8 @@
-/* E-REPORT SAGS V6.4.96 · Final Aviation Operations shell
+/* E-REPORT SAGS V6.4.97 · Final Aviation Operations shell
    Presentation/navigation adapter only. Existing business handlers remain authoritative. */
 (function(root){
 'use strict';
-const BUILD='V6.4.96-20261005-MOBILE-LOGOUT-01';
+const BUILD='V6.4.97-20261005-DOSSIER-NOTIFY-UPPER-01';
 if(root.__SAGS_V6494_AVIATION_SHELL__===BUILD)return;
 root.__SAGS_V6494_AVIATION_SHELL__=BUILD;
 const $=id=>document.getElementById(id);
