@@ -1094,3 +1094,141 @@ html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeNow:active{
 html.new-ui-v1.new-ui-v1 body #quickTimeModal#quickTimeModal button.quickTimeNow.sagsUiButton{
   border-radius:0!important;
 }
+
+
+/* PHASE 3 · FLIGHT DOSSIER
+   Overrides the runtime-injected light style without changing dossier behavior. */
+html.new-ui-v1 body #sagsFlightDossierModal{
+  padding:14px!important;
+  padding-bottom:max(14px,env(safe-area-inset-bottom))!important;
+  background:rgba(0,12,28,.84)!important;
+  backdrop-filter:blur(4px)!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal .sagsDossierPanel{
+  width:min(900px,100%)!important;
+  max-height:calc(100dvh - 28px)!important;
+  padding:18px!important;
+  border:1px solid var(--sags-border)!important;
+  border-radius:14px!important;
+  background:#0b2540!important;
+  color:var(--sags-text)!important;
+  font-family:var(--sags-font-ui)!important;
+  box-shadow:0 24px 70px rgba(0,8,22,.34)!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal .sagsDossierTop{
+  position:sticky!important;
+  top:-18px!important;
+  z-index:3!important;
+  margin:-18px -18px 12px!important;
+  padding:14px 18px 12px!important;
+  border-bottom:1px solid #234d70!important;
+  background:#0b2540!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal h2{
+  margin:0!important;
+  color:#f8fbff!important;
+  font:700 20px/1.15 var(--sags-font-ui)!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal h3{
+  margin:18px 0 8px!important;
+  color:#c9d7e6!important;
+  font:700 11px/1.2 var(--sags-font-ui)!important;
+  letter-spacing:.08em!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal p{
+  color:#a9c6db!important;
+  font:500 12px/1.45 var(--sags-font-ui)!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal #sagsDossierFlight{
+  display:inline-flex!important;
+  min-height:30px!important;
+  align-items:center!important;
+  margin:4px 0 0!important;
+  padding:0 9px!important;
+  border:1px solid #315e82!important;
+  border-radius:8px!important;
+  background:#082744!important;
+  color:#d9edff!important;
+  font-weight:700!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal button{
+  min-height:40px!important;
+  padding:8px 12px!important;
+  border:1px solid #315e82!important;
+  border-radius:12px!important;
+  background:#0d365d!important;
+  color:#f8fbff!important;
+  font:700 11px/1.15 var(--sags-font-ui)!important;
+  box-shadow:none!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal #sagsDossierClose{
+  min-width:82px!important;
+  background:#102f4f!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal #sagsDossierRefresh{
+  border-color:#4ea5f6!important;
+  background:#0b7cff!important;
+  color:#fff!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal .sagsDossierDoc{
+  margin-top:8px!important;
+  padding:11px!important;
+  border:1px solid #285d88!important;
+  border-radius:12px!important;
+  background:#082744!important;
+  color:#f8fbff!important;
+  box-shadow:none!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal .sagsDossierDoc b{
+  color:#f8fbff!important;
+  font-family:var(--sags-font-ui)!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal .sagsDossierDoc small{
+  margin:5px 0 9px!important;
+  color:#91a8bd!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal :is(.v1199Tasks,.v1199TaskActions){
+  gap:7px!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal .v1199DossierTask{
+  margin-top:8px!important;
+  padding:9px!important;
+  border:1px solid #285d88!important;
+  border-radius:12px!important;
+  background:#082744!important;
+  color:#f8fbff!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal :is(.v1199TaskBtn,.v1199PdfBtn){
+  border-radius:12px!important;
+  box-shadow:none!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal .v1199TaskBtn.done{
+  border-color:#287a70!important;
+  background:#0a3a3d!important;
+  color:#baf4cd!important;
+}
+@media(max-width:600px){
+  html.new-ui-v1 body #sagsFlightDossierModal{
+    padding:0!important;
+    align-items:stretch!important;
+  }
+  html.new-ui-v1 body #sagsFlightDossierModal .sagsDossierPanel{
+    width:100vw!important;
+    max-width:100vw!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    padding:12px 10px calc(14px + env(safe-area-inset-bottom))!important;
+    border:0!important;
+    border-radius:0!important;
+  }
+  html.new-ui-v1 body #sagsFlightDossierModal .sagsDossierTop{
+    top:-12px!important;
+    margin:-12px -10px 10px!important;
+    padding:calc(10px + env(safe-area-inset-top)) 10px 9px!important;
+  }
+  html.new-ui-v1 body #sagsFlightDossierModal h2{font-size:17px!important}
+  html.new-ui-v1 body #sagsFlightDossierModal h3{margin-top:14px!important;font-size:10px!important}
+  html.new-ui-v1 body #sagsFlightDossierModal p{font-size:11px!important}
+  html.new-ui-v1 body #sagsFlightDossierModal .sagsDossierDoc{padding:9px!important}
+  html.new-ui-v1 body #sagsFlightDossierModal button{min-height:40px!important}
+}
