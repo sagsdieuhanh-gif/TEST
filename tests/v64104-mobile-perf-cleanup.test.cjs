@@ -29,8 +29,8 @@ for(const f of [
  assert.equal(sw.includes('./'+f),false,f+' must not remain in service-worker bootstrap');
 }
 assert.equal(fs.existsSync(path.join(root,'previews/final-ui')),false,'generated preview snapshot must stay out of deploy tree');
-assert.equal(fs.existsSync(path.join(root,'app/core/app.v503.js')),false,'dead monolith app source should be removed');
-assert.equal(fs.existsSync(path.join(root,'app/core/runtime.v503hf2.bundle.js')),false,'dead monolith runtime should be removed');
+assert.equal(fs.existsSync(path.join(root,'app/core/app.v503.js')),true,'canonical core app source is still required by regression tests');
+assert.equal(fs.existsSync(path.join(root,'app/core/runtime.v503hf2.bundle.js')),true,'canonical core runtime source is still required by regression tests');
 
 const styles=[...index.matchAll(/<link[^>]+rel=["']stylesheet["'][^>]+href=["']([^"']+)["']/g)].map(x=>x[1]);
 assert(styles.length<=6,'stylesheet requests regressed: '+styles.length);
