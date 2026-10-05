@@ -8,10 +8,11 @@ const guide=JSON.parse(fs.readFileSync(path.join(root,'data/carrier-service-guid
 
 assert.ok(Array.isArray(guide.carriers)&&guide.carriers.length>=20,'carrier service guide must remain the airline source');
 assert.match(home,/\.\/data\/carrier-service-guide\.json/,'home must read Lưu ý phục vụ hãng source');
-assert.match(home,/https:\/\/images\.kiwi\.com\/airlines\/64\//,'airline logos must use internet logo source');
+assert.doesNotMatch(home,/https:\/\/images\.kiwi\.com\/airlines\/64\//,'airline logos must not depend on an external CDN');
+assert.match(home,/\.\/assets\/airlines\//,'airline logos must use local project assets');
 assert.match(home,/<th>Hãng<\/th>/,'today table must include airline column');
 assert.match(home,/opsAirlineStrip/,'home must render airline strip');
-assert.match(home,/IntersectionObserver/,'airline strip should lazy-load remote logos');
+assert.match(home,/IntersectionObserver/,'airline strip should lazy-render cached local logos');
 assert.match(css,/--ops-home-max:1380px/,'home must use one shared alignment width');
 assert.match(css,/#opsAirlineStrip/,'airline strip must be styled');
 assert.match(css,/\.opsAirlineCell/,'table airline logos must be styled');
