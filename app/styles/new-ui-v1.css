@@ -5963,3 +5963,74 @@ html.new-ui-v1 body #fwcModal .fwcFormOverview .fwcBadge small{
   -webkit-box-orient:vertical!important;
   overflow:hidden!important;
 }
+
+
+html.new-ui-v1 body #fwcModal .v1199FormStrip{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  gap:6px!important;
+  max-width:100%!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:1px 0 3px!important;
+  margin:7px 0!important;
+  scroll-snap-type:x proximity!important;
+  overscroll-behavior-x:contain!important;
+  scrollbar-width:thin!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+html.new-ui-v1 body #fwcModal .v1199FormStrip .v1199FormTile{
+  flex:0 0 auto!important;
+  width:auto!important;
+  min-width:108px!important;
+  max-width:142px!important;
+  min-height:46px!important;
+  padding:6px 8px!important;
+  border-radius:9px!important;
+  scroll-snap-align:start!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  gap:2px!important;
+}
+html.new-ui-v1 body #fwcModal .v1199FormStrip .v1199FormTile b{
+  color:inherit!important;
+  font:850 10px/1.15 var(--ops-font)!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  max-width:100%!important;
+}
+html.new-ui-v1 body #fwcModal .v1199FormStrip .v1199FormTile span{
+  color:inherit!important;
+  opacity:.78!important;
+  font:700 8px/1.15 var(--ops-font)!important;
+  display:-webkit-box!important;
+  -webkit-line-clamp:2!important;
+  -webkit-box-orient:vertical!important;
+  overflow:hidden!important;
+}
+html.new-ui-v1 body #fwcModal .v1199FormStrip .v1199FormTile small{
+  margin-top:1px!important;
+  color:#7bd9ea!important;
+  font:800 8px/1.1 var(--ops-font)!important;
+}
+html.new-ui-v1 body #fwcModal .v1199FormStrip .v1199FormTile.done{
+  border-color:rgba(36,199,122,.42)!important;
+  background:#0a302b!important;
+  color:#c9f5df!important;
+}
+html.new-ui-v1 body #fwcModal .v1199FormStrip .v1199FormTile.working{
+  border-color:rgba(33,212,232,.45)!important;
+  background:#0b3447!important;
+  color:#cceff5!important;
+}
+@media(max-width:720px){
+  html.new-ui-v1 body #fwcModal .v1199FormStrip .v1199FormTile{
+    min-width:100px!important;
+    max-width:124px!important;
+    min-height:43px!important;
+    padding:5px 7px!important;
+  }
+}
