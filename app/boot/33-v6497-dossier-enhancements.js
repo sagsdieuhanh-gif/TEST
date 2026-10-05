@@ -61,7 +61,7 @@ function beforeFormAction(){uppercaseVisibleEditors();uppercaseFormState()}
 function wrapSync(name){
  const base=root[name];if(typeof base!=='function'||base.__sagsUppercaseV6497)return;
  const fn=function(){beforeFormAction();const out=base.apply(this,arguments);uppercaseFormState();return out};fn.__sagsUppercaseV6497=1;fn.__base=base;root[name]=fn;
- try{if(name==='draw')draw=fn;else if(name==='persist')persist=fn;else if(name==='commitEntry')commitEntry=fn;else if(name==='qteSaveCompact')qteSaveCompact=fn;else if(name==='fs09qSave')fs09qSave=fn;else if(name==='sendReport')sendReport=fn;else if(name==='sendKH208Sheet')sendKH208Sheet=fn}catch(_){}
+ try{if(name==='draw')draw=fn;else if(name==='persist')persist=fn;else if(name==='commitEntry')commitEntry=fn;else if(name==='qteSaveCompact')qteSaveCompact=fn;else if(name==='fs09qSave')fs09qSave=fn;else if(name==='sendReport')sendReport=fn;else if(name==='sendKH208Sheet')sendKH208Sheet=fn;else if(name==='saveKH208Local')saveKH208Local=fn}catch(_){}
 }
 function installUppercase(){
  if(!document.getElementById('sagsV6497UppercaseStyle')){
@@ -69,7 +69,7 @@ function installUppercase(){
    '#entryText,.quickTimeInput,.fs09qDataInput,.fs09qTextArea,#kh208ManagerModal input[type="text"],#kh208ManagerModal textarea,[data-form-field]{text-transform:uppercase!important}';
   document.head.appendChild(st);
  }
- ['draw','persist','commitEntry','qteSaveCompact','fs09qSave','sendReport','sendKH208Sheet','sags5494ExportCurrentPdf'].forEach(wrapSync);
+ ['draw','persist','commitEntry','qteSaveCompact','fs09qSave','sendReport','sendKH208Sheet','saveKH208Local','sags5494ExportCurrentPdf'].forEach(wrapSync);
  document.addEventListener('change',e=>{if(uppercaseEditor(e.target))uppercaseFormState()},true);
  document.addEventListener('blur',e=>{if(uppercaseEditor(e.target))uppercaseFormState()},true);
  root.addEventListener('beforeprint',beforeFormAction,{passive:true});
