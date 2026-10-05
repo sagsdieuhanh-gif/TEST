@@ -100,7 +100,7 @@ function ensureHomeButton(modal){
 function ensureModal(){
   let modal=document.getElementById('fwcModal');if(modal){ensureHomeButton(modal);return modal;}
   modal=document.createElement('div');modal.id='fwcModal';modal.className='';
-  modal.innerHTML='<div class="fwcPanel"><div class="fwcHead"><h3>✈ MY FLIGHT</h3><button class="fwcBtn gray" type="button" id="v477Close">ĐÓNG</button></div><div id="fwcBody"></div></div>';
+  modal.innerHTML='<div class="fwcPanel"><div class="fwcHead"><h3>MY FLIGHT</h3><button class="fwcBtn gray" type="button" id="v477Close">ĐÓNG</button></div><div id="fwcBody"></div></div>';
   document.body.appendChild(modal);document.getElementById('v477Close').onclick=()=>root.flightWorkspaceClose?.();ensureHomeButton(modal);return modal;
 }
 function normalizeFlightDossierCards(){
@@ -109,7 +109,7 @@ function normalizeFlightDossierCards(){
  for(const card of list.querySelectorAll('.fwcFlight')){
   const b=card.querySelector('button[onclick*="flightWorkspaceOpenFlight"]');if(!b)continue;
   const code=S(b.getAttribute('onclick')),match=code.match(/flightWorkspaceOpenFlight\(['"]([^'"]+)['"]\)/);if(!match)continue;const fid=match[1];
-  if(b.textContent!=='📁 HỒ SƠ CHUYẾN')b.textContent='📁 HỒ SƠ CHUYẾN';b.onclick=()=>root.sagsV338OpenDossier(date(),fid);
+  if(b.textContent!=='HỒ SƠ CHUYẾN')b.textContent='HỒ SƠ CHUYẾN';b.onclick=()=>root.sagsV338OpenDossier(date(),fid);
   card.querySelectorAll('.v350CardDossierBtn').forEach(x=>x.remove());
  }
 }
@@ -206,7 +206,7 @@ function canonicalizeRoleView(d){
   const modal=ensureModal();ensureHomeButton(modal);ensureCanonicalRoleViewStyle();
   const host=document.getElementById('fwcBody');if(!host)return false;
   const existingDate=S(host.querySelector('#fwcDate')?.value)||S(d)||dateNow();
-  const h=modal.querySelector('.fwcHead h3');if(h)h.textContent='✈ MY FLIGHT';
+  const h=modal.querySelector('.fwcHead h3');if(h)h.textContent='MY FLIGHT';
   const sub=modal.querySelector('.fwcHead .fwcSub');if(sub)sub.textContent=`Công việc của tôi · ${existingDate}`;
   const tools=host.querySelector('.fwcTools');
   if(tools){
@@ -238,7 +238,7 @@ function canonicalizeRoleView(d){
     actions.querySelectorAll('.fwcBtn').forEach(btn=>btn.classList.add('v1199Action'));
   }
   normalizeFlightDossierCards();
-  grid.querySelectorAll('.v478RoleActions>.fwcBtn').forEach(btn=>btn.textContent='📁 HỒ SƠ CHUYẾN');
+  grid.querySelectorAll('.v478RoleActions>.fwcBtn').forEach(btn=>btn.textContent='HỒ SƠ CHUYẾN');
   list.querySelectorAll('.fwcEmpty').forEach(x=>x.classList.add('v1199Empty'));
   let empty=list.querySelector(':scope > .v478RoleEmpty');
   if(!empty){empty=list.querySelector(':scope > .fwcEmpty');if(empty)empty.classList.add('v478RoleEmpty');else{empty=document.createElement('div');empty.className='v1199Empty v478RoleEmpty';list.appendChild(empty)}}
@@ -276,7 +276,7 @@ async function refreshLite(){
 }
 refreshLite.__v477MailboxLite=true;
 function renderCanonicalIfVisible(){if(!visible())return;if(role()==='AD'||isCargoRole()){canonicalizeRoleView(date());return}const renderer=root.__SAGS_DAILY_ROSTER_FINAL_V1199?.renderPersonal;if(typeof renderer==='function')Promise.resolve(renderer(date())).catch(e=>console.warn('Canonical MY FLIGHT render',e?.message||e))}
-function install(){if(root.flightWorkspaceOpenList!==openLite)root.flightWorkspaceOpenList=openLite;if(root.flightWorkspaceRefresh!==refreshLite)root.flightWorkspaceRefresh=refreshLite;const b=document.getElementById('roleBtnRosterFlights');if(b){b.textContent='✈ MY FLIGHT';b.onclick=()=>openLite(dateNow())}}
+function install(){if(root.flightWorkspaceOpenList!==openLite)root.flightWorkspaceOpenList=openLite;if(root.flightWorkspaceRefresh!==refreshLite)root.flightWorkspaceRefresh=refreshLite;const b=document.getElementById('roleBtnRosterFlights');if(b){b.textContent='MY FLIGHT';b.onclick=()=>openLite(dateNow())}}
 function assertCanonical(){if(live.user&&(me()!==live.user||role()==='AD'||isCargoRole()))teardown();install();renderCanonicalIfVisible()}
 root.sagsV478OpenMyFlightLite=openLite;root.sagsV478RefreshMyFlightLite=refreshLite;root.sagsV478InstallCanonicalMyFlight=assertCanonical;
 const baseApplyRoleUI=root.applyRoleUI;if(typeof baseApplyRoleUI==='function'&&!baseApplyRoleUI.__v6424MyFlightAuthority){const wrapped=function(){const out=baseApplyRoleUI.apply(this,arguments);[0,120,500,1400].forEach(ms=>setTimeout(assertCanonical,ms));return out};wrapped.__v6424MyFlightAuthority=true;wrapped.__v6424Base=baseApplyRoleUI;root.applyRoleUI=wrapped;try{applyRoleUI=wrapped}catch(_){}}
