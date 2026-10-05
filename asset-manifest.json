@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.104",
-  "build": "V6.4.104-20261006-MOBILE-PERF-CLEANUP-01",
-  "strategy": "atomic release + mobile metrics row + redundant artifact cleanup + consolidated CSS + render-skip optimization + local airline cache",
+  "version": "V6.4.105",
+  "build": "V6.4.105-20261006-MYFLIGHT-STABILITY-FORM-OVERVIEW-01",
+  "strategy": "atomic release + stable MY FLIGHT header + observer loop isolation + inline form assignee status overview + V6.4.104 performance cleanup",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "c4e007d572dc650fddb32f9c5d3d1ffbdca852e58585a3379bef96a07582817e",
-      "bytes": 84873
+      "sha256": "fa94dffdb33a3cc49965f397a0b8eef1a7078cf9af3887ba174ddf66834ca025",
+      "bytes": 84954
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
@@ -50,8 +50,8 @@
       "bytes": 14935
     },
     "./app/modules/roster-lite.v5.js": {
-      "sha256": "16d9f47ed55987e4a4503c58cfe01d80fcf877e317cab3407a9854eaef2d9d87",
-      "bytes": 24555
+      "sha256": "85e35848840d8f99b42663a1ca00b7979a9c355b17fdba141a2652bf7045f827",
+      "bytes": 25275
     },
     "./app/modules/stability.v6-core.js": {
       "sha256": "930372721342bb68abb18b5d7b48f10c280812987e467c61ba0720366df571b4",
@@ -82,8 +82,8 @@
       "bytes": 41473
     },
     "./app/styles/new-ui-v1.css": {
-      "sha256": "93733c75d976bef5429a213dfeffa5e40cf2f9a0d809285498e4c8153910d3b6",
-      "bytes": 315964
+      "sha256": "2fcb812e8cca22bafd26f7886b125a401eb9603c5ec666ad69c515b4338d3c0c",
+      "bytes": 318846
     },
     "./assets/audio/alert-crosscheck-complete.mp3": {
       "sha256": "2291844c0abc77005a2e8800e0dc8115c373134385a31a5d3d9e5f920a5acc07",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "d6ae3a3757788166fcfb87cc54f9d6bdcd25c89dea5ab43ee508dbad5f60c6b6",
-      "bytes": 80008
+      "sha256": "c4cdff3bf400fbd3abcc355a3b82e98af3e5055e4c1b772b222e4ff39fc3c45e",
+      "bytes": 80866
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "818014ad64444d422e48421f21fa354f7b8848d721ff22acb8391a8aa9e1824c",
-      "bytes": 21116
+      "sha256": "b973b389ce880c091893d00edd5a5739c70268442068f948d360841f85fd2cbd",
+      "bytes": 21155
     },
     "./version.json": {
-      "sha256": "64bb1f3a46260ded094a533d2e9e70124621c5557ace30ccb5eaa5e3c292821c",
-      "bytes": 1217
+      "sha256": "6b89ac134d27cd983b1fcbe2f4d73b37a73b0e78fc30a14ed95ba6381b5f9e0a",
+      "bytes": 1213
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -526,8 +526,8 @@
       "bytes": 84928
     },
     "./app/generated/core-flight.js": {
-      "sha256": "cee470465a124b4ba77e6907fe96a307f7bb49f6819ecbf013bf8ff85b2eacc5",
-      "bytes": 215026
+      "sha256": "ec78de9624d4e91ccdc29320bc6214d71a7fe81c41181e1c2d060d50ada2ba2c",
+      "bytes": 217108
     },
     "./app/generated/core-performance.js": {
       "sha256": "005c80dc9ce412f9e1c8b74d24b48e68b27ddaa05d5de203cb2029e7f93364d8",
@@ -546,8 +546,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "ad57de0575f6126fee07ab18aca7ce5dbbdd5d470c1640fbe9f4c3ec0254607e",
-      "bytes": 134617
+      "sha256": "8d7c096976095e1c415a65da8b4800d0dfdab2307d88a0e2b7f13f244a4d223b",
+      "bytes": 135050
     },
     "./app/generated/runtime-2.js": {
       "sha256": "1f39b1b745951be59ae0f2882d190a3359b056c69682e256a049fdb7dceb0bd4",
