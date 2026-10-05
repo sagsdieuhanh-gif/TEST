@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.96",
-  "displayVersion": "V6.4.96",
-  "label": "V6.4.96 - MOBILE LOGOUT",
-  "build": "V6.4.96-20261005-MOBILE-LOGOUT-01",
-  "releasedAt": "2026-10-05T14:52:00Z",
-  "type": "ui-hotfix",
-  "base": "V6.4.95-20261005-REFERENCE-UI-01",
+  "version": "V6.4.97",
+  "displayVersion": "V6.4.97",
+  "label": "V6.4.97 - FORM UPPERCASE + DOSSIER BELL + TVJ BBBT + FSAGS208 AUTO",
+  "build": "V6.4.97-20261005-FORM-BELL-TVJ208-01",
+  "releasedAt": "2026-10-05T15:24:00Z",
+  "type": "workflow-ui-feature",
+  "base": "V6.4.96-20261005-MOBILE-LOGOUT-01",
   "updatePolicy": "required",
-  "notes": "Bổ sung nút Đăng xuất hiển thị rõ trên Home/Menu mobile, đặt ngay trong thẻ hồ sơ người dùng với vùng bấm tối thiểu 44px. Không thay đổi nghiệp vụ, phân quyền hay dữ liệu chuyến.",
-  "message": "V6.4.96: thêm nút Đăng xuất rõ ràng trên mobile."
+  "notes": "Toàn bộ trường chữ của biểu mẫu chuyển sang in hoa khi nhập/hiển thị; chuông thông báo nhận sự kiện hoàn tất/gửi tài liệu từ bộ phận khác trên đúng các chuyến người dùng đang được phân công; TVJ-GOF-035 luôn có nút BBBT trong hàng hành động; FSAGS 208 tự điền số chuyến, ngày, loại tàu, ETD/STD và chặng bay từ Flight Workspace.",
+  "message": "V6.4.97: chuẩn hóa chữ in hoa, chuông hồ sơ chuyến, BBBT TVJ và tự điền thông tin FSAGS 208."
 }
