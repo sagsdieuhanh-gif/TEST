@@ -1,0 +1,52 @@
+name: Finalize TEST Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/finalize-test-release.cjs"
+      - ".github/workflows/finalize-test-release.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Finalize release metadata and PWA
+        run: node tools/finalize-test-release.cjs
+      - name: Run full regression suite
+        run: npm test
+      - name: Commit verified TEST release
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No release changes."
+            exit 0
+          fi
+          git commit -m "$(node -p 'require("./version.json").version') TEST verified release"
+          git push origin HEAD:main
+
+# gate-retry-20261003-0722
+
+# gate-retry-20261003-0725
+
+# gate-retry-20261003-0728
+
+# gate-retry-20261003-0730
+
+# gate-retry-20261003-0733
