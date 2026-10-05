@@ -9,6 +9,7 @@ root.__SAGS_V6497_DOSSIER_ENH__=BUILD;
 const S=v=>String(v??'').trim();
 const U=v=>S(v).toLocaleUpperCase('vi-VN');
 const safe=v=>S(v).replace(/[.#$\[\]\/]/g,'_');
+const esc=v=>S(v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const norm=v=>{try{return typeof root.normalizePersonalUsername==='function'?root.normalizePersonalUsername(v):U(v).replace(/\s+/g,'').replace(/[^A-Z0-9._-]/g,'_').slice(0,40)}catch(_){return U(v).replace(/\s+/g,'').replace(/[^A-Z0-9._-]/g,'_').slice(0,40)}};
 const session=()=>{try{return root.__sagsGetSession?.()||{role:root.currentRole||'',profile:root.currentUserProfile||{}}}catch(_){return{role:root.currentRole||'',profile:root.currentUserProfile||{}}}};
 const profile=()=>session().profile||root.currentUserProfile||{};
@@ -153,7 +154,7 @@ function ensureNoticeUi(){
 function renderNotices(){
  const list=ensureNoticeUi().querySelector('#v6497NoticeList'),items=noticeItems.slice().sort((a,b)=>Number(b.at)-Number(a.at));
  if(!items.length){list.innerHTML='<div class="v6497NoticeEmpty">CHƯA CÓ THÔNG BÁO HỒ SƠ CHUYẾN</div>';return}
- list.innerHTML=items.map(n=>'<button type="button" class="v6497NoticeItem '+(!n.read?'unread':'')+'" data-notice-id="'+S(n.id).replace(/"/g,'')+'"><strong>'+S(n.unit)+' ĐÃ GỬI '+S(n.kind)+' · '+S(n.flight)+'</strong><span>'+S(n.status)+(n.sender?' · '+S(n.sender):'')+' · '+formatAt(n.at)+'</span></button>').join('');
+ list.innerHTML=items.map(n=>'<button type="button" class="v6497NoticeItem '+(!n.read?'unread':'')+'" data-notice-id="'+S(n.id).replace(/"/g,'')+'"><strong>'+esc(n.unit)+' ĐÃ GỬI '+esc(n.kind)+' · '+esc(n.flight)+'</strong><span>'+esc(n.status)+(n.sender?' · '+esc(n.sender):'')+' · '+esc(formatAt(n.at))+'</span></button>').join('');
 }
 function openDossier(n){
  try{if(typeof root.sagsV338OpenDossier==='function'){root.sagsV338OpenDossier(n.date,n.fid);return}}catch(_){}
@@ -201,6 +202,8 @@ root.sagsFlightNoticeOpen=async function(){
 function install(){
  installUppercase();ensureNoticeUi();updateBadge();
  ['sags:login','sags:rolechange','sags:profilechange','sags:ui-ready','sags:personal-roster-updated'].forEach(name=>root.addEventListener?.(name,()=>{void refreshSubscriptions()}));
+ root.addEventListener?.('sags:logout',()=>{stopSubscriptions()});
+ document.addEventListener('click',e=>{if(e.target?.closest?.('#v157LogoutBtn,[data-v6494-account="logout"]'))setTimeout(stopSubscriptions,0)},true);
  root.addEventListener('pageshow',()=>{void refreshSubscriptions()},{passive:true});
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refreshSubscriptions()},{passive:true});
  root.addEventListener('beforeunload',stopSubscriptions,{once:true});
