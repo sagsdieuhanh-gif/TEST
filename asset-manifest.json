@@ -278,8 +278,8 @@
       "bytes": 21116
     },
     "./version.json": {
-      "sha256": "12c295fb05ee921ea054f461390ab1fc17196d1c333b64ac206841331c4704f9",
-      "bytes": 1166
+      "sha256": "64bb1f3a46260ded094a533d2e9e70124621c5557ace30ccb5eaa5e3c292821c",
+      "bytes": 1217
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
