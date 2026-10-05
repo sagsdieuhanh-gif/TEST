@@ -40,7 +40,7 @@ function applyMain(){
     "assert.ok(runtime.includes('return rosterSlotSource(a)===rosterSlotSource(b)'));",
     "assert.ok(!runtime.includes('CẢNH BÁO và bắt buộc AD chọn'));",
     "console.log('Stable roster form-family regression checks passed');"
-  ].join("\\n")+"\\n";write("tests/roster-stable-family.test.cjs",testText);
+  ].join("\n")+"\n";write("tests/roster-stable-family.test.cjs",testText);
   const pages=[
     "name: Deploy TEST GitHub Pages",
     "on:",
