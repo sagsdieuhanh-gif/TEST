@@ -621,10 +621,16 @@ function installIcons(){
 }
 function cleanMyFlight(){
   const h=document.querySelector('#fwcModal .fwcHead h3');
-  if(h&&/MY FLIGHT|CHUYẾN HÔM NAY|DANH SÁCH CHUYẾN BAY/i.test(h.textContent||''))h.textContent='MY FLIGHT';
+  if(h&&/MY FLIGHT|CHUYẾN HÔM NAY|DANH SÁCH CHUYẾN BAY|HỒ SƠ CHUYẾN BAY · FLIGHT WORKSPACE/i.test(h.textContent||'')&&h.textContent!=='My Flight')h.textContent='My Flight';
+  const sub=document.querySelector('#fwcModal .fwcHead .fwcSub');
+  if(h?.textContent==='My Flight'&&sub&&sub.textContent!=='Hồ sơ chuyến bay')sub.textContent='Hồ sơ chuyến bay';
   document.querySelectorAll('#fwcModal .fwcHead button').forEach(b=>{
     const t=String(b.textContent||'').trim();
     if(t==='☰ MENU')b.textContent='MENU';
+    if((t==='MENU'||t==='☰ MENU')&&!b.classList.contains('sagsReferenceMenu')){
+      b.classList.add('sagsReferenceMenu');b.setAttribute('aria-label','Mở menu');
+      b.style.setProperty('font-size','11px','important');
+    }
   });
 }
 let queued=false;

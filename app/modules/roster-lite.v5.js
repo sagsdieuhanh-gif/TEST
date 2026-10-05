@@ -263,7 +263,7 @@ async function openLite(requestedDate){
     for(let i=0;typeof renderer!=='function'&&i<20;i++){await new Promise(r=>setTimeout(r,50));renderer=root.__SAGS_DAILY_ROSTER_FINAL_V1199?.renderPersonal}
     if(typeof renderer!=='function')throw new Error('MY FLIGHT renderer mới chưa sẵn sàng; không dùng giao diện legacy.');
     await renderer(d);return true;
-  }catch(e){const el=document.getElementById('fwcStatus');if(el)el.textContent='Không đọc được MY FLIGHT: '+S(e?.message||e);return false}
+  }catch(e){console.warn('My Flight read failed',e);const el=document.getElementById('fwcStatus');if(el)el.textContent='Không tải được dữ liệu. Kiểm tra kết nối và bấm Làm mới để thử lại.';return false}
 }
 openLite.__v477MailboxLite=true;
 async function refreshLite(){

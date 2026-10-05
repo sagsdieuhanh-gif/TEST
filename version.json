@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.94",
-  "displayVersion": "V6.4.94",
-  "label": "V6.4.94 - FINAL AVIATION OPERATIONS SHELL",
-  "build": "V6.4.94-20261005-FINAL-AVIATION-SHELL-01",
-  "releasedAt": "2026-10-05T13:36:00Z",
-  "type": "ui-shell-rebuild",
-  "base": "V6.4.93-20261005-UI-STABILITY-01",
+  "version": "V6.4.95",
+  "displayVersion": "V6.4.95",
+  "label": "V6.4.95 - REFERENCE AVIATION UI",
+  "build": "V6.4.95-20261005-REFERENCE-UI-01",
+  "releasedAt": "2026-10-05T14:08:11.631850+00:00",
+  "type": "ui",
+  "base": "V6.4.94-20261005-FINAL-AVIATION-SHELL-01",
   "updatePolicy": "required",
-  "notes": "Sửa tận gốc việc sau đăng nhập vẫn thấy giao diện cũ. Không còn chỉ skin CSS trên shell legacy: thêm Aviation Home/Menu mới chạy trực tiếp trên DOM và dùng các handler nghiệp vụ hiện có; mobile có menu riêng 2 cột + bottom nav, desktop có sidebar/topbar/hero/quick operations riêng. CSS aviation được tải cuối cùng sau toàn bộ stylesheet legacy để không bị ghi đè. MY FLIGHT và các overlay chính dùng lớp dark aviation cuối cùng. Đồng bộ runtime version truth, service worker và manifest.",
-  "message": "V6.4.94: giao diện mới thực sự sở hữu màn hình sau đăng nhập."
+  "notes": "Tích hợp trên Aviation Shell V6.4.94. Nền sân đỗ ban đêm theo ảnh mẫu, PC sidebar/hero/bảng chuyến và mobile hồ sơ/ảnh/menu hai cột. Bảng trang chủ đọc dữ liệu Daily Roster của tài khoản hiện tại. Sửa lớp popup ép bố cục login/My Flight, tiêu đề và nút điều hướng lặp. Đồng bộ runtime, cache và manifest.",
+  "message": "V6.4.95: giao diện PC và mobile theo ảnh tham chiếu E-REPORT SAGS."
 }
