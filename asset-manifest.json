@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.102",
-  "build": "V6.4.102-20261006-SUPERVISOR-ALL-FLIGHTS-AD-CONTRAST-01",
-  "strategy": "atomic release + supervisor all-flight overview + configured form labels + local-only airline card identity + AD contrast hardening",
+  "version": "V6.4.103",
+  "build": "V6.4.103-20261006-DASHBOARD-FIDELITY-01",
+  "strategy": "atomic release + dashboard fidelity + bare airline table logos + operational metric cards + supervisor scope preservation",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "7eb030f475bb350242c715947b5cfa76cd16e673c60a91ed6fd20a641fcaeb4c",
-      "bytes": 81554
+      "sha256": "31ae245042c6d318b62e5f625d735df846fc564e827ab29c7713009d32192ac0",
+      "bytes": 80434
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "80129098a2e1f16dd08bd8028eb7b540d3b8cd1b9dbd1b8571b810ea0bef5965",
-      "bytes": 21350
+      "sha256": "e1724b4ef28ebac5b3024330ab76b2ecc52c6643bf712f72a3d880fa9f6940df",
+      "bytes": 21302
     },
     "./version.json": {
-      "sha256": "3051577f57e04b35e5bb0e6c3524c9a02beb7272f9d422668974389d3f9fa7c6",
-      "bytes": 1174
+      "sha256": "7afa40e89e2ef55737ecc5cd4e0b416ce4b1234b1011934be090c97b09e35a16",
+      "bytes": 1092
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -626,12 +626,12 @@
       "bytes": 17226
     },
     "./app/styles/aviation-reference.v1.css": {
-      "sha256": "e8d7ef43ef09f0f6f655958747b65e0ec084ce23a57f3d82f849576fed58e8ea",
-      "bytes": 38419
+      "sha256": "abc1b27a4de2b8365aa6418e0c25629ed1a1bd554f0338908458815e2a233019",
+      "bytes": 50068
     },
     "./app/modules/aviation-reference.v1.js": {
-      "sha256": "fcd6026856264904e97437a469674e7ea1d03212f2d3ff5e428e9beba33b2bee",
-      "bytes": 17527
+      "sha256": "1528c2f712d5b379307817f3573f9041426a63a3f761a811a9baf078556ed382",
+      "bytes": 19159
     },
     "./assets/branding/apron-night-v6494.webp": {
       "sha256": "7a17d332d8dce854de03be8918034b378012b7fece42abc6c71ed9575bc257a0",
