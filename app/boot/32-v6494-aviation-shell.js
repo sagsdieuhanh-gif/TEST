@@ -83,6 +83,7 @@ function ensure(){
  '<section class="v6494Main">'+
   '<header class="v6494Top"><div class="v6494MobileBrand"><b>E-REPORT <span>SAGS</span></b><small>AIRPORT GROUND OPERATIONS</small></div><label class="v6494Search">'+ICONS.search+'<input id="v6494Search" type="search" placeholder="Tìm chuyến bay, số hiệu, sân bay..." autocomplete="off"></label><button class="v6494Notice" type="button" data-v6494-key="notice" aria-label="Thông báo">'+ICONS.notice+'</button><div class="v6494TopIdentity"><b id="v6494TopName">Người dùng</b><small id="v6494TopRole">—</small></div></header>'+
   '<div class="v6494Scroll">'+
+   '<div class="v6494MobileProfile"><div class="v6494Avatar" id="v6494MobileAvatar">U</div><div><small>Xin chào,</small><b id="v6494MobileName">Người dùng</b><span id="v6494MobileRole">—</span></div></div>'+
    '<div class="v6494Hero"><div><small>E-REPORT SAGS</small><h1>Điều hành công việc mặt đất<br>an toàn, chính xác và hiệu quả</h1><p>Không gian làm việc thống nhất cho vận hành chuyến bay tại sân bay.</p><button type="button" data-v6494-key="myflight">'+ICONS.myflight+'<span>Mở My Flight</span></button></div></div>'+
    '<div class="v6494QuickHead"><div><small>HÔM NAY</small><h2 id="v6494Date"></h2></div><span>OPERATIONS CONSOLE</span></div>'+
    '<div class="v6494QuickGrid">'+
@@ -121,9 +122,9 @@ function renderMenus(){
 function syncIdentity(){
  const p=profile(),r=role()||'—',name=S(p.name||p.fullName||p.displayName||p.username||p.userName||r||'Người dùng');
  const initial=(name.match(/[A-ZÀ-Ỹ0-9]/iu)?.[0]||'U').toUpperCase();
- for(const id of['v6494Name','v6494TopName']){const e=$(id);if(e)e.textContent=name}
- for(const id of['v6494Role','v6494TopRole']){const e=$(id);if(e)e.textContent=r}
- if($('v6494Avatar'))$('v6494Avatar').textContent=initial;
+ for(const id of['v6494Name','v6494TopName','v6494MobileName']){const e=$(id);if(e)e.textContent=name}
+ for(const id of['v6494Role','v6494TopRole','v6494MobileRole']){const e=$(id);if(e)e.textContent=r}
+ if($('v6494Avatar'))$('v6494Avatar').textContent=initial;if($('v6494MobileAvatar'))$('v6494MobileAvatar').textContent=initial;
  if($('v6494Date'))$('v6494Date').textContent=todayText();
 }
 function sync(){
