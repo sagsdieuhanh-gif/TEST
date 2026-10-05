@@ -1,8 +1,8 @@
-/* E-REPORT SAGS V6.4.100 · Final Aviation Operations shell
+/* E-REPORT SAGS V6.4.101 · Final Aviation Operations shell
    Presentation/navigation adapter only. Existing business handlers remain authoritative. */
 (function(root){
 'use strict';
-const BUILD='V6.4.100-20261005-HOME-AIRLINE-SPEED-01';
+const BUILD='V6.4.101-20261006-MOBILE-UX-SPEED-01';
 if(root.__SAGS_V6494_AVIATION_SHELL__===BUILD)return;
 root.__SAGS_V6494_AVIATION_SHELL__=BUILD;
 const $=id=>document.getElementById(id);
@@ -132,10 +132,11 @@ function sync(){
  if(syncing)return;syncing=true;
  try{
   const el=ensure();renderMenus();syncIdentity();
-  const show=homeState();
+  const show=homeState(),wasShown=el.classList.contains('show');
   el.classList.toggle('show',show);const hidden=show?'false':'true';if(el.getAttribute('aria-hidden')!==hidden)el.setAttribute('aria-hidden',hidden);
   document.body.classList.toggle('v6494-home-active',show);
   if(show)document.body.classList.remove('v157-drawer-open');
+  if(show&&!wasShown)root.dispatchEvent(new Event('sags:home-shown'));
  }finally{syncing=false}
 }
 function scheduleSync(){

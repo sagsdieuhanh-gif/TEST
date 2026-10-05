@@ -26,6 +26,12 @@ jobs:
         run: node tests/home-airline-speed-v64100.test.cjs
       - name: Verify UI performance guards
         run: node tests/performance-v6499.test.cjs
+      - name: Verify auto-sign session and owner guards
+        run: node tests/auto-sign-context-v64101.test.cjs
+      - name: Verify carousel identity and logo coverage
+        run: node tests/home-carousel-v64101.test.cjs
+      - name: Verify pinned cache integrity
+        run: node tests/pwa-staging.test.cjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

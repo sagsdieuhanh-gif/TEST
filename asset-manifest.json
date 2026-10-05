@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "version": "V6.4.100",
-  "build": "V6.4.100-20261005-HOME-AIRLINE-SPEED-01",
+  "version": "V6.4.101",
+  "build": "V6.4.101-20261006-MOBILE-UX-SPEED-01",
   "strategy": "atomic release + server-live receive fast path + carrier-guide airline identity + aligned aviation home",
   "mutableMetadata": [
     "./forms/forms.registry.json",
@@ -26,7 +26,7 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "a0dd3525d60bd5cfea432190aaad3c08890accf323ecd4aca9b87b06a0546930",
+      "sha256": "efbfe7aafcfe478c4c2150c6e67cb8d334c0b290b1333a1fe2a529bc34c1c963",
       "bytes": 83053
     },
     "./app/modules/fsags54-94.v622.js": {
@@ -46,11 +46,11 @@
       "bytes": 12286
     },
     "./app/modules/quick-entry.v1.js": {
-      "sha256": "efce917c2a249b37eb83a864bc2919bc3d607a7e0e87c5056af35d3329dee391",
-      "bytes": 14942
+      "sha256": "488c58437666d1e870ad4b864be949b76dba16db2d863008cdb18b6ed54121b7",
+      "bytes": 14935
     },
     "./app/modules/roster-lite.v5.js": {
-      "sha256": "03778ff088035c7fbbf793d3c197b830caa6f59ed31ff2c3ab7da55e16f72175",
+      "sha256": "16d9f47ed55987e4a4503c58cfe01d80fcf877e317cab3407a9854eaef2d9d87",
       "bytes": 24555
     },
     "./app/modules/stability.v6-core.js": {
@@ -74,8 +74,8 @@
       "bytes": 10344
     },
     "./app/modules/ui-preferences.v1.js": {
-      "sha256": "ef582cbd780ff39336c2640880c60aa6e40453ef72242e1f6527eee31e9694fe",
-      "bytes": 30606
+      "sha256": "8efc4c83c420f2fc93682bc6648f65980afed5ab85387fcd80ec157aa9cd0715",
+      "bytes": 30818
     },
     "./app/styles/app.bundle.css": {
       "sha256": "013be6bee9f38bf79864dcab0658f438966d77172692446f698c042539601c2e",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "12eb138aa1ad3887f795c76ef3b3847d4cdc1219957f64d3bde77a9abf64211a",
-      "bytes": 81890
+      "sha256": "e5e395da42abf0345164ebe664580ca8072f234d41365ed7aa0b4be97a943895",
+      "bytes": 80224
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "623d388b4244e912f5ea1f6f0567e8271a7d70efb7b48908865f72b49c1bf73b",
-      "bytes": 22163
+      "sha256": "14031d918cd15043f7fbdf23906b04edcbd0662375053650d7a9f02b389e9dba",
+      "bytes": 20563
     },
     "./version.json": {
-      "sha256": "a3f09ff2292be3ac8af0fc583c89ae5f2b5d2ba31e022e5d92aca15c12363c97",
-      "bytes": 1085
+      "sha256": "751d2fa1a1203a6583175c0301c6f09b95355cae4b8055c649634636bb37d70e",
+      "bytes": 1059
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -342,8 +342,8 @@
       "bytes": 3079
     },
     "./app/boot/18-v173-quick-time.js": {
-      "sha256": "b158f68910ade58b146cfa747f031fc24817f5705e24a5e954d205c23dacc81c",
-      "bytes": 25594
+      "sha256": "34c7bc2e4aba7f534c94eb6e8fb43515e8504940dd2cb003e5c58ca3f777ad39",
+      "bytes": 25863
     },
     "./app/boot/19-v183-fs09-quick.js": {
       "sha256": "bfad6008b1ad14c24b5f156ad6f9cb6c3eed0be4c26fb2193f83bd56c45a2036",
@@ -510,8 +510,8 @@
       "bytes": 333
     },
     "./app/modules/workflow-cleanup.v6444.js": {
-      "sha256": "a5940842b63ab3f72f581627af7952e6f9cd215ba78a74478dff8a42b54d2772",
-      "bytes": 22521
+      "sha256": "1cb9dd2a3aebda66afa72522e81f11be58ef22b81ef0388a6946933e320b12a9",
+      "bytes": 23151
     },
     "./app/modules/airline-form-policy.v1.js": {
       "sha256": "d92ca37647a4697299f767983b1435f7df6cf88ee6718073bf383ab6fde2a653",
@@ -542,8 +542,8 @@
       "bytes": 84928
     },
     "./app/generated/core-flight.js": {
-      "sha256": "4a76b34a76379173824e4dfeec540a008b2801a8204dec22e6729d635ffc4a5b",
-      "bytes": 213915
+      "sha256": "cee470465a124b4ba77e6907fe96a307f7bb49f6819ecbf013bf8ff85b2eacc5",
+      "bytes": 215026
     },
     "./app/generated/core-performance.js": {
       "sha256": "005c80dc9ce412f9e1c8b74d24b48e68b27ddaa05d5de203cb2029e7f93364d8",
@@ -562,8 +562,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "388a241372d0f36b97d49ac9f5a3949dec4c3d409eea1d8a9b4d049132aaf501",
-      "bytes": 134620
+      "sha256": "ad57de0575f6126fee07ab18aca7ce5dbbdd5d470c1640fbe9f4c3ec0254607e",
+      "bytes": 134617
     },
     "./app/generated/runtime-2.js": {
       "sha256": "1f39b1b745951be59ae0f2882d190a3359b056c69682e256a049fdb7dceb0bd4",
@@ -582,8 +582,8 @@
       "bytes": 25747
     },
     "./app/modules/feature-loader.v1.js": {
-      "sha256": "d285c38830501548dcd74843b81075c45dc35b784450ea573eb80d871c23dc71",
-      "bytes": 1680
+      "sha256": "09c512588abf12bd09e3325231b078b7689147811d461582da434f34a51be73f",
+      "bytes": 1677
     },
     "./app/modules/firebase-read-coalescer.v1.js": {
       "sha256": "2be879e74429432ad5a6130923cc67bb9bb66b5dd4a66533c09c1842a6d035dd",
@@ -618,20 +618,20 @@
       "bytes": 1556
     },
     "./app/boot/32-v6494-aviation-shell.js": {
-      "sha256": "c51b8a5666183d4f7d183f8339b869c079fbec04f57cfc4efec1117c681d0090",
-      "bytes": 13294
+      "sha256": "2a07c8362fcd1df275cafc24fcd63850003ce94127bc6e14f0def743cf0d18cb",
+      "bytes": 13401
     },
     "./app/styles/boot-36-v6494-aviation-final.css": {
       "sha256": "1f079062ebf4189632b83a50cafbdd6f7a274690c3fcb5c947950dbf4db61c3d",
       "bytes": 17226
     },
     "./app/styles/aviation-reference.v1.css": {
-      "sha256": "0c1be1dbd9e30fbf79427e16e277645dd00c31b4397d3c5d898f2928f1af6abf",
-      "bytes": 23068
+      "sha256": "723240f2c5addc2a5eb4d8985f7ce062b1065b745cd2826f310a70d6f106c2c2",
+      "bytes": 36420
     },
     "./app/modules/aviation-reference.v1.js": {
-      "sha256": "1f76d1a5f03e4f2a9a9b95e11efcb91e060ec9f574b39cb43e50db5c3aa8badf",
-      "bytes": 11052
+      "sha256": "b47c058c1ff9cc7b707a156a993df5a17b3c85c356ae30151f1696503f7f1c81",
+      "bytes": 15474
     },
     "./assets/branding/apron-night-v6494.webp": {
       "sha256": "7a17d332d8dce854de03be8918034b378012b7fece42abc6c71ed9575bc257a0",
@@ -640,6 +640,122 @@
     "./app/boot/33-v6497-dossier-enhancements.js": {
       "sha256": "7ccc4b3372e1fc62b8658451fe98ecdc8e9d09d2ccc2041f0011e0db04d11c60",
       "bytes": 19210
+    },
+    "./app/styles/boot-bundle-1.css": {
+      "sha256": "e9f0d46c327cde83b56e70378b9a8c2c0c07205ce1fa81eb7034ccd7be8884ac",
+      "bytes": 102572
+    },
+    "./app/styles/boot-bundle-2.css": {
+      "sha256": "c6ddb035894bf2c231426db8c48aa9b842174d61c823a43e0687378088d82907",
+      "bytes": 26603
+    },
+    "./assets/airlines/DR.png": {
+      "sha256": "a293cf3973c2c8a7601ca4f2cb849ec8ca73a1b36c73167e15c580163dee01db",
+      "bytes": 2142
+    },
+    "./assets/airlines/QH.png": {
+      "sha256": "15793886d75a9509cf3a0cad4d4a0b7ff09fd4f0e5222a5daac9b4d18a063eed",
+      "bytes": 1671
+    },
+    "./assets/airlines/KA.svg": {
+      "sha256": "bfcc0b2011e6ae5f5bf66f130b1fbff059c9de5ddcefdb14644a594e9345ca0b",
+      "bytes": 7386
+    },
+    "./assets/airlines/OZ.png": {
+      "sha256": "8b1d4f3803d1e6f6a24d4a6b2c096a9607c37f396a9277af3eaf2b3d48c47fa7",
+      "bytes": 2301
+    },
+    "./assets/airlines/KE.png": {
+      "sha256": "b1c9df19b2ace983384391ebbbea036a42ccfcad6f0ddc64b1b1dff54c457463",
+      "bytes": 4105
+    },
+    "./assets/airlines/3U.png": {
+      "sha256": "b32659c856f5e380669591ea4cf810ea27c8e5a03577d87f4c422e39aa96a1a6",
+      "bytes": 3080
+    },
+    "./assets/airlines/VU.png": {
+      "sha256": "9ec95bfcdb7c87d519cad9bf2597e52a8ffa2e86889403089724461d9d8630f7",
+      "bytes": 1799
+    },
+    "./assets/airlines/BX.png": {
+      "sha256": "1950d7c4afe31aa0849ea62e336c5590ac2b3842fb4f90544b2e65a4a2a4ecb6",
+      "bytes": 5584
+    },
+    "./assets/airlines/TR.png": {
+      "sha256": "8878dc118fb947e661339bd1dea98c80a5c12d910d10eb3e981f149269773f65",
+      "bytes": 4957
+    },
+    "./assets/airlines/LJ.png": {
+      "sha256": "23103d9a09a5c75a4d158779c5442356c266bc0f52bd390e14baced7408823c2",
+      "bytes": 4371
+    },
+    "./assets/airlines/TW.png": {
+      "sha256": "1c9ef10605814bf14b41c93189b1653d6fe10294b88058a729ec2ccb10a17943",
+      "bytes": 3900
+    },
+    "./assets/airlines/VJ.png": {
+      "sha256": "19a2e712ce37e510375766ee91c6a816dc6405fd3e9bd9901ccd5460b38d4753",
+      "bytes": 5666
+    },
+    "./assets/airlines/9G.png": {
+      "sha256": "ca30762ed33f3ab2bdacdbaf57c1dd16f07675c10f20940f6216ad2b3e1caf7b",
+      "bytes": 2308
+    },
+    "./assets/airlines/HY.png": {
+      "sha256": "7b9c792f739c59d68ffdeb8cdf8dd7b3a31ff0da920f078cd1cb49c6dc600b53",
+      "bytes": 4854
+    },
+    "./assets/airlines/DV.png": {
+      "sha256": "994c04543022136f66c578df5ca9d136e2375d297c3e2f47d2c1be735b7efaa0",
+      "bytes": 6430
+    },
+    "./assets/airlines/C6.png": {
+      "sha256": "973b9c161b5a621442d0ce5498845489a0df7d8300b8cfb0fe6357f792d1c199",
+      "bytes": 1982
+    },
+    "./assets/airlines/N4.png": {
+      "sha256": "3a3b60a2fdb7132e35708bd7aba2bbc98de9b36572920f32cc3335c5c26bbca7",
+      "bytes": 2617
+    },
+    "./assets/airlines/UQ.png": {
+      "sha256": "a43842d5f80c4bab9457ae980cd6c723f479c22c84906b65cd3f289a48140045",
+      "bytes": 2339
+    },
+    "./assets/airlines/HU.png": {
+      "sha256": "5888cf08ec6125123c66184f6b3e24826d4421d76ece716ad2840d986cc80b1c",
+      "bytes": 6406
+    },
+    "./assets/airlines/KC.png": {
+      "sha256": "dfd2a3622ce13288acb9af8a08db27ab81b79e364b46e58892c87b8b2c7fe258",
+      "bytes": 2137
+    },
+    "./assets/airlines/WE.png": {
+      "sha256": "ffabd709586e62edf9073659ad926f77dbbfad8ce32f366df7e03c8950cb638c",
+      "bytes": 3090
+    },
+    "./assets/airlines/VZ.png": {
+      "sha256": "a55cb4b90e6f2890eae7d230ccfdc688e8995f5807a6ac1726aeb89b73fdd87a",
+      "bytes": 3160
+    },
+    "./assets/airlines/HAV.png": {
+      "sha256": "48b384338cc4e88af4d5f48fde359a3d46c65db159dd9ef58252af465423ba05",
+      "bytes": 15660
+    },
+    "./assets/airlines/RF.png": {
+      "sha256": "c63267b662a9a1bb6dfae0720ef9f6016333d60b039dbd66112285d0375cc580",
+      "bytes": 1774
+    },
+    "./assets/airlines/B2.png": {
+      "sha256": "332aa5b7ef88c41bf6dc0c7cbe4ed4d93201660a0548ac7da2c2f065e83b7368",
+      "bytes": 4464
+    },
+    "./assets/airlines/FD.png": {
+      "sha256": "172d509e686526251e3433c003a1074771c89c4ea99af2408184fd019e93645e",
+      "bytes": 3332
+    },
+    "./assets/airlines/AK.png": {
+      "sha256": "172d509e686526251e3433c003a1074771c89c4ea99af2408184fd019e93645e",
+      "bytes": 3332
     }
   }
 }

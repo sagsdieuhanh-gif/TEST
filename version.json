@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.100",
-  "displayVersion": "V6.4.100",
-  "label": "V6.4.100 - HOME AIRLINE + RECEIVE SPEED",
-  "build": "V6.4.100-20261005-HOME-AIRLINE-SPEED-01",
-  "releasedAt": "2026-10-05T16:38:00Z",
+  "version": "V6.4.101",
+  "displayVersion": "V6.4.101",
+  "label": "V6.4.101 - AIRLINE CAROUSEL + MOBILE UX + SPEED",
+  "build": "V6.4.101-20261006-MOBILE-UX-SPEED-01",
+  "releasedAt": "2026-10-05T17:41:10.248181+00:00",
   "type": "ui-performance-enhancement",
-  "base": "V6.4.99-20261005-PERFORMANCE-01",
+  "base": "V6.4.100-20261005-HOME-AIRLINE-SPEED-01",
   "updatePolicy": "required",
-  "notes": "Tối ưu thao tác NHẬN/MỞ biểu mẫu bằng cách tái sử dụng trạng thái queue và assignment từ mailbox Firebase đang live, giảm các lượt đọc Firebase lặp lại. Home đọc danh sách hãng trực tiếp từ data/carrier-service-guide.json (nguồn Lưu ý phục vụ hãng), hiển thị dải logo hãng dưới banner và logo hãng trong bảng chuyến hôm nay; logo tải bất đồng bộ/lazy từ nguồn internet. Căn banner, dải hãng, summary cards và bảng về cùng một trục/max-width; thiết kế lại bảng chuyến theo mẫu aviation console.",
-  "message": "V6.4.100: nhận form nhanh hơn, logo hãng theo Lưu ý phục vụ hãng, Home căn thẳng và bảng chuyến mới."
+  "notes": "Logo HAV do người dùng cung cấp; AK và FD tách riêng, tên hãng đầy đủ đã đối chiếu nguồn chính thức. Hàng logo cao gấp đôi, mũi tên chuyển hãng. Bảng chuyến theo giờ, số dòng vừa màn hình và Xem tất cả. Tự ký chỉ chạy đúng chuyến đang mở, thiếu mẫu chữ ký không chặn trang chủ. Nhập nhanh mobile đồng nhất navy/cyan, tối ưu vùng chạm và bàn phím. Chỉ xử lý popup đang mở, bỏ vẽ lại biểu mẫu khi chuyển ô nhanh, gom 31 CSS thành 2 request, cache logo nội bộ.",
+  "message": "V6.4.101: hãng rõ tên, bảng chuyến gọn, nhập nhanh mobile và phản hồi nhanh hơn."
 }

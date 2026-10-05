@@ -101,6 +101,11 @@
   for(const e of managed)if(!e.isConnected){managed.delete(e);const i=stack.indexOf(e);if(i>=0)stack.splice(i,1);}
   const force=(e,props)=>{for(const [key,value] of Object.entries(props)){const token=key+'|'+value;if(!normalizedStyles.has(token)){styleProbe.cssText='';styleProbe.setProperty(key,value,'important');normalizedStyles.set(token,styleProbe.getPropertyValue(key));}const canonical=normalizedStyles.get(token);if(canonical&&(e.style.getPropertyValue(key)!==canonical||e.style.getPropertyPriority(key)!=='important'))e.style.setProperty(key,value,'important');}};
   for(const e of managed){
+   const shown=e.isConnected&&exposed(e),index=stack.indexOf(e);
+   if(shown&&index<0)stack.push(e);else if(!shown&&index>=0)stack.splice(index,1);
+   // Hidden dialogs do not need layout/input normalization on every focus or click.
+   // Normalize when they open, so viewport changes and newly added inputs are current.
+   if(!shown)continue;
    force(e,{'position':'fixed','left':'0','right':'0','bottom':'auto','top':'var(--sags-overlay-top,0px)','width':'100%','height':'var(--sags-overlay-height,100vh)','max-height':'var(--sags-overlay-height,100vh)','min-height':'0','margin':'0','transform':'none','box-sizing':'border-box','padding':'max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))','align-items':'center','justify-content':'center','overflow':'hidden','z-index':'var(--sags-overlay-layer,2147483000)'});
    // Login and My Flight are viewport workspaces, not centered dialog cards.
    // Keep viewport/keyboard tracking and overlay ordering; let their layout differ.
@@ -109,13 +114,15 @@
     force(e,{'padding':mobile?'calc(20px + env(safe-area-inset-top)) 22px calc(20px + env(safe-area-inset-bottom))':'54px 6vw','align-items':mobile?'stretch':'center','justify-content':'flex-end','overflow':'auto'});
    }else if(e.id==='fwcModal'){
     force(e,{'padding':matchMedia('(max-width:767px)').matches?'0':'20px','align-items':'stretch','justify-content':'center'});
+   }else if(['quickTimeModal','fs09QuickModal'].includes(e.id)&&matchMedia('(max-width:767px)').matches){
+    force(e,{'padding':'0','align-items':'stretch','justify-content':'center'});
    }
+   if(e.id==='sagsQuickEntry'&&matchMedia('(max-width:767px)').matches)force(e,{'padding':'0','align-items':'flex-end','justify-content':'center'});
    const card=e.querySelector(':scope > .sagsOverlayCard');if(card)force(card,{'position':'relative','inset':'auto','transform':'none','margin':'0','min-width':'0','min-height':'0','max-width':'100%','max-height':'100%','box-sizing':'border-box','overflow':'auto'});
+   if(card&&['quickTimeModal','fs09QuickModal'].includes(e.id))force(card,{'overflow':'hidden'});
    if(card?.id==='csgPanel'&&matchMedia('(max-width:899px)').matches)force(card,{'height':card.contains(document.activeElement)?'min(760px,calc(var(--sags-overlay-height,100vh) - 24px))':'auto','max-height':'min(100%,760px)'});
    for(const child of e.querySelectorAll('[class*="Footer"],[class*="footer"],[class*="Actions"],.actions'))if(getComputedStyle(child).position==='fixed')force(child,{'position':'static','inset':'auto','width':'100%','box-sizing':'border-box'});
    for(const input of e.querySelectorAll('input:not([type=checkbox]):not([type=radio]),textarea,select'))if(!input.closest('.v440RuntimeField,.v440Box,#v440Overlay,#v440RuntimeBody')&&!input.hasAttribute('data-v440-bind')){if(!input.classList.contains('sagsDialogInput'))input.classList.add('sagsDialogInput');if(matchMedia('(max-width:899px)').matches){if(!inputFonts.has(input))inputFonts.set(input,{value:input.style.getPropertyValue('font-size'),priority:input.style.getPropertyPriority('font-size')});force(input,{'font-size':'16px'});}else if(inputFonts.has(input)){const saved=inputFonts.get(input);if(saved.value)input.style.setProperty('font-size',saved.value,saved.priority);else input.style.removeProperty('font-size');inputFonts.delete(input);}}
-   const shown=e.isConnected&&exposed(e),index=stack.indexOf(e);
-   if(shown&&index<0)stack.push(e);else if(!shown&&index>=0)stack.splice(index,1);
   }
   stack.forEach((e,i)=>{const z=String(2147483000+i*10);if(e.style.getPropertyValue('--sags-overlay-layer')!==z)e.style.setProperty('--sags-overlay-layer',z);});
   for(const node of [document.body,document.documentElement])if(node.classList.contains('sags-overlay-open')!==(stack.length>0))node.classList.toggle('sags-overlay-open',stack.length>0);
