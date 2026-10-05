@@ -9,10 +9,11 @@ function norm(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/
 function visible(el){if(!el||!el.isConnected)return false;const s=getComputedStyle(el);return s.display!=='none'&&s.visibility!=='hidden'&&s.opacity!=='0';}
 function isTechnicalFormHit(el){return !!el?.classList?.contains('sags5494DirectHit')}
 function enhanceButton(el){
-  if(isTechnicalFormHit(el)){
+  if(isTechnicalFormHit(el)||el?.classList?.contains('quickTimeNow')){
     el.classList.remove('sagsUiButton','sagsAppButton');
     delete el.dataset.sagsUiNormalized;
-    el.dataset.sagsUiSkip='form-hit';
+    el.dataset.sagsUiSkip=isTechnicalFormHit(el)?'form-hit':'integrated-time-helper';
+    if(el.classList.contains('quickTimeNow'))el.style.setProperty('border-radius','0px','important');
     return el;
   }
   if(el.dataset.sagsUiNormalized==='1')return el;
