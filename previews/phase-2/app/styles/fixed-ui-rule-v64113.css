@@ -1089,3 +1089,8 @@ html.new-ui-v1 body #quickTimeModal#quickTimeModal .quickTimeNow:active{
     background:#143b5d!important;
   }
 }
+
+/* Phase 2 regression guard: the integrated GIỜ action is not a standalone rounded button. */
+html.new-ui-v1.new-ui-v1 body #quickTimeModal#quickTimeModal button.quickTimeNow.sagsUiButton{
+  border-radius:0!important;
+}

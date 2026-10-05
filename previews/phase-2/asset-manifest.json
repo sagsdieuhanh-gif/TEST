@@ -526,8 +526,8 @@
       "bytes": 1556
     },
     "./app/styles/fixed-ui-rule-v64113.css": {
-      "sha256": "c74c718b919516dcc29169453de379037565b122fc6c5ddbfb3559a2fd0602a1",
-      "bytes": 43392
+      "sha256": "bc19ac6be5460f55ad36b63fd381260970a964315f27d25a9b3c3b0c556f7562",
+      "bytes": 43615
     },
     "./app/boot/32-fixed-ui-rule-v64113.js": {
       "sha256": "13098140ce34a54fe9e6ee8325e2eba877d673546157a08a92b64ef60fdd0132",
