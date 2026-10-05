@@ -67,10 +67,11 @@ function wrapSync(name){
 function installUppercase(){
  if(!document.getElementById('sagsV6497UppercaseStyle')){
   const st=document.createElement('style');st.id='sagsV6497UppercaseStyle';st.textContent=
-   '#entryText,.quickTimeInput,.fs09qDataInput,.fs09qTextArea,#kh208ManagerModal input[type="text"],#kh208ManagerModal textarea,[data-form-field]{text-transform:uppercase!important}';
+   '#entryText,.quickTimeInput,.fs09qDataInput,.fs09qTextArea,#kh208ManagerModal input[type="text"],#kh208ManagerModal textarea,#finalFormFields input[type="text"],#finalFormFields textarea,[data-form-field]{text-transform:uppercase!important}';
   document.head.appendChild(st);
  }
  ['draw','persist','commitEntry','qteSaveCompact','fs09qSave','sendReport','sendKH208Sheet','saveKH208Local','sags5494ExportCurrentPdf'].forEach(wrapSync);
+ document.addEventListener('input',e=>{if(!e.isComposing&&uppercaseEditor(e.target))uppercaseFormState()},true);
  document.addEventListener('change',e=>{if(uppercaseEditor(e.target))uppercaseFormState()},true);
  document.addEventListener('blur',e=>{if(uppercaseEditor(e.target))uppercaseFormState()},true);
  root.addEventListener('beforeprint',beforeFormAction,{passive:true});
