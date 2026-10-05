@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V6.4.89",
-  "build": "V6.4.89-20261005-MOBILE-RUNTIME-UI-01",
-  "strategy": "atomic release + verified bootstrap + mobile deferred registry + on-demand feature assets + required idle update",
+  "version": "V6.4.90",
+  "build": "V6.4.90-20261005-MYFLIGHT-UNIFIED-01",
+  "strategy": "atomic release + unified My Flight role shell + verified bootstrap + on-demand feature assets",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -26,8 +26,8 @@
       "bytes": 20659
     },
     "./app/modules/daily-roster.v502.js": {
-      "sha256": "5328031191de58bfc78c2a50805341cb34a0454082977438992fa064ad67cc17",
-      "bytes": 82064
+      "sha256": "eec46feb2c5e113aaab043600939dce6a9335befbd965608395356d1f9a339d8",
+      "bytes": 82108
     },
     "./app/modules/fsags54-94.v622.js": {
       "sha256": "9f39dd025b60be2791fb92e345fe9424c6b122c6546a914f53097fdb31a18ab2",
@@ -50,8 +50,8 @@
       "bytes": 14942
     },
     "./app/modules/roster-lite.v5.js": {
-      "sha256": "02a36e61fa93cfe4771d63d009327e89e527a91a2361c3855f7033ddb039448b",
-      "bytes": 15082
+      "sha256": "c69e687e7a417999673d306005d25f8d7b5511dac61e6b07cc89e8f8c8b877cd",
+      "bytes": 17657
     },
     "./app/modules/stability.v6-core.js": {
       "sha256": "930372721342bb68abb18b5d7b48f10c280812987e467c61ba0720366df571b4",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "e212af925df6309869c4fff29ce6c7d14c3be5c9cf6bdb2304ee093537e74d8b",
-      "bytes": 81059
+      "sha256": "19aaf159f3d682680a8f136390c74b334ed46e7a134fc7424850ccd3d0dc89e1",
+      "bytes": 80965
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "b6c1ecc517c5e57bdc026c89add585f57dac428a5584480b065589ba2693476f",
-      "bytes": 21769
+      "sha256": "b20045e140e4d9c9f9bce485e0d2fd54851e01dc82a91ba5c01913b3ea26e0a6",
+      "bytes": 21766
     },
     "./version.json": {
-      "sha256": "d09b05858d61193f315094550a07763d66769392a5549ab72fe1267603c0b044",
-      "bytes": 756
+      "sha256": "b9885be95b7df977b9de29e5aa286acade185d65aabf04ed0a6db8211714c0ee",
+      "bytes": 670
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -562,8 +562,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "77f7f96507f3e3416a4599803b13cca230fc9bb10fee249b8b363231d416af95",
-      "bytes": 134758
+      "sha256": "7202b71d0473e054636fcd6bda73357e6ae474271f1cf96163d8c8a5121ad272",
+      "bytes": 134757
     },
     "./app/generated/runtime-2.js": {
       "sha256": "1f39b1b745951be59ae0f2882d190a3359b056c69682e256a049fdb7dceb0bd4",
@@ -574,16 +574,16 @@
       "bytes": 46306
     },
     "./app/generated/runtime-4.js": {
-      "sha256": "282d736b634d09815967d23d7086a68cef200f73d74239fe5590ebf01ad74010",
-      "bytes": 180895
+      "sha256": "a7f089d0b7b2e8d8de45d67de70cea1aa1bc0d98ce211318f2d9389d0d112549",
+      "bytes": 180894
     },
     "./app/generated/runtime-5.js": {
       "sha256": "88e5220641b0934dcc41764b64af8ff52e00a6746d64a915aca067494067598e",
       "bytes": 25747
     },
     "./app/modules/feature-loader.v1.js": {
-      "sha256": "552a4fe7d73761b529155d50737a0ab226aae2ed7e0cf9d93fc8455154f27f94",
-      "bytes": 1678
+      "sha256": "e8543014199a7ff9410a21f22bdb9fef1f03290c83765d4a119c5c3958050150",
+      "bytes": 1677
     },
     "./app/modules/firebase-read-coalescer.v1.js": {
       "sha256": "2be879e74429432ad5a6130923cc67bb9bb66b5dd4a66533c09c1842a6d035dd",
