@@ -31,16 +31,16 @@ function applyMain(){
   const testText=[
     "const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');",
     "const root=path.resolve(__dirname,'..'),source=fs.readFileSync(path.join(root,'app/core/app.v503.js'),'utf8'),runtime=fs.readFileSync(path.join(root,'app/generated/core-flight.js'),'utf8');",
-    "assert.match(source,/function existingRosterFormFamilyLocks\\\\(parsed\\\\)/);",
-    "assert.match(source,/rosterFormFamilyLocked:true/);",
-    "assert.match(source,/if\\\\(rampFamily===\\\"423\\\"\\\\)/);",
-    "assert.match(source,/addCorEntries\\\\(corEntries,\\\"fsags421\\\",\\\"Grnd_Cor\\\",\\\"COR\\\"\\\\)/);",
-    "assert.match(source,/addCorEntries\\\\(ldEntries,\\\"fsags551\\\",\\\"Grnd_Ld\\\",\\\"LD\\\"\\\\)/);",
-    "assert.match(source,/addCorEntries\\\\(collapseSameLegs\\\\(arrExtra,depExtra\\\\),\\\"fsags551\\\",\\\"Grnd_Ld\\\",\\\"LD\\\"\\\\)/);",
-    "assert.match(runtime,/return rosterSlotSource\\\\(a\\\\)===rosterSlotSource\\\\(b\\\\)/);",
-    "assert.doesNotMatch(runtime,/CẢNH BÁO và bắt buộc AD chọn/);",
+    "assert.ok(source.includes('function existingRosterFormFamilyLocks(parsed)'));",
+    "assert.ok(source.includes('rosterFormFamilyLocked:true'));",
+    "assert.ok(source.includes('if(rampFamily===\\\"423\\\")'));",
+    "assert.ok(source.includes('addCorEntries(corEntries,\\\"fsags421\\\",\\\"Grnd_Cor\\\",\\\"COR\\\")'));",
+    "assert.ok(source.includes('addCorEntries(ldEntries,\\\"fsags551\\\",\\\"Grnd_Ld\\\",\\\"LD\\\")'));",
+    "assert.ok(source.includes('addCorEntries(collapseSameLegs(arrExtra,depExtra),\\\"fsags551\\\",\\\"Grnd_Ld\\\",\\\"LD\\\")'));",
+    "assert.ok(runtime.includes('return rosterSlotSource(a)===rosterSlotSource(b)'));",
+    "assert.ok(!runtime.includes('CẢNH BÁO và bắt buộc AD chọn'));",
     "console.log('Stable roster form-family regression checks passed');"
-  ].join("\n")+"\n";write("tests/roster-stable-family.test.cjs",testText);
+  ].join("\\n")+"\\n";write("tests/roster-stable-family.test.cjs",testText);
   const pages=[
     "name: Deploy TEST GitHub Pages",
     "on:",
