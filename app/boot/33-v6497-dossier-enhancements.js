@@ -1,8 +1,8 @@
-/* E-REPORT SAGS V6.4.97 · DOSSIER NOTIFICATIONS + UPPERCASE FORMS
+/* E-REPORT SAGS V6.4.99 · DOSSIER NOTIFICATIONS + UPPERCASE FORMS
    Event-driven only: no polling and no DOM-wide MutationObserver. */
 (function(root){
 'use strict';
-const BUILD='V6.4.97-20261005-DOSSIER-NOTIFY-UPPER-01';
+const BUILD='V6.4.99-20261005-PERFORMANCE-01';
 if(root.__SAGS_V6497_DOSSIER_ENH__===BUILD)return;
 root.__SAGS_V6497_DOSSIER_ENH__=BUILD;
 
