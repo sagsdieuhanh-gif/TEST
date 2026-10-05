@@ -55,7 +55,7 @@ async function ensureMailbox(d){
       const next=compact(snap?.val?.()||{},owner,day),changed=JSON.stringify(next)!==JSON.stringify(live.items);
       live.items=next;live.loaded=true;live.local=false;if(changed)persistLocal();
       if(live.resolve){live.resolve(next);live.resolve=null;live.reject=null;live.promise=null}
-      if(changed){root.sagsV477InvalidateQueueStatus?.();repaintSoon()}
+      if(changed){root.sagsV477InvalidateQueueStatus?.();repaintSoon();try{root.dispatchEvent(new CustomEvent('sags:personal-roster-updated',{detail:{opDate:day,user:owner}}))}catch(_){}}
     };
     live.handler=handler;ref.on('value',handler,e=>{
       if(live.user!==owner||live.date!==day)return;
