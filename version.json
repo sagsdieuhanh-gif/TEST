@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.91",
-  "displayVersion": "V6.4.91",
-  "label": "V6.4.91 - MY FLIGHT THEO GIAO DIỆN ĐH",
-  "build": "V6.4.91-20261005-MYFLIGHT-DH-UNIFIED-01",
-  "releasedAt": "2026-10-05T12:30:00Z",
-  "type": "ui-consistency-fix",
-  "base": "V6.4.90-20261005-MYFLIGHT-UNIFIED-01",
+  "version": "V6.4.92",
+  "displayVersion": "V6.4.92",
+  "label": "V6.4.92 - AVIATION OPERATIONS LUXURY UI",
+  "build": "V6.4.92-20261005-AVIATION-LUXURY-01",
+  "releasedAt": "2026-10-05T13:12:00Z",
+  "type": "ui-redesign",
+  "base": "V6.4.91-20261005-MYFLIGHT-DH-UNIFIED-01",
   "updatePolicy": "required",
-  "notes": "Sửa triệt để chênh lệch MY FLIGHT giữa ĐH, KH/Cargo và AD: dùng cùng header, bộ lọc, tab trạng thái, card chuyến và nút hồ sơ theo mẫu ĐH; giữ nguyên nguồn dữ liệu/quyền từng vai trò. Ngăn module Kho hàng chiếm lại route MY FLIGHT và bỏ dòng mô tả kỹ thuật trạng thái trên card ĐH.",
-  "message": "V6.4.91: KH và AD dùng giao diện MY FLIGHT theo mẫu ĐH."
+  "notes": "Áp dụng bộ UI/UX E-REPORT SAGS theo phong cách Modern Aviation Operations / Dark Luxury trực tiếp vào TEST. Desktop dùng console tối chuyên nghiệp với sidebar cố định, home và MY FLIGHT đồng nhất; mobile dùng bố cục riêng cho thao tác một tay, menu sau đăng nhập và MY FLIGHT full-screen compact. Giữ nguyên nghiệp vụ, quyền, dữ liệu roster, biểu mẫu và bề mặt giấy in.",
+  "message": "V6.4.92: triển khai giao diện dark aviation premium cho desktop và mobile."
 }
