@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.108",
-  "displayVersion": "V6.4.108",
-  "label": "V6.4.108 - TRINITY LOCAL LOGO + CI FIX",
-  "build": "V6.4.108-20261006-TRINITY-LOCAL-LOGO-CI-01",
-  "releasedAt": "2026-10-06T02:44:00Z",
-  "type": "airline-identity-ci-fix",
-  "base": "V6.4.107-20261006-TRINITY-NOTEBOOK-PERF-01",
+  "version": "V2.0",
+  "displayVersion": "V2.0",
+  "label": "V2.0 - QUICK ENTRY + FLIGHT DOSSIER + 3-LAYER DRAFT",
+  "build": "V2.0-20261006-QUICK-DOSSIER-DRAFT3-01",
+  "releasedAt": "2026-10-06T03:00:00Z",
+  "type": "major-stability-workflow-performance",
+  "base": "V6.4.108-20261006-TRINITY-LOCAL-LOGO-CI-01",
   "updatePolicy": "required",
-  "notes": "Giữ toàn bộ thay đổi V6.4.107. Chuyển biểu tượng Trinity Airways từ data-URI sang asset SVG nội bộ assets/airlines/TW.svg để tuân thủ hợp đồng local-logo của dự án, không phụ thuộc CDN, cho phép service worker kiểm tra checksum và cache cùng app shell. Mã hãng TW và nghiệp vụ giữ nguyên; Sổ tay hãng tiếp tục dùng cùng nguồn nhận diện với màn hình chính.",
-  "message": "V6.4.108: Trinity Airways dùng SVG nội bộ, giữ logo Sổ tay hãng và tối ưu polling."
+  "notes": "Major release V2.0. TÙY CHỈNH NHẬP NHANH chuyển thành accordion theo từng nhóm: bấm nhóm để xổ đầy đủ toàn bộ 1–N lựa chọn, không cắt ở 2 dòng; modal cuộn toàn cục trên mobile/PC. MY FLIGHT và Hồ sơ chuyến hiển thị ngay biểu mẫu của tất cả đơn vị cùng người được phân công trên chuyến, trong khi chỉ đọc trạng thái chi tiết của nhiệm vụ thuộc tài khoản đang đăng nhập để giữ riêng tư và tốc độ. Nháp nghiệp vụ có 3 lớp: localStorage tức thời, IndexedDB tức thời và backup RTDB theo assignment khi online; đồng bộ theo timestamp để không ghi đè bản mới bằng bản cũ và hỗ trợ phục hồi trên thiết bị khác. Quick Time cũng đi vào pipeline nháp trước khi bấm lưu. Giữ Trinity Airways/TW và toàn bộ tối ưu hiệu năng hiện có; cloud draft chạy theo sự kiện/debounce, không thêm polling nhanh.",
+  "message": "V2.0: nhập nhanh xổ đủ lựa chọn, hồ sơ chuyến thấy đủ biểu mẫu đơn vị, nháp 3 lớp có phục hồi đa thiết bị."
 }

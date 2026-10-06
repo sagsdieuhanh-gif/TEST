@@ -469,19 +469,39 @@ function taskPills(g,date){return visibleFormTasks(g).map(({item:x,st,done})=>{
   if(done)return `<article class="v1199DossierTask"><b>${esc(departmentLabel(x))}</b><span class="v1199TaskActions"><button type="button" class="v1199TaskBtn done" data-task-aid="${esc(aid)}" data-task-fid="${esc(fid)}" data-task-date="${esc(d)}" data-task-completed="1" aria-label="${esc('Mở lại')} FSAGS ${esc(label)}">↻ MỞ LẠI ${esc(label)}</button><button type="button" class="v1199PdfBtn" data-pdf-aid="${esc(aid)}" data-pdf-fid="${esc(fid)}" data-pdf-date="${esc(d)}" aria-label="${esc('Xuất PDF')} FSAGS ${esc(label)}">📄 XUẤT PDF</button></span></article>`;
   return `<article class="v1199DossierTask"><b>${esc(departmentLabel(x))}</b><button type="button" class="v1199TaskBtn" data-task-aid="${esc(aid)}" data-task-fid="${esc(fid)}" data-task-date="${esc(d)}" data-task-completed="0" aria-label="${esc(verb)} FSAGS ${esc(label)}">➜ ${esc(verb)} ${esc(label)}</button></article>`;
 }).join('')}
-function departmentLabel(item){const code=String(item.formGroup||'').toLowerCase();if(/loading208/.test(code))return '📦 Kho hàng';if(/ramp|423|42[._]/.test(code))return '✈ CO · Điều hành';if(/54|94|final|load|balance/.test(code))return '⚖ Cân bằng trọng tải';if(/passenger|pax|customer/.test(code))return '👥 Phục vụ khách';return '📄 '+formLabel(item);}
+function departmentLabel(item){const code=String(item?.formGroup||'').toLowerCase(),src=U(item?.sourceColumn||item?.roleKey||'');if(/loading208|cargo|warehouse|kho/.test(code)||src.includes('CARGO'))return '📦 KH';if(src.includes('PAX')||/fsags09|passenger|pax|customer/.test(code))return '👥 PVHK';if(src.includes('GRND_LS')||/fsags54|fsags94|clc|final|loadcontrol|balance/.test(code))return '⚖ CBTT';if(src.includes('GRND_COR')||src.includes('GRND_LD')||/ramp|fsags423|fsags421|fsags551|42[._]|55[._]/.test(code))return '✈ ĐH';return '📄 '+formLabel(item);}
+function assignmentPerson(item){return S(item?.targetName||item?.employeeName||item?.displayName||item?.userName||item?.user||item?.targetUser||'').trim()}
+function flightOverviewForms(g){
+  const source=(Array.isArray(g?.flightAssignments)&&g.flightAssignments.length?g.flightAssignments:g?.items)||[],own=new Map(visibleFormTasks(g).map(x=>[canonicalForm(x.item),x])),buckets=new Map();
+  for(const item of source){
+    if(!item||item.active===false)continue;
+    try{if(root.sagsAirlineFormPolicy?.allowed?.(item,item.formGroup)===false)continue}catch(_){}
+    const form=canonicalForm(item)||U(item.formGroup),key=form||S(item.assignmentId);
+    if(!buckets.has(key))buckets.set(key,{form,item,owners:new Set()});
+    const who=assignmentPerson(item);if(who)buckets.get(key).owners.add(who);
+  }
+  return [...buckets.values()].map(row=>{
+    const mine=own.get(row.form),label=formLabel(row.item),exact=['FSAGS54','FSAGS94'].includes(row.form);
+    return {item:row.item,label:exact?label:'FSAGS '+label,owners:[...row.owners],done:!!mine?.done,working:!!mine&&itemWorking(mine.item,mine.st),mine:!!mine};
+  }).sort((a,b)=>(root.sagsAirlineFormPolicy?.order(a.item.formGroup)||999)-(root.sagsAirlineFormPolicy?.order(b.item.formGroup)||999)||a.label.localeCompare(b.label,'vi'));
+}
+function flightOverviewHtml(g){
+  return flightOverviewForms(g).map(x=>'<div class="v1199FormTile '+(x.done?'done':x.working?'working':'')+'"><b>'+esc(departmentLabel(x.item))+'</b><span>'+esc(x.label)+'</span><small class="v1199FormOwner">👤 '+esc(x.owners.length?x.owners.join(' + '):'Chưa phân công')+'</small><small>'+(x.done?'Đã hoàn thành nhập':x.working?'Đang nhập':x.mine?'Chờ nhận':'Đã phân công')+'</small></div>').join('');
+}
 function cardHtml(g,date){
  const x=g.primary,route=S(x?.route),ac=S(x?.acReg)||'—',sta=S(x?.sta)||'—',std=S(x?.std)||'—';
- const forms=visibleFormTasks(g).map(({item,st,done})=>{const label=formLabel(item),exact=['FSAGS54','FSAGS94'].includes(canonicalForm(item));return '<div class="v1199FormTile '+(done?'done':'')+'"><b>'+esc(departmentLabel(item))+'</b><span>'+esc(exact?label:'FSAGS '+label)+'</span><small>'+(done?'Đã hoàn thành nhập':itemWorking(item,st)?'Đang nhập':'Chờ nhận')+'</small></div>'}).join('');
+ const forms=flightOverviewHtml(g);
  const t=closeoutTime(g),closedNote=g.flightClosed?'<div class="v1199FlightState">✓ CHUYẾN ĐÃ HOÀN TẤT'+(t?' · '+new Date(t).toLocaleString('vi-VN',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}):'')+'</div>':'';
  const closeBtn=g.flightClosed?'<button type="button" class="v1199Action reopenFlight v1199FlightCloseBtn" data-flight-fkey="'+esc(g.key)+'" data-flight-date="'+esc(date)+'" data-flight-close="0">↻ MỞ LẠI CHUYẾN</button>':'<button type="button" class="v1199Action finish v1199FlightCloseBtn" data-flight-fkey="'+esc(g.key)+'" data-flight-date="'+esc(date)+'" data-flight-close="1">✓ KẾT THÚC CHUYẾN</button>';
  const docCount=Array.isArray(g.dossierDocs)?g.dossierDocs.length:0,docSummary=dossierDocsHtml(g,date),policySummary=policyAuxHtml(g),dossierText='📁 HỒ SƠ CHUYẾN'+(docCount?' · '+docCount+' TÀI LIỆU':'');
  return '<article class="v1199Card" data-fkey="'+esc(g.key)+'"><div class="v1199Title">'+esc(flightLabel(x))+'</div><div class="v1199Meta">'+esc(route)+(route?' · ':'')+'A/C '+esc(ac)+' · STA '+esc(sta)+' · STD '+esc(std)+'</div>'+closedNote+'<div class="v1199Tasks">'+forms+'</div>'+policySummary+docSummary+'<div class="v1199FlightActions"><button type="button" class="v1199Action v1199DossierBtn" data-dossier-fid="'+esc(x.flightId)+'" data-dossier-date="'+esc(date)+'">'+dossierText+'</button>'+closeBtn+'</div></article>';
 }
 async function personalGroups(date,fid=''){
- await root.sagsAirlineFormPolicy?.ready();const owner=me(),man=await readManifest(date),all=Object.values(man?.items||{}).filter(x=>x&&x.active!==false&&norm(x.user||x.targetUser)===owner&&(!fid||S(x.flightId)===S(fid))),dd=dedupeItems(date,all),states=await Promise.all(dd.items.map(x=>readState(x.assignmentId)));
+ await root.sagsAirlineFormPolicy?.ready();const owner=me(),man=await readManifest(date),manifestItems=Object.values(man?.items||{}).filter(x=>x&&x.active!==false),all=manifestItems.filter(x=>norm(x.user||x.targetUser)===owner&&(!fid||S(x.flightId)===S(fid))),dd=dedupeItems(date,all),states=await Promise.all(dd.items.map(x=>readState(x.assignmentId)));
  if(me()!==owner)throw new Error('Đã đổi tài khoản; mở lại My Flight.');
- const groups=groupTasks(dd.items.map((item,i)=>({item,st:states[i]})).filter(x=>itemCompleted(x.item,x.st)||root.sagsAirlineFormPolicy?.allowed(x.item,x.item.formGroup)!==false));await attachDossierDocs(date,groups);return {dd,groups};
+ const groups=groupTasks(dd.items.map((item,i)=>({item,st:states[i]})).filter(x=>itemCompleted(x.item,x.st)||root.sagsAirlineFormPolicy?.allowed(x.item,x.item.formGroup)!==false));
+ for(const g of groups){const fid0=S(g?.primary?.flightId);g.flightAssignments=manifestItems.filter(x=>fid0?S(x.flightId)===fid0:flightKey(x)===g.key)}
+ await attachDossierDocs(date,groups);return {dd,groups};
 }
 function bindDossierTasks(host){
  host.querySelectorAll('.v1199TaskBtn').forEach(btn=>btn.onclick=()=>openTask(btn.dataset.taskAid,btn.dataset.taskFid,btn.dataset.taskCompleted==='1',btn.dataset.taskDate,true,btn));
@@ -490,7 +510,7 @@ function bindDossierTasks(host){
 root.sagsPersonalFlightTasks={async renderInto(host,date,fid){
  installStyle();const owner=me();if(!owner){host.textContent='Cần đăng nhập để nhận công việc.';return;}
  const {groups}=await personalGroups(date,fid);if(!host.isConnected||me()!==owner)return;
- host.innerHTML=groups.length?groups.map(g=>'<div class="v1199OwnerNote">'+esc(owner)+' · '+esc(flightLabel(g.primary))+'</div><div class="v1199Tasks">'+taskPills(g,date)+'</div>').join(''):'<p>Không có nhiệm vụ roster được phân cho bạn trên chuyến này. Bạn vẫn có thể xem các tài liệu đã gửi theo quyền truy cập chuyến.</p>';bindDossierTasks(host);
+ host.innerHTML=groups.length?groups.map(g=>'<div class="v1199OwnerNote">'+esc(owner)+' · '+esc(flightLabel(g.primary))+'</div><div class="v1199DossierOverview"><div class="v1199DossierOverviewTitle">BIỂU MẪU CÁC ĐƠN VỊ TRÊN CHUYẾN</div><div class="v1199Tasks">'+flightOverviewHtml(g)+'</div></div><div class="v1199OwnerNote">THAO TÁC BIỂU MẪU CỦA TÔI</div><div class="v1199Tasks">'+taskPills(g,date)+'</div>').join(''):'<p>Không có nhiệm vụ roster được phân cho bạn trên chuyến này. Bạn vẫn có thể xem các tài liệu đã gửi theo quyền truy cập chuyến.</p>';bindDossierTasks(host);
 }};
 async function renderPersonal(date=opDate()){
   if(allFlightScope()||!me())return;date=syncQueueDate(queueDate(date));const token=++renderToken;installStyle();setHeader(date);const host=document.getElementById('fwcList');if(!host)return;const hadQueue=host.classList.contains('v1199Queue');host.classList.add('v1199Queue');if(!hadQueue&&!host.children.length)host.innerHTML='<div class="v1199Empty">Đang tải công việc được phân…</div>';

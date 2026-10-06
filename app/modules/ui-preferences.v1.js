@@ -404,13 +404,19 @@
       if(!groups.has(name))groups.set(name,[]);
       groups.get(name).push({item,meta});
     }
+    let groupIndex=0;
     for(const [name,entries] of groups){
       const group=document.createElement('section');group.className='sagsQteChoiceGroup';
-      const head=document.createElement('div');head.className='sagsQteChoiceGroupHead';
+      const bodyId='sagsQteChoiceBody_'+(++groupIndex);
+      const toggle=document.createElement('button');toggle.type='button';toggle.className='sagsQteChoiceToggle';
+      toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls',bodyId);
+      const text=document.createElement('span');text.className='sagsQteChoiceToggleText';
       const strong=document.createElement('b');strong.textContent=name;
       const summary=document.createElement('small');summary.dataset.sagsQteSummary='1';
-      head.append(strong,summary);
-      const body=document.createElement('div');body.className='sagsQteChoiceBody';
+      text.append(strong,summary);
+      const chevron=document.createElement('span');chevron.className='sagsQteChoiceChevron';chevron.setAttribute('aria-hidden','true');chevron.textContent='⌄';
+      toggle.append(text,chevron);
+      const body=document.createElement('div');body.className='sagsQteChoiceBody';body.id=bodyId;body.hidden=true;
       for(const entry of entries){
         const lab=document.createElement('label');lab.className='sagsQteChoice';
         const check=document.createElement('input');check.type='checkbox';check.checked=!hidden.has(entry.item.key);check.dataset.key=entry.item.key;
@@ -418,7 +424,14 @@
         check.addEventListener('change',()=>updateQuickGroupSummary(group));
         lab.append(check,span);body.appendChild(lab);
       }
-      group.append(head,body);list.appendChild(group);updateQuickGroupSummary(group);
+      toggle.addEventListener('click',()=>{
+        const open=body.hidden;
+        body.hidden=!open;
+        group.classList.toggle('open',open);
+        toggle.setAttribute('aria-expanded',open?'true':'false');
+        if(open)requestAnimationFrame(()=>{try{group.scrollIntoView({block:'nearest'})}catch(_){}});
+      });
+      group.append(toggle,body);list.appendChild(group);updateQuickGroupSummary(group);
     }
   }
   function openQuickCustomize(){

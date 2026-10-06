@@ -6017,3 +6017,90 @@ html.new-ui-v1 body #fwcModal .fwcFormChip.warn{
   html.new-ui-v1 body #fwcModal .fwcFormChip b{font-size:9.5px!important}
   html.new-ui-v1 body #fwcModal .fwcFormChip small{font-size:7.8px!important}
 }
+
+
+/* ==========================================================================
+   V2.0 · QUICK CUSTOMIZE FULL EXPANSION + PERSONAL FLIGHT FORM RAIL
+   Groups are true accordions; an opened group is never capped at 2 rows.
+   The card owns vertical scrolling so every 1–N choice remains reachable.
+   ========================================================================== */
+html.new-ui-v1 body .sagsQteCustomizeCard{
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  overscroll-behavior:contain!important;
+}
+html.new-ui-v1 body .sagsQteCustomizeOptions{
+  flex:0 0 auto!important;
+  overflow:visible!important;
+  min-height:0!important;
+}
+html.new-ui-v1 body .sagsQteCustomizeOptions .sagsQteCustomizeList,
+html.new-ui-v1 body .sagsQteCustomizeList{
+  flex:0 0 auto!important;
+  overflow:visible!important;
+  max-height:none!important;
+  height:auto!important;
+}
+html.new-ui-v1 body .sagsQteChoiceGroup{
+  overflow:visible!important;
+  height:auto!important;
+  max-height:none!important;
+}
+html.new-ui-v1 body .sagsQteChoiceBody{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-auto-rows:minmax(40px,auto)!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  contain:none!important;
+}
+html.new-ui-v1 body .sagsQteChoiceBody[hidden]{display:none!important}
+html.new-ui-v1 body .sagsQteChoiceToggle{cursor:pointer!important}
+html.new-ui-v1 body .sagsQteChoiceGroup.open .sagsQteChoiceToggle{
+  border-bottom:1px solid var(--ui-border-soft)!important;
+}
+html.new-ui-v1 body #fwcModal .v1199Card .v1199Tasks{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  gap:6px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:1px 1px 4px!important;
+  min-width:0!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior-x:contain!important;
+  scrollbar-width:thin!important;
+}
+html.new-ui-v1 body #fwcModal .v1199Card .v1199FormTile{
+  flex:0 0 auto!important;
+  min-width:128px!important;
+  max-width:188px!important;
+  min-height:62px!important;
+  padding:7px 9px!important;
+  gap:2px!important;
+}
+html.new-ui-v1 body #fwcModal .v1199Card .v1199FormTile :is(b,span,small){
+  width:100%!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+html.new-ui-v1 body #fwcModal .v1199Card .v1199FormOwner{color:#9fc2d4!important}
+html.new-ui-v1 body #sagsFlightDossierModal .v1199DossierOverview{
+  margin:8px 0 12px!important;
+}
+html.new-ui-v1 body #sagsFlightDossierModal .v1199DossierOverviewTitle{
+  margin:0 0 6px!important;color:#7f9fb2!important;font:850 9px/1.2 var(--ops-font)!important;letter-spacing:.08em!important;
+}
+@media(max-width:699px){
+  html.new-ui-v1 body .sagsQteCustomizeCard{
+    max-height:calc(var(--sags-vv-height,100dvh) - 8px)!important;
+  }
+  html.new-ui-v1 body .sagsQteChoiceBody{
+    grid-auto-rows:minmax(42px,auto)!important;
+  }
+  html.new-ui-v1 body #fwcModal .v1199Card .v1199FormTile{
+    min-width:116px!important;max-width:154px!important;min-height:58px!important;
+  }
+}
