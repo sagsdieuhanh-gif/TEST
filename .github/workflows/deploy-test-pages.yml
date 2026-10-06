@@ -32,6 +32,8 @@ jobs:
         run: node tests/performance-v6499.test.cjs
       - name: Verify auto-sign session and owner guards
         run: node tests/auto-sign-context-v64101.test.cjs
+      - name: Verify Vietnamese signature Full name
+        run: node tests/signature-unicode.test.cjs
       - name: Verify carousel identity and logo coverage
         run: node tests/home-carousel-v64101.test.cjs
       - name: Verify supervisor all-flight scope and AD contrast
