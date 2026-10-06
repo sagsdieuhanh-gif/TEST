@@ -1,12 +1,12 @@
 {
   "version": "V2.2",
   "displayVersion": "V2.2",
-  "label": "V2.2 - FULL AUDIT + PERFORMANCE + SETTINGS COMPLETE",
-  "build": "V2.2-20261006-AUDIT-PERF-02",
-  "releasedAt": "2026-10-06T07:05:00Z",
-  "type": "stability-performance",
-  "base": "V2.2-20261006-SEARCH-SETTINGS-01",
+  "label": "V2.2 - SETTINGS FAIL-SAFE HOTFIX",
+  "build": "V2.2-20261006-SETTINGS-FAILSAFE-03",
+  "releasedAt": "2026-10-06T08:12:00Z",
+  "type": "bugfix-ui",
+  "base": "V2.2-20261006-AUDIT-PERF-02",
   "updatePolicy": "required",
-  "notes": "V2.2 audit/perf build 02: sửa đúng live runtime-1 để mục Cài đặt hoạt động thật; hoàn thiện Cài đặt với hồ sơ/avatar, giao diện System-Light-Dark, cỡ chữ, compact mobile, âm thanh/rung, nhóm thông báo và xin quyền thông báo hệ thống, đồng bộ localStorage-IndexedDB-RTDB, trạng thái thiết bị/PWA/offline, tự khóa, đổi mật khẩu, kiểm tra cập nhật, xóa cache an toàn, thông tin phiên bản, chẩn đoán AD và khôi phục mặc định. Bỏ polling 1.5 giây của Settings, thu observer về menu; thu observer tìm chuyến về fwcBody. Giữ nguyên nghiệp vụ và Cloud Draft 3 lớp.",
-  "message": "V2.2 audit/perf: live Settings fixed, Settings completed, global polling/observers reduced."
+  "notes": "V2.2 build 03 sửa fail-safe cho nút Cài đặt trên TEST: runtime live dùng openSettingsSafe, tự nạp lại settings.v1.js nếu module chưa sẵn sàng, kiểm tra panel sau click và cưỡng chế hiển thị/z-index/pointer-events khi cần. Listener dự phòng không còn chặn onclick native. Giữ nguyên toàn bộ chức năng Cài đặt, tìm chuyến, Cloud Draft 3 lớp và tối ưu hiệu năng build 02.",
+  "message": "V2.2 build 03: Settings click fail-safe and stale-runtime recovery."
 }
