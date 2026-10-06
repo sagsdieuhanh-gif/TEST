@@ -2,11 +2,11 @@
   "version": "V2.1",
   "displayVersion": "V2.1",
   "label": "V2.1 - SETTINGS CENTER + PERSONAL PROFILE + DRAFT STATUS",
-  "build": "V2.1-20261006-SETTINGS-CENTER-03",
+  "build": "V2.1-20261006-SETTINGS-CENTER-04",
   "releasedAt": "2026-10-06T03:55:00Z",
   "type": "feature-ui-stability",
   "base": "V2.0-20261006-QUICK-DOSSIER-DRAFT3-01",
   "updatePolicy": "required",
-  "notes": "V2.1 build 03 sửa lỗi treo/quay vòng khi mở Cài đặt: loại bỏ vòng lặp MutationObserver → applyProfile → DOM mutation; observer mới chỉ tái gắn nút Cài đặt theo requestAnimationFrame và cập nhật avatar theo kiểu idempotent. Giữ nguyên toàn bộ Settings Center, Cloud Draft 3 lớp, theme, performance guard và pinned-cache.",
-  "message": "V2.1 build 03: fix Settings spinner/mutation loop."
+  "notes": "V2.1 build 04 sửa chức năng tìm chuyến của AD: tìm kiếm realtime trên toàn bộ chuyến trong ngày, không bị giới hạn bởi tab ĐANG LÀM/ĐÃ HOÀN TẤT; chuẩn hóa số hiệu bỏ khoảng trắng/ký tự phân cách, hiển thị thông báo khi không có kết quả và tự cuộn tới card khi chỉ còn một chuyến phù hợp. Giữ nguyên fix Settings spinner build 03, Cloud Draft 3 lớp và performance guard.",
+  "message": "V2.1 build 04: fix AD realtime flight search across status tabs."
 }
