@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V2.0",
-  "build": "V2.0-20261006-QUICK-DOSSIER-DRAFT3-01",
-  "strategy": "atomic release + compact one-row form chips + stable MY FLIGHT shell/list diff + personal queue fast path + realtime mailbox replay guard + debounced document observer",
+  "version": "V2.1",
+  "build": "V2.1-20261006-SETTINGS-CENTER-01",
+  "strategy": "atomic TEST release + V2.0 three-layer draft + Settings Center + personal display profile + adaptive theme",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -74,8 +74,8 @@
       "bytes": 10344
     },
     "./app/modules/ui-preferences.v1.js": {
-      "sha256": "cee813ec0376c31fa79abc1b86a045b0297b29aaf1761b04ae01666246a21eb4",
-      "bytes": 31663
+      "sha256": "27a32b2c527ce2d69d8c910805c5b05e20f40c909f8d86c6f8b658e45cbab5e1",
+      "bytes": 31673
     },
     "./app/styles/app.bundle.css": {
       "sha256": "013be6bee9f38bf79864dcab0658f438966d77172692446f698c042539601c2e",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "b88b2a08cb823f1c306a0ce9fefd55568ddbd37f9fae6ece00bd533a8a0e21a8",
-      "bytes": 79798
+      "sha256": "9ca3ae46613f0fa8f014c2f5a725547c622decc700d7f77916d5e80b7ea77e2b",
+      "bytes": 79651
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "ff5b7831a4021b8cd5e94ba0a2d2cf489d4b008394acd7a01342a9fa1457594d",
-      "bytes": 21170
+      "sha256": "681df06fbf024ef82a365d5f47c3cb302fe3c76aab4708d7c077115d525b3935",
+      "bytes": 21217
     },
     "./version.json": {
-      "sha256": "8b11b7342f16b7994c3576b7635b74004e1c260418117e9be315a8db6bfce8c7",
-      "bytes": 1517
+      "sha256": "22fd2e2c12693dcf4e90bac5dee6a19f6e055754852b3876f82cf53d661ec533",
+      "bytes": 1118
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -744,6 +744,14 @@
     "./app/modules/cloud-draft-sync.v2.js": {
       "sha256": "91197f24965ca0eadb2f4fd78bf6dee15f5fd3b3c1e3a68596a7cdf4d8fe122d",
       "bytes": 10386
+    },
+    "./app/modules/settings.v1.js": {
+      "sha256": "ba5d06d75365434435a2d999174f7648e060047a8e6e69a46503af6483bd3965",
+      "bytes": 30289
+    },
+    "./app/styles/settings.v1.css": {
+      "sha256": "049c7dac8c9537664ec0bdb211f305a9f7ae039234c7919ffa31312a113150e2",
+      "bytes": 10231
     }
   }
 }
