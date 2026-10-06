@@ -2,6 +2,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
 const boot=fs.readFileSync(__dirname+'/../app/boot/05-legacy.js','utf8');
 const rt=fs.readFileSync(__dirname+'/../app/generated/runtime-4.js','utf8');
 const html=fs.readFileSync(__dirname+'/../index.html','utf8');
+const ver=JSON.parse(fs.readFileSync(__dirname+'/../version.json','utf8'));
 const sample='Nguyễn Trung Kiên';
 assert.equal(sample.normalize('NFC'),sample,'Vietnamese fixture must be NFC');
 assert.match(boot,/signatureText=signatureNameField\?String\(val\?\?""\)\.normalize\("NFC"\)/);
@@ -12,5 +13,5 @@ assert.match(rt,/unicodeNamePad=signatureNameFieldV6119\?Math\.max\(3,st\.fontSi
 assert.match(rt,/const rawText=String\(v\)\.normalize\("NFC"\)/);
 assert.match(rt,/if\(strict421&&!signatureNameFieldV6119\)/);
 assert.doesNotMatch(boot,/signatureText[^;]*normalize\("NFD"\)/);
-assert.ok(html.includes('V2.5-20261006-SIGNATURE-UNICODE-11'));
+assert.ok(html.includes(ver.build),'index must pin current release build');
 console.log('Vietnamese signature Full name Unicode/PDF regression passed:',sample);
