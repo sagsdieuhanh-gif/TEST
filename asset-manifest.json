@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.5",
-  "build": "V2.5-20261006-FSAGS208-OCR-GEMINI-03",
-  "strategy": "TEST V2.5 · standalone GitHub Pages · FSAGS208 OCR-first/Gemini fallback · event-driven MyFlight",
+  "build": "V2.5-20261006-FSAGS208-OCR-GEMINI-04",
+  "strategy": "TEST V2.5 · forced stale redirect cache reset · standalone GitHub Pages · OCR/Gemini",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "86a07a9093a5ab90330b43f06925c1e09bf0552a143e2c9e2505da7dc35e9dff",
-      "bytes": 79935
+      "sha256": "1b35e755c1fb07c84b525206a33e28f57328736e6b6aac41fa42755f8078c303",
+      "bytes": 80255
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -270,16 +270,16 @@
       "bytes": 465580
     },
     "./repair.html": {
-      "sha256": "2c02b2a8ddcd19d70d2127130a4e552b79e5e518c79fce698318fd8df789447f",
-      "bytes": 6861
+      "sha256": "35766e636714a3c66a6341646f79b43f90d1e8cf92b1bf3a14bdaa83fe6a1dd8",
+      "bytes": 6935
     },
     "./service-worker.js": {
-      "sha256": "e087aae1fb38150ec2e2377b2f1bd6f76dbeca295ff0f807b06e0a1fc9c6b8de",
+      "sha256": "b4b6c0b1b2c8f362b794345075a174227c2dbbb759d0b541e11f8d488f47a7d4",
       "bytes": 21242
     },
     "./version.json": {
-      "sha256": "301d2b4718db7f115439445ae1b8b39b364fb80961a18984c0f1c73aa4f515a6",
-      "bytes": 1092
+      "sha256": "a9fbc2a0fbf8693692fee5efc0694da7f9291c68c0c90d6b7893a2faf8a1b9ba",
+      "bytes": 1288
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
