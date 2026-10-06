@@ -2,11 +2,11 @@
   "version": "V2.1",
   "displayVersion": "V2.1",
   "label": "V2.1 - SETTINGS CENTER + PERSONAL PROFILE + DRAFT STATUS",
-  "build": "V2.1-20261006-SETTINGS-CENTER-02",
+  "build": "V2.1-20261006-SETTINGS-CENTER-03",
   "releasedAt": "2026-10-06T03:55:00Z",
   "type": "feature-ui-stability",
   "base": "V2.0-20261006-QUICK-DOSSIER-DRAFT3-01",
   "updatePolicy": "required",
-  "notes": "TEST V2.1 build 02 bổ sung Settings Center đầy đủ trên nền V2.0: tên hiển thị riêng với tên nghiệp vụ, avatar cá nhân có nén ảnh, Theo hệ thống/Sáng/Tối, cỡ chữ, chế độ gọn mobile, âm thanh, rung, nhóm thông báo, dữ liệu & đồng bộ, thiết bị/offline, tự khóa, đổi mật khẩu, kiểm tra cập nhật, xóa cache giao diện an toàn, thông tin phiên bản và chẩn đoán dành cho AD. Mục Dữ liệu & đồng bộ đọc trực tiếp Cloud Draft V2 và đồng bộ localStorage → IndexedDB → RTDB. Đồng thời sửa ui-preferences không còn ép Dark mode định kỳ. CSS Cài đặt được gộp vào new-ui-v1.css để giữ nguyên giới hạn request stylesheet của TEST.",
-  "message": "V2.1 TEST: Settings Center đầy đủ + avatar/tên hiển thị + trạng thái Cloud Draft 3 lớp thật."
+  "notes": "V2.1 build 03 sửa lỗi treo/quay vòng khi mở Cài đặt: loại bỏ vòng lặp MutationObserver → applyProfile → DOM mutation; observer mới chỉ tái gắn nút Cài đặt theo requestAnimationFrame và cập nhật avatar theo kiểu idempotent. Giữ nguyên toàn bộ Settings Center, Cloud Draft 3 lớp, theme, performance guard và pinned-cache.",
+  "message": "V2.1 build 03: fix Settings spinner/mutation loop."
 }
