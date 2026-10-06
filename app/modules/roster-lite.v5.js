@@ -120,21 +120,38 @@ function normalizeFlightDossierCards(){
   card.querySelectorAll('.v350CardDossierBtn').forEach(x=>x.remove());
  }
 }
+function normalizeFlightSearch(v){return String(v||'').trim().toUpperCase().replace(/[^A-Z0-9]/g,'')}
 function filterFlightCards(){
-  const input=document.getElementById('sagsFlightSearch'),list=document.getElementById('fwcList');if(!input||!list)return;
-  const q=String(input.value||'').trim().toUpperCase().replace(/\s+/g,'');
+  const input=document.getElementById('sagsFlightSearch'),list=document.getElementById('fwcList');if(!input||!list)return 0;
+  const q=normalizeFlightSearch(input.value);let visible=0;
   for(const card of list.querySelectorAll('.fwcFlight,.v1199Card')){
     const title=card.querySelector('.fwcFlightTitle,.v1199Title');
-    const hay=String(title?.textContent||card.textContent||'').toUpperCase().replace(/\s+/g,'');
-    card.hidden=!!q&&!hay.includes(q);
+    const hay=normalizeFlightSearch(title?.textContent||card.textContent||'');
+    card.hidden=!!q&&!hay.includes(q);if(!card.hidden)visible++;
+  }
+  return visible;
+}
+function applyFlightSearch(){
+  const input=document.getElementById('sagsFlightSearch'),list=document.getElementById('fwcList');if(!input||!list)return;
+  const q=normalizeFlightSearch(input.value),canonical=list.classList.contains('v478CanonicalQueue');
+  if(canonical){
+    const tabs=list.querySelector(':scope > .v478RoleTabs'),owner=list.querySelector(':scope > .v478RoleOwner');
+    if(tabs)tabs.hidden=!!q;if(owner)owner.hidden=!!q;
+    if(!q){v478ApplyRoleFilter();return}
+  }
+  const visible=filterFlightCards();
+  if(canonical){
+    const empty=list.querySelector('.v478RoleEmpty');
+    if(empty){empty.hidden=visible>0;empty.textContent='Không tìm thấy chuyến phù hợp.'}
   }
 }
-document.addEventListener('input',e=>{if(e.target?.id==='sagsFlightSearch'){const list=document.getElementById('fwcList');if(list?.classList.contains('v478CanonicalQueue'))v478ApplyRoleFilter();else filterFlightCards()}},true);
+document.addEventListener('input',e=>{if(e.target?.id==='sagsFlightSearch')applyFlightSearch()},true);
+document.addEventListener('search',e=>{if(e.target?.id==='sagsFlightSearch')applyFlightSearch()},true);
 let flightFilterFrame=0;
 new MutationObserver(records=>{
   if(!records.some(r=>r.type==='childList'&&r.target?.closest?.('#fwcList')))return;
   if(flightFilterFrame)return;
-  flightFilterFrame=requestAnimationFrame(()=>{flightFilterFrame=0;normalizeFlightDossierCards();const list=document.getElementById('fwcList');if(list?.classList.contains('v478CanonicalQueue'))v478ApplyRoleFilter();else filterFlightCards()});
+  flightFilterFrame=requestAnimationFrame(()=>{flightFilterFrame=0;normalizeFlightDossierCards();applyFlightSearch()});
 }).observe(document.body,{childList:true,subtree:true});
 function drawShell(d){
   const modal=ensureModal();modal.hidden=false;modal.style.removeProperty('display');modal.classList.add('show');root.sagsOverlayLayout?.refresh();
@@ -183,31 +200,21 @@ function v478CardState(card){
 }
 function v478ApplyRoleFilter(){
   const list=document.getElementById('fwcList');if(!list?.classList.contains('v478CanonicalQueue'))return;
-  const q=String(document.getElementById('sagsFlightSearch')?.value||'').trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
   let pending=0,completed=0;
   const cards=Array.from(list.querySelectorAll('.v478CanonicalRoleCard'));
   for(const card of cards){
     const state=card.dataset.v478State||v478CardState(card);card.dataset.v478State=state;
     state==='completed'?completed++:pending++;
-    const title=card.querySelector('.fwcFlightTitle,.v1199Title');
-    const hay=String(title?.textContent||card.textContent||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
-    const tabOk=q?true:(v478RoleTab==='completed'?state==='completed':state!=='completed');
-    card.hidden=!tabOk||!!q&&!hay.includes(q);
+    card.hidden=v478RoleTab==='completed'?state!=='completed':state==='completed';
   }
   list.querySelectorAll('[data-v478-tab]').forEach(btn=>{
-    const active=!q&&btn.dataset.v478Tab===v478RoleTab;btn.classList.toggle('active',active);
+    const active=btn.dataset.v478Tab===v478RoleTab;btn.classList.toggle('active',active);
     btn.setAttribute('aria-pressed',active?'true':'false');
     const count=btn.querySelector('.v1199Count');if(count)count.textContent=btn.dataset.v478Tab==='completed'?completed:pending;
   });
-  const visible=cards.filter(card=>!card.hidden);
   const empty=list.querySelector('.v478RoleEmpty');
-  if(empty){empty.hidden=visible.length>0;if(!empty.hidden)empty.textContent=q?'Không tìm thấy chuyến phù hợp.':'Không có chuyến trong trạng thái này.'}
-  if(q.length>=2&&visible.length===1){
-    const one=visible[0];
-    requestAnimationFrame(()=>{try{one.scrollIntoView({block:'nearest',behavior:'auto'})}catch(_){}});
-  }
-}
-function v478EnsureTabs(list){
+  if(empty){empty.hidden=cards.some(card=>!card.hidden);if(!empty.hidden)empty.textContent='Không có chuyến trong trạng thái này.'}
+}function v478EnsureTabs(list){
   let tabs=list.querySelector(':scope > .v478RoleTabs');
   if(!tabs){
     tabs=document.createElement('div');tabs.className='v1199Tabs v478RoleTabs';
@@ -261,7 +268,7 @@ function canonicalizeRoleView(d){
   if(!empty){empty=list.querySelector(':scope > .fwcEmpty');if(empty)empty.classList.add('v478RoleEmpty');else{empty=document.createElement('div');empty.className='v1199Empty v478RoleEmpty';list.appendChild(empty)}}
   if(!empty.textContent)empty.textContent='Không có chuyến trong trạng thái này.';
   const note=v478EnsureTabs(list);note.textContent=`${me()||role()} · ${existingDate} · ${cards.length} chuyến`;
-  v478ApplyRoleFilter();root.sagsOverlayLayout?.refresh();
+  applyFlightSearch();root.sagsOverlayLayout?.refresh();
   return true;
 }
 function scheduleCanonicalRoleView(d){[0,120,450,900,1900].forEach(ms=>setTimeout(()=>{if(visible())canonicalizeRoleView(d)},ms))}
