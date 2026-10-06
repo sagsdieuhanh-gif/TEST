@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.5",
-  "build": "V2.5-20261006-QT-FIELD-VISIBILITY-16",
-  "strategy": "TEST V2.5 · final aviation-owner Quick Time contrast + complete rounded mobile controls",
+  "build": "V2.5-20261006-FORM-LOAD-PERF-17",
+  "strategy": "TEST V2.5 · receive/open form latency reduction + Firebase read consolidation",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "94254eb70a19a9819aa46a962b68cf16829a448e77a6af91cb7e1dd1c453b232",
-      "bytes": 80395
+      "sha256": "d1efcc7ccf5e5c276a311ceca61cce035331da8b841df216833e1e8511536f9a",
+      "bytes": 80050
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6935
     },
     "./service-worker.js": {
-      "sha256": "0313883907106874a321b5de324a1b2880deaf17d3c8d3de3401856dd00a1109",
-      "bytes": 21357
+      "sha256": "e2e339f5680ef3713597fcd48f360f58401ec78bf4d42f2080bac9ae09182a1c",
+      "bytes": 21342
     },
     "./version.json": {
-      "sha256": "70384cbe951c3e142309e33f89fddd422f3a3c3971b1c07a4153664d8d84ea1e",
-      "bytes": 6166
+      "sha256": "d44233a83a27fbd239cac3c74e93952011af865e123e6f76f100dbde7bbde6cd",
+      "bytes": 6699
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -526,8 +526,8 @@
       "bytes": 84928
     },
     "./app/generated/core-flight.js": {
-      "sha256": "3a3f1f84d9714a0f22236c5bf1d7f8ba7c223084eb7ab984300e27e0b709459e",
-      "bytes": 218081
+      "sha256": "5935e85101531866e49ca6ee68bb534f82bc4e31da63438ea9353d9b2b5f68d3",
+      "bytes": 218127
     },
     "./app/generated/core-performance.js": {
       "sha256": "005c80dc9ce412f9e1c8b74d24b48e68b27ddaa05d5de203cb2029e7f93364d8",
@@ -546,12 +546,12 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "fa925f5b840a352176fb46de4ea31765fe15d3c54f4d0218c9d63cd718624bfe",
-      "bytes": 114848
+      "sha256": "2891c1f2fefdae12515716169ea02f4b2e7770de09852a8762c91647c0072d05",
+      "bytes": 115016
     },
     "./app/generated/runtime-2.js": {
-      "sha256": "36b9da65cea02812739d5291cafeb90e9e7060368cd9fdc10cd59c4026d74a2d",
-      "bytes": 139943
+      "sha256": "1fa27f6f7edc2cf0004fd7fb6bc22c3b2c433e27a0c27faa44ad88b6d00206a4",
+      "bytes": 140502
     },
     "./app/generated/runtime-3.js": {
       "sha256": "27af2b0c87d29d642691d6a6aa853228c1f4ff6fdb8c4b80903e975e6a581797",
@@ -746,8 +746,8 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "9a3fb85328db92038596a65273c64c4f881c8634d8fe747b7a9559888a855bcb",
-      "bytes": 38240
+      "sha256": "2397b9af5c7a30a403f365a2a5d731a1374f571a63ea658ef57c540480c7e3dc",
+      "bytes": 38235
     },
     "./app/modules/fsags208-image-reader.v1.js": {
       "sha256": "56b2b7c7fb1f54c20678868f80d13f7a7d2a51350bf2a89c6742381850f75e10",
