@@ -171,7 +171,7 @@ function ensureCanonicalRoleViewStyle(){
 #fwcList.v478CanonicalQueue>.v1199Tabs{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important;margin:8px 0 9px!important}
 #fwcList.v478CanonicalQueue>.v1199OwnerNote{margin:0 2px 8px!important}
 #fwcList.v478CanonicalQueue>.v1199FlightGrid.v478RoleGrid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))!important;gap:12px!important}
-#fwcList.v478CanonicalQueue .v478CanonicalRoleCard{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;min-width:0!important;border:1px solid #d4dee8!important;border-radius:12px!important;background:#fff!important;padding:11px!important;margin:0!important;box-shadow:0 2px 7px rgba(0,0,0,.04)!important}
+#fwcList.v478CanonicalQueue .v478CanonicalRoleCard[hidden]{display:none!important}\n#fwcList.v478CanonicalQueue .v478CanonicalRoleCard{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;min-width:0!important;border:1px solid #d4dee8!important;border-radius:12px!important;background:#fff!important;padding:11px!important;margin:0!important;box-shadow:0 2px 7px rgba(0,0,0,.04)!important}
 #fwcList.v478CanonicalQueue .v478CanonicalRoleCard:hover{background:#fff!important}
 #fwcList.v478CanonicalQueue .v478CanonicalRoleCard .fwcFlightTitle{font:900 17px Arial!important;color:#0b4f91!important}
 #fwcList.v478CanonicalQueue .v478CanonicalRoleCard .fwcMeta{font:12px/1.45 Arial!important;color:#5d6f80!important;margin-top:4px!important}
