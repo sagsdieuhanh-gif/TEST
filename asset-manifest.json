@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "version": "V6.4.107",
-  "build": "V6.4.107-20261006-TRINITY-NOTEBOOK-PERF-01",
+  "version": "V6.4.108",
+  "build": "V6.4.108-20261006-TRINITY-LOCAL-LOGO-CI-01",
   "strategy": "atomic release + compact one-row form chips + stable MY FLIGHT shell/list diff + personal queue fast path + realtime mailbox replay guard + debounced document observer",
   "mutableMetadata": [
     "./forms/forms.registry.json",
@@ -222,7 +222,7 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "2d5fc6279069ec33ae2b7e0652ad94b209b4c3f277ef470ca3904e89224c8707",
+      "sha256": "2a22d20176869faa95b12213f7e1e71a0c7b90d47ee20cbb49aa2cfa2b24d82d",
       "bytes": 80140
     },
     "./manifest.webmanifest": {
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "7afe045a988e16de973fabcfe4f69a141c298bccb72f98ac7e6d4db8fe1576d8",
-      "bytes": 21127
+      "sha256": "262a29842838055548bb0dffbb70a9ea93fd1f2292be791323a41e4a2520b8a8",
+      "bytes": 21154
     },
     "./version.json": {
-      "sha256": "b79974774dab7196dd02819329add0d1d5bb167f836beeafd3d08d4b882afff1",
-      "bytes": 1137
+      "sha256": "459ae5a82cb6a817b838e2a44ed00ef1c913cea46e42058f19c51c14ad66c6ed",
+      "bytes": 893
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -610,8 +610,8 @@
       "bytes": 53491
     },
     "./app/modules/aviation-reference.v1.js": {
-      "sha256": "f87c4d824113df228ae38c532b2feda93e9f70d553d1d80021f7286f4dd75e6c",
-      "bytes": 20224
+      "sha256": "ea5141c7d43986ddbcca18ec447a32dcc671917fc834cf52476af1f65bc8a294",
+      "bytes": 19958
     },
     "./assets/branding/apron-night-v6494.webp": {
       "sha256": "7a17d332d8dce854de03be8918034b378012b7fece42abc6c71ed9575bc257a0",
@@ -736,6 +736,10 @@
     "./assets/airlines/AK.png": {
       "sha256": "172d509e686526251e3433c003a1074771c89c4ea99af2408184fd019e93645e",
       "bytes": 3332
+    },
+    "./assets/airlines/TW.svg": {
+      "sha256": "a249100efb6752377a35f134bf7eb71dfd567ca379158d6a7dbfdbc8f0afdf9d",
+      "bytes": 445
     }
   }
 }

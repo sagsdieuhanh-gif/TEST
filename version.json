@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.107",
-  "displayVersion": "V6.4.107",
-  "label": "V6.4.107 - TRINITY AIRWAYS + SỔ TAY LOGO + PERF",
-  "build": "V6.4.107-20261006-TRINITY-NOTEBOOK-PERF-01",
-  "releasedAt": "2026-10-06T02:31:00Z",
-  "type": "airline-identity-ui-performance",
-  "base": "V6.4.106-20261006-MYFLIGHT-CHIP-FLICKER-PERF-01",
+  "version": "V6.4.108",
+  "displayVersion": "V6.4.108",
+  "label": "V6.4.108 - TRINITY LOCAL LOGO + CI FIX",
+  "build": "V6.4.108-20261006-TRINITY-LOCAL-LOGO-CI-01",
+  "releasedAt": "2026-10-06T02:44:00Z",
+  "type": "airline-identity-ci-fix",
+  "base": "V6.4.107-20261006-TRINITY-NOTEBOOK-PERF-01",
   "updatePolicy": "required",
-  "notes": "Cập nhật nhận diện TW từ T’way Air sang Trinity Airways, giữ nguyên mã hãng TW theo công bố chính thức. Sổ tay hãng hiển thị logo hãng ở danh sách và phần chi tiết, dùng chung nguồn nhận diện với màn hình chính. Logo Trinity dùng vector inline nhẹ để không phát sinh request mạng/asset ngoài. Giảm polling Sổ tay từ 2.5 giây xuống 20 giây khi trang đang hiển thị và ưu tiên refresh theo sự kiện focus/pageshow/roster/My Flight để giảm CPU, DOM work và pin trên mobile. Giữ nguyên toàn bộ nghiệp vụ, phân quyền và dữ liệu biểu mẫu.",
-  "message": "V6.4.107: Trinity Airways + logo trong Sổ tay hãng + giảm polling để giữ trải nghiệm nhanh."
+  "notes": "Giữ toàn bộ thay đổi V6.4.107. Chuyển biểu tượng Trinity Airways từ data-URI sang asset SVG nội bộ assets/airlines/TW.svg để tuân thủ hợp đồng local-logo của dự án, không phụ thuộc CDN, cho phép service worker kiểm tra checksum và cache cùng app shell. Mã hãng TW và nghiệp vụ giữ nguyên; Sổ tay hãng tiếp tục dùng cùng nguồn nhận diện với màn hình chính.",
+  "message": "V6.4.108: Trinity Airways dùng SVG nội bộ, giữ logo Sổ tay hãng và tối ưu polling."
 }

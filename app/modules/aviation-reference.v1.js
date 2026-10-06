@@ -1,4 +1,4 @@
-/* E-REPORT SAGS V6.4.107 · Reference home: airline identity + aligned console.
+/* E-REPORT SAGS V6.4.108 · Reference home: airline identity + aligned console.
    Existing menu buttons and Daily Roster remain the business/permission authority. */
 (function () {
   'use strict';
@@ -29,10 +29,9 @@
       }).catch(() => []);
     return carrierPromise;
   }
-  const TRINITY_SYMBOL = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23D79D8F' d='M7 13h20l-9 38-8-20z'/%3E%3Cpath fill='%23C4B796' d='M23 13h18L32 35z'/%3E%3Cpath fill='%23666058' d='M37 13h20l-3 18-8 20z'/%3E%3C/svg%3E";
   function logoUrl(code) {
     code = normalizeCarrier(code);
-    if (code === 'TW') return TRINITY_SYMBOL;
+    if (code === 'TW') return './assets/airlines/TW.svg';
     return AIRLINE_NAMES[code] ? './assets/airlines/'+code+(code==='KA'?'.svg':'.png') : '';
   }
   window.sagsAirlineIdentity = Object.freeze({
