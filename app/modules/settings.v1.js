@@ -3,7 +3,7 @@
  */
 (function(w){
 'use strict';
-var BUILD='V2.5-20261006-CONTRAST-GUARD-14',TRACE_KEY='sagsSettingsTraceV23';
+var BUILD='V2.5-20261006-MOBILE-QT-COMPACT-15',TRACE_KEY='sagsSettingsTraceV23';
 function trace(step,data){var rec={at:new Date().toISOString(),build:BUILD,step:String(step||''),data:data||null};try{var a=JSON.parse(sessionStorage.getItem(TRACE_KEY)||'[]');if(!Array.isArray(a))a=[];a.push(rec);if(a.length>60)a=a.slice(-60);sessionStorage.setItem(TRACE_KEY,JSON.stringify(a));w.__SAGS_SETTINGS_TRACE__=a}catch(e){w.__SAGS_SETTINGS_TRACE__=(w.__SAGS_SETTINGS_TRACE__||[]).concat([rec]).slice(-60)}try{w.dispatchEvent(new CustomEvent('sags:settings-trace',{detail:rec}))}catch(e){}return rec}
 if(w.__SAGS_SETTINGS_CENTER_READY__===BUILD&&typeof w.sagsOpenSettings==='function'){trace('module:reuse-ready');return}
 w.__SAGS_SETTINGS_CENTER_LOADING__=BUILD;trace('module:start',{ready:w.__SAGS_SETTINGS_CENTER_READY__||'',prior:w.__SAGS_SETTINGS_CENTER__||''});

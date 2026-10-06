@@ -6415,3 +6415,297 @@ html.new-ui-v1 body.v157-authenticated :is(.v6494QuickGrid>button,.v6494MobileMe
 html.new-ui-v1 body :is(.sheet,.rsOfficialTemplatePage,.pdf-page,.pdfCanvas,#sigCanvas,#signatureTemplatePreview){
   forced-color-adjust:none;
 }
+
+
+/* ==========================================================================
+   V2.5 TEST · QUICK TIME MOBILE COMPACT + DARK CONTRAST 15
+   Mobile-only density + dark-theme readability. Desktop geometry is unchanged.
+   Official PDF/paper/signature surfaces are excluded.
+   ========================================================================== */
+@media (max-width:767px){
+  html.new-ui-v1 body #quickTimeModal{
+    align-items:stretch!important;
+    justify-content:stretch!important;
+    padding:0!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimePanel{
+    width:100vw!important;
+    max-width:none!important;
+    height:var(--sags-vv-height,100dvh)!important;
+    max-height:var(--sags-vv-height,100dvh)!important;
+    min-height:0!important;
+    border-radius:0!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeHead{
+    padding:6px 8px 0!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeHeadTop{
+    grid-template-columns:32px minmax(0,1fr) 32px 32px!important;
+    gap:3px!important;
+    min-height:36px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal :is(.quickTimeBack,.quickTimeCloseIcon),
+  html.new-ui-v1 body #quickTimeModal #sagsQteCustomizeBtn{
+    width:32px!important;min-width:32px!important;max-width:32px!important;
+    height:32px!important;min-height:32px!important;max-height:32px!important;
+    line-height:30px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal :is(.quickTimeBack,.quickTimeCloseIcon){
+    font-size:20px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal #sagsQteCustomizeBtn::before{
+    font-size:16px!important;line-height:30px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeTitle{
+    font-size:16px!important;
+    line-height:1.05!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeFlight{
+    margin-top:2px!important;
+    font-size:9.5px!important;
+    line-height:1.1!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeTabs{
+    gap:5px!important;
+    margin:5px 0 0!important;
+    padding:0!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeTab{
+    height:31px!important;min-height:31px!important;
+    padding:0 9px!important;
+    border-radius:7px!important;
+    font:850 10.5px/31px Arial,sans-serif!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeSub{
+    min-height:24px!important;
+    margin:0 -8px!important;
+    padding:5px 8px!important;
+    font-size:9.5px!important;
+    line-height:1.15!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeBody{
+    padding:6px 8px 8px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimePageTitle{
+    padding:1px 2px 5px!important;
+    font-size:11px!important;
+    line-height:1.15!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeColumnHead{
+    grid-template-columns:minmax(104px,1fr) minmax(76px,27vw) minmax(76px,27vw)!important;
+    gap:4px!important;
+    min-height:16px!important;
+    padding:0 4px 3px!important;
+    font-size:8px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeRow{
+    grid-template-columns:minmax(104px,1fr) minmax(76px,27vw) minmax(76px,27vw)!important;
+    gap:4px!important;
+    min-height:46px!important;
+    padding:4px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeLabel{
+    font-size:10px!important;
+    line-height:1.14!important;
+    overflow-wrap:normal!important;
+  }
+  html.new-ui-v1 body #quickTimeModal :is(.quickTimeTimeCell,.quickTimeSingleCell){
+    grid-template-columns:minmax(0,1fr) 34px!important;
+    height:38px!important;min-height:38px!important;
+    border-radius:6px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeRow.single{
+    grid-template-columns:minmax(104px,1fr) minmax(0,56vw)!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeRow.single .quickTimeSingleCell,
+  html.new-ui-v1 body #quickTimeModal .qte551TimeRow .quickTimeSingleCell{
+    max-width:220px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeInput{
+    height:36px!important;min-height:36px!important;
+    padding:0 4px!important;
+    font:900 13.5px/36px Arial,sans-serif!important;
+    letter-spacing:.025em!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeNow{
+    width:34px!important;min-width:34px!important;max-width:34px!important;
+    height:36px!important;min-height:36px!important;max-height:36px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeNow::before{
+    width:12px!important;height:12px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .qte551TimeRow{
+    grid-template-columns:minmax(104px,1fr) minmax(0,56vw)!important;
+    gap:4px!important;
+    min-height:46px!important;
+    padding:4px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .qte551TimeRow>span,
+  html.new-ui-v1 body #quickTimeModal .qte551CheckRow{
+    font-size:10px!important;
+    line-height:1.16!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeSwipeHint{
+    padding:6px 0 2px!important;
+    font-size:8px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeFooter{
+    padding:6px 8px calc(6px + env(safe-area-inset-bottom))!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeFooterActions{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:5px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeSave{
+    grid-column:1/-1!important;
+    min-height:40px!important;height:40px!important;
+    font-size:11.5px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal :is(.quickTimeNA,.quickTimeClear){
+    min-height:36px!important;height:36px!important;
+    padding:0 6px!important;
+    font-size:10px!important;
+  }
+  html.new-ui-v1 body #quickTimeModal .quickTimeSaveStatus{
+    min-height:12px!important;
+    margin-top:2px!important;
+    font-size:8.5px!important;
+    line-height:1.1!important;
+  }
+}
+
+/* Extra compression when the visual viewport becomes short (software keyboard). */
+@media (max-width:767px) and (max-height:620px){
+  html.new-ui-v1 body #quickTimeModal .quickTimeHead{padding-top:3px!important}
+  html.new-ui-v1 body #quickTimeModal .quickTimeHeadTop{min-height:31px!important}
+  html.new-ui-v1 body #quickTimeModal .quickTimeTitle{font-size:14px!important}
+  html.new-ui-v1 body #quickTimeModal .quickTimeFlight{font-size:8.5px!important}
+  html.new-ui-v1 body #quickTimeModal .quickTimeTab{height:27px!important;min-height:27px!important;font:850 9.5px/27px Arial,sans-serif!important}
+  html.new-ui-v1 body #quickTimeModal .quickTimeSub{min-height:20px!important;padding:3px 7px!important;font-size:8.5px!important}
+  html.new-ui-v1 body #quickTimeModal .quickTimeBody{padding-top:4px!important}
+  html.new-ui-v1 body #quickTimeModal .quickTimeRow{min-height:42px!important;padding:3px 4px!important}
+  html.new-ui-v1 body #quickTimeModal :is(.quickTimeTimeCell,.quickTimeSingleCell){height:35px!important;min-height:35px!important}
+  html.new-ui-v1 body #quickTimeModal .quickTimeInput{height:33px!important;min-height:33px!important;font:900 12.5px/33px Arial,sans-serif!important}
+  html.new-ui-v1 body #quickTimeModal .quickTimeNow{height:33px!important;min-height:33px!important;max-height:33px!important}
+  html.new-ui-v1 body #quickTimeModal .quickTimeSave{height:36px!important;min-height:36px!important}
+  html.new-ui-v1 body #quickTimeModal :is(.quickTimeNA,.quickTimeClear){height:33px!important;min-height:33px!important}
+}
+
+/* Dark theme: dark sheet + light labels; edited/focused value uses the PC-style
+   amber highlight with dark text, so state is immediately obvious. */
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal{
+  background:rgba(1,8,15,.76)!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimePanel{
+  background:#091923!important;
+  color:#eef8ff!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeHead{
+  background:#0b1d29!important;
+  border-bottom-color:#294455!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeBody{
+  background:#0b1b27!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeSub{
+  background:#183244!important;
+  color:#c3dfed!important;
+  border-color:#315063!important;
+  -webkit-text-fill-color:#c3dfed!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal :is(.quickTimeTitle,.quickTimePageTitle,.quickTimeLabel,.qte551SectionTitle,.qte551TimeRow>span,.qte551CheckRow){
+  color:#eef8ff!important;
+  -webkit-text-fill-color:#eef8ff!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal :is(.quickTimeFlight,.quickTimeColumnHead,.quickTimeSwipeHint,.qte551Summary,.quickTimeSaveStatus){
+  color:#abc4d3!important;
+  -webkit-text-fill-color:#abc4d3!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeRows,
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeRow,
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .qte551TimeRow,
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .qte551CheckRow{
+  background:#102635!important;
+  border-color:#2d4859!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal :is(.quickTimeTimeCell,.quickTimeSingleCell){
+  background:#0a1b29!important;
+  border-color:#486476!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeInput{
+  background:#0a1b29!important;
+  color:#f4fbff!important;
+  -webkit-text-fill-color:#f4fbff!important;
+  caret-color:#7fe7ff!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeInput::placeholder{
+  color:#9fb6c8!important;
+  -webkit-text-fill-color:#9fb6c8!important;
+  opacity:1!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeNow{
+  background:#e8f0f4!important;
+  color:#0c5e7e!important;
+  border-left-color:#b8cad4!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeInput.dirty,
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeInput:focus,
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeInput.dirty:focus{
+  background:#ffd166!important;
+  color:#17212b!important;
+  -webkit-text-fill-color:#17212b!important;
+  caret-color:#17212b!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal :is(.quickTimeTimeCell,.quickTimeSingleCell):has(.quickTimeInput.dirty),
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal :is(.quickTimeTimeCell,.quickTimeSingleCell):has(.quickTimeInput:focus){
+  border-color:#e5ae31!important;
+  box-shadow:0 0 0 1px rgba(255,209,102,.35)!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeRow:has(.quickTimeInput:focus),
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .qte551TimeRow:has(.quickTimeInput:focus){
+  background:#173342!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeTab{
+  color:#b5cad7!important;
+  -webkit-text-fill-color:#b5cad7!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeTab.active{
+  background:#0b6075!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeFooter{
+  background:#081721!important;
+  border-top-color:#294455!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal .quickTimeSave{
+  background:#176f84!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #quickTimeModal :is(.quickTimeNA,.quickTimeClear){
+  background:#152a39!important;
+  color:#edf7fc!important;
+  -webkit-text-fill-color:#edf7fc!important;
+  border-color:#3d596a!important;
+}
+
+/* Keep the generic dark-theme operational helpers readable too. */
+html.new-ui-v1[data-ui-theme="dark"] body #sagsQuickEntry :is(.sq-title,.sq-input){
+  color:#102f42!important;
+  -webkit-text-fill-color:#102f42!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #v174DataHub .v174DataCard :is(b,strong),
+html.new-ui-v1[data-ui-theme="dark"] body #v181AdminCenter .v181AdminCard :is(b,strong){
+  color:#f7fcff!important;
+}
+html.new-ui-v1[data-ui-theme="dark"] body #v174DataHub .v174DataCard :is(small,p),
+html.new-ui-v1[data-ui-theme="dark"] body #v181AdminCenter .v181AdminCard :is(small,p){
+  color:#b9d4e2!important;
+}
+
+/* Do not touch official paper/PDF/signature coordinates or their colors. */
+html.new-ui-v1 body :is(.sheet,.rsOfficialTemplatePage,.page-bg,.pdf-page,.pdfCanvas,#sigCanvas,#signatureTemplatePreview){
+  forced-color-adjust:none;
+}
