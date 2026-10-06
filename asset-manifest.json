@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.1",
-  "build": "V2.1-20261006-SETTINGS-CENTER-01",
-  "strategy": "atomic TEST release + V2.0 three-layer draft + Settings Center + personal display profile + adaptive theme",
+  "build": "V2.1-20261006-SETTINGS-CENTER-02",
+  "strategy": "atomic TEST release + V2.0 three-layer draft + bundled Settings Center + personal display profile + adaptive theme",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,8 +82,8 @@
       "bytes": 41473
     },
     "./app/styles/new-ui-v1.css": {
-      "sha256": "318cffbc81f1a2c679b1dfcc44681ba187de85fc4e56e78a15e180a104228007",
-      "bytes": 325077
+      "sha256": "a3ce449d48873f722d3ebcff02e29019242299141fcc95b6d7dd21a1b5b1e069",
+      "bytes": 335309
     },
     "./assets/audio/alert-crosscheck-complete.mp3": {
       "sha256": "2291844c0abc77005a2e8800e0dc8115c373134385a31a5d3d9e5f920a5acc07",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "9ca3ae46613f0fa8f014c2f5a725547c622decc700d7f77916d5e80b7ea77e2b",
-      "bytes": 79651
+      "sha256": "e2272e8e84b7c51a9b041b26f881773a84d172f3d981cca3c1b46ec016e0f00d",
+      "bytes": 79556
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "681df06fbf024ef82a365d5f47c3cb302fe3c76aab4708d7c077115d525b3935",
-      "bytes": 21217
+      "sha256": "e3148496f2ac3d26f12077778577669ec28458a464846bff03470de54ebc670a",
+      "bytes": 21186
     },
     "./version.json": {
-      "sha256": "22fd2e2c12693dcf4e90bac5dee6a19f6e055754852b3876f82cf53d661ec533",
-      "bytes": 1118
+      "sha256": "2888ff0bc306f3d5ed2580b55ed311381312f6b000a2a3dd34a329d00ebcf6f3",
+      "bytes": 1241
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -746,12 +746,8 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "ba5d06d75365434435a2d999174f7648e060047a8e6e69a46503af6483bd3965",
+      "sha256": "5febbf25d3a6bbc481ef574118d4ce2f2ae489ead64c23263d779fdb99a47100",
       "bytes": 30289
-    },
-    "./app/styles/settings.v1.css": {
-      "sha256": "049c7dac8c9537664ec0bdb211f305a9f7ae039234c7919ffa31312a113150e2",
-      "bytes": 10231
     }
   }
 }
