@@ -1,12 +1,12 @@
 {
-  "version": "V2.3",
-  "displayVersion": "V2.3",
-  "label": "V2.3 - SETTINGS TRACE + RECOVERY",
-  "build": "V2.3-20261006-SETTINGS-TRACE-01",
-  "releasedAt": "2026-10-06T08:24:00Z",
-  "type": "diagnostic-bugfix-ui",
-  "base": "V2.2-20261006-SETTINGS-FAILSAFE-03",
+  "version": "V2.0",
+  "displayVersion": "V2.0",
+  "label": "V2.0 - E-REPORT SAGS PRODUCTION",
+  "build": "V2.0-20261006-SETTINGS-HOME-FIX-01",
+  "releasedAt": "2026-10-06T08:47:56.286Z",
+  "type": "bugfix-performance",
+  "base": "V6.4.89-20261005-AIRLINE-DASHBOARD-AD-CONTRAST-01",
   "updatePolicy": "required",
-  "notes": "V2.3 theo dõi và sửa sâu nút Cài đặt trên TEST. Module Settings không còn tự đánh dấu READY trước khi install thành công; nếu install lỗi, lần bấm sau được phép nạp lại và khởi tạo lại. Runtime live lưu trace theo từng bước vào sessionStorage, kiểm tra click -> invoke -> reload module -> tạo panel -> force visible. Nếu panel vẫn không mở, V2.3 hiện màn chẩn đoán khẩn cấp thay vì im lặng, kèm lỗi và 12 bước trace gần nhất. Giữ nguyên đầy đủ chức năng Cài đặt, tìm chuyến, Cloud Draft 3 lớp và performance guard.",
-  "message": "V2.3: recoverable Settings initialization with visible trace diagnostics."
+  "notes": "Sửa nút Cài đặt trên trang chủ và menu điện thoại; không đổi theme khi mở. Đồng nhất phiên bản, tránh mở lại cửa sổ đã đóng, giới hạn tác vụ quan sát menu và phạm vi CSS. Kiểm tra hồi quy và xác minh checksum toàn bộ tài nguyên.",
+  "message": "V2.0: corrected home Settings routing and verified static release."
 }
