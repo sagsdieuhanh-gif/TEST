@@ -6268,3 +6268,150 @@ html.new-ui-v1 body #sagsFlightDossierModal .v1199DossierOverviewTitle{
    display:none!important;
  }
 }
+
+
+/* ==========================================================================
+   V2.5 TEST · UI CONTRAST GUARD 14
+   Accessibility/legibility patch for operational UI only.
+   Do NOT apply to official paper/PDF canvases or signature drawing surfaces.
+   ========================================================================== */
+
+/* DỮ LIỆU KHAI THÁC / quick-data cards: inherited legacy colors can become
+   nearly identical to the dark card background after theme overrides. */
+html.new-ui-v1 body.v157-authenticated #v174DataHub .v174DataCard{
+  background:#0b2742!important;
+  color:#eef9ff!important;
+  border-color:#28506a!important;
+}
+html.new-ui-v1 body.v157-authenticated #v174DataHub .v174DataCard :is(b,strong){
+  color:#f7fcff!important;
+}
+html.new-ui-v1 body.v157-authenticated #v174DataHub .v174DataCard :is(small,p,span:not(.v174DataIcon)){
+  color:#b9d4e2!important;
+}
+html.new-ui-v1 body.v157-authenticated #v174DataHub .v174DataCard em{
+  color:#8ff0d8!important;
+}
+html.new-ui-v1 body.v157-authenticated #v174DataHub .v174DataIcon{
+  background:#123b53!important;
+  color:#7de8f0!important;
+}
+
+/* AD cards use the same dark family: force text hierarchy to stay visible. */
+html.new-ui-v1 body.v157-authenticated #v181AdminCenter .v181AdminCard{
+  background:#0b2742!important;
+  color:#eef9ff!important;
+  border-color:#28506a!important;
+}
+html.new-ui-v1 body.v157-authenticated #v181AdminCenter .v181AdminCard :is(b,strong){
+  color:#f7fcff!important;
+}
+html.new-ui-v1 body.v157-authenticated #v181AdminCenter .v181AdminCard :is(small,p,span:not(.v181AdminIcon)){
+  color:#b9d4e2!important;
+}
+html.new-ui-v1 body.v157-authenticated #v181AdminCenter .v181AdminCard em{
+  color:#8ff0d8!important;
+}
+
+/* Nhập nhanh generic sheet — explicit foreground/background pairs block
+   dark-theme inheritance from making values or labels disappear. */
+html.new-ui-v1 body #sagsQuickEntry .sq-card{
+  background:#f8fbfd!important;
+  color:#12364a!important;
+}
+html.new-ui-v1 body #sagsQuickEntry :is(.sq-title,.sq-input){
+  color:#102f42!important;
+}
+html.new-ui-v1 body #sagsQuickEntry :is(.sq-overline,.sq-count,.sq-hint,.sq-close){
+  color:#405f70!important;
+}
+html.new-ui-v1 body #sagsQuickEntry .sq-input{
+  background:#fff!important;
+  border-color:#176b87!important;
+}
+html.new-ui-v1 body #sagsQuickEntry button:not(.sq-next):not(.sq-close){
+  background:#e3f1f6!important;
+  color:#103f55!important;
+  border-color:#8ebccc!important;
+}
+html.new-ui-v1 body #sagsQuickEntry button.sq-next{
+  background:#0b5872!important;
+  color:#fff!important;
+  border-color:#0b5872!important;
+}
+
+/* 42.1 / 42.3 / 55.1 quick-time sheet is intentionally light even while the
+   surrounding application is dark. Preserve readable dark text on its fields. */
+html.new-ui-v1 body #quickTimeModal :is(.quickTimePanel,.quickTimeHead,.quickTimeBody,.quickTimeRows,.quickTimeRow,.quickTimeTimeCell,.quickTimeSingleCell){
+  color:#15364e!important;
+}
+html.new-ui-v1 body #quickTimeModal :is(.quickTimeLabel,.quickTimeInput,.qte551TimeRow,.qte551TimeRow>span,.qte551CheckRow){
+  color:#15364e!important;
+}
+html.new-ui-v1 body #quickTimeModal .quickTimeInput{
+  background:transparent!important;
+}
+html.new-ui-v1 body #quickTimeModal .quickTimeInput:focus{
+  background:#e2f1f7!important;
+  color:#102f42!important;
+}
+html.new-ui-v1 body #quickTimeModal .quickTimeInput.dirty{
+  background:#fff0c2!important;
+  color:#614300!important;
+}
+
+/* FSAGS09 quick-entry dark sheet: keep all field values and labels above the
+   minimum usable contrast on its dark surfaces. */
+html.new-ui-v1 body #fs09QuickModal :is(.fs09qPanel,.fs09qRow,.fs09qCloseoutCard){
+  color:#eef7fb!important;
+}
+html.new-ui-v1 body #fs09QuickModal :is(.fs09qLabel,.fs09qDataLabel,.fs09qSectionLabel,.fs09qQuickSection,.fs09qUsageNote){
+  color:#b7c9d8!important;
+}
+html.new-ui-v1 body #fs09QuickModal :is(.fs09qInput,.fs09qDataInput,.fs09qTextArea){
+  background:#172a3a!important;
+  color:#f6fbff!important;
+}
+html.new-ui-v1 body #fs09QuickModal :is(.fs09qInput,.fs09qDataInput,.fs09qTextArea)::placeholder{
+  color:#9fb6c6!important;
+  opacity:1!important;
+}
+
+/* Direct low-contrast pairs found by stylesheet audit. */
+html.new-ui-v1 body .v157Empty{color:#536b82!important}
+html.new-ui-v1 body .v157Avatar{background:#4b6fae!important;color:#fff!important}
+html.new-ui-v1 body .ffUpdateBadge{background:#a94f00!important;color:#fff!important}
+html.new-ui-v1 body .finalPaperActions .warn{background:#9b5000!important;color:#fff!important}
+html.new-ui-v1 body :is(.ffCrossStep.done b,#ffCrosscheckActionBtn.capture,.finalPaperActions .success){background:#087044!important;color:#fff!important}
+html.new-ui-v1 body .ffCrossStep{color:#526270!important}
+html.new-ui-v1 body :is(#quickTimeModal .quickTimeSave,#fs09QuickModal .fs09qSave){background:#0b6478!important;color:#fff!important}
+html.new-ui-v1 body .opsAlertCardCompose{background:#a94f00!important;color:#fff!important}
+html.new-ui-v1 body #fwcModal .v1199Count{background:#0b6f8a!important;color:#f7fdff!important}
+html.new-ui-v1 body :is(.p2Step,.p2Empty){color:#536578!important}
+html.new-ui-v1 body.v163-operational #sagsMobileFormDock #v324HandoverBtn{background:#0b6788!important;color:#fff!important}
+html.new-ui-v1 #v157HomeDashboard .v157Metric.warn .v157MetricIco{color:#7a4a11!important}
+html.new-ui-v1 body.v157-authenticated.v157-home #v157BottomBar{color:#4d6978!important}
+
+/* Dark navigation/work cards: explicit title/meta colors prevent accidental
+   same-color inheritance from older component skins. */
+html.new-ui-v1 body.v157-authenticated :is(.v6494QuickGrid>button,.v6494MobileMenu button,.v157MenuItem){
+  color:#e8f4fa!important;
+}
+html.new-ui-v1 body.v157-authenticated :is(.v6494QuickGrid>button,.v6494MobileMenu button,.v157MenuItem) :is(b,strong){
+  color:#f7fcff!important;
+}
+html.new-ui-v1 body.v157-authenticated :is(.v6494QuickGrid>button,.v6494MobileMenu button,.v157MenuItem) :is(small,em,.meta){
+  color:#a9c3d1!important;
+}
+
+/* Settings dark surfaces: ensure title/subtitle/value hierarchy survives any
+   old light-theme declaration loaded before the current build. */
+#sagsSettingsCenter :is(h2,h3,b,strong){color:#eef8ff}
+#sagsSettingsCenter :is(.desc,small,.sagsSettingsNavCopy small,.sagsSettingsNavTitle,.sagsSettingsNavGroupLabel){color:#9fb7c8}
+#sagsSettingsCenter :is(input,select,textarea){color:#eef8ff}
+#sagsSettingsCenter :is(input,textarea)::placeholder{color:#829aab;opacity:1}
+
+/* Never recolor the actual official form/PDF/signature drawing areas. */
+html.new-ui-v1 body :is(.sheet,.rsOfficialTemplatePage,.pdf-page,.pdfCanvas,#sigCanvas,#signatureTemplatePreview){
+  forced-color-adjust:none;
+}

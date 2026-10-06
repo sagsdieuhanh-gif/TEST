@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.5",
-  "build": "V2.5-20261006-PC-SETTINGS-13",
-  "strategy": "TEST V2.5 · PC Settings stale-markup guard + immutable cache rotation",
+  "build": "V2.5-20261006-CONTRAST-GUARD-14",
+  "strategy": "TEST V2.5 · UI contrast guard for quick data + full operational chrome audit",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -46,8 +46,8 @@
       "bytes": 12286
     },
     "./app/modules/quick-entry.v1.js": {
-      "sha256": "488c58437666d1e870ad4b864be949b76dba16db2d863008cdb18b6ed54121b7",
-      "bytes": 14935
+      "sha256": "b57a2e6e8d359f1cffe7c955ab9f7f857a76cdab816ecb40d3bd1ded16c44a98",
+      "bytes": 14965
     },
     "./app/modules/roster-lite.v5.js": {
       "sha256": "3739427db6ffc56a3a1929f7a429313e32691cd13816a3c31c024142f29ac069",
@@ -82,8 +82,8 @@
       "bytes": 41473
     },
     "./app/styles/new-ui-v1.css": {
-      "sha256": "0bffc461da2369be5afe985ca0c0aaa0df94981656d43109b71aa3de5bbd87da",
-      "bytes": 352069
+      "sha256": "91eacdf45930cece65d486d6373ab1724bfb40f208f51e1ce4063e2d62911362",
+      "bytes": 358753
     },
     "./assets/audio/alert-crosscheck-complete.mp3": {
       "sha256": "2291844c0abc77005a2e8800e0dc8115c373134385a31a5d3d9e5f920a5acc07",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "7347c4b46353d4bb95cd453aa68521f52c5f337233bc6d031abab496f32fe2ec",
-      "bytes": 79843
+      "sha256": "e3f9a8565279d74a26b8dd1ef2b669f2176386cb0026d4f46c4b899a8f32399a",
+      "bytes": 80050
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6935
     },
     "./service-worker.js": {
-      "sha256": "3c31004c6006a2ef80c1fce6b710a79ef4bfc3eaacca97d0a10fdd1894394757",
-      "bytes": 21333
+      "sha256": "d8e7d1593019d9a4d70a366f23e66485cfa69a239077730a48ab0ca00435f6a0",
+      "bytes": 21342
     },
     "./version.json": {
-      "sha256": "9cd320ed4326f4d530f073e47b5b760aa9e8fbac4409477792b70caa3a2a7833",
-      "bytes": 4845
+      "sha256": "3cd53bc7a98248bbafd4280fc0caef708b13cab75cef2bb9d748c45fa0418687",
+      "bytes": 5279
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -746,8 +746,8 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "ca194d04bc4bcac20d59eedb94e4740e4ccd6a66729495d8efcfabd92bd7c137",
-      "bytes": 38232
+      "sha256": "471e75fc19ff5e33054331c6a3f1f8bf074570d96655f24b1550253a42afc499",
+      "bytes": 38235
     },
     "./app/modules/fsags208-image-reader.v1.js": {
       "sha256": "56b2b7c7fb1f54c20678868f80d13f7a7d2a51350bf2a89c6742381850f75e10",

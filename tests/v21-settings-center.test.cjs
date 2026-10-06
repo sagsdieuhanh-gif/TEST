@@ -23,3 +23,11 @@ assert.match(pref,/applyTheme\(readTheme\(\),false\)/);
 assert.match(shell,/if\(key==='settings'\)/,'home shell Settings routing missing');
 assert.match(css,/\.sagsSettingsCenter\.show\{display:flex\}/);\nassert.match(js,/V2\\.5-20261006-PC-SETTINGS-13/,'Settings module build must rotate with release');\nassert.match(css,/PC SETTINGS STALE-MARKUP GUARD 13/,'PC stale-markup guard missing');\nassert.match(css,/\.sagsSettingsLayout > \.sagsSettingsNav[\\s\\S]*grid-column:1!important/,'PC nav must be pinned to column 1');\nassert.match(css,/\.sagsSettingsLayout > \.sagsSettingsContent[\\s\\S]*grid-column:2!important/,'PC content must be pinned to column 2');
 console.log(ver.version+' Settings Center base contract passed');
+
+const quick=read('app/modules/quick-entry.v1.js');
+assert.match(css,/UI CONTRAST GUARD 14/,'global UI contrast guard missing');
+assert.match(css,/#v174DataHub \.v174DataCard[\s\S]*color:#eef9ff!important/,'Data Hub card text contrast missing');
+assert.match(css,/#sagsQuickEntry \.sq-card[\s\S]*color:#12364a!important/,'Quick Entry contrast missing');
+assert.match(css,/#fs09QuickModal[\s\S]*color:#f6fbff!important/,'FSAGS09 quick contrast missing');
+assert.match(quick,/#sagsQuickEntry \.sq-card\{[^}]*color:#12364a/,'Quick-entry inline skin must carry explicit text color');
+console.log('UI contrast guard regression passed');
