@@ -22,6 +22,8 @@ jobs:
         run: node tests/roster-stable-family.test.cjs
       - name: Verify Firebase account registration
         run: node tests/firebase-account-registration-v6498.test.cjs
+      - name: Verify AD session stability
+        run: node tests/ad-session-stability.test.cjs
       - name: Verify admin account lifecycle
         run: node tests/admin-account-actions-v2.test.cjs
       - name: Verify home airline UI and receive speed

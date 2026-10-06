@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.5",
-  "build": "V2.5-20261006-ACCOUNT-LIFECYCLE-08",
-  "strategy": "TEST V2.5 · Account Lifecycle V3 · create orphan recovery + direct delete first · FSAGS208 OCR paused",
+  "build": "V2.5-20261006-AD-SESSION-STABILITY-09",
+  "strategy": "TEST V2.5 · AD session hydration stability · Account Lifecycle V3 retained · FSAGS208 OCR paused",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "b96dfa5108f8b4df424121c8d7a257e0b074e2a8249063ccc0acef104a3cf581",
-      "bytes": 80257
+      "sha256": "8fa08c857646370923b05f53e56f9e92875986ec3ce6fbc5e97d26ae863dd296",
+      "bytes": 80464
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6935
     },
     "./service-worker.js": {
-      "sha256": "1f2b8d9d10ceae7d5e5dcab6fff6c1c3b06bcc328b78bd77b7b65856e934f92e",
-      "bytes": 21351
+      "sha256": "3706c3e9a8b415a3308b8551df734b4152f4e2b18b74dfa97f8fdf61f8d5049a",
+      "bytes": 21360
     },
     "./version.json": {
-      "sha256": "d9cf81a6c2d9f0d80596bc1e1bc6ff3183048c3ed616aee0860623dabda04c5e",
-      "bytes": 2880
+      "sha256": "803980aa80705b6569b77b521f1becc0a5f3c546e63b2231337f2ce549bd5191",
+      "bytes": 3223
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -302,8 +302,8 @@
       "bytes": 296425
     },
     "./app/boot/06-legacy.js": {
-      "sha256": "567f8d8a4c799969b3745794233b730ca48bbd757ee2db3b95552533ed4b91c6",
-      "bytes": 397266
+      "sha256": "c2e0a02971adae55b30f486b5680155d31abd80534b8912dd797f01ad796bf94",
+      "bytes": 397497
     },
     "./app/boot/07-legacy.js": {
       "sha256": "da14184a2a816eeaa752dc1e4a91b210fb766f62502ce7d3196f5cba9be2ef11",
