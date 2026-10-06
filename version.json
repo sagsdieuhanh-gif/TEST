@@ -1,12 +1,12 @@
 {
-  "version": "V2.1",
-  "displayVersion": "V2.1",
-  "label": "V2.1 - UNIFIED FLIGHT SEARCH + SETTINGS CENTER",
-  "build": "V2.1-20261006-FLIGHT-SEARCH-05",
-  "releasedAt": "2026-10-06T03:55:00Z",
-  "type": "feature-ui-stability",
-  "base": "V2.0-20261006-QUICK-DOSSIER-DRAFT3-01",
+  "version": "V2.2",
+  "displayVersion": "V2.2",
+  "label": "V2.2 - FLIGHT SEARCH + SETTINGS FIX",
+  "build": "V2.2-20261006-SEARCH-SETTINGS-01",
+  "releasedAt": "2026-10-06T06:28:00Z",
+  "type": "bugfix-ui-stability",
+  "base": "V2.1-20261006-FLIGHT-SEARCH-05",
   "updatePolicy": "required",
-  "notes": "V2.1 build 05 thống nhất chức năng Tìm chuyến cho AD với ĐH, CBTT, KH, kho hàng và các vai trò khác: khi có từ khóa, danh sách chỉ giữ các card chuyến khớp số hiệu; AD tạm ẩn tab ĐANG LÀM/ĐÃ HOÀN TẤT và ghi chú trạng thái trong lúc tìm, không tự cuộn, không tự mở hồ sơ, không tự chuyển tab. Xóa từ khóa thì khôi phục tab và danh sách bình thường. Giữ nguyên Settings spinner fix, Cloud Draft 3 lớp, performance guard và pinned-cache.",
-  "message": "V2.1 build 05: unified filter-only flight search for all roles."
+  "notes": "V2.2 sửa tận gốc hai lỗi trên TEST. Tìm chuyến: card AD trước đây có display:flex!important nên thuộc tính hidden không thể ẩn card; V2.2 thêm quy tắc [hidden]{display:none!important} cho card chuyến và giữ cơ chế tìm chỉ lọc đúng chuyến cần tìm. Cài đặt: đưa Cài đặt thành item chính thức trong menu HỆ THỐNG, thêm click delegation dự phòng và mở khung Cài đặt trước khi tải dữ liệu để lỗi phụ không làm nút mất tác dụng. Giữ nguyên Cloud Draft 3 lớp, Settings profile và các guard hiệu năng.",
+  "message": "V2.2: fix real flight-card filtering and Settings button."
 }
