@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "version": "V2.3",
-  "build": "V2.3-20261006-SETTINGS-TRACE-01",
+  "version": "V2.0",
+  "build": "V2.0-20261006-SETTINGS-HOME-FIX-01",
   "strategy": "V2.3 Settings recovery + persistent click/install/open trace + visible emergency diagnostics",
   "mutableMetadata": [
     "./forms/forms.registry.json",
@@ -82,8 +82,8 @@
       "bytes": 41473
     },
     "./app/styles/new-ui-v1.css": {
-      "sha256": "a3ce449d48873f722d3ebcff02e29019242299141fcc95b6d7dd21a1b5b1e069",
-      "bytes": 335309
+      "sha256": "fc2d86f0e8aff0ddd04d2129c5779a5ba86726cfc3d3fbe740857c5c3ef66efc",
+      "bytes": 337493
     },
     "./assets/audio/alert-crosscheck-complete.mp3": {
       "sha256": "2291844c0abc77005a2e8800e0dc8115c373134385a31a5d3d9e5f920a5acc07",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "34bb8bf51b1940deb8daa3318f3c183d8615f98ccee3e5a78d1ace2be5be22dc",
-      "bytes": 79489
+      "sha256": "c4cbf7a6662aee074366342b216373766791431890b03733df47b8d39456d6c4",
+      "bytes": 79820
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "eb14224c7d9361dcbd3c1921d41f42c0746724d2aea61607b2488dbe6d379cf0",
-      "bytes": 21183
+      "sha256": "b81d4ff3cf2b6c961d25bec247ada6d22e294e2e53c1428b6434cf72f3be576b",
+      "bytes": 21192
     },
     "./version.json": {
-      "sha256": "b01e0467bd9d2f702c5271a892fcdf1b7fb1e1bebcb36e0dcc6ed17f5add1827",
-      "bytes": 1029
+      "sha256": "7b03ba1dfd1918f251562fdb6652ebe6e67708d8d1f3c2334d998d2e192dae7a",
+      "bytes": 707
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -514,8 +514,8 @@
       "bytes": 3405
     },
     "./data/form-configuration.json": {
-      "sha256": "d1e06667649e74aa979e6241c2c4e8e4774b744556c5260eb856fc084f6324fa",
-      "bytes": 6537
+      "sha256": "5e4b1ee52eafc97cb0bee38caed4280656409dd492e341f621b68bf943dfc609",
+      "bytes": 6533
     },
     "./app/generated/core-archive.js": {
       "sha256": "8c9e20707dc7a0d1510326a7b1f591e8db891054f471db336a5dafcf18d314f3",
@@ -546,24 +546,24 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "3d181da0d35a5684626edee198dd3f1c627ed146f3a659bb8bf98712b39ce3eb",
-      "bytes": 139974
+      "sha256": "fa925f5b840a352176fb46de4ea31765fe15d3c54f4d0218c9d63cd718624bfe",
+      "bytes": 114848
     },
     "./app/generated/runtime-2.js": {
-      "sha256": "cc45c1bb02abb73bf406016127f8de9c3381350fb69cd1ff69a84a7d587213bb",
-      "bytes": 114443
+      "sha256": "36b9da65cea02812739d5291cafeb90e9e7060368cd9fdc10cd59c4026d74a2d",
+      "bytes": 139943
     },
     "./app/generated/runtime-3.js": {
-      "sha256": "2c006ea34c7eba6d43e559375c3acce87f415707fbb7f2aa8607d5ecb8e29985",
-      "bytes": 46306
+      "sha256": "27af2b0c87d29d642691d6a6aa853228c1f4ff6fdb8c4b80903e975e6a581797",
+      "bytes": 46305
     },
     "./app/generated/runtime-4.js": {
-      "sha256": "a7f089d0b7b2e8d8de45d67de70cea1aa1bc0d98ce211318f2d9389d0d112549",
-      "bytes": 180894
+      "sha256": "ce295cd358e97a9b139b60fc45e644262bc48a1da2a6cac4a7ab03e72d37ac0c",
+      "bytes": 180893
     },
     "./app/generated/runtime-5.js": {
-      "sha256": "88e5220641b0934dcc41764b64af8ff52e00a6746d64a915aca067494067598e",
-      "bytes": 25747
+      "sha256": "03f61b9add33905fe1b1c4467a2f0895d58cb4eb11a81aa2f47a86e4af2ebfd4",
+      "bytes": 25746
     },
     "./app/modules/feature-loader.v1.js": {
       "sha256": "a53fec720d00b53ec69f5986f837b19ca19110e4857198a211c42bcd6e9a13af",
@@ -578,28 +578,28 @@
       "bytes": 532
     },
     "./app/generated/boot-group-1.js": {
-      "sha256": "94cf53864c582401097cc7a6e64a6b207b79b9e2c38a88946393de4593069de7",
-      "bytes": 595
+      "sha256": "67bbcd6af335dcb6e97032a45fbee65ecff090e7f5e09314bde194074e944505",
+      "bytes": 594
     },
     "./app/generated/boot-group-2.js": {
-      "sha256": "4897b61fd192507e7d8c51ccf1eeeaf6f2df3242605961f2b24cab4b2d2bf1bb",
-      "bytes": 40295
+      "sha256": "044ca527398a9217539102bed1f79e92a52165572c9d0829e60bf4570710ae65",
+      "bytes": 40294
     },
     "./app/generated/boot-group-3.js": {
-      "sha256": "af192323ba098f2e6b054744a7f3b8703d69b816e70012d4f74555260dd14bd4",
-      "bytes": 25399
+      "sha256": "31e73d27e9389824b91e497a436c8aa2a5de36feac68b246c8523a4c362a135e",
+      "bytes": 25398
     },
     "./app/generated/boot-group-4.js": {
       "sha256": "dfed695aab4e87a47e7a4a963ff79984f114c2175c793d10b2f5ec301170e580",
       "bytes": 11325
     },
     "./app/generated/boot-group-5.js": {
-      "sha256": "b65ea700aae64f597435d1e5056f9bc013cc4fc0a2bec113c8d67a4b6df028b9",
-      "bytes": 3559
+      "sha256": "ccd1783e679528508e00b6d1dd5ff76613a8fb75d71c1f9e42533213047e1ca9",
+      "bytes": 3558
     },
     "./app/boot/32-v6494-aviation-shell.js": {
-      "sha256": "2a07c8362fcd1df275cafc24fcd63850003ce94127bc6e14f0def743cf0d18cb",
-      "bytes": 13401
+      "sha256": "4c6056cfe2e63eda4d315034eef068984ab4ad42fc763ac671beee5ed7ffc185",
+      "bytes": 13407
     },
     "./app/styles/boot-36-v6494-aviation-final.css": {
       "sha256": "1f079062ebf4189632b83a50cafbdd6f7a274690c3fcb5c947950dbf4db61c3d",
@@ -746,12 +746,8 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "976189d00e38236f6e89cea7a4f782551e51f188024dc7b80c933228ee38f1b2",
-      "bytes": 36961
-    },
-    "./app/core/runtime.v503hf2.bundle.js": {
-      "sha256": "a5c3824fa1cf05fbb658aba08665955a81a10146ab2813dac585a785664b4871",
-      "bytes": 507553
+      "sha256": "ea5f95d7695f6cadb7bd795487f36090d83f669d15cf7e96ce6f839ae7ac01b1",
+      "bytes": 37080
     }
   }
 }
