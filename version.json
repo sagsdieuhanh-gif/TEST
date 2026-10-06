@@ -1,12 +1,12 @@
 {
-  "version": "V2.4",
-  "displayVersion": "V2.4",
-  "label": "V2.4 - AVATAR IDENTITY + RESPONSIVE SETTINGS",
-  "build": "V2.4-20261006-AVATAR-RESPONSIVE-SETTINGS-01",
-  "releasedAt": "2026-10-06T09:12:00Z",
-  "type": "ui-profile-responsive",
-  "base": "E-REPORT-SAGS main@34f2c9497a3bb42263262aa32e06043633879016",
+  "version": "V2.5",
+  "displayVersion": "V2.5",
+  "label": "V2.5 - FSAGS 208 OCR FIRST + GEMINI FALLBACK",
+  "build": "V2.5-20261006-FSAGS208-OCR-GEMINI-01",
+  "releasedAt": "2026-10-06T10:25:00Z",
+  "type": "fsags208-image-import",
+  "base": "TEST main@8dc225728e16a0dcd3b628161eaa6adb5e7cc5d7",
   "updatePolicy": "required",
-  "notes": "TEST V2.4 lấy E-REPORT-SAGS production hiện tại làm nền. Avatar tùy chỉnh được đồng bộ ra các bề mặt danh tính của người đang đăng nhập: drawer, lời chào trang chủ, sidebar PC, top bar PC, profile mobile và profile trong Cài đặt. Settings được tách layout PC/mobile: desktop dùng panel rộng + sidebar cố định + nội dung hai cột; mobile dùng full-screen + tab ngang + nội dung một cột. Không thay đổi tên nghiệp vụ trên roster/biểu mẫu.",
-  "message": "V2.4 TEST: production-base avatar surfaces and dedicated PC/mobile Settings layouts."
+  "notes": "TEST V2.5: thêm nút ĐỌC ẢNH trong FSAGS 208. Tesseract.js OCR chạy trước trên thiết bị; Gemini chỉ fallback khi OCR thiếu/độ tin cậy thấp. Kết quả chỉ điền các ô nháp còn trống, không tự hoàn tất/gửi và không đọc chữ ký. Đồng thời tích hợp bản sửa ổn định logo hãng MyFlight.",
+  "message": "V2.5 TEST: FSAGS 208 OCR-first image import + Gemini fallback + MyFlight airline logo stability."
 }
