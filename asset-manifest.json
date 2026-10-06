@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V2.2",
-  "build": "V2.2-20261006-SETTINGS-FAILSAFE-03",
-  "strategy": "TEST Settings fail-safe hotfix + live runtime self-recovery + preserved audit/performance guards",
+  "version": "V2.3",
+  "build": "V2.3-20261006-SETTINGS-TRACE-01",
+  "strategy": "V2.3 Settings recovery + persistent click/install/open trace + visible emergency diagnostics",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "07d8649d12a33a140a0a9fd63fb22c82bcf74ba5da3745f26d214858f9ed7441",
-      "bytes": 79690
+      "sha256": "34bb8bf51b1940deb8daa3318f3c183d8615f98ccee3e5a78d1ace2be5be22dc",
+      "bytes": 79489
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "4604fe2c1f6e209e05459a17383efa14a5a35ad8decfca0448610015705db291",
-      "bytes": 21192
+      "sha256": "eb14224c7d9361dcbd3c1921d41f42c0746724d2aea61607b2488dbe6d379cf0",
+      "bytes": 21183
     },
     "./version.json": {
-      "sha256": "8800bb04f080f667b6fd24be47020c1c304faa7980c193fc646ba719dda8091d",
-      "bytes": 816
+      "sha256": "b01e0467bd9d2f702c5271a892fcdf1b7fb1e1bebcb36e0dcc6ed17f5add1827",
+      "bytes": 1029
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -546,8 +546,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "17001f2f690084ee799265e5e40b90b3a265b976ff285987656e9213d0f2ac28",
-      "bytes": 137343
+      "sha256": "3d181da0d35a5684626edee198dd3f1c627ed146f3a659bb8bf98712b39ce3eb",
+      "bytes": 139974
     },
     "./app/generated/runtime-2.js": {
       "sha256": "cc45c1bb02abb73bf406016127f8de9c3381350fb69cd1ff69a84a7d587213bb",
@@ -746,12 +746,12 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "6c24e10909ccaff0ea2acb24f6127d06712037615f7cadf1e961b88889c37e34",
-      "bytes": 33021
+      "sha256": "976189d00e38236f6e89cea7a4f782551e51f188024dc7b80c933228ee38f1b2",
+      "bytes": 36961
     },
     "./app/core/runtime.v503hf2.bundle.js": {
-      "sha256": "0c6666b3c7460d937b0a49a53c8f0cfd34fd50819fb4e38b3c752ed1724e47c1",
-      "bytes": 504922
+      "sha256": "a5c3824fa1cf05fbb658aba08665955a81a10146ab2813dac585a785664b4871",
+      "bytes": 507553
     }
   }
 }
