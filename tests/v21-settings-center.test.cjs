@@ -1,8 +1,8 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('index.html'),js=read('app/modules/settings.v1.js'),css=read('app/styles/new-ui-v1.css'),sw=read('service-worker.js'),pref=read('app/modules/ui-preferences.v1.js'),runtime=read('app/core/runtime.v503hf2.bundle.js'),runtimeLive=read('app/generated/runtime-1.js'),ver=JSON.parse(read('version.json'));
-assert.equal(ver.version,'V2.2');
-assert.equal(ver.build,'V2.2-20261006-SETTINGS-FAILSAFE-03');
+assert.equal(ver.version,'V2.3');
+assert.equal(ver.build,'V2.3-20261006-SETTINGS-TRACE-01');
 assert.ok(html.includes('settings.v1.js?v='+ver.build),'Settings module must be pinned to current build');
 assert.doesNotMatch(html,/settings\.v1\.css/);
 assert.match(sw,/\.\/app\/modules\/settings\.v1\.js/);
@@ -21,7 +21,7 @@ assert.doesNotMatch(js,/currentUserProfile\s*=/);
 assert.doesNotMatch(js,/new MutationObserver\(function\(\)\{ensureMenu\(\);applyProfile\(\)\}\)/);
 assert.match(js,/function observeSettingsMenu\(\)/);
 assert.match(js,/observer\.observe\(body,\{childList:true,subtree:true\}\)/);
-console.log('TEST V2.2 Settings Center contract passed');
+console.log('TEST V2.3 Settings Center trace/recovery contract passed');
 
 assert.match(runtime,/key:\"settings\",icon:\"⚙\",label:\"Cài đặt\"/,'Settings must be native system menu item');
 assert.match(js,/__SAGS_SETTINGS_CLICK_DELEGATE__/,'Settings click delegation missing');
@@ -38,3 +38,15 @@ assert.match(runtimeLive,/data-sags-settings-failsafe/,'live runtime must be abl
 assert.match(runtimeLive,/forceSettingsVisible\(\)/,'live runtime must verify Settings became visible');
 assert.match(js,/z-index','2147483500/,'Settings panel must force top overlay z-index');
 assert.doesNotMatch(js,/stopPropagation\(\).*open\(\)/s,'Settings fallback must not block native menu click');
+
+assert.match(js,/__SAGS_SETTINGS_CENTER_READY__===BUILD/,'Settings must only reuse a successfully ready module');
+assert.doesNotMatch(js,/__SAGS_SETTINGS_CENTER__=BUILD;\nvar D=/,'Settings must not mark itself ready before initialization');
+assert.match(js,/function bootInstall\(\)/,'recoverable Settings boot missing');
+assert.match(js,/install:error/,'Settings install errors must be traced');
+assert.match(js,/open:error/,'Settings open errors must be traced');
+assert.match(js,/function emergencySettings\(/,'Settings emergency diagnostic overlay missing');
+assert.match(js,/sagsSettingsTrace/,'Settings trace reader missing');
+assert.match(runtimeLive,/runtime:click/,'runtime must trace Settings click');
+assert.match(runtimeLive,/runtime:reload-ok/,'runtime must trace module reload');
+assert.match(runtimeLive,/runtime:verify-failed/,'runtime must expose failed visibility verification');
+assert.match(runtimeLive,/settingsFailureOverlay/,'runtime must show visible diagnostic on failure');
