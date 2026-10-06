@@ -6180,3 +6180,54 @@ html.new-ui-v1 body #sagsFlightDossierModal .v1199DossierOverviewTitle{
  :where(#sagsSettingsCenter) .rows select{width:48%;max-width:150px}
  .sagsSettingsNav button{font-size:11px;padding:9px 10px}
 }
+
+
+/* V2.5 TEST · PC Settings Control Center */
+@media (min-width:901px){
+ #sagsSettingsCenter{padding:24px!important;background:radial-gradient(circle at 18% 15%,rgba(31,112,148,.18),transparent 32%),radial-gradient(circle at 85% 82%,rgba(22,143,118,.12),transparent 30%),rgba(3,10,19,.82)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important}
+ #sagsSettingsCenter .sagsSettingsPanel{width:min(1360px,calc(100vw - 48px))!important;height:min(880px,calc(100dvh - 48px))!important;border-radius:22px!important;border:1px solid rgba(145,183,210,.16)!important;background:#0d1824!important;box-shadow:0 34px 100px rgba(0,0,0,.54),inset 0 1px 0 rgba(255,255,255,.035)!important}
+ #sagsSettingsCenter .sagsSettingsPanel>header{min-height:76px!important;box-sizing:border-box!important;padding:16px 22px 15px 24px!important;align-items:center!important;background:linear-gradient(90deg,#101f2e 0%,#0d1925 55%,#0a151f 100%)!important;border-bottom:1px solid rgba(138,174,201,.12)!important}
+ #sagsSettingsCenter .sagsSettingsPanel>header small{display:block!important;margin-bottom:2px!important;color:#5ed9c1!important;font-size:9px!important;letter-spacing:.18em!important}
+ #sagsSettingsCenter .sagsSettingsPanel>header h2{margin:0!important;font-size:23px!important;letter-spacing:-.025em!important}
+ #sagsSettingsCenter .sagsSettingsPanel>header p{margin-top:3px!important;max-width:720px!important;font-size:11.5px!important;color:#8098ad!important}
+ #sagsSettingsCenter #sagsSettingsClose{width:38px!important;height:38px!important;border-radius:10px!important;background:#172636!important;color:#cbd9e5!important}
+ #sagsSettingsCenter .sagsSettingsLayout{grid-template-columns:292px minmax(0,1fr)!important;min-height:0!important;background:#0d1824!important}
+ #sagsSettingsCenter .sagsSettingsNav{padding:18px 13px 22px!important;gap:4px!important;background:linear-gradient(180deg,#0a1622,#09131d 100%)!important;border-right:1px solid rgba(130,167,194,.11)!important}
+ #sagsSettingsCenter .sagsSettingsNavTitle{margin:13px 10px 6px!important;color:#587188!important;font:900 9px/1.2 Arial,sans-serif!important;letter-spacing:.13em!important}
+ #sagsSettingsCenter .sagsSettingsNavTitle:first-child{margin-top:2px!important}
+ #sagsSettingsCenter .sagsSettingsNav button{display:grid!important;grid-template-columns:38px minmax(0,1fr)!important;grid-template-rows:auto auto!important;column-gap:10px!important;align-items:center!important;min-height:54px!important;padding:8px 10px!important;border-radius:12px!important;color:#9db0c1!important;transition:background .16s ease,border-color .16s ease,transform .16s ease!important}
+ #sagsSettingsCenter .sagsSettingsNav button>i{grid-row:1/3!important;width:36px!important;height:36px!important;border-radius:10px!important;display:grid!important;place-items:center!important;background:#122333!important;border:1px solid rgba(255,255,255,.055)!important;font-style:normal!important;font-size:16px!important}
+ #sagsSettingsCenter .sagsSettingsNav button>span{display:flex!important;flex-direction:column!important;gap:2px!important;min-width:0!important;color:inherit!important;font:850 12.5px/1.2 Arial,sans-serif!important}
+ #sagsSettingsCenter .sagsSettingsNav button>span small{display:block!important;color:#607b92!important;font:700 9.5px/1.2 Arial,sans-serif!important}
+ #sagsSettingsCenter .sagsSettingsNav button:hover{background:#122433!important;color:#dce9f4!important}
+ #sagsSettingsCenter .sagsSettingsNav button.active{background:linear-gradient(90deg,rgba(26,151,130,.22),rgba(31,92,145,.14))!important;color:#effffc!important;box-shadow:inset 3px 0 0 #48d4b8,inset 0 0 0 1px rgba(83,213,187,.11)!important}
+ #sagsSettingsCenter .sagsSettingsNav button.active>i{background:#133c3c!important;border-color:rgba(90,222,195,.22)!important}
+ #sagsSettingsCenter .sagsSettingsNav button.active>span small{color:#7ea99f!important}
+ #sagsSettingsCenter .sagsSettingsContent{padding:28px 34px 38px!important;background:linear-gradient(180deg,rgba(255,255,255,.012),transparent 140px),#0f1b27!important}
+ #sagsSettingsCenter .sagsSettingsContent section{max-width:980px!important;margin:0 auto 36px!important}
+ #sagsSettingsCenter .sagsSettingsContent h3{margin:0 0 5px!important;font-size:22px!important;letter-spacing:-.02em!important}
+ #sagsSettingsCenter .sagsSettingsContent .desc{font-size:11.5px!important;color:#7890a5!important}
+ #sagsSettingsCenter .sagsSettingsContent section[data-page="account"].active{display:grid!important;grid-template-columns:280px minmax(0,1fr)!important;grid-template-areas:"title title" "desc desc" "profile fields" "profile actions"!important;gap:0 18px!important;align-items:start!important}
+ #sagsSettingsCenter section[data-page="account"]>h3{grid-area:title!important}
+ #sagsSettingsCenter section[data-page="account"]>.desc{grid-area:desc!important;margin-bottom:18px!important}
+ #sagsSettingsCenter section[data-page="account"]>.profile{grid-area:profile!important;min-height:310px!important;margin:0!important;padding:24px 18px!important;flex-direction:column!important;justify-content:center!important;text-align:center!important;border-radius:16px!important;background:linear-gradient(160deg,#132636,#101f2d)!important;border-color:rgba(116,170,202,.13)!important}
+ #sagsSettingsCenter section[data-page="account"]>.profile>div:last-child{align-items:center!important;max-width:100%!important}
+ #sagsSettingsCenter section[data-page="account"] #sagsProfileName{max-width:230px!important;font-size:17px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+ #sagsSettingsCenter section[data-page="account"] #sagsProfileMeta{max-width:230px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+ #sagsSettingsCenter section[data-page="account"] .avatar{width:106px!important;height:106px!important;flex-basis:106px!important;margin-bottom:6px!important;border:3px solid rgba(85,217,189,.55)!important;box-shadow:0 14px 34px rgba(0,0,0,.26)!important}
+ #sagsSettingsCenter section[data-page="account"]>.grid{grid-area:fields!important;margin:0!important;padding:18px!important;gap:12px 14px!important;border:1px solid rgba(122,161,190,.11)!important;border-radius:16px!important;background:#101f2d!important}
+ #sagsSettingsCenter section[data-page="account"]>.actions{grid-area:actions!important;margin:12px 0 0!important;justify-content:flex-end!important}
+ #sagsSettingsCenter section[data-page="account"]>.actions .file,#sagsSettingsCenter section[data-page="account"]>.actions button{min-height:40px!important}
+ #sagsSettingsCenter :where(.grid input,.rows select){min-height:42px!important;border-radius:9px!important;background:#0b1722!important;border-color:rgba(145,179,204,.14)!important}
+ #sagsSettingsCenter .rows{margin-top:15px!important;border-radius:14px!important;background:#101e2b!important}
+ #sagsSettingsCenter .rows>label{min-height:57px!important;padding:12px 14px!important}
+ #sagsSettingsCenter .rows>label:hover{background:rgba(255,255,255,.018)!important}
+ #sagsSettingsCenter .stats{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
+ #sagsSettingsCenter .stats>div,#sagsSettingsCenter .flow>div,#sagsSettingsCenter .release,#sagsSettingsCenter .about{border-radius:13px!important;background:#101f2d!important;border-color:rgba(126,164,190,.11)!important}
+}
+@media (max-width:760px){
+ #sagsSettingsCenter .sagsSettingsNavTitle{display:none!important}
+ #sagsSettingsCenter .sagsSettingsNav button>i{display:inline!important;width:auto!important;height:auto!important;background:transparent!important;border:0!important;font-style:normal!important}
+ #sagsSettingsCenter .sagsSettingsNav button>span{display:inline!important}
+ #sagsSettingsCenter .sagsSettingsNav button>span small{display:none!important}
+}

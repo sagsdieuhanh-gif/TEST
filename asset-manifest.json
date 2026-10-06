@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.5",
-  "build": "V2.5-20261006-SIGNATURE-UNICODE-11",
-  "strategy": "TEST V2.5 · Vietnamese Unicode signature Full name display/PDF · account web-delete retained · OCR paused",
+  "build": "V2.5-20261006-PC-SETTINGS-12",
+  "strategy": "TEST V2.5 · PC Settings true desktop control center · mobile settings retained",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,8 +82,8 @@
       "bytes": 41473
     },
     "./app/styles/new-ui-v1.css": {
-      "sha256": "dd83ed6bfc041bfa47542a0918db372e80ff2ab0fe570eff1b2cab7ea27c311a",
-      "bytes": 342954
+      "sha256": "72a1b2b061bbd722d22161f678a793cde87277789ee2d7a8b5a9d19f35db30e5",
+      "bytes": 350840
     },
     "./assets/audio/alert-crosscheck-complete.mp3": {
       "sha256": "2291844c0abc77005a2e8800e0dc8115c373134385a31a5d3d9e5f920a5acc07",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "a4c0043de81e65147253828d88a7e8e77cf1dd1e29aaf111567836e683099d98",
-      "bytes": 80257
+      "sha256": "a2b468d453ecd5e80c2de613b2fd49c3286f8daefb750e0ca5cb3bf1462a3afe",
+      "bytes": 79843
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6935
     },
     "./service-worker.js": {
-      "sha256": "3d8ce80371018c55bb9c7ceb9ccebd037c9960736331b431f87859fc29aa1ff6",
-      "bytes": 21351
+      "sha256": "9aaa1cad98074ec54e01517126d52ce4daef89716a50a544cb04889c03db0011",
+      "bytes": 21333
     },
     "./version.json": {
-      "sha256": "3eb5bbb9bb121992247dd7c387641e261607880e40c20a766604b310b2b404e3",
-      "bytes": 4112
+      "sha256": "73401102d078f948ec5e766e9afd92b4b0f0a4bb4a64f237a309f5881ff678cd",
+      "bytes": 4477
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -746,8 +746,8 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "fee66653e780cd3a5a3ea18b562c547e30db06ca1ee352fd765354ba78d92f00",
-      "bytes": 37649
+      "sha256": "10c8ee1d7fc624a7f8c984d19fe73964afe3a15b3167c822c6ad18e479982309",
+      "bytes": 38232
     },
     "./app/modules/fsags208-image-reader.v1.js": {
       "sha256": "56b2b7c7fb1f54c20678868f80d13f7a7d2a51350bf2a89c6742381850f75e10",

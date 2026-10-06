@@ -60,6 +60,8 @@ jobs:
         run: node tests/v21-settings-center.test.cjs
       - name: Verify avatar identity and responsive Settings
         run: node tests/v24-avatar-responsive-settings.test.cjs
+      - name: Verify PC Settings desktop layout
+        run: node tests/v25-settings-pc-layout.test.cjs
       - name: Verify pinned cache integrity
         run: node tests/pwa-staging.test.cjs
       - name: Verify TEST stays on GitHub Pages
