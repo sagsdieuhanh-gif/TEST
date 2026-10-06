@@ -147,15 +147,21 @@ function applyFlightSearch(){
 }
 document.addEventListener('input',e=>{if(e.target?.id==='sagsFlightSearch')applyFlightSearch()},true);
 document.addEventListener('search',e=>{if(e.target?.id==='sagsFlightSearch')applyFlightSearch()},true);
-let flightFilterFrame=0;
-new MutationObserver(records=>{
-  if(!records.some(r=>r.type==='childList'&&r.target?.closest?.('#fwcList')))return;
-  if(flightFilterFrame)return;
-  flightFilterFrame=requestAnimationFrame(()=>{flightFilterFrame=0;normalizeFlightDossierCards();applyFlightSearch()});
-}).observe(document.body,{childList:true,subtree:true});
+let flightFilterFrame=0,flightListObserver=null;
+function installFlightListObserver(){
+  const host=document.getElementById('fwcBody');if(!host)return;
+  if(flightListObserver&&flightListObserver.__host===host)return;
+  try{flightListObserver&&flightListObserver.disconnect()}catch(_){}
+  flightListObserver=new MutationObserver(records=>{
+    if(!records.some(x=>x.type==='childList'))return;
+    if(flightFilterFrame)return;
+    flightFilterFrame=requestAnimationFrame(()=>{flightFilterFrame=0;normalizeFlightDossierCards();applyFlightSearch()});
+  });
+  flightListObserver.__host=host;flightListObserver.observe(host,{childList:true,subtree:true});
+}
 function drawShell(d){
   const modal=ensureModal();modal.hidden=false;modal.style.removeProperty('display');modal.classList.add('show');root.sagsOverlayLayout?.refresh();
-  const host=document.getElementById('fwcBody');if(!host)return false;
+  const host=document.getElementById('fwcBody');if(!host)return false;installFlightListObserver();
   host.innerHTML='<div class="fwcTools"><input id="fwcDate" type="date"><input id="sagsFlightSearch" type="search" placeholder="Tìm chuyến" aria-label="Tìm số hiệu chuyến bay" autocomplete="off"><button class="fwcBtn" id="v477Refresh" type="button" aria-label="Làm mới danh sách" title="Làm mới">↻</button></div><div class="fwcStatus" id="fwcStatus" role="status">Đang tải công việc…</div><div id="fwcList" class="v1199Queue"></div>';
   const inp=document.getElementById('fwcDate');inp.value=d;inp.onchange=()=>root.flightWorkspaceOpenList?.(inp.value);
   document.getElementById('v477Refresh').onclick=()=>root.flightWorkspaceRefresh?.();
@@ -300,7 +306,7 @@ async function refreshLite(){
 }
 refreshLite.__v477MailboxLite=true;
 function renderCanonicalIfVisible(){if(!visible())return;if(role()==='AD'||isCargoRole()){canonicalizeRoleView(date());return}const renderer=root.__SAGS_DAILY_ROSTER_FINAL_V1199?.renderPersonal;if(typeof renderer==='function')Promise.resolve(renderer(date())).catch(e=>console.warn('Canonical MY FLIGHT render',e?.message||e))}
-function install(){if(root.flightWorkspaceOpenList!==openLite)root.flightWorkspaceOpenList=openLite;if(root.flightWorkspaceRefresh!==refreshLite)root.flightWorkspaceRefresh=refreshLite;const b=document.getElementById('roleBtnRosterFlights');if(b){b.textContent='MY FLIGHT';b.onclick=()=>openLite(dateNow())}}
+function install(){installFlightListObserver();if(root.flightWorkspaceOpenList!==openLite)root.flightWorkspaceOpenList=openLite;if(root.flightWorkspaceRefresh!==refreshLite)root.flightWorkspaceRefresh=refreshLite;const b=document.getElementById('roleBtnRosterFlights');if(b){b.textContent='MY FLIGHT';b.onclick=()=>openLite(dateNow())}}
 function assertCanonical(){if(live.user&&(me()!==live.user||role()==='AD'||isCargoRole()))teardown();install();renderCanonicalIfVisible()}
 root.sagsV478OpenMyFlightLite=openLite;root.sagsV478RefreshMyFlightLite=refreshLite;root.sagsV478InstallCanonicalMyFlight=assertCanonical;
 const baseApplyRoleUI=root.applyRoleUI;if(typeof baseApplyRoleUI==='function'&&!baseApplyRoleUI.__v6424MyFlightAuthority){const wrapped=function(){const out=baseApplyRoleUI.apply(this,arguments);[0,120,500,1400].forEach(ms=>setTimeout(assertCanonical,ms));return out};wrapped.__v6424MyFlightAuthority=true;wrapped.__v6424Base=baseApplyRoleUI;root.applyRoleUI=wrapped;try{applyRoleUI=wrapped}catch(_){}}
