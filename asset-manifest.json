@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.5",
-  "build": "V2.5-20261006-FSAGS208-OCR-ZONES-07",
-  "strategy": "TEST V2.5 · FSAGS208 OCR 2-layer coordinate zones · Gemini fallback · admin actions retained",
+  "build": "V2.5-20261006-ACCOUNT-LIFECYCLE-08",
+  "strategy": "TEST V2.5 · Account Lifecycle V3 · create orphan recovery + direct delete first · FSAGS208 OCR paused",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "a2fe0bb2ca65d771847cd77058408b870f6b77a93d42db215edb4fa6a94db654",
-      "bytes": 80326
+      "sha256": "b96dfa5108f8b4df424121c8d7a257e0b074e2a8249063ccc0acef104a3cf581",
+      "bytes": 80257
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6935
     },
     "./service-worker.js": {
-      "sha256": "9bbeb4ef28745e0abe859f5d45403e60cffbcf9ed32db756a327b3ddf2bf32c4",
-      "bytes": 21354
+      "sha256": "1f2b8d9d10ceae7d5e5dcab6fff6c1c3b06bcc328b78bd77b7b65856e934f92e",
+      "bytes": 21351
     },
     "./version.json": {
-      "sha256": "13ca080730408a75566b85580cbd80ee387621343ce59bc598f33eb4abbf7c97",
-      "bytes": 2283
+      "sha256": "d9cf81a6c2d9f0d80596bc1e1bc6ff3183048c3ed616aee0860623dabda04c5e",
+      "bytes": 2880
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -754,8 +754,8 @@
       "bytes": 19873
     },
     "./app/modules/admin-account-actions.v2.js": {
-      "sha256": "f4d5961c7fd085783b2d48f2ac39e76e87064ba672434e373bf47154011851c8",
-      "bytes": 7894
+      "sha256": "257fa4335123fbfa4347ec5b765735c41633fdacc11589ba02786319911073ec",
+      "bytes": 15011
     }
   }
 }
