@@ -4,24 +4,30 @@
  */
 (function(root){
 'use strict';
-const BUILD='V2.5-20261006-FSAGS208-OCR-GEMINI-01',FORM='loading208';
+const BUILD='V2.5-20261006-FSAGS208-OCR-GEMINI-05-READER',FORM='loading208';
 const TESS='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
 const S=v=>String(v??'').trim(),U=v=>S(v).toUpperCase();
 let loadJob=null,workerJob=null,busy=false,wrappedBase=null;
 function grp(){try{return S(typeof activeFormGroup!=='undefined'?activeFormGroup:root.activeFormGroup).toLowerCase()}catch(_){return S(root.activeFormGroup).toLowerCase()}}
 function st(){try{return typeof state!=='undefined'&&state&&typeof state==='object'?state:root.state}catch(_){return root.state}}
-function editable(){const done=document.getElementById('v324HandoverBtn');return grp()===FORM&&!!done&&done.style.display!=='none'}
+function page(){return document.getElementById('page13')}
+function pageOpen(){const p=page();if(!p)return false;if(grp()===FORM)return true;try{return !p.classList.contains('hide')&&getComputedStyle(p).display!=='none'}catch(_){return !p.classList.contains('hide')}}
+function readOnly(){const b=document.getElementById('kh208ReadOnlyBadge');if(!b)return false;try{return b.style.display!=='none'&&getComputedStyle(b).display!=='none'}catch(_){return b.style.display!=='none'}}
+function editable(){return pageOpen()&&!readOnly()}
 function stat(t){const e=document.getElementById('s208ImageReadStatus');if(e){e.textContent=t||'';e.hidden=!t}}
-function prog(t,p){const b=document.getElementById('s208ImageReadBtn');if(b){b.disabled=busy;b.textContent=busy?('⏳ '+(p>=0?Math.round(p)+'%':'ĐANG ĐỌC')):'📷 ĐỌC ẢNH'}stat(t)}
+function prog(t,p){const b=document.getElementById('s208ImageReadBtn');if(b){b.disabled=busy||!editable();b.textContent=busy?('⏳ '+(p>=0?Math.round(p)+'%':'ĐANG ĐỌC')):'📷 ĐỌC ẢNH'}stat(t)}
 function ensureUi(){
+ const p=page();let bar=document.getElementById('s208ImageReadBar');
+ if(!bar&&p){bar=document.createElement('div');bar.id='s208ImageReadBar';bar.setAttribute('aria-label','Công cụ đọc ảnh FSAGS 208');p.insertBefore(bar,p.firstChild)}
  let b=document.getElementById('s208ImageReadBtn');
- if(!b){b=document.createElement('button');b.id='s208ImageReadBtn';b.type='button';b.textContent='📷 ĐỌC ẢNH';b.hidden=true;b.title='OCR miễn phí trước; Gemini chỉ dùng khi OCR chưa đủ rõ';const row=document.querySelector('.toolbar-row.main-actions')||document.querySelector('.toolbar'),before=document.getElementById('roleBtnSignature')||document.getElementById('roleBtnExport');if(before&&before.parentElement===row)row.insertBefore(b,before);else row?.appendChild(b);b.onclick=()=>{if(busy)return;const i=document.getElementById('s208ImageInput');if(i){i.value='';i.click()}}}
+ if(!b){b=document.createElement('button');b.id='s208ImageReadBtn';b.type='button';b.textContent='📷 ĐỌC ẢNH';b.hidden=true;b.title='Chọn ảnh phiếu 208 · OCR miễn phí đọc trước, Gemini chỉ kiểm tra lại khi cần';b.onclick=()=>{if(busy)return;if(!editable())return alert('FSAGS 208 đang ở chế độ chỉ xem.');const i=document.getElementById('s208ImageInput');if(i){i.value='';i.click()}}}
+ if(bar&&b.parentElement!==bar)bar.appendChild(b);
  let i=document.getElementById('s208ImageInput');if(!i){i=document.createElement('input');i.id='s208ImageInput';i.type='file';i.accept='image/*';i.hidden=true;i.onchange=()=>{const f=i.files&&i.files[0];if(f)void readImage(f)};document.body.appendChild(i)}
  if(!document.getElementById('s208ImageReadStatus')){const e=document.createElement('div');e.id='s208ImageReadStatus';e.hidden=true;e.setAttribute('role','status');e.setAttribute('aria-live','polite');document.body.appendChild(e)}
- if(!document.getElementById('s208ImageReadStyle')){const x=document.createElement('style');x.id='s208ImageReadStyle';x.textContent='#s208ImageReadBtn{min-height:30px!important;padding:4px 8px!important;border:1px solid #9ed2df!important;border-radius:8px!important;background:#e9f8fb!important;color:#075e76!important;font:900 9.5px/1 Arial!important;white-space:nowrap!important;box-shadow:none!important;touch-action:manipulation}#s208ImageReadBtn.s208-show{display:inline-flex!important;align-items:center;justify-content:center}#s208ImageReadBtn:disabled{opacity:.7}#s208ImageReadStatus{position:fixed;z-index:69000;top:calc(7px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);max-width:min(92vw,560px);padding:8px 12px;border:1px solid #b8dce5;border-radius:999px;background:#f5fcfe;color:#184f60;box-shadow:0 5px 18px #062b3a26;font:800 11px/1.25 system-ui,-apple-system,Segoe UI,sans-serif;text-align:center;pointer-events:none}#s208ImageReadStatus[hidden]{display:none!important}@media(max-width:600px){#s208ImageReadBtn{min-height:28px!important;padding:4px 6px!important;font-size:9px!important}}';document.head.appendChild(x)}
+ if(!document.getElementById('s208ImageReadStyle')){const x=document.createElement('style');x.id='s208ImageReadStyle';x.textContent='#s208ImageReadBar{position:sticky;top:calc(6px + env(safe-area-inset-top));z-index:58000;height:0;display:flex;justify-content:flex-end;align-items:flex-start;padding:0 8px;pointer-events:none;box-sizing:border-box}#s208ImageReadBtn{pointer-events:auto;min-height:34px!important;padding:6px 10px!important;margin-top:7px!important;border:1px solid #8cc9d8!important;border-radius:10px!important;background:#e8f8fb!important;color:#075e76!important;font:900 10.5px/1 Arial!important;white-space:nowrap!important;box-shadow:0 4px 14px #063b4c26!important;touch-action:manipulation}#s208ImageReadBtn.s208-show{display:inline-flex!important;align-items:center;justify-content:center}#s208ImageReadBtn:disabled{opacity:.58}#s208ImageReadStatus{position:fixed;z-index:69000;top:calc(7px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);max-width:min(92vw,560px);padding:8px 12px;border:1px solid #b8dce5;border-radius:999px;background:#f5fcfe;color:#184f60;box-shadow:0 5px 18px #062b3a26;font:800 11px/1.25 system-ui,-apple-system,Segoe UI,sans-serif;text-align:center;pointer-events:none}#s208ImageReadStatus[hidden]{display:none!important}@media(max-width:600px){#s208ImageReadBar{top:calc(4px + env(safe-area-inset-top));padding-right:5px}#s208ImageReadBtn{min-height:32px!important;padding:5px 8px!important;margin-top:5px!important;font-size:10px!important}}';document.head.appendChild(x)}
  return b;
 }
-function sync(){const b=ensureUi(),show=editable();b.hidden=!show;b.classList.toggle('s208-show',show);if(!show&&!busy)stat('')}
+function sync(){const b=ensureUi(),show=pageOpen();if(!b)return;b.hidden=!show;b.disabled=busy||!editable();b.classList.toggle('s208-show',show);b.title=editable()?'Chọn ảnh phiếu 208 · OCR miễn phí đọc trước, Gemini chỉ kiểm tra lại khi cần':'FSAGS 208 đang ở chế độ chỉ xem';if(!show&&!busy)stat('')}
 function patch(){const base=root.sags208SyncFormActions;if(typeof base!=='function')return false;if(base===wrappedBase||base.__sags208ImageReader)return true;const w=function(row){const r=base.apply(this,arguments);sync();return r};w.__sags208ImageReader=true;w.__base=base;wrappedBase=w;root.sags208SyncFormActions=w;return true}
 function script(src){return new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.async=true;s.crossOrigin='anonymous';s.onload=ok;s.onerror=()=>{s.remove();no(Error('Không tải được OCR. Kiểm tra mạng rồi thử lại.'))};document.head.appendChild(s)})}
 async function tess(){if(root.Tesseract?.createWorker)return root.Tesseract;if(!loadJob)loadJob=script(TESS).then(()=>{if(!root.Tesseract?.createWorker)throw Error('OCR chưa khởi tạo.');return root.Tesseract}).catch(e=>{loadJob=null;throw e});return loadJob}
@@ -61,7 +67,7 @@ async function readImage(file){
 root.sags208ReadImage=()=>document.getElementById('s208ImageReadBtn')?.click();
 function install(){ensureUi();patch();sync()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
-root.addEventListener('pageshow',()=>setTimeout(install,80),{passive:true});root.addEventListener('sags:ui-ready',install);root.addEventListener('sags:personal-roster-updated',()=>setTimeout(install,80));document.addEventListener('click',e=>{if(e.target?.closest?.('#kh208SendBtn,#v324HandoverBtn,#v163HomeBtn,[data-v6494-key],.v157MenuItem'))setTimeout(sync,0)},true);setTimeout(install,450);setTimeout(install,1500);
+root.addEventListener('pageshow',()=>setTimeout(install,80),{passive:true});root.addEventListener('sags:ui-ready',install);root.addEventListener('sags:personal-roster-updated',()=>setTimeout(install,80));document.addEventListener('click',e=>{if(e.target?.closest?.('button,[role="button"],a,.v157MenuItem,[data-v6494-key]')){setTimeout(sync,0);setTimeout(sync,90);setTimeout(sync,260)}},true);setTimeout(install,450);setTimeout(install,1500);
 root.addEventListener('beforeunload',()=>{try{workerJob?.then(w=>w?.terminate?.())}catch(_){}},{once:true});
 root.__SAGS_FSAGS208_IMAGE_READER={build:BUILD,parseOcr:parse,aiFields,validKey:valid};
 })(window);

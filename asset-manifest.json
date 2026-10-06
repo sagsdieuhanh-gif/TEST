@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.5",
-  "build": "V2.5-20261006-FSAGS208-OCR-GEMINI-04",
-  "strategy": "TEST V2.5 · forced stale redirect cache reset · standalone GitHub Pages · OCR/Gemini",
+  "build": "V2.5-20261006-FSAGS208-OCR-GEMINI-05",
+  "strategy": "TEST V2.5 · FSAGS208 image button pinned inside page13 · stale-cache reset preserved",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,7 +222,7 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "1b35e755c1fb07c84b525206a33e28f57328736e6b6aac41fa42755f8078c303",
+      "sha256": "697ef4c40f7ab4d5ee44a6676076f2ae19502dd80ff9ba63cb151ac9511117fb",
       "bytes": 80255
     },
     "./manifest.webmanifest": {
@@ -274,12 +274,12 @@
       "bytes": 6935
     },
     "./service-worker.js": {
-      "sha256": "b4b6c0b1b2c8f362b794345075a174227c2dbbb759d0b541e11f8d488f47a7d4",
+      "sha256": "bfeeca60e3c54ca84b374a371c54b56c1d903de7aaaf47c30c8c75c224fbc2ff",
       "bytes": 21242
     },
     "./version.json": {
-      "sha256": "a9fbc2a0fbf8693692fee5efc0694da7f9291c68c0c90d6b7893a2faf8a1b9ba",
-      "bytes": 1288
+      "sha256": "fa06ab826bfb72f0f52caf62fbe851105a3455f48a4ec2fe2938cae9cd661170",
+      "bytes": 1548
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -750,8 +750,8 @@
       "bytes": 37649
     },
     "./app/modules/fsags208-image-reader.v1.js": {
-      "sha256": "25000f3247970d93cf4da26b0ae04e4d381ec584644b7c365ef24711e3731bae",
-      "bytes": 13250
+      "sha256": "1411f0c9f0ea51e6562003dd1918b674b9425b7235af1a36889f1a9d1812e397",
+      "bytes": 14401
     }
   }
 }
