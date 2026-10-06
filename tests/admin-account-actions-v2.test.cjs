@@ -1,0 +1,14 @@
+const fs=require('node:fs'),assert=require('node:assert/strict');
+const s=fs.readFileSync(__dirname+'/../app/modules/admin-account-actions.v2.js','utf8');
+const html=fs.readFileSync(__dirname+'/../index.html','utf8');
+assert.match(s,/adminResetAuthPassword/);
+assert.match(s,/targetUid:t\.uid/);
+assert.match(s,/newPassword:TMP_PASS/);
+assert.match(s,/signInWithEmailAndPassword\(email,TMP_PASS\)/);
+assert.match(s,/cred\.user\.delete\(\)/);
+assert.match(s,/await t\.ref\.delete\(\)/);
+assert.match(s,/Không thể xóa chính tài khoản AD đang đăng nhập/);
+assert.match(s,/root\.adminResetAccountPassword=resetPassword/);
+assert.match(s,/root\.adminDeletePersonalAccount=deleteAccount/);
+assert.ok(html.lastIndexOf('admin-account-actions.v2.js')>html.lastIndexOf('33-v6497-dossier-enhancements.js'),'account actions override must load last');
+console.log('Admin account actions V2 contract passed');

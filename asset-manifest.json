@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.5",
-  "build": "V2.5-20261006-FSAGS208-OCR-GEMINI-05",
-  "strategy": "TEST V2.5 · FSAGS208 image button pinned inside page13 · stale-cache reset preserved",
+  "build": "V2.5-20261006-ACCOUNT-ACTIONS-FSAGS208-06",
+  "strategy": "TEST V2.5 · admin account actions V2 loaded last · FSAGS208 image reader retained",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "697ef4c40f7ab4d5ee44a6676076f2ae19502dd80ff9ba63cb151ac9511117fb",
-      "bytes": 80255
+      "sha256": "49638f681711b6d7adcd63b419cab56cb21594facabd3b0630086bce01da7b22",
+      "bytes": 80740
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6935
     },
     "./service-worker.js": {
-      "sha256": "bfeeca60e3c54ca84b374a371c54b56c1d903de7aaaf47c30c8c75c224fbc2ff",
-      "bytes": 21242
+      "sha256": "971342bc2dcb19f3599be7e1f3b614f3114c4002608c91e85cc4535df276bf44",
+      "bytes": 21372
     },
     "./version.json": {
-      "sha256": "fa06ab826bfb72f0f52caf62fbe851105a3455f48a4ec2fe2938cae9cd661170",
-      "bytes": 1548
+      "sha256": "ec36c8a31259f5b58f869c22ad659e87d2b86ec5dd391f016a1b6d2918f10f45",
+      "bytes": 1932
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -752,6 +752,10 @@
     "./app/modules/fsags208-image-reader.v1.js": {
       "sha256": "1411f0c9f0ea51e6562003dd1918b674b9425b7235af1a36889f1a9d1812e397",
       "bytes": 14401
+    },
+    "./app/modules/admin-account-actions.v2.js": {
+      "sha256": "f4d5961c7fd085783b2d48f2ac39e76e87064ba672434e373bf47154011851c8",
+      "bytes": 7894
     }
   }
 }

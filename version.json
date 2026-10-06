@@ -1,12 +1,12 @@
 {
   "version": "V2.5",
   "displayVersion": "V2.5",
-  "label": "V2.5 - FSAGS 208 ĐỌC ẢNH HIỂN THỊ TRỰC TIẾP",
-  "build": "V2.5-20261006-FSAGS208-OCR-GEMINI-05",
-  "releasedAt": "2026-10-06T11:18:00Z",
-  "type": "fsags208-image-import",
+  "label": "V2.5 - ACCOUNT RESET/DELETE TEST + FSAGS208 IMAGE",
+  "build": "V2.5-20261006-ACCOUNT-ACTIONS-FSAGS208-06",
+  "releasedAt": "2026-10-06T12:52:00Z",
+  "type": "account-actions-test",
   "base": "TEST main@8dc225728e16a0dcd3b628161eaa6adb5e7cc5d7",
   "updatePolicy": "required",
-  "notes": "TEST V2.5: thêm nút ĐỌC ẢNH trong FSAGS 208. Tesseract.js OCR chạy trước trên thiết bị; Gemini chỉ fallback khi OCR thiếu/độ tin cậy thấp. Kết quả chỉ điền các ô nháp còn trống, không tự hoàn tất/gửi và không đọc chữ ký. Đồng thời tích hợp bản sửa ổn định logo hãng MyFlight. MyFlight logo recovery được giữ event-driven, không dùng MutationObserver, với retry giới hạn đến 2.6 giây để đạt performance contract. TEST GitHub Pages chạy độc lập tại /TEST/; đã loại bỏ canonical redirect sang e-report-sags.vercel.app. Thêm forced TEST reset gate: mở index với __repair=1&__test_reset=1 sẽ bypass worker cũ, unregister service worker và xóa toàn bộ cache giao diện sags-/e-report- trước khi nạp lại TEST. Fix UI 208: nút ĐỌC ẢNH được gắn trực tiếp vào page13 của FSAGS 208 và hiển thị khi 208 đang mở; bỏ phụ thuộc v324HandoverBtn. Chế độ chỉ xem vẫn thấy nút nhưng nút bị khóa.",
-  "message": "V2.5 TEST: nút ĐỌC ẢNH được ghim trực tiếp trên FSAGS 208, không phụ thuộc nút bàn giao."
+  "notes": "TEST V2.5: thêm nút ĐỌC ẢNH trong FSAGS 208. Tesseract.js OCR chạy trước trên thiết bị; Gemini chỉ fallback khi OCR thiếu/độ tin cậy thấp. Kết quả chỉ điền các ô nháp còn trống, không tự hoàn tất/gửi và không đọc chữ ký. Đồng thời tích hợp bản sửa ổn định logo hãng MyFlight. MyFlight logo recovery được giữ event-driven, không dùng MutationObserver, với retry giới hạn đến 2.6 giây để đạt performance contract. TEST GitHub Pages chạy độc lập tại /TEST/; đã loại bỏ canonical redirect sang e-report-sags.vercel.app. Thêm forced TEST reset gate: mở index với __repair=1&__test_reset=1 sẽ bypass worker cũ, unregister service worker và xóa toàn bộ cache giao diện sags-/e-report- trước khi nạp lại TEST. Fix UI 208: nút ĐỌC ẢNH được gắn trực tiếp vào page13 của FSAGS 208 và hiển thị khi 208 đang mở; bỏ phụ thuộc v324HandoverBtn. Chế độ chỉ xem vẫn thấy nút nhưng nút bị khóa. TEST account actions V2: module load cuối override RESET/XÓA. RESET gọi adminResetAuthPassword với payload đầy đủ và refresh token AD. XÓA reset tạm về 123456, đăng nhập target bằng Firebase app cô lập, xóa Auth user, rồi mới xóa users/{uid} và account_permissions. Không cho xóa chính AD đang đăng nhập. Giữ nguyên chức năng ĐỌC ẢNH FSAGS 208.",
+  "message": "TEST: override legacy RESET/XÓA; hard-delete Auth then Firestore; FSAGS208 image reader retained."
 }
