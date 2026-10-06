@@ -9,5 +9,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run all regression tests
-        run: node tests/run.cjs
+      - name: Run all regression tests and collect failures
+        shell: bash
+        run: |
+          set +e
+          failures=0
+          for f in tests/*.test.cjs; do
+            echo "::group::$f"
+            node "$f"
+            rc=$?
+            echo "::endgroup::"
+            if [ $rc -ne 0 ]; then
+              echo "::error file=$f::Regression failed ($rc)"
+              failures=$((failures+1))
+            fi
+          done
+          echo "Total failing tests: $failures"
+          test $failures -eq 0
