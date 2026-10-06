@@ -24,7 +24,7 @@ assert.match(aviation,/itemWorkingAny/);
 assert.doesNotMatch(aviation,/images\.kiwi\.com/,'airline logos must never depend on an external CDN');
 assert.match(aviation,/opsFwcBrand/,'MY FLIGHT cards must carry airline identity');
 const sw=fs.readFileSync(path.join(root,'service-worker.js'),'utf8');
-assert.match(sw,/\.\/assets\/airlines\/VJ\.png/,'local airline logos must be precached');
+const manifest=JSON.parse(fs.readFileSync(path.join(root,'asset-manifest.json'),'utf8'));assert.ok(manifest.assets['./assets/airlines/VJ.png'],'VJ logo must remain a verified local asset');assert.doesNotMatch(sw.match(/const SAGS_BOOTSTRAP=(\[[^;]+\]);/)[1],/\.\/assets\/airlines\/VJ\.png/,'decorative logos must not block release staging');assert.match(sw,/async function verifiedAsset/,'lazy verified asset path missing');
 
 assert.match(roster,/configuredFormLabel\('fsags54'/);
 assert.match(roster,/configuredFormLabel\('fsags94'/);
