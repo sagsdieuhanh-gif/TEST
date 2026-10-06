@@ -48,6 +48,8 @@ jobs:
         run: node tests/v2-myflight-dossier.test.cjs
       - name: Verify V2.0 three-layer draft protection
         run: node tests/v2-draft-sync.test.cjs
+      - name: Verify AD realtime flight search
+        run: node tests/flight-search.test.cjs
       - name: Verify V2.1 Settings Center
         run: node tests/v21-settings-center.test.cjs
       - name: Verify pinned cache integrity
