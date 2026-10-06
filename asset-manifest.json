@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.5",
-  "build": "V2.5-20261006-AD-SESSION-STABILITY-09",
-  "strategy": "TEST V2.5 · AD session hydration stability · Account Lifecycle V3 retained · FSAGS208 OCR paused",
+  "build": "V2.5-20261006-WEB-DELETE-RECREATE-10",
+  "strategy": "TEST V2.5 · Account Lifecycle V4 web-delete/recreate · AD session stability retained · OCR paused",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "8fa08c857646370923b05f53e56f9e92875986ec3ce6fbc5e97d26ae863dd296",
-      "bytes": 80464
+      "sha256": "27de9457a623e172cd0f525e744a269933160a8326a620e1404548da656007fa",
+      "bytes": 80395
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6935
     },
     "./service-worker.js": {
-      "sha256": "3706c3e9a8b415a3308b8551df734b4152f4e2b18b74dfa97f8fdf61f8d5049a",
-      "bytes": 21360
+      "sha256": "98dcef879a73398513e3c94f79677033d53ff7246a42e80eafeb4efdaf630401",
+      "bytes": 21357
     },
     "./version.json": {
-      "sha256": "803980aa80705b6569b77b521f1becc0a5f3c546e63b2231337f2ce549bd5191",
-      "bytes": 3223
+      "sha256": "56da6cdcc11671bef51078fe51d4bd45fec50fde883c35b6b8f45e5eadf2cd50",
+      "bytes": 3706
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -338,8 +338,8 @@
       "bytes": 22920
     },
     "./app/boot/15-v116-account-name-search.js": {
-      "sha256": "363e9cea94c7f7748ebba9240d1979f4fb569a727d66697188d21874ab3be0a0",
-      "bytes": 3079
+      "sha256": "5eb9396b3634fd49e8c49e33a58d72093bcb96990d15e0adca0cd8d1ddfcffb7",
+      "bytes": 3097
     },
     "./app/boot/18-v173-quick-time.js": {
       "sha256": "6cc7d80f26a0237e90c8be4fb39b300122fd5c839293f6875e84f4329994d263",
@@ -754,8 +754,8 @@
       "bytes": 19873
     },
     "./app/modules/admin-account-actions.v2.js": {
-      "sha256": "257fa4335123fbfa4347ec5b765735c41633fdacc11589ba02786319911073ec",
-      "bytes": 15011
+      "sha256": "6405c8a1e4dbbef6824f3266fe1e747b2b4c20e3ff4893f075854d9a878826a5",
+      "bytes": 16051
     }
   }
 }

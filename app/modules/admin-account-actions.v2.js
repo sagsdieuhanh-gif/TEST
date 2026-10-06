@@ -1,11 +1,11 @@
-/* E-REPORT SAGS TEST · ADMIN ACCOUNT LIFECYCLE V3
+/* E-REPORT SAGS TEST · ADMIN ACCOUNT LIFECYCLE V4
  * Loaded last: canonical CREATE / RESET / DELETE overrides.
  * CREATE writes Firebase Auth first, then users/{uid}, with rollback and orphan recovery.
  * DELETE tries the known initial password directly before any privileged backend fallback.
  */
 (function(root){
 'use strict';
-const BUILD='V2.5-20261006-ACCOUNT-LIFECYCLE-08-ADMIN-LIFECYCLE',TMP_PASS='123456';
+const BUILD='V2.5-20261006-WEB-DELETE-RECREATE-10-ADMIN-LIFECYCLE',TMP_PASS='123456';
 const S=v=>String(v??'').trim();
 function session(){try{return typeof root.__sagsGetSession==='function'?root.__sagsGetSession():null}catch(_){return null}}
 function role(){const s=session();let r=S(s?.role||s?.profile?.role).toUpperCase();if(!r){try{r=S(currentRole).toUpperCase()}catch(_){}}return r}
@@ -47,30 +47,40 @@ async function createAccount(){
   const users=ctx.fs.collection('users');
   status('Đang kiểm tra username / mã nhân viên / Firebase Auth…');
   const [sameUser,sameCode,sameEmail]=await Promise.all([users.where('username','==',d.username).get(),users.where('employeeCode','==',d.employeeCode).get(),users.where('email','==',email).get()]);
-  if(!sameUser.empty)throw Error('Tài khoản '+d.username+' đã tồn tại trong users/{UID}.');
-  if(!sameCode.empty)throw Error('Mã nhân viên '+d.employeeCode+' đã được sử dụng.');
-  if(!sameEmail.empty)throw Error('Email '+email+' đã có hồ sơ E-REPORT.');
-  sec=secondary('sags-create-v3');try{await sec.auth.setPersistence(root.firebase.auth.Auth.Persistence.NONE)}catch(_){}
+  const liveUser=sameUser.docs.find(x=>(x.data()||{}).deleted!==true),liveCode=sameCode.docs.find(x=>(x.data()||{}).deleted!==true),liveEmail=sameEmail.docs.find(x=>(x.data()||{}).deleted!==true);
+  const deletedCandidates=[...sameUser.docs,...sameEmail.docs].filter((x,i,a)=>(x.data()||{}).deleted===true&&a.findIndex(y=>y.id===x.id)===i);
+  const tomb=deletedCandidates[0]||null,tombData=tomb?.data?.()||null;
+  if(liveUser)throw Error('Tài khoản '+d.username+' đã tồn tại trong users/{UID}.');
+  if(liveCode)throw Error('Mã nhân viên '+d.employeeCode+' đã được sử dụng.');
+  if(liveEmail)throw Error('Email '+email+' đã có hồ sơ E-REPORT.');
+  sec=secondary('sags-create-v4');try{await sec.auth.setPersistence(root.firebase.auth.Auth.Persistence.NONE)}catch(_){}
+  let reuseDeletedUid='';
   try{cred=await sec.auth.createUserWithEmailAndPassword(email,TMP_PASS);createdNew=true}
   catch(e){
    if(!code(e).includes('email-already-in-use'))throw e;
-   status('Auth đã tồn tại · đang kiểm tra khả năng phục hồi hồ sơ mồ côi…');
-   try{cred=await sec.auth.signInWithEmailAndPassword(email,TMP_PASS)}catch(signErr){throw Error('Firebase Auth '+email+' đã tồn tại nhưng không dùng mật khẩu mặc định 123456. Cần xóa/reset Auth cũ trước khi đăng ký lại. ['+code(signErr)+']')}
-   const orphanUid=S(cred?.user?.uid);if(!orphanUid)throw Error('Không xác định được UID Auth đang tồn tại.');
-   const old=await users.doc(orphanUid).get();if(old.exists)throw Error('Firebase Auth '+email+' đã có users/{UID}. Hãy tải lại danh sách tài khoản thay vì tạo mới.');
-   recoveredOrphan=true;
+   if(tomb){
+    reuseDeletedUid=S(tomb.id);recoveredOrphan=true;
+    status('Firebase Auth cũ còn tồn tại · đang tạo lại hồ sơ web trên đúng UID cũ…');
+   }else{
+    status('Auth đã tồn tại · đang kiểm tra khả năng phục hồi hồ sơ mồ côi…');
+    try{cred=await sec.auth.signInWithEmailAndPassword(email,TMP_PASS)}catch(signErr){throw Error('Firebase Auth '+email+' đã tồn tại nhưng không có hồ sơ đã xóa để phục hồi. ['+code(signErr)+']')}
+    const orphanUid=S(cred?.user?.uid);if(!orphanUid)throw Error('Không xác định được UID Auth đang tồn tại.');
+    const old=await users.doc(orphanUid).get();if(old.exists&&(old.data()||{}).deleted!==true)throw Error('Firebase Auth '+email+' đã có users/{UID}. Hãy tải lại danh sách tài khoản thay vì tạo mới.');
+    recoveredOrphan=true;
+   }
   }
-  const uid=S(cred?.user?.uid);if(!uid)throw Error('Firebase không trả UID tài khoản.');
+  const uid=reuseDeletedUid||S(cred?.user?.uid);if(!uid)throw Error('Firebase không trả UID tài khoản.');
   const now=Date.now(),storedRole=d.roleCode==='AD'?'ADMIN':d.roleCode;let actor=null;try{actor=typeof root.currentActor==='function'?root.currentActor():null}catch(_){}
   status(recoveredOrphan?'Đang phục hồi users/{UID} cho Auth mồ côi…':'Đang tạo users/{UID} theo Firebase UID…');
-  await users.doc(uid).set({active:true,email,username:d.username,employeeCode:d.employeeCode,name:d.name,role:storedRole,roleCode:d.roleCode,departmentCode:d.departmentCode,systemDepartment:d.departmentCode,groupCode:d.groupCode,positionCode:d.positionCode||d.jobTitle,jobTitle:d.jobTitle,unit:d.unit,workUnit:d.unit,mustChangePassword:true,featureOverridesV485:{},permissionRoleV485:d.roleCode,permissionRevV485:now,authMode:'FIREBASE_100',firebaseUid:uid,createdBy:actor,createdAtMs:now,updatedAtMs:now,recoveredOrphanAuth:recoveredOrphan||false},{merge:false});
+  await users.doc(uid).set({active:true,deleted:false,deletedAtMs:null,email,username:d.username,employeeCode:d.employeeCode,name:d.name,role:storedRole,roleCode:d.roleCode,departmentCode:d.departmentCode,systemDepartment:d.departmentCode,groupCode:d.groupCode,positionCode:d.positionCode||d.jobTitle,jobTitle:d.jobTitle,unit:d.unit,workUnit:d.unit,mustChangePassword:reuseDeletedUid?!!tombData?.mustChangePassword:true,featureOverridesV485:{},permissionRoleV485:d.roleCode,permissionRevV485:now,authMode:'FIREBASE_100',firebaseUid:uid,createdBy:actor,createdAtMs:now,updatedAtMs:now,recoveredOrphanAuth:recoveredOrphan||false,recreatedFromWebDelete:!!reuseDeletedUid},{merge:false});
   profileWritten=true;
+  if(createdNew&&tomb&&S(tomb.id)!==uid){try{await tomb.ref.delete()}catch(e){console.warn('old web-delete tombstone cleanup',e)}}
   const verify=await users.doc(uid).get(),vd=verify.data()||{};if(!verify.exists||normUser(vd.username)!==d.username||vd.active!==true)throw Error('Xác minh users/{UID} sau đăng ký không đạt.');
   await publishPermission(d.username,recoveredOrphan?'ACCOUNT_ORPHAN_RECOVERED':'ACCOUNT_CREATE_FIREBASE');
   ['admEmployeeCode','admFullName','admUsername','admJobTitle'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
   try{root.v18SyncAccountHierarchy?.('adm')}catch(_){}
-  status('✓ '+(recoveredOrphan?'Đã phục hồi':'Đã tạo')+' '+d.username+' · UID '+uid+' · mật khẩu ban đầu 123456.');
-  alert('✓ '+(recoveredOrphan?'ĐÃ PHỤC HỒI TÀI KHOẢN':'ĐÃ TẠO TÀI KHOẢN')+'\n\nUsername: '+d.username+'\nFirebase: '+email+'\nMật khẩu: 123456');
+  status('✓ '+(reuseDeletedUid?'Đã tạo lại hồ sơ web':'Đã tạo')+' '+d.username+' · UID '+uid+'.');
+  alert(reuseDeletedUid?'✓ ĐÃ TẠO LẠI HỒ SƠ E-REPORT\n\nUsername: '+d.username+'\nFirebase Auth cũ được giữ nguyên nên mật khẩu Firebase KHÔNG thay đổi.':'✓ ĐÃ TẠO TÀI KHOẢN\n\nUsername: '+d.username+'\nFirebase: '+email+'\nMật khẩu: 123456');
   await refresh();
  }catch(e){
   if(createdNew&&cred?.user&&!profileWritten){try{await cred.user.delete()}catch(_){}}
@@ -102,31 +112,22 @@ async function resetPassword(id){
 }
 async function deleteAccount(id){
  if(!isAdmin())return alert('Chỉ AD được xóa tài khoản.');
- let authDeleted=false;
  try{
   const ctx=await adminContext(),t=await target(id,ctx),d=t.data||{},label=normUser(d.username)||S(d.email)||t.uid,email=loginEmail(d);
   if(S(ctx.caller.uid)===t.uid)return alert('Không thể xóa chính tài khoản AD đang đăng nhập.');
-  if(!email)throw Error('Tài khoản không có email Firebase để xóa Authentication.');
-  if(!confirm('XÓA HOÀN TOÀN '+label+'?\n\nXóa Firebase Authentication + users/{UID}. Sau đó có thể tạo lại từ đầu bằng cùng username.\n\nKhông thể hoàn tác.'))return;
-  status('1/3 · Thử xóa Auth trực tiếp bằng mật khẩu khởi tạo 123456…');
-  let direct=await deleteWithDefault(email,t.uid);
-  if(direct.ok){authDeleted=true}
-  else{
-   status('Tài khoản đã đổi mật khẩu · thử backend Admin xóa trực tiếp…');
-   authDeleted=await callDeleteServer(t);
-   if(!authDeleted){
-    status('Backend xóa chưa sẵn sàng · thử reset 123456 làm phương án cuối…');
-    try{await callReset(t);direct=await deleteWithDefault(email,t.uid);authDeleted=!!direct.ok}catch(e){throw Error('Auth còn tồn tại và đã đổi mật khẩu. Backend Admin chưa xóa/reset được: '+message(e))}
-   }
-  }
-  if(!authDeleted)throw Error('Chưa xác nhận được Firebase Auth đã xóa.');
-  status('2/3 · Auth đã xóa/không còn · đang xóa users/{UID}…');
-  await t.ref.delete();
-  status('3/3 · Đang dọn quyền ứng dụng…');await cleanupPermission(d);
-  status('✓ Đã xóa hoàn toàn '+label+'. Có thể tạo lại ngay.');
-  alert('✓ ĐÃ XÓA TÀI KHOẢN\n\n'+label+' đã được xóa khỏi Firebase Authentication và E-REPORT.\nCó thể tạo lại từ đầu bằng cùng username.');
+  if(!confirm('XÓA '+label+' KHỎI E-REPORT?\n\nTài khoản sẽ biến mất khỏi danh sách và không còn được đăng nhập E-REPORT. Sau đó có thể tạo lại cùng username / mã nhân viên.\n\nFirebase Auth cũ có thể được giữ lại nếu người dùng đã đổi mật khẩu.'))return;
+  status('1/3 · Đang xóa hồ sơ khỏi E-REPORT…');
+  const now=Date.now();let actor=null;try{actor=typeof root.currentActor==='function'?root.currentActor():null}catch(_){}
+  await t.ref.set({active:false,deleted:true,deletedAtMs:now,deletedBy:actor,deletedReason:'WEB_DELETE_FOR_RECREATE',updatedAtMs:now},{merge:true});
+  await cleanupPermission(d);
+  status('2/3 · Hồ sơ web đã xóa · đang thử dọn Firebase Auth nếu còn mật khẩu mặc định…');
+  let authDeleted=false;
+  if(email){try{const direct=await deleteWithDefault(email,t.uid);authDeleted=!!direct.ok}catch(e){console.warn('Optional Auth cleanup after web delete',code(e),message(e))}}
+  await t.ref.set({authDeletedAfterWebDelete:authDeleted,authRetainedAfterWebDelete:!authDeleted,updatedAtMs:Date.now()},{merge:true});
+  status('✓ Đã xóa '+label+' khỏi E-REPORT. Có thể tạo lại cùng username / mã NV.');
+  alert('✓ ĐÃ XÓA KHỎI E-REPORT\n\n'+label+' đã được ẩn/khóa trên hệ thống và không còn chiếm username hoặc mã nhân viên.\n\nCó thể tạo lại ngay. '+(authDeleted?'Firebase Auth cũ cũng đã được xóa.':'Firebase Auth cũ vẫn còn nhưng sẽ được tái sử dụng nếu tạo lại cùng username.'));
   await refresh();
- }catch(e){status('Không xóa hoàn tất: '+message(e),true);alert('KHÔNG XÓA HOÀN TẤT\n\n'+message(e))}
+ }catch(e){status('Không xóa được hồ sơ web: '+message(e),true);alert('KHÔNG XÓA ĐƯỢC\n\n'+message(e))}
 }
 function install(){
  root.adminCreatePersonalAccount=createAccount;
@@ -139,5 +140,5 @@ function install(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
 root.addEventListener('pageshow',()=>setTimeout(install,50),{passive:true});setTimeout(install,250);setTimeout(install,1100);
-root.__SAGS_ADMIN_ACCOUNT_ACTIONS_V3={build:BUILD,install};
+root.__SAGS_ADMIN_ACCOUNT_ACTIONS_V4={build:BUILD,install};
 })(window);
