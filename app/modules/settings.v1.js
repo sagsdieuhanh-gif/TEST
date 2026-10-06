@@ -3,7 +3,7 @@
  */
 (function(w){
 'use strict';
-var BUILD='V2.1-20261006-SETTINGS-CENTER-04';
+var BUILD='V2.1-20261006-FLIGHT-SEARCH-05';
 if(w.__SAGS_SETTINGS_CENTER__===BUILD)return;
 w.__SAGS_SETTINGS_CENTER__=BUILD;
 var D={schema:1,displayName:'',avatarData:'',appearance:'dark',fontScale:'normal',compactMode:false,soundEnabled:true,vibrationEnabled:true,notifications:{device:true,assignment:true,handover:true,returned:true,roster:true,update:true},autoSync:true,warnUnsynced:true,autoLockMinutes:0,updatedAtMs:0};
