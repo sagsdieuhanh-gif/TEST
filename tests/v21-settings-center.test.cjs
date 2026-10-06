@@ -22,6 +22,6 @@ assert.doesNotMatch(js,/new MutationObserver\(function\(\)\{ensureMenu\(\);apply
 assert.match(js,/requestAnimationFrame\(function\(\)\{menuQueued=false;ensureMenu\(\)\}\)/);
 console.log('TEST V2.2 Settings Center contract passed');
 
-assert.match(runtime,/key:\"settings\",icon:\"⚙\",label:\"Cài đặt\"/,'Settings must be native system menu item');
+assert.match(runtimeLoaded,/key:\"settings\",icon:\"⚙\",label:\"Cài đặt\"/,'Settings must exist in loaded runtime');assert.match(runtimeSource,/key:\"settings\",icon:\"⚙\",label:\"Cài đặt\"/,'canonical runtime source must stay aligned');
 assert.match(js,/__SAGS_SETTINGS_CLICK_DELEGATE__/,'Settings click delegation missing');
 assert.match(js,/c\.classList\.add\('show'\)/,'Settings open must show shell');
