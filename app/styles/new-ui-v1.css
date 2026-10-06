@@ -5923,3 +5923,97 @@ html.new-ui-v1 body #fwcList.v478CanonicalQueue .v478RoleModules .fwcBadge.worki
     grid-template-columns:1fr!important;
   }
 }
+
+
+/* ==========================================================================
+   V6.4.106 · MY FLIGHT COMPACT CHIP RAIL
+   Option 2: one compact horizontal strip of generated forms per flight card.
+   ========================================================================== */
+html.new-ui-v1 body #fwcModal .fwcFormOverview{
+  min-width:0!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormOverviewTitle{
+  margin:0 0 6px!important;
+  color:#7f9fb2!important;
+  font:800 8.5px/1.15 var(--ops-font)!important;
+  letter-spacing:.09em!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormChipRail{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  gap:6px!important;
+  min-width:0!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:1px 1px 4px!important;
+  scroll-snap-type:x proximity!important;
+  overscroll-behavior-x:contain!important;
+  -webkit-overflow-scrolling:touch!important;
+  scrollbar-width:thin!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormChip{
+  flex:0 0 auto!important;
+  min-width:108px!important;
+  max-width:150px!important;
+  min-height:54px!important;
+  padding:7px 9px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  gap:3px!important;
+  border:1px solid rgba(84,150,182,.25)!important;
+  border-radius:10px!important;
+  background:#0c2a3d!important;
+  color:#dcecf4!important;
+  box-shadow:none!important;
+  scroll-snap-align:start!important;
+  white-space:normal!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormChip b{
+  display:block!important;
+  width:100%!important;
+  color:inherit!important;
+  font:900 10.5px/1.12 var(--ops-font)!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormChip small{
+  display:block!important;
+  width:100%!important;
+  color:inherit!important;
+  opacity:.82!important;
+  font:750 8.5px/1.2 var(--ops-font)!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormChip.done{
+  border-color:rgba(40,204,125,.42)!important;
+  background:#0b302a!important;
+  color:#c9f5df!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormChip.working{
+  border-color:rgba(36,205,231,.44)!important;
+  background:#0b3448!important;
+  color:#cff2f7!important;
+}
+html.new-ui-v1 body #fwcModal .fwcFormChip.warn{
+  border-color:rgba(225,178,57,.42)!important;
+  background:#332a10!important;
+  color:#ffe383!important;
+}
+@media(max-width:720px){
+  html.new-ui-v1 body #fwcModal .fwcFormOverviewTitle{font-size:8px!important}
+  html.new-ui-v1 body #fwcModal .fwcFormChipRail{gap:5px!important}
+  html.new-ui-v1 body #fwcModal .fwcFormChip{
+    min-width:96px!important;
+    max-width:122px!important;
+    min-height:49px!important;
+    padding:6px 7px!important;
+    border-radius:9px!important;
+  }
+  html.new-ui-v1 body #fwcModal .fwcFormChip b{font-size:9.5px!important}
+  html.new-ui-v1 body #fwcModal .fwcFormChip small{font-size:7.8px!important}
+}
