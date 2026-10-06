@@ -1,6 +1,6 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const html=read('index.html'),js=read('app/modules/settings.v1.js'),css=read('app/styles/new-ui-v1.css'),sw=read('service-worker.js'),pref=read('app/modules/ui-preferences.v1.js'),runtime=read('app/core/runtime.v503hf2.bundle.js'),ver=JSON.parse(read('version.json'));
+const html=read('index.html'),js=read('app/modules/settings.v1.js'),css=read('app/styles/new-ui-v1.css'),sw=read('service-worker.js'),pref=read('app/modules/ui-preferences.v1.js'),runtime=read('app/core/runtime.v503hf2.bundle.js'),runtimeLive=read('app/generated/runtime-1.js'),ver=JSON.parse(read('version.json'));
 assert.equal(ver.version,'V2.2');
 assert.equal(ver.build,'V2.2-20261006-SEARCH-SETTINGS-01');
 assert.ok(html.includes('settings.v1.js?v='+ver.build),'Settings module must be pinned to current build');
@@ -25,3 +25,9 @@ console.log('TEST V2.2 Settings Center contract passed');
 assert.match(runtime,/key:\"settings\",icon:\"⚙\",label:\"Cài đặt\"/,'Settings must be native system menu item');
 assert.match(js,/__SAGS_SETTINGS_CLICK_DELEGATE__/,'Settings click delegation missing');
 assert.match(js,/c\.classList\.add\('show'\)/,'Settings open must show shell');
+
+assert.match(runtimeLive,/key:\"settings\",icon:\"⚙\",label:\"Cài đặt\"/,'live runtime-1 must contain Settings menu');
+assert.doesNotMatch(js,/setInterval\(/,'Settings must be event-driven, not polling');
+assert.doesNotMatch(js,/observe\(document\.body,\{subtree:true/,'Settings must not observe the whole DOM');
+assert.match(js,/sagsRequestNotify/,'notification permission action missing');
+assert.match(js,/sagsResetDefaults/,'settings reset action missing');
