@@ -1,12 +1,12 @@
 {
-  "version": "V2.0",
-  "displayVersion": "V2.0",
-  "label": "V2.0 - E-REPORT SAGS PRODUCTION",
-  "build": "V2.0-20261006-SETTINGS-HOME-FIX-01",
-  "releasedAt": "2026-10-06T08:47:56.286Z",
-  "type": "bugfix-performance",
-  "base": "V6.4.89-20261005-AIRLINE-DASHBOARD-AD-CONTRAST-01",
+  "version": "V2.4",
+  "displayVersion": "V2.4",
+  "label": "V2.4 - AVATAR IDENTITY + RESPONSIVE SETTINGS",
+  "build": "V2.4-20261006-AVATAR-RESPONSIVE-SETTINGS-01",
+  "releasedAt": "2026-10-06T09:12:00Z",
+  "type": "ui-profile-responsive",
+  "base": "E-REPORT-SAGS main@34f2c9497a3bb42263262aa32e06043633879016",
   "updatePolicy": "required",
-  "notes": "Sửa nút Cài đặt trên trang chủ và menu điện thoại; không đổi theme khi mở. Đồng nhất phiên bản, tránh mở lại cửa sổ đã đóng, giới hạn tác vụ quan sát menu và phạm vi CSS. Kiểm tra hồi quy và xác minh checksum toàn bộ tài nguyên.",
-  "message": "V2.0: corrected home Settings routing and verified static release."
+  "notes": "TEST V2.4 lấy E-REPORT-SAGS production hiện tại làm nền. Avatar tùy chỉnh được đồng bộ ra các bề mặt danh tính của người đang đăng nhập: drawer, lời chào trang chủ, sidebar PC, top bar PC, profile mobile và profile trong Cài đặt. Settings được tách layout PC/mobile: desktop dùng panel rộng + sidebar cố định + nội dung hai cột; mobile dùng full-screen + tab ngang + nội dung một cột. Không thay đổi tên nghiệp vụ trên roster/biểu mẫu.",
+  "message": "V2.4 TEST: production-base avatar surfaces and dedicated PC/mobile Settings layouts."
 }
