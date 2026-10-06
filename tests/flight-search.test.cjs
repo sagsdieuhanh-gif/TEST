@@ -57,3 +57,5 @@ const source=fs.readFileSync(__dirname+'/../app/modules/roster-lite.v5.js','utf8
 assert.match(source,/document\.addEventListener\('search',e=>\{if\(e\.target\?\.id==='sagsFlightSearch'\)applyFlightSearch\(\)\}/);
 assert.doesNotMatch(source,/scrollIntoView\(/);
 console.log('Flight search passed: all roles use one filter-only behavior; AD search hides tabs and shows matching cards only.');
+
+assert.match(source, /v478CanonicalRoleCard\[hidden\]\{display:none!important\}/,'hidden AD cards must beat display:flex!important');
