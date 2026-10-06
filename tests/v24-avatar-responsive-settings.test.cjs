@@ -5,8 +5,8 @@ const shell=read('app/boot/32-v6494-aviation-shell.js');
 const css=read('app/styles/new-ui-v1.css');
 const ver=JSON.parse(read('version.json'));
 
-assert.equal(ver.version,'V2.4');
-assert.equal(ver.build,'V2.4-20261006-AVATAR-RESPONSIVE-SETTINGS-01');
+assert.match(ver.version,/^V2\.\d+$/,'Avatar/Settings contract requires a V2 release');
+assert.ok(ver.build.startsWith(ver.version+'-'),'Avatar/Settings contract requires build/version alignment');
 
 for(const id of ['v157DrawerAvatar','sagsWelcomeAvatar','v6494Avatar','v6494TopAvatar','v6494MobileAvatar']){
   assert.ok(settings.includes("'"+id+"'")||settings.includes('"'+id+'"'),'Settings profile sync missing avatar surface '+id);
@@ -31,4 +31,4 @@ assert.match(css,/\.sagsSettingsLayout\{grid-template-columns:292px minmax\(0,1f
 assert.match(css,/\.sagsSettingsLayout\{display:flex;flex-direction:column;min-height:0\}/,'mobile Settings must switch to vertical full-screen flow');
 assert.match(css,/\.sagsSettingsNav button span\{display:inline!important\}/,'mobile Settings tabs must keep readable labels');
 
-console.log('V2.4 avatar identity + dedicated PC/mobile Settings regression passed');
+console.log(ver.version+' avatar identity + dedicated PC/mobile Settings regression passed');

@@ -50,9 +50,9 @@ jobs:
         run: node tests/v2-draft-sync.test.cjs
       - name: Verify AD realtime flight search
         run: node tests/flight-search.test.cjs
-      - name: Verify V2.4 Settings Center
+      - name: Verify Settings Center contract
         run: node tests/v21-settings-center.test.cjs
-      - name: Verify V2.4 avatar identity and responsive Settings
+      - name: Verify avatar identity and responsive Settings
         run: node tests/v24-avatar-responsive-settings.test.cjs
       - name: Verify pinned cache integrity
         run: node tests/pwa-staging.test.cjs
