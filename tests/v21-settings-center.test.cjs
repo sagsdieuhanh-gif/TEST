@@ -19,7 +19,8 @@ assert.match(pref,/applyTheme\(readTheme\(\),false\)/);
 assert.match(pref,/const t=readTheme\(\);/);
 assert.doesNotMatch(js,/currentUserProfile\s*=/);
 assert.doesNotMatch(js,/new MutationObserver\(function\(\)\{ensureMenu\(\);applyProfile\(\)\}\)/);
-assert.match(js,/requestAnimationFrame\(function\(\)\{menuQueued=false;ensureMenu\(\)\}\)/);
+assert.match(js,/function observeSettingsMenu\(\)/);
+assert.match(js,/observer\.observe\(body,\{childList:true,subtree:true\}\)/);
 console.log('TEST V2.2 Settings Center contract passed');
 
 assert.match(runtime,/key:\"settings\",icon:\"⚙\",label:\"Cài đặt\"/,'Settings must be native system menu item');
