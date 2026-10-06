@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V2.1",
-  "build": "V2.1-20261006-FLIGHT-SEARCH-05",
-  "strategy": "atomic TEST release + unified filter-only flight search for all roles + Settings Center + three-layer draft",
+  "version": "V2.2",
+  "build": "V2.2-20261006-SEARCH-SETTINGS-01",
+  "strategy": "atomic TEST release + real hidden-card flight search fix + native Settings menu + three-layer draft",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -50,8 +50,8 @@
       "bytes": 14935
     },
     "./app/modules/roster-lite.v5.js": {
-      "sha256": "c14164f082abee82fad589d47f3c733a33bf4af95597eb7d9a4e879159415a87",
-      "bytes": 25765
+      "sha256": "843bce5d1dcf8d32000272f37adeb4e499faab901cef8fb72c28695dbd360625",
+      "bytes": 25849
     },
     "./app/modules/stability.v6-core.js": {
       "sha256": "4123ae9fb477b4cd8e1d489236a17900716d544ac8decd51551ece01d987eb51",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "addcb4dcf8f166b4b1814cb1a220b6298b9ccb586a0da0f94f55721aca6c5aa3",
-      "bytes": 79422
+      "sha256": "bb6cc26db2618f40e370ecd8cca50be40a17699f3fdc3229dbd00a3f4fdb04ec",
+      "bytes": 79556
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "214421a4c10151aa403e5ff26669ce8845ecc69a6cad0d47389b326d5e330ff1",
-      "bytes": 21180
+      "sha256": "bbe538374d0067881b9693283bb32156a203bf9d6e37842bdece10b3d69ad090",
+      "bytes": 21186
     },
     "./version.json": {
-      "sha256": "d548b4eb61de4f1b8d103c76e9c9a8e71a62285cf088c067402824de6584102e",
-      "bytes": 934
+      "sha256": "b3815ea50f6bd824b41d10067588c408957d79d0e14fbae0d5b813aad17c6908",
+      "bytes": 991
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -746,8 +746,12 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "57498cd4d68ced5afd396523d78684fff0d73c9b70546e68981a455859b3da12",
-      "bytes": 30515
+      "sha256": "e23c40fbe553029f2bc5336a0746f0e15ceb1b3bc7713a8eab8ccfcb983d77f7",
+      "bytes": 31018
+    },
+    "./app/core/runtime.v503hf2.bundle.js": {
+      "sha256": "67210c2277f112caf5dc2198f458fb28e8d21375fa215d3e96e991a58db114a6",
+      "bytes": 503620
     }
   }
 }
