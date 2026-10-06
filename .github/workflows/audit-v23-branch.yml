@@ -1,0 +1,13 @@
+name: Audit V2.3 Branch
+on:
+  push:
+    branches: [v22-settings-functional-perf-audit-20261006]
+permissions:
+  contents: read
+jobs:
+  full-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run all regression tests
+        run: node tests/run.cjs
