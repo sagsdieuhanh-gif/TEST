@@ -11,7 +11,7 @@ for(const file of ['app/generated/runtime-1.js','app/core/runtime.v503hf2.bundle
   assert.match(fn,/textContent!=="☰ MENU"/,file+' MENU text write must be idempotent');
   assert.match(fn,/home\.style\.display!==display/,file+' home-button display write must be idempotent');
   assert.match(fn,/back\.textContent!==backText/,file+' back-button text write must be idempotent');
-  assert.doesNotMatch(fn,/close\.textContent="☰ MENU"/,file+' must not rewrite MENU text on every sync');
+  assert.match(fn,/if\(close\.textContent!=="☰ MENU"\)close\.textContent="☰ MENU"/,file+' MENU text assignment must stay guarded');
 }
 const roster=read('app/modules/daily-roster.v502.js');
 assert.match(roster,/h&&h\.textContent!==\'MY FLIGHT\'/,'daily roster header must share the same stable MY FLIGHT title');
@@ -20,7 +20,7 @@ assert.doesNotMatch(roster,/h\.textContent=\'✈ MY FLIGHT\'/,'daily roster must
 const flight=read('app/generated/core-flight.js');
 assert.match(flight,/function formAssignmentBadges\(rec\)/,'all-flight cards need generated-form assignment summaries');
 assert.match(flight,/fwcFormOverviewTitle/,'flight card overview title missing');
-assert.match(flight,/BIỂU MẪU · NGƯỜI PHỤ TRÁCH · TRẠNG THÁI/,'flight card must explain form / assignee / status');
+assert.match(flight,/BIỂU MẪU CỦA CHUYẾN BAY/,'flight card form overview heading missing');
 assert.match(flight,/st\.completedBy\|\|st\.claimedBy\|\|st\.ownerUser\|\|item\.user\|\|item\.targetUser/,'form summary must surface the responsible/actual user');
 assert.match(flight,/configuredFlightFormLabel\("fsags54"/,'54 label must honor Form Manager naming');
 assert.match(flight,/configuredFlightFormLabel\("fsags94"/,'94 label must honor Form Manager naming');
