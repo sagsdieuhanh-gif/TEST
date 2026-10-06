@@ -59,15 +59,16 @@ function homeState(){return auth()&&document.body.classList.contains('v157-home'
 function legacyButton(key){return document.querySelector('.v157MenuItem[data-v157-key="'+key+'"]')}
 function available(key){
  if(key==='home')return true;
- if(key==='settings')return !!$('sagsUiPrefsBtn')||typeof root.sagsSetUiTheme==='function';
+ if(key==='settings')return typeof root.sagsOpenSettings==='function'||!!legacyButton('settings');
  const b=legacyButton(key);return !!b&&!b.disabled&&!b.hidden;
 }
 function trigger(key){
  if(key==='home'){try{root.sagsV479GoHome?.()}catch(_){}sync();return}
  if(key==='notice'&&typeof root.sagsFlightNoticeOpen==='function'){root.sagsFlightNoticeOpen();return}
  if(key==='settings'){
-   const b=$('sagsUiPrefsBtn');if(b){b.click();return}
-   try{root.sagsSetUiTheme?.('dark')}catch(_){}return;
+   const b=legacyButton('settings');
+   if(b&&!b.disabled){b.click();return}
+   try{root.sagsOpenSettings?.()}catch(e){console.error('Settings home action failed',e)}return;
  }
  const b=legacyButton(key);if(b&&!b.disabled){b.click();scheduleSync();setTimeout(scheduleSync,120);return}
 }
@@ -116,7 +117,7 @@ function renderMenus(){
   const items=sec.items.filter(x=>available(x.key));
   if(!items.length)continue;
   navHtml+='<section><h3>'+esc(sec.group)+'</h3>'+items.map(x=>menuCard(x,true)).join('')+'</section>';
-  if(sec.group!=='HỆ THỐNG'||items.some(x=>x.key!=='settings'))mobileHtml+='<div class="v6494MobileGroup"><h3>'+esc(sec.group)+'</h3><div>'+items.map(x=>menuCard(x,false)).join('')+'</div></div>';
+  mobileHtml+='<div class="v6494MobileGroup"><h3>'+esc(sec.group)+'</h3><div>'+items.map(x=>menuCard(x,false)).join('')+'</div></div>';
  }
  const sig=navHtml+'\u0000'+mobileHtml;if(sig===lastMenuSignature)return;lastMenuSignature=sig;
  nav.innerHTML=navHtml;mobile.innerHTML=mobileHtml;

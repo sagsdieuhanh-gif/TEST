@@ -1,8 +1,8 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('index.html'),js=read('app/modules/settings.v1.js'),css=read('app/styles/new-ui-v1.css'),sw=read('service-worker.js'),pref=read('app/modules/ui-preferences.v1.js'),runtime=read('app/core/runtime.v503hf2.bundle.js'),runtimeLive=read('app/generated/runtime-1.js'),ver=JSON.parse(read('version.json'));
-assert.equal(ver.version,'V2.3');
-assert.equal(ver.build,'V2.3-20261006-SETTINGS-TRACE-01');
+assert.equal(ver.version,'V2.0');
+assert.equal(ver.build,'V2.0-20261006-SETTINGS-HOME-FIX-01');
 assert.ok(html.includes('settings.v1.js?v='+ver.build),'Settings module must be pinned to current build');
 assert.doesNotMatch(html,/settings\.v1\.css/);
 assert.match(sw,/\.\/app\/modules\/settings\.v1\.js/);
