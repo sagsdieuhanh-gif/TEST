@@ -183,23 +183,29 @@ function v478CardState(card){
 }
 function v478ApplyRoleFilter(){
   const list=document.getElementById('fwcList');if(!list?.classList.contains('v478CanonicalQueue'))return;
-  const q=String(document.getElementById('sagsFlightSearch')?.value||'').trim().toUpperCase().replace(/\s+/g,'');
+  const q=String(document.getElementById('sagsFlightSearch')?.value||'').trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
   let pending=0,completed=0;
   const cards=Array.from(list.querySelectorAll('.v478CanonicalRoleCard'));
   for(const card of cards){
     const state=card.dataset.v478State||v478CardState(card);card.dataset.v478State=state;
     state==='completed'?completed++:pending++;
     const title=card.querySelector('.fwcFlightTitle,.v1199Title');
-    const hay=String(title?.textContent||card.textContent||'').toUpperCase().replace(/\s+/g,'');
-    const tabOk=v478RoleTab==='completed'?state==='completed':state!=='completed';
+    const hay=String(title?.textContent||card.textContent||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+    const tabOk=q?true:(v478RoleTab==='completed'?state==='completed':state!=='completed');
     card.hidden=!tabOk||!!q&&!hay.includes(q);
   }
   list.querySelectorAll('[data-v478-tab]').forEach(btn=>{
-    const active=btn.dataset.v478Tab===v478RoleTab;btn.classList.toggle('active',active);
+    const active=!q&&btn.dataset.v478Tab===v478RoleTab;btn.classList.toggle('active',active);
+    btn.setAttribute('aria-pressed',active?'true':'false');
     const count=btn.querySelector('.v1199Count');if(count)count.textContent=btn.dataset.v478Tab==='completed'?completed:pending;
   });
+  const visible=cards.filter(card=>!card.hidden);
   const empty=list.querySelector('.v478RoleEmpty');
-  if(empty)empty.hidden=cards.some(c=>!c.hidden);
+  if(empty){empty.hidden=visible.length>0;if(!empty.hidden)empty.textContent=q?'Không tìm thấy chuyến phù hợp.':'Không có chuyến trong trạng thái này.'}
+  if(q.length>=2&&visible.length===1){
+    const one=visible[0];
+    requestAnimationFrame(()=>{try{one.scrollIntoView({block:'nearest',behavior:'auto'})}catch(_){}});
+  }
 }
 function v478EnsureTabs(list){
   let tabs=list.querySelector(':scope > .v478RoleTabs');
