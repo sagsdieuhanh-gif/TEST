@@ -20,8 +20,10 @@ const source=fs.readFileSync(__dirname+'/../app/modules/roster-lite.v5.js','utf8
 
 {
   const searchStart=source.indexOf('function normalizeFlightSearch(');
-  const roleEnd=source.indexOf('function v478EnsureTabs(',searchStart);
-  assert(searchStart>0&&roleEnd>searchStart,'AD unified search block missing');
+  const searchEnd=source.indexOf("document.addEventListener('input'",searchStart);
+  const roleStart=source.indexOf('function v478ApplyRoleFilter(){',searchEnd);
+  const roleEnd=source.indexOf('function v478EnsureTabs(',roleStart);
+  assert(searchStart>0&&searchEnd>searchStart&&roleStart>searchEnd&&roleEnd>roleStart,'AD unified search block missing');
   let input={value:'VN 123'};
   const mk=(title,state)=>({hidden:false,dataset:{v478State:state},querySelector:sel=>sel.includes('Title')?{textContent:title}:null,textContent:title});
   const pendingCard=mk('VJ834','pending'),completedCard=mk('VN123','completed');
@@ -38,7 +40,7 @@ const source=fs.readFileSync(__dirname+'/../app/modules/roster-lite.v5.js','utf8
     querySelector:sel=>sel===':scope > .v478RoleTabs'?tabsBox:sel===':scope > .v478RoleOwner'?owner:sel==='.v478RoleEmpty'?empty:null
   };
   const c={document:{getElementById:id=>id==='fwcList'?list:id==='sagsFlightSearch'?input:null}};
-  vm.createContext(c);vm.runInContext("let v478RoleTab='pending';"+source.slice(searchStart,roleEnd),c);
+  vm.createContext(c);vm.runInContext("let v478RoleTab='pending';function v478CardState(){return 'pending'};"+source.slice(searchStart,searchEnd)+source.slice(roleStart,roleEnd),c);
   c.applyFlightSearch();
   assert.equal(pendingCard.hidden,true,'AD search must hide non-matching flight');
   assert.equal(completedCard.hidden,false,'AD search must show matching flight only, regardless of status tab');
