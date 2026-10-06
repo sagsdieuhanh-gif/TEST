@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.1",
-  "build": "V2.1-20261006-SETTINGS-CENTER-04",
-  "strategy": "atomic TEST release + V2.0 three-layer draft + Settings Center + AD realtime flight search across status tabs",
+  "build": "V2.1-20261006-FLIGHT-SEARCH-05",
+  "strategy": "atomic TEST release + unified filter-only flight search for all roles + Settings Center + three-layer draft",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -50,8 +50,8 @@
       "bytes": 14935
     },
     "./app/modules/roster-lite.v5.js": {
-      "sha256": "bff0af5137af8aca0ecf81f56f3ba3a51616549a4704df011e160c9b88164666",
-      "bytes": 25702
+      "sha256": "c14164f082abee82fad589d47f3c733a33bf4af95597eb7d9a4e879159415a87",
+      "bytes": 25765
     },
     "./app/modules/stability.v6-core.js": {
       "sha256": "4123ae9fb477b4cd8e1d489236a17900716d544ac8decd51551ece01d987eb51",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "56a5f7ec60e73bd2d4e83668f557d0a92a5a966b0c896d58abe9bae3b5442a6e",
-      "bytes": 79556
+      "sha256": "addcb4dcf8f166b4b1814cb1a220b6298b9ccb586a0da0f94f55721aca6c5aa3",
+      "bytes": 79422
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "a42e744f628546e999ec69e08952eefa619f7fc37020a29db491f7093f60e3bb",
-      "bytes": 21186
+      "sha256": "214421a4c10151aa403e5ff26669ce8845ecc69a6cad0d47389b326d5e330ff1",
+      "bytes": 21180
     },
     "./version.json": {
-      "sha256": "98c7a8f92ef0c874dc6aa12d8c07bbc05a6745caf64c15000ccee31c23a08cff",
-      "bytes": 879
+      "sha256": "d548b4eb61de4f1b8d103c76e9c9a8e71a62285cf088c067402824de6584102e",
+      "bytes": 934
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -746,8 +746,8 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "b86380cf1ab72c1d2efb80db5aafce3706f651c0a16033d82c7dea26ff3d9e00",
-      "bytes": 30517
+      "sha256": "57498cd4d68ced5afd396523d78684fff0d73c9b70546e68981a455859b3da12",
+      "bytes": 30515
     }
   }
 }
