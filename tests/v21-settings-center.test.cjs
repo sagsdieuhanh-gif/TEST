@@ -1,10 +1,10 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const html=read('index.html'),js=read('app/modules/settings.v1.js'),css=read('app/styles/settings.v1.css'),sw=read('service-worker.js'),pref=read('app/modules/ui-preferences.v1.js'),ver=JSON.parse(read('version.json'));
+const html=read('index.html'),js=read('app/modules/settings.v1.js'),css=read('app/styles/new-ui-v1.css'),sw=read('service-worker.js'),pref=read('app/modules/ui-preferences.v1.js'),ver=JSON.parse(read('version.json'));
 assert.equal(ver.version,'V2.1');
-assert.equal(ver.build,'V2.1-20261006-SETTINGS-CENTER-01');
+assert.equal(ver.build,'V2.1-20261006-SETTINGS-CENTER-02');
 assert.match(html,/settings\.v1\.js\?v=V2\.1-20261006-SETTINGS-CENTER-01/);
-assert.match(html,/settings\.v1\.css\?v=V2\.1-20261006-SETTINGS-CENTER-01/);
+assert.doesNotMatch(html,/settings\.v1\.css/);
 assert.match(sw,/\.\/app\/modules\/settings\.v1\.js/);
 assert.match(sw,/\.\/app\/styles\/settings\.v1\.css/);
 assert.match(js,/sagsOpenSettings/);
