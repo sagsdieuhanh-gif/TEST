@@ -6709,3 +6709,38 @@ html.new-ui-v1[data-ui-theme="dark"] body #v181AdminCenter .v181AdminCard :is(sm
 html.new-ui-v1 body :is(.sheet,.rsOfficialTemplatePage,.page-bg,.pdf-page,.pdfCanvas,#sigCanvas,#signatureTemplatePreview){
   forced-color-adjust:none;
 }
+
+
+/* ==========================================================================
+   V2.5 TEST · MOBILE FORM DOCK TWO ROWS 18
+   Row 1 = NHẬP NHANH + XUẤT
+   Row 2 = HOÀN TẤT + KÝ
+   ========================================================================== */
+@media(max-width:899px){
+ html.new-ui-v1 body.v163-operational{padding-bottom:calc(var(--sags-form-dock-height,104px) + 6px)!important}
+ html.new-ui-v1 body.v163-operational:not(.v166-overlay-open):not(.v157-home) #sagsMobileFormDock{
+   gap:5px!important;bottom:0!important;max-height:none!important;overflow:visible!important;
+   padding:5px max(8px,env(safe-area-inset-right)) max(2px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))!important;
+ }
+ html.new-ui-v1 body #sagsMobileFormDock #v324FormActions{
+   display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important;
+ }
+ html.new-ui-v1 body #sagsMobileFormDock #v324FormActions.show.one{grid-template-columns:minmax(0,1fr)!important}
+ html.new-ui-v1 body #sagsMobileFormDock #v163OperationNav{
+   display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:42px!important;
+   gap:6px!important;align-items:stretch!important;
+ }
+ html.new-ui-v1 body #sagsMobileFormDock #v163OperationNav>button{
+   grid-column:auto!important;grid-row:auto!important;min-width:0!important;width:100%!important;
+ }
+ html.new-ui-v1 body #sagsMobileFormDock :is(.v324FormAction,#v163OperationNav>button,#v163SignBtn){
+   min-height:42px!important;height:42px!important;padding:8px 7px!important;border-radius:9px!important;
+   font:800 12.5px/1.1 Arial,sans-serif!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+ }
+ html.new-ui-v1 body #sagsMobileFormDock #v163SignBtn{grid-column:auto!important;grid-row:auto!important}
+}
+@media(max-width:360px){
+ html.new-ui-v1 body #sagsMobileFormDock :is(.v324FormAction,#v163OperationNav>button,#v163SignBtn){
+   font-size:11px!important;padding-left:4px!important;padding-right:4px!important;
+ }
+}
