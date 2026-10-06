@@ -23,7 +23,7 @@ assert.doesNotMatch(roster,/setTimeout\(\(\)=>renderPersonal\(d\),100\)/,'old de
 assert.match(runtime1,/mailPriming=true/,'mailbox startup replay guard missing');
 assert.match(runtime1,/mailQueuedAdds/,'mailbox initial child replay queue missing');
 assert.match(runtime1,/typeof root\.flightWorkspaceRefresh==="function"\?root\.flightWorkspaceRefresh/,'realtime refresh must prefer stable refresh');
-assert.match(runtime2,/installTimer=setTimeout\(\(\)=>\{if\(!document\.hidden\)install\(\)\},140\)/,'whole-document cleanup observer must be debounced');
+assert.match(runtime2,/for\(const root of roots\.slice\(0,24\)\)removeLiteralNewlines\(root\)/,'DOM cleanup must scan only newly added roots');assert.match(runtime2,/installTimer=setTimeout\(\(\)=>\{if\(document\.hidden\)return;/,'incremental cleanup observer must be debounced and hidden-page aware');assert.doesNotMatch(runtime2,/installTimer=setTimeout\(\(\)=>\{if\(!document\.hidden\)install\(\)\},140\)/,'old whole-document cleanup rescan must stay removed');
 
 assert.match(css,/V6\.4\.106 · MY FLIGHT COMPACT CHIP RAIL/);
 assert.match(css,/flex-wrap:nowrap!important/,'chips must stay on one horizontal row');
