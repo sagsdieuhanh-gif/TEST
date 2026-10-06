@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "version": "V2.0",
-  "build": "V2.0-20261006-SETTINGS-HOME-FIX-01",
-  "strategy": "V2.3 Settings recovery + persistent click/install/open trace + visible emergency diagnostics",
+  "version": "V2.4",
+  "build": "V2.4-20261006-AVATAR-RESPONSIVE-SETTINGS-01",
+  "strategy": "production-base TEST release + avatar identity surfaces + dedicated PC/mobile Settings",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,8 +82,8 @@
       "bytes": 41473
     },
     "./app/styles/new-ui-v1.css": {
-      "sha256": "fc2d86f0e8aff0ddd04d2129c5779a5ba86726cfc3d3fbe740857c5c3ef66efc",
-      "bytes": 337493
+      "sha256": "dd83ed6bfc041bfa47542a0918db372e80ff2ab0fe570eff1b2cab7ea27c311a",
+      "bytes": 342954
     },
     "./assets/audio/alert-crosscheck-complete.mp3": {
       "sha256": "2291844c0abc77005a2e8800e0dc8115c373134385a31a5d3d9e5f920a5acc07",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "c4cbf7a6662aee074366342b216373766791431890b03733df47b8d39456d6c4",
-      "bytes": 79820
+      "sha256": "8a9d786b7baeb750b2d812fb9fc6b7e265c3c5fb7cda7d8e89ce8b2e511549a3",
+      "bytes": 80423
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "b81d4ff3cf2b6c961d25bec247ada6d22e294e2e53c1428b6434cf72f3be576b",
-      "bytes": 21192
+      "sha256": "6253d5708ff8efe378eacae890389660270f0d7b013e3eae21dd2bbea1d52240",
+      "bytes": 21219
     },
     "./version.json": {
-      "sha256": "7b03ba1dfd1918f251562fdb6652ebe6e67708d8d1f3c2334d998d2e192dae7a",
-      "bytes": 707
+      "sha256": "23b55756604281574b97fd8f78f1dc3a4b0d854dbf8c6bff5a097305b87ec815",
+      "bytes": 983
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -598,8 +598,8 @@
       "bytes": 3558
     },
     "./app/boot/32-v6494-aviation-shell.js": {
-      "sha256": "4c6056cfe2e63eda4d315034eef068984ab4ad42fc763ac671beee5ed7ffc185",
-      "bytes": 13407
+      "sha256": "aaf96c8f68eabd15843a0896020557a960331ad508bca937ee4a8f89121ca44e",
+      "bytes": 13949
     },
     "./app/styles/boot-36-v6494-aviation-final.css": {
       "sha256": "1f079062ebf4189632b83a50cafbdd6f7a274690c3fcb5c947950dbf4db61c3d",
@@ -746,8 +746,8 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "ea5f95d7695f6cadb7bd795487f36090d83f669d15cf7e96ce6f839ae7ac01b1",
-      "bytes": 37080
+      "sha256": "fee66653e780cd3a5a3ea18b562c547e30db06ca1ee352fd765354ba78d92f00",
+      "bytes": 37649
     }
   }
 }
