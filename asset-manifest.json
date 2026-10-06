@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.2",
-  "build": "V2.2-20261006-SEARCH-SETTINGS-01",
-  "strategy": "atomic TEST release + real hidden-card flight search fix + native Settings menu + three-layer draft",
+  "build": "V2.2-20261006-AUDIT-PERF-02",
+  "strategy": "full TEST audit + live Settings runtime fix + event-driven settings + scoped flight observer + three-layer draft",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -50,8 +50,8 @@
       "bytes": 14935
     },
     "./app/modules/roster-lite.v5.js": {
-      "sha256": "843bce5d1dcf8d32000272f37adeb4e499faab901cef8fb72c28695dbd360625",
-      "bytes": 25849
+      "sha256": "3739427db6ffc56a3a1929f7a429313e32691cd13816a3c31c024142f29ac069",
+      "bytes": 26209
     },
     "./app/modules/stability.v6-core.js": {
       "sha256": "4123ae9fb477b4cd8e1d489236a17900716d544ac8decd51551ece01d987eb51",
@@ -222,8 +222,8 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "bb6cc26db2618f40e370ecd8cca50be40a17699f3fdc3229dbd00a3f4fdb04ec",
-      "bytes": 79556
+      "sha256": "61b524eb024fef269d03c0c881075ed2d233a7a03e8decc62ffbc9fce5fbf255",
+      "bytes": 79221
     },
     "./manifest.webmanifest": {
       "sha256": "a3ad18732ee6ed607968487c478b7c68fb03b2001dded1816b01cdb11d031c9c",
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "bbe538374d0067881b9693283bb32156a203bf9d6e37842bdece10b3d69ad090",
-      "bytes": 21186
+      "sha256": "c04378ef1b0648b88de5dfc6ce335e5a99f68be71e21117eb1b9571a3bcc3363",
+      "bytes": 21171
     },
     "./version.json": {
-      "sha256": "b3815ea50f6bd824b41d10067588c408957d79d0e14fbae0d5b813aad17c6908",
-      "bytes": 991
+      "sha256": "05b94dc6b8a1aebab28afb2fce8cf94834494be1ff876bd8789e1fd22dc51183",
+      "bytes": 1110
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -546,8 +546,8 @@
       "bytes": 106804
     },
     "./app/generated/runtime-1.js": {
-      "sha256": "993873148a552468ba9d9ab2e1a8d375c0de01b950f5181fcddd7a6992d7cfbb",
-      "bytes": 135852
+      "sha256": "7c31b539fa21460faec737201d3048ed6e0d6f23fbf2613cfeea246606b91291",
+      "bytes": 136004
     },
     "./app/generated/runtime-2.js": {
       "sha256": "cc45c1bb02abb73bf406016127f8de9c3381350fb69cd1ff69a84a7d587213bb",
@@ -746,8 +746,8 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "e23c40fbe553029f2bc5336a0746f0e15ceb1b3bc7713a8eab8ccfcb983d77f7",
-      "bytes": 31018
+      "sha256": "882e70b638db999b192ed3f210c53033ad6108f6d3d42f6931b47e57870e07b2",
+      "bytes": 32508
     },
     "./app/core/runtime.v503hf2.bundle.js": {
       "sha256": "67210c2277f112caf5dc2198f458fb28e8d21375fa215d3e96e991a58db114a6",
