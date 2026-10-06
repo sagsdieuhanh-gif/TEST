@@ -2,7 +2,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const html=read('index.html'),js=read('app/modules/settings.v1.js'),css=read('app/styles/new-ui-v1.css'),sw=read('service-worker.js'),pref=read('app/modules/ui-preferences.v1.js'),runtime=read('app/core/runtime.v503hf2.bundle.js'),runtimeLive=read('app/generated/runtime-1.js'),ver=JSON.parse(read('version.json'));
 assert.equal(ver.version,'V2.2');
-assert.equal(ver.build,'V2.2-20261006-AUDIT-PERF-02');
+assert.equal(ver.build,'V2.2-20261006-SETTINGS-FAILSAFE-03');
 assert.ok(html.includes('settings.v1.js?v='+ver.build),'Settings module must be pinned to current build');
 assert.doesNotMatch(html,/settings\.v1\.css/);
 assert.match(sw,/\.\/app\/modules\/settings\.v1\.js/);
@@ -32,3 +32,9 @@ assert.doesNotMatch(js,/setInterval\(/,'Settings must be event-driven, not polli
 assert.doesNotMatch(js,/observe\(document\.body,\{subtree:true/,'Settings must not observe the whole DOM');
 assert.match(js,/sagsRequestNotify/,'notification permission action missing');
 assert.match(js,/sagsResetDefaults/,'settings reset action missing');
+
+assert.match(runtimeLive,/function openSettingsSafe\(\)/,'live runtime must use fail-safe Settings opener');
+assert.match(runtimeLive,/data-sags-settings-failsafe/,'live runtime must be able to reload Settings module');
+assert.match(runtimeLive,/forceSettingsVisible\(\)/,'live runtime must verify Settings became visible');
+assert.match(js,/z-index','2147483500/,'Settings panel must force top overlay z-index');
+assert.doesNotMatch(js,/stopPropagation\(\).*open\(\)/s,'Settings fallback must not block native menu click');
