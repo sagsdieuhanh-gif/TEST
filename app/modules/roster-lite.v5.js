@@ -147,16 +147,22 @@ function applyFlightSearch(){
 }
 document.addEventListener('input',e=>{if(e.target?.id==='sagsFlightSearch')applyFlightSearch()},true);
 document.addEventListener('search',e=>{if(e.target?.id==='sagsFlightSearch')applyFlightSearch()},true);
-let flightFilterFrame=0;
-new MutationObserver(records=>{
-  if(!records.some(r=>r.type==='childList'&&r.target?.closest?.('#fwcList')))return;
-  if(flightFilterFrame)return;
-  flightFilterFrame=requestAnimationFrame(()=>{flightFilterFrame=0;normalizeFlightDossierCards();applyFlightSearch()});
-}).observe(document.body,{childList:true,subtree:true});
+let flightFilterFrame=0,flightFilterObserver=null;
+function bindFlightFilterObserver(host){
+  if(!host)return;
+  if(flightFilterObserver)flightFilterObserver.disconnect();
+  flightFilterObserver=new MutationObserver(records=>{
+    if(!records.some(r=>r.type==='childList'&&(r.target?.id==='fwcList'||r.target?.closest?.('#fwcList'))))return;
+    if(flightFilterFrame)return;
+    flightFilterFrame=requestAnimationFrame(()=>{flightFilterFrame=0;normalizeFlightDossierCards();applyFlightSearch()});
+  });
+  flightFilterObserver.observe(host,{childList:true,subtree:true});
+}
 function drawShell(d){
   const modal=ensureModal();modal.hidden=false;modal.style.removeProperty('display');modal.classList.add('show');root.sagsOverlayLayout?.refresh();
   const host=document.getElementById('fwcBody');if(!host)return false;
   host.innerHTML='<div class="fwcTools"><input id="fwcDate" type="date"><input id="sagsFlightSearch" type="search" placeholder="Tìm chuyến" aria-label="Tìm số hiệu chuyến bay" autocomplete="off"><button class="fwcBtn" id="v477Refresh" type="button" aria-label="Làm mới danh sách" title="Làm mới">↻</button></div><div class="fwcStatus" id="fwcStatus" role="status">Đang tải công việc…</div><div id="fwcList" class="v1199Queue"></div>';
+  bindFlightFilterObserver(host);
   const inp=document.getElementById('fwcDate');inp.value=d;inp.onchange=()=>root.flightWorkspaceOpenList?.(inp.value);
   document.getElementById('v477Refresh').onclick=()=>root.flightWorkspaceRefresh?.();
   try{sessionStorage.setItem('sagsV36FwcDate',d)}catch(_){}
