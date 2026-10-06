@@ -1,12 +1,12 @@
 {
-  "version": "V2.0",
-  "displayVersion": "V2.0",
-  "label": "V2.0 - QUICK ENTRY + FLIGHT DOSSIER + 3-LAYER DRAFT",
-  "build": "V2.0-20261006-QUICK-DOSSIER-DRAFT3-01",
-  "releasedAt": "2026-10-06T03:00:00Z",
-  "type": "major-stability-workflow-performance",
-  "base": "V6.4.108-20261006-TRINITY-LOCAL-LOGO-CI-01",
+  "version": "V2.1",
+  "displayVersion": "V2.1",
+  "label": "V2.1 - SETTINGS CENTER + PERSONAL PROFILE + DRAFT STATUS",
+  "build": "V2.1-20261006-SETTINGS-CENTER-01",
+  "releasedAt": "2026-10-06T03:55:00Z",
+  "type": "feature-ui-stability",
+  "base": "V2.0-20261006-QUICK-DOSSIER-DRAFT3-01",
   "updatePolicy": "required",
-  "notes": "Major release V2.0. TÙY CHỈNH NHẬP NHANH chuyển thành accordion theo từng nhóm: bấm nhóm để xổ đầy đủ toàn bộ 1–N lựa chọn, không cắt ở 2 dòng; modal cuộn toàn cục trên mobile/PC. MY FLIGHT và Hồ sơ chuyến hiển thị ngay biểu mẫu của tất cả đơn vị cùng người được phân công trên chuyến, trong khi chỉ đọc trạng thái chi tiết của nhiệm vụ thuộc tài khoản đang đăng nhập để giữ riêng tư và tốc độ. Nháp nghiệp vụ có 3 lớp: localStorage tức thời, IndexedDB tức thời và backup RTDB theo assignment khi online; đồng bộ theo timestamp để không ghi đè bản mới bằng bản cũ và hỗ trợ phục hồi trên thiết bị khác. Quick Time cũng đi vào pipeline nháp trước khi bấm lưu. Giữ Trinity Airways/TW và toàn bộ tối ưu hiệu năng hiện có; cloud draft chạy theo sự kiện/debounce, không thêm polling nhanh.",
-  "message": "V2.0: nhập nhanh xổ đủ lựa chọn, hồ sơ chuyến thấy đủ biểu mẫu đơn vị, nháp 3 lớp có phục hồi đa thiết bị."
+  "notes": "TEST V2.1 bổ sung Settings Center đầy đủ trên nền V2.0: tên hiển thị riêng với tên nghiệp vụ, avatar cá nhân có nén ảnh, Theo hệ thống/Sáng/Tối, cỡ chữ, chế độ gọn mobile, âm thanh, rung, nhóm thông báo, dữ liệu & đồng bộ, thiết bị/offline, tự khóa, đổi mật khẩu, kiểm tra cập nhật, xóa cache giao diện an toàn, thông tin phiên bản và chẩn đoán dành cho AD. Mục Dữ liệu & đồng bộ đọc trực tiếp Cloud Draft V2 và đồng bộ localStorage → IndexedDB → RTDB. Đồng thời sửa ui-preferences không còn ép Dark mode định kỳ.",
+  "message": "V2.1 TEST: Settings Center đầy đủ + avatar/tên hiển thị + trạng thái Cloud Draft 3 lớp thật."
 }
