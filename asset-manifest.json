@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.1",
-  "build": "V2.1-20261006-SETTINGS-CENTER-03",
-  "strategy": "atomic TEST release + V2.0 three-layer draft + bundled Settings Center + mutation-loop guard + adaptive theme",
+  "build": "V2.1-20261006-SETTINGS-CENTER-04",
+  "strategy": "atomic TEST release + V2.0 three-layer draft + Settings Center + AD realtime flight search across status tabs",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -50,8 +50,8 @@
       "bytes": 14935
     },
     "./app/modules/roster-lite.v5.js": {
-      "sha256": "85e35848840d8f99b42663a1ca00b7979a9c355b17fdba141a2652bf7045f827",
-      "bytes": 25275
+      "sha256": "bff0af5137af8aca0ecf81f56f3ba3a51616549a4704df011e160c9b88164666",
+      "bytes": 25702
     },
     "./app/modules/stability.v6-core.js": {
       "sha256": "4123ae9fb477b4cd8e1d489236a17900716d544ac8decd51551ece01d987eb51",
@@ -222,7 +222,7 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "1cd0bbc70e71fef2652b1b9c04795c69f66c817b69d973266923e6a20caeb112",
+      "sha256": "56a5f7ec60e73bd2d4e83668f557d0a92a5a966b0c896d58abe9bae3b5442a6e",
       "bytes": 79556
     },
     "./manifest.webmanifest": {
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "14bd3210728b45e81741f65b5b2f1b2d5dded1f07ddf2a206add86aa59b4228a",
+      "sha256": "a42e744f628546e999ec69e08952eefa619f7fc37020a29db491f7093f60e3bb",
       "bytes": 21186
     },
     "./version.json": {
-      "sha256": "b86f573c2d0b09afb4032b6c7e965d9d11182b0a4219961362464bf15e73d8ee",
-      "bytes": 776
+      "sha256": "98c7a8f92ef0c874dc6aa12d8c07bbc05a6745caf64c15000ccee31c23a08cff",
+      "bytes": 879
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -746,7 +746,7 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "526ae0c7ab6308a77c0aeedc20b80a95b264efaef456fc604aed61f99bf8d5a6",
+      "sha256": "b86380cf1ab72c1d2efb80db5aafce3706f651c0a16033d82c7dea26ff3d9e00",
       "bytes": 30517
     }
   }
