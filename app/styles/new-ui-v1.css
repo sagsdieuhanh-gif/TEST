@@ -6231,3 +6231,40 @@ html.new-ui-v1 body #sagsFlightDossierModal .v1199DossierOverviewTitle{
  #sagsSettingsCenter .sagsSettingsNav button>span{display:inline!important}
  #sagsSettingsCenter .sagsSettingsNav button>span small{display:none!important}
 }
+
+
+/* V2.5 TEST · PC SETTINGS STALE-MARKUP GUARD 13
+   A previous TEST revision reused one immutable build id while Settings markup
+   changed. Pin desktop children to their grid cells and ignore stale back markup. */
+@media (min-width:761px){
+ #sagsSettingsCenter .sagsSettingsLayout{
+   display:grid!important;
+   grid-template-columns:292px minmax(0,1fr)!important;
+   grid-template-rows:minmax(0,1fr)!important;
+   grid-auto-flow:row!important;
+   min-width:0!important;
+   min-height:0!important;
+   overflow:hidden!important;
+ }
+ #sagsSettingsCenter .sagsSettingsLayout > .sagsSettingsNav{
+   grid-column:1!important;
+   grid-row:1!important;
+   min-width:0!important;
+   min-height:0!important;
+   overflow-x:hidden!important;
+   overflow-y:auto!important;
+ }
+ #sagsSettingsCenter .sagsSettingsLayout > .sagsSettingsContent{
+   grid-column:2!important;
+   grid-row:1!important;
+   min-width:0!important;
+   min-height:0!important;
+   overflow-x:hidden!important;
+   overflow-y:auto!important;
+ }
+ #sagsSettingsCenter .sagsSettingsLayout > #sagsSettingsBack,
+ #sagsSettingsCenter .sagsSettingsLayout > .sagsSettingsBack,
+ #sagsSettingsCenter .sagsSettingsLayout > [data-sags-settings-back]{
+   display:none!important;
+ }
+}

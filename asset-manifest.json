@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.5",
-  "build": "V2.5-20261006-PC-SETTINGS-12",
-  "strategy": "TEST V2.5 · PC Settings true desktop control center · mobile settings retained",
+  "build": "V2.5-20261006-PC-SETTINGS-13",
+  "strategy": "TEST V2.5 · PC Settings stale-markup guard + immutable cache rotation",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -82,8 +82,8 @@
       "bytes": 41473
     },
     "./app/styles/new-ui-v1.css": {
-      "sha256": "72a1b2b061bbd722d22161f678a793cde87277789ee2d7a8b5a9d19f35db30e5",
-      "bytes": 350840
+      "sha256": "0bffc461da2369be5afe985ca0c0aaa0df94981656d43109b71aa3de5bbd87da",
+      "bytes": 352069
     },
     "./assets/audio/alert-crosscheck-complete.mp3": {
       "sha256": "2291844c0abc77005a2e8800e0dc8115c373134385a31a5d3d9e5f920a5acc07",
@@ -222,7 +222,7 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "a2b468d453ecd5e80c2de613b2fd49c3286f8daefb750e0ca5cb3bf1462a3afe",
+      "sha256": "7347c4b46353d4bb95cd453aa68521f52c5f337233bc6d031abab496f32fe2ec",
       "bytes": 79843
     },
     "./manifest.webmanifest": {
@@ -274,12 +274,12 @@
       "bytes": 6935
     },
     "./service-worker.js": {
-      "sha256": "9aaa1cad98074ec54e01517126d52ce4daef89716a50a544cb04889c03db0011",
+      "sha256": "3c31004c6006a2ef80c1fce6b710a79ef4bfc3eaacca97d0a10fdd1894394757",
       "bytes": 21333
     },
     "./version.json": {
-      "sha256": "73401102d078f948ec5e766e9afd92b4b0f0a4bb4a64f237a309f5881ff678cd",
-      "bytes": 4477
+      "sha256": "9cd320ed4326f4d530f073e47b5b760aa9e8fbac4409477792b70caa3a2a7833",
+      "bytes": 4845
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -746,7 +746,7 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "10c8ee1d7fc624a7f8c984d19fe73964afe3a15b3167c822c6ad18e479982309",
+      "sha256": "ca194d04bc4bcac20d59eedb94e4740e4ccd6a66729495d8efcfabd92bd7c137",
       "bytes": 38232
     },
     "./app/modules/fsags208-image-reader.v1.js": {
