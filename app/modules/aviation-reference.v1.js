@@ -1,4 +1,4 @@
-/* E-REPORT SAGS V6.4.109 · Reference home: deterministic airline identity + aligned console.
+/* E-REPORT SAGS V6.4.110 · Reference home: event-driven deterministic airline identity + aligned console.
    Existing menu buttons and Daily Roster remain the business/permission authority. */
 (function () {
   'use strict';
@@ -8,7 +8,7 @@
   // Display identity only; roster permissions continue to use the service guide.
   const AIRLINE_NAMES = {HAV:'HAV Aviation',VJ:'Vietjet Air',QH:'Bamboo Airways',DV:'SCAT Airlines',KC:'Air Astana',C6:'Centrum Air',KA:'Aero Nomad Airlines',N4:'Nordwind Airlines',AK:'AirAsia',FD:'Thai AirAsia',KE:'Korean Air',BX:'Air Busan',WE:'Parata Air',RF:'Aero K',TW:'Trinity Airways',OZ:'Asiana Airlines',LJ:'Jin Air','3U':'Sichuan Airlines',UQ:'Urumqi Air',DR:'Ruili Airlines',TR:'Scoot',HY:'Uzbekistan Airways',HU:'Hainan Airlines',VZ:'Thai Vietjet Air','9G':'Sun PhuQuoc Airways',B2:'Belavia',VU:'Vietravel Airlines'};
   let pending = false, overviewKey = '', carrierPromise = null, logoObserver = null;
-  let stripPending = false, flightView = null, showAll = false, tableFrame = 0, flightRevision = 0, lastFlightRenderKey = '', workspaceBrandTimer = 0, workspaceBrandRetryToken = 0, workspaceBrandObserver = null, workspaceBrandObservedRoot = null, workspaceBrandObserverQueued = false;
+  let stripPending = false, flightView = null, showAll = false, tableFrame = 0, flightRevision = 0, lastFlightRenderKey = '', workspaceBrandTimer = 0, workspaceBrandRetryToken = 0;
   const safe = value => String(value ?? '').replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   const U = value => String(value ?? '').trim().toUpperCase();
   function normalizeCarrier(raw) {
@@ -98,25 +98,6 @@
       brand.dataset.carrier=info.carrier;
       brand.innerHTML=logoHtml(info.carrier,'opsFwcLogo')+'<span class="opsFwcIdentity"><b>'+safe(info.carrier)+'</b><small>'+safe(info.name||info.carrier)+'</small></span>';
     }
-    bindWorkspaceBrandObserver();
-  }
-  function bindWorkspaceBrandObserver() {
-    const host=$('fwcList'), root=host?.parentElement || $('fwcModal');
-    if(!root || !root.isConnected)return false;
-    if(workspaceBrandObserver && workspaceBrandObservedRoot===root)return true;
-    try{workspaceBrandObserver?.disconnect()}catch(_){}
-    workspaceBrandObservedRoot=root;
-    workspaceBrandObserver=new MutationObserver(mutations=>{
-      const relevant=mutations.some(m=>m.type==='childList' && (m.addedNodes.length || m.removedNodes.length));
-      if(!relevant || workspaceBrandObserverQueued)return;
-      workspaceBrandObserverQueued=true;
-      requestAnimationFrame(()=>{
-        workspaceBrandObserverQueued=false;
-        void decorateWorkspaceFlights();
-      });
-    });
-    workspaceBrandObserver.observe(root,{childList:true,subtree:true});
-    return true;
   }
   function setupLogoObserver() {
     if (logoObserver || !('IntersectionObserver' in window)) return;
@@ -285,7 +266,7 @@
   document.addEventListener('click',e=>{
     if(e.target?.closest?.('#roleLoginSubmit,[data-v6494-key],[data-ops-route],[data-ops-retry],#v479MyFlightHome,.fwcHead button'))setTimeout(schedule,0);
   },true);
-  const workspaceBrandRetryDelays=[0,80,200,450,900,1500];
+  const workspaceBrandRetryDelays=[0,80,200,450,900,1500,2600];
   const refreshWorkspaceBrand=()=>{
     const token=++workspaceBrandRetryToken;
     clearTimeout(workspaceBrandTimer);
@@ -293,7 +274,6 @@
       if(token!==workspaceBrandRetryToken)return;
       workspaceBrandTimer=0;
       await decorateWorkspaceFlights();
-      bindWorkspaceBrandObserver();
       const host=$('fwcList'),cards=host?[...host.querySelectorAll('.fwcFlight,.v1199Card')]:[];
       const missing=!host || !cards.length || cards.some(card=>{
         const title=card.querySelector('.fwcFlightTitle,.v1199Title');

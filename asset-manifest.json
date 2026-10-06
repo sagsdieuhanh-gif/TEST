@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.5",
-  "build": "V2.5-20261006-FSAGS208-OCR-GEMINI-01",
-  "strategy": "TEST V2.5 · MyFlight logo stability + FSAGS208 OCR-first image import with Gemini fallback",
+  "build": "V2.5-20261006-FSAGS208-OCR-GEMINI-02",
+  "strategy": "TEST V2.5 · FSAGS208 OCR-first + Gemini fallback · event-driven MyFlight logo recovery",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,7 +222,7 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "4611839a3e9f35282099ec1a3384e1f5af4ec29c292b2c61ed941e7686ced404",
+      "sha256": "074c1e5d5858a23ce0521348f99c9065e5872b09620937075acec8eb24feac3f",
       "bytes": 80094
     },
     "./manifest.webmanifest": {
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "c63a0e815789afdf80d31f4eb58a6247337b8b6fc43f3c3d47341265accc55f7",
+      "sha256": "0a2b06a2fe108f83529a23e7106757d9662a1c27b1de94ff4c22ead08778668b",
       "bytes": 21242
     },
     "./version.json": {
-      "sha256": "2004bcc54363c3679568e6ec6185da2b5cd5b69d506302ce630346c347207070",
-      "bytes": 811
+      "sha256": "28e495ac97ebd992037ec3f9f4b134f85a3e70616f5e18fb39eb50acf6b5d96a",
+      "bytes": 971
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -610,8 +610,8 @@
       "bytes": 53491
     },
     "./app/modules/aviation-reference.v1.js": {
-      "sha256": "81072b12291e9e0f7db14b4b4ac6eebc053dfd1eb03644a083312f0adeff7e25",
-      "bytes": 21843
+      "sha256": "0dc4d416c2a21db88d45f722e65413b83ef2cf8af250fc4e2e168f066a2d6878",
+      "bytes": 20849
     },
     "./assets/branding/apron-night-v6494.webp": {
       "sha256": "7a17d332d8dce854de03be8918034b378012b7fece42abc6c71ed9575bc257a0",

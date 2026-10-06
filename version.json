@@ -2,11 +2,11 @@
   "version": "V2.5",
   "displayVersion": "V2.5",
   "label": "V2.5 - FSAGS 208 OCR FIRST + GEMINI FALLBACK",
-  "build": "V2.5-20261006-FSAGS208-OCR-GEMINI-01",
-  "releasedAt": "2026-10-06T10:25:00Z",
+  "build": "V2.5-20261006-FSAGS208-OCR-GEMINI-02",
+  "releasedAt": "2026-10-06T10:36:00Z",
   "type": "fsags208-image-import",
   "base": "TEST main@8dc225728e16a0dcd3b628161eaa6adb5e7cc5d7",
   "updatePolicy": "required",
-  "notes": "TEST V2.5: thêm nút ĐỌC ẢNH trong FSAGS 208. Tesseract.js OCR chạy trước trên thiết bị; Gemini chỉ fallback khi OCR thiếu/độ tin cậy thấp. Kết quả chỉ điền các ô nháp còn trống, không tự hoàn tất/gửi và không đọc chữ ký. Đồng thời tích hợp bản sửa ổn định logo hãng MyFlight.",
+  "notes": "TEST V2.5: thêm nút ĐỌC ẢNH trong FSAGS 208. Tesseract.js OCR chạy trước trên thiết bị; Gemini chỉ fallback khi OCR thiếu/độ tin cậy thấp. Kết quả chỉ điền các ô nháp còn trống, không tự hoàn tất/gửi và không đọc chữ ký. Đồng thời tích hợp bản sửa ổn định logo hãng MyFlight. MyFlight logo recovery được giữ event-driven, không dùng MutationObserver, với retry giới hạn đến 2.6 giây để đạt performance contract.",
   "message": "V2.5 TEST: FSAGS 208 OCR-first image import + Gemini fallback + MyFlight airline logo stability."
 }
