@@ -1,4 +1,4 @@
-/* E-REPORT SAGS V2.1 · Settings Center
+/* E-REPORT SAGS V2.2 · Settings Center
  * Personal display profile only. Never mutates roster/form/legal identity.
  */
 (function(w){
@@ -47,7 +47,7 @@ function patchDeviceFeedback(){
 }
 function ensureMenu(){
  var body=$('v157MenuBody');if(!body)return;var sections=Array.from(body.querySelectorAll('.v157Section')),sys=sections.find(function(x){return/HỆ THỐNG/i.test(S((x.querySelector('.v157SectionTitle')||{}).textContent))});if(!sys)return;
- if(sys.querySelector('[data-sags-settings-menu]'))return;var b=document.createElement('button');b.type='button';b.className='v157MenuItem';b.dataset.sagsSettingsMenu='1';b.dataset.v157Key='settings';b.innerHTML='<span class="ico">⚙</span><span>Cài đặt</span><span class="meta">Cá nhân · thiết bị · hệ thống</span>';b.onclick=function(){try{w.v157CloseMenu&&w.v157CloseMenu()}catch(e){}open()};var div=sys.querySelector('.v157MenuDivider');div?sys.insertBefore(b,div):sys.appendChild(b)
+ if(sys.querySelector('[data-v157-key="settings"],[data-sags-settings-menu]'))return;var b=document.createElement('button');b.type='button';b.className='v157MenuItem';b.dataset.sagsSettingsMenu='1';b.dataset.v157Key='settings';b.innerHTML='<span class="ico">⚙</span><span>Cài đặt</span><span class="meta">Cá nhân · thiết bị · hệ thống</span>';b.onclick=function(){try{w.v157CloseMenu&&w.v157CloseMenu()}catch(e){}open()};var div=sys.querySelector('.v157MenuDivider');div?sys.insertBefore(b,div):sys.appendChild(b)
 }
 function shell(){
  if($('sagsSettingsCenter'))return;
@@ -73,7 +73,7 @@ function shell(){
  bind();tab('account')
 }
 function tab(k){var c=$('sagsSettingsCenter');if(!c)return;c.querySelectorAll('[data-tab]').forEach(function(b){b.classList.toggle('active',b.dataset.tab===k)});c.querySelectorAll('[data-page]').forEach(function(p){p.classList.toggle('active',p.dataset.page===k)});if(k==='sync'||k==='device')status();if(k==='update'||k==='about')version(false);if(k==='diag')diagnostics()}
-function open(){shell();syncIdentity();render();var c=$('sagsSettingsCenter');c.classList.add('show');c.setAttribute('aria-hidden','false');document.body.classList.add('sags-settings-open');tab('account');loadCloud()}
+function open(){shell();var c=$('sagsSettingsCenter');if(!c)return false;c.classList.add('show');c.setAttribute('aria-hidden','false');document.body.classList.add('sags-settings-open');try{syncIdentity();render();tab('account');loadCloud()}catch(e){console.error('Settings open failed',e);try{tab('account')}catch(_){}}return true}
 function close(){var c=$('sagsSettingsCenter');if(c){c.classList.remove('show');c.setAttribute('aria-hidden','true')}document.body.classList.remove('sags-settings-open')}
 w.sagsOpenSettings=open;w.sagsCloseSettings=close;
 function bind(){
@@ -112,7 +112,7 @@ function toast(t){var e=document.createElement('div');e.className='sagsSettingsT
 function resetLock(){clearTimeout(lockTimer);var m=Number(P.autoLockMinutes)||0;if(!m||!document.body.classList.contains('v157-authenticated'))return;lockTimer=setTimeout(function(){try{close();if(typeof w.roleLogout==='function')w.roleLogout();else if($('v157LogoutBtn'))$('v157LogoutBtn').click()}catch(e){}},m*60000)}
 function syncIdentity(){var i=identity();if(i===uidKey)return;uidKey=i;P=read();cloudState='Chỉ lưu trên thiết bị';cloudAt=0;apply();render();if(i!=='device')setTimeout(loadCloud,250)}
 function beforeLeave(e){if(P.warnUnsynced&&navigator.onLine===false&&draftCount()){e.preventDefault();e.returnValue=''}}
-function install(){shell();syncIdentity();patchDeviceFeedback();ensureMenu();if(!observer){var menuQueued=false;observer=new MutationObserver(function(){if(menuQueued)return;menuQueued=true;requestAnimationFrame(function(){menuQueued=false;ensureMenu()})});observer.observe(document.body,{subtree:true,childList:true})}['pointerdown','keydown','touchstart'].forEach(function(ev){document.addEventListener(ev,resetLock,{passive:true,capture:true})});addEventListener('online',function(){status();if(P.autoSync)syncNow()},{passive:true});addEventListener('offline',status,{passive:true});addEventListener('beforeunload',beforeLeave);try{w.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){if(P.appearance==='system')apply()})}catch(e){}setInterval(function(){syncIdentity();ensureMenu();applyProfile()},1500)}
+function install(){shell();syncIdentity();patchDeviceFeedback();ensureMenu();if(!w.__SAGS_SETTINGS_CLICK_DELEGATE__){w.__SAGS_SETTINGS_CLICK_DELEGATE__=true;document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('[data-v157-key="settings"],[data-sags-settings-menu]');if(!b)return;e.preventDefault();e.stopPropagation();document.body.classList.remove('v157-drawer-open');open()},{capture:true})}if(!observer){var menuQueued=false;observer=new MutationObserver(function(){if(menuQueued)return;menuQueued=true;requestAnimationFrame(function(){menuQueued=false;ensureMenu()})});observer.observe(document.body,{subtree:true,childList:true})}['pointerdown','keydown','touchstart'].forEach(function(ev){document.addEventListener(ev,resetLock,{passive:true,capture:true})});addEventListener('online',function(){status();if(P.autoSync)syncNow()},{passive:true});addEventListener('offline',status,{passive:true});addEventListener('beforeunload',beforeLeave);try{w.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){if(P.appearance==='system')apply()})}catch(e){}setInterval(function(){syncIdentity();ensureMenu();applyProfile()},1500)}
 w.sagsNotificationAllowed=function(k){var n=read().notifications||{};return n.device!==false&&n[S(k)]!==false};w.sagsVibrate=function(p){if(read().vibrationEnabled===false)return false;try{return vibrateBase?vibrateBase(p):(navigator.vibrate&&navigator.vibrate(p))||false}catch(e){return false}};w.sagsGetSettings=function(){return clone(read())};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install()
 })(window);
