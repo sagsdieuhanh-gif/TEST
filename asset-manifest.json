@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "version": "V2.1",
-  "build": "V2.1-20261006-SETTINGS-CENTER-02",
-  "strategy": "atomic TEST release + V2.0 three-layer draft + bundled Settings Center + personal display profile + adaptive theme",
+  "build": "V2.1-20261006-SETTINGS-CENTER-03",
+  "strategy": "atomic TEST release + V2.0 three-layer draft + bundled Settings Center + mutation-loop guard + adaptive theme",
   "mutableMetadata": [
     "./forms/forms.registry.json",
     "./data/form-configuration.json"
@@ -222,7 +222,7 @@
       "bytes": 284127
     },
     "./index.html": {
-      "sha256": "e2272e8e84b7c51a9b041b26f881773a84d172f3d981cca3c1b46ec016e0f00d",
+      "sha256": "1cd0bbc70e71fef2652b1b9c04795c69f66c817b69d973266923e6a20caeb112",
       "bytes": 79556
     },
     "./manifest.webmanifest": {
@@ -274,12 +274,12 @@
       "bytes": 6861
     },
     "./service-worker.js": {
-      "sha256": "e3148496f2ac3d26f12077778577669ec28458a464846bff03470de54ebc670a",
+      "sha256": "14bd3210728b45e81741f65b5b2f1b2d5dded1f07ddf2a206add86aa59b4228a",
       "bytes": 21186
     },
     "./version.json": {
-      "sha256": "2888ff0bc306f3d5ed2580b55ed311381312f6b000a2a3dd34a329d00ebcf6f3",
-      "bytes": 1241
+      "sha256": "b86f573c2d0b09afb4032b6c7e965d9d11182b0a4219961362464bf15e73d8ee",
+      "bytes": 776
     },
     "./app/modules/form-registry-runtime.v647.js": {
       "sha256": "38273ccd7794e4790c37b5a8594edeaefd412917af2c928245bf8a89b0a8a5f2",
@@ -746,8 +746,8 @@
       "bytes": 10386
     },
     "./app/modules/settings.v1.js": {
-      "sha256": "5febbf25d3a6bbc481ef574118d4ce2f2ae489ead64c23263d779fdb99a47100",
-      "bytes": 30289
+      "sha256": "526ae0c7ab6308a77c0aeedc20b80a95b264efaef456fc604aed61f99bf8d5a6",
+      "bytes": 30517
     }
   }
 }
