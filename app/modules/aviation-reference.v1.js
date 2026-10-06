@@ -1,4 +1,4 @@
-/* E-REPORT SAGS V6.4.100 · Reference home: airline identity + aligned console.
+/* E-REPORT SAGS V6.4.107 · Reference home: airline identity + aligned console.
    Existing menu buttons and Daily Roster remain the business/permission authority. */
 (function () {
   'use strict';
@@ -6,7 +6,7 @@
   const brand = '<b>E-REPORT <em>SAGS</em></b><small>AIRPORT GROUND OPERATIONS</small>';
   const CARRIER_GUIDE = './data/carrier-service-guide.json';
   // Display identity only; roster permissions continue to use the service guide.
-  const AIRLINE_NAMES = {HAV:'HAV Aviation',VJ:'Vietjet Air',QH:'Bamboo Airways',DV:'SCAT Airlines',KC:'Air Astana',C6:'Centrum Air',KA:'Aero Nomad Airlines',N4:'Nordwind Airlines',AK:'AirAsia',FD:'Thai AirAsia',KE:'Korean Air',BX:'Air Busan',WE:'Parata Air',RF:'Aero K',TW:"T’way Air",OZ:'Asiana Airlines',LJ:'Jin Air','3U':'Sichuan Airlines',UQ:'Urumqi Air',DR:'Ruili Airlines',TR:'Scoot',HY:'Uzbekistan Airways',HU:'Hainan Airlines',VZ:'Thai Vietjet Air','9G':'Sun PhuQuoc Airways',B2:'Belavia',VU:'Vietravel Airlines'};
+  const AIRLINE_NAMES = {HAV:'HAV Aviation',VJ:'Vietjet Air',QH:'Bamboo Airways',DV:'SCAT Airlines',KC:'Air Astana',C6:'Centrum Air',KA:'Aero Nomad Airlines',N4:'Nordwind Airlines',AK:'AirAsia',FD:'Thai AirAsia',KE:'Korean Air',BX:'Air Busan',WE:'Parata Air',RF:'Aero K',TW:'Trinity Airways',OZ:'Asiana Airlines',LJ:'Jin Air','3U':'Sichuan Airlines',UQ:'Urumqi Air',DR:'Ruili Airlines',TR:'Scoot',HY:'Uzbekistan Airways',HU:'Hainan Airlines',VZ:'Thai Vietjet Air','9G':'Sun PhuQuoc Airways',B2:'Belavia',VU:'Vietravel Airlines'};
   let pending = false, overviewKey = '', carrierPromise = null, logoObserver = null;
   let stripPending = false, flightView = null, showAll = false, tableFrame = 0, flightRevision = 0, lastFlightRenderKey = '', workspaceBrandTimer = 0;
   const safe = value => String(value ?? '').replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
@@ -29,10 +29,16 @@
       }).catch(() => []);
     return carrierPromise;
   }
+  const TRINITY_SYMBOL = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23D79D8F' d='M7 13h20l-9 38-8-20z'/%3E%3Cpath fill='%23C4B796' d='M23 13h18L32 35z'/%3E%3Cpath fill='%23666058' d='M37 13h20l-3 18-8 20z'/%3E%3C/svg%3E";
   function logoUrl(code) {
     code = normalizeCarrier(code);
+    if (code === 'TW') return TRINITY_SYMBOL;
     return AIRLINE_NAMES[code] ? './assets/airlines/'+code+(code==='KA'?'.svg':'.png') : '';
   }
+  window.sagsAirlineIdentity = Object.freeze({
+    name(code){const c=normalizeCarrier(code);return AIRLINE_NAMES[c]||c;},
+    logoUrl(code){return logoUrl(code);}
+  });
   function airlineAlias(flightLabel, carriers) {
     const raw = U(flightLabel).replace(/[\s-]+/g,'');
     const aliases = [];

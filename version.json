@@ -1,12 +1,12 @@
 {
-  "version": "V6.4.106",
-  "displayVersion": "V6.4.106",
-  "label": "V6.4.106 - MY FLIGHT CHIP + FLICKER FIX",
-  "build": "V6.4.106-20261006-MYFLIGHT-CHIP-FLICKER-PERF-01",
-  "releasedAt": "2026-10-06T00:32:00Z",
-  "type": "ui-stability-performance",
-  "base": "V6.4.105-20261006-MYFLIGHT-STABILITY-FORM-OVERVIEW-01",
+  "version": "V6.4.107",
+  "displayVersion": "V6.4.107",
+  "label": "V6.4.107 - TRINITY AIRWAYS + SỔ TAY LOGO + PERF",
+  "build": "V6.4.107-20261006-TRINITY-NOTEBOOK-PERF-01",
+  "releasedAt": "2026-10-06T02:31:00Z",
+  "type": "airline-identity-ui-performance",
+  "base": "V6.4.106-20261006-MYFLIGHT-CHIP-FLICKER-PERF-01",
   "updatePolicy": "required",
-  "notes": "Chọn phương án 2 cho card chuyến: danh sách biểu mẫu hiển thị dạng chip nhỏ trên một hàng ngang, kéo ngang khi nhiều form; mỗi chip vẫn giữ tên biểu mẫu, người phụ trách và trạng thái. Sửa nhấp nháy card MY FLIGHT ở gốc: giữ nguyên shell, chỉ thay DOM khi markup card thực sự đổi; nhân viên mở/refresh MY FLIGHT đi thẳng vào hàng đợi cá nhân thay vì render toàn bộ chuyến rồi thay lại sau 80-100ms. Realtime mailbox bỏ refresh storm do child_added replay ban đầu và ưu tiên stable refresh. Debounce observer quét toàn document của lịch vệ sinh để giảm CPU trên mobile/PC. Tiếp tục giữ 54/94 theo Form Manager và toàn bộ tối ưu V6.4.104/V6.4.105.",
-  "message": "V6.4.106: chip form 1 hàng, hết nhấp nháy card MY FLIGHT và giảm render/observer thừa."
+  "notes": "Cập nhật nhận diện TW từ T’way Air sang Trinity Airways, giữ nguyên mã hãng TW theo công bố chính thức. Sổ tay hãng hiển thị logo hãng ở danh sách và phần chi tiết, dùng chung nguồn nhận diện với màn hình chính. Logo Trinity dùng vector inline nhẹ để không phát sinh request mạng/asset ngoài. Giảm polling Sổ tay từ 2.5 giây xuống 20 giây khi trang đang hiển thị và ưu tiên refresh theo sự kiện focus/pageshow/roster/My Flight để giảm CPU, DOM work và pin trên mobile. Giữ nguyên toàn bộ nghiệp vụ, phân quyền và dữ liệu biểu mẫu.",
+  "message": "V6.4.107: Trinity Airways + logo trong Sổ tay hãng + giảm polling để giữ trải nghiệm nhanh."
 }
