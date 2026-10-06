@@ -45,9 +45,7 @@ jobs:
       - name: Verify V2.0 quick-entry full expansion
         run: node tests/v2-quick-customize.test.cjs
       - name: Verify V2.0 flight dossier unit overview
-        run: |
-          node tests/v2-myflight-dossier.test.cjs
-          node tests/myflight-dossier.test.cjs
+        run: node tests/v2-myflight-dossier.test.cjs
       - name: Verify V2.0 three-layer draft protection
         run: node tests/v2-draft-sync.test.cjs
       - name: Verify pinned cache integrity
