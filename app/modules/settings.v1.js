@@ -3,7 +3,7 @@
  */
 (function(w){
 'use strict';
-var BUILD='V2.1-20261006-SETTINGS-CENTER-02';
+var BUILD='V2.1-20261006-SETTINGS-CENTER-03';
 if(w.__SAGS_SETTINGS_CENTER__===BUILD)return;
 w.__SAGS_SETTINGS_CENTER__=BUILD;
 var D={schema:1,displayName:'',avatarData:'',appearance:'dark',fontScale:'normal',compactMode:false,soundEnabled:true,vibrationEnabled:true,notifications:{device:true,assignment:true,handover:true,returned:true,roster:true,update:true},autoSync:true,warnUnsynced:true,autoLockMinutes:0,updatedAtMs:0};
@@ -36,7 +36,7 @@ function apply(){
 function ensureWelcomeAvatar(){var n=$('v157WelcomeName');if(n&&!$('sagsWelcomeAvatar')){var a=document.createElement('span');a.id='sagsWelcomeAvatar';a.className='sagsWelcomeAvatar';n.parentNode.insertBefore(a,n)}}
 function applyProfile(){
  ensureWelcomeAvatar();var n=shownName(),a=S(P.avatarData),initial=(n.match(/[A-ZÀ-Ỹ0-9]/iu)||['U'])[0].toUpperCase(),d=$('v157DrawerAvatar'),wa=$('sagsWelcomeAvatar'),un=$('v157UserName'),g=$('v157WelcomeName');
- function av(el){if(!el)return;el.dataset.sagsAvatar=a?'image':'initial';el.style.backgroundImage=a?'url("'+a.replace(/"/g,'%22')+'")':'';el.textContent=a?'':initial;el.title=n}
+ function av(el){if(!el)return;var mode=a?'image':'initial',bg=a?'url("'+a.replace(/"/g,'%22')+'")':'',txt=a?'':initial;if(el.dataset.sagsAvatar!==mode)el.dataset.sagsAvatar=mode;if(el.style.backgroundImage!==bg)el.style.backgroundImage=bg;if(el.textContent!==txt)el.textContent=txt;if(el.title!==n)el.title=n}
  av(d);av(wa);
  if(un){un.classList.add('sagsCustomDisplayText');un.dataset.sagsDisplay=n;un.title=n===legalName()?n:n+' · '+legalName()}
  if(g){g.classList.add('sagsCustomGreeting');g.dataset.sagsGreeting='Xin chào, '+n+' 👋'}
@@ -112,7 +112,7 @@ function toast(t){var e=document.createElement('div');e.className='sagsSettingsT
 function resetLock(){clearTimeout(lockTimer);var m=Number(P.autoLockMinutes)||0;if(!m||!document.body.classList.contains('v157-authenticated'))return;lockTimer=setTimeout(function(){try{close();if(typeof w.roleLogout==='function')w.roleLogout();else if($('v157LogoutBtn'))$('v157LogoutBtn').click()}catch(e){}},m*60000)}
 function syncIdentity(){var i=identity();if(i===uidKey)return;uidKey=i;P=read();cloudState='Chỉ lưu trên thiết bị';cloudAt=0;apply();render();if(i!=='device')setTimeout(loadCloud,250)}
 function beforeLeave(e){if(P.warnUnsynced&&navigator.onLine===false&&draftCount()){e.preventDefault();e.returnValue=''}}
-function install(){shell();syncIdentity();patchDeviceFeedback();ensureMenu();if(!observer){observer=new MutationObserver(function(){ensureMenu();applyProfile()});observer.observe(document.body,{subtree:true,childList:true})}['pointerdown','keydown','touchstart'].forEach(function(ev){document.addEventListener(ev,resetLock,{passive:true,capture:true})});addEventListener('online',function(){status();if(P.autoSync)syncNow()},{passive:true});addEventListener('offline',status,{passive:true});addEventListener('beforeunload',beforeLeave);try{w.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){if(P.appearance==='system')apply()})}catch(e){}setInterval(function(){syncIdentity();ensureMenu();applyProfile()},1500)}
+function install(){shell();syncIdentity();patchDeviceFeedback();ensureMenu();if(!observer){var menuQueued=false;observer=new MutationObserver(function(){if(menuQueued)return;menuQueued=true;requestAnimationFrame(function(){menuQueued=false;ensureMenu()})});observer.observe(document.body,{subtree:true,childList:true})}['pointerdown','keydown','touchstart'].forEach(function(ev){document.addEventListener(ev,resetLock,{passive:true,capture:true})});addEventListener('online',function(){status();if(P.autoSync)syncNow()},{passive:true});addEventListener('offline',status,{passive:true});addEventListener('beforeunload',beforeLeave);try{w.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){if(P.appearance==='system')apply()})}catch(e){}setInterval(function(){syncIdentity();ensureMenu();applyProfile()},1500)}
 w.sagsNotificationAllowed=function(k){var n=read().notifications||{};return n.device!==false&&n[S(k)]!==false};w.sagsVibrate=function(p){if(read().vibrationEnabled===false)return false;try{return vibrateBase?vibrateBase(p):(navigator.vibrate&&navigator.vibrate(p))||false}catch(e){return false}};w.sagsGetSettings=function(){return clone(read())};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install()
 })(window);
